@@ -1,7 +1,7 @@
-﻿using Imi.Project.Api.Core.Entities.Base;
-using System;
+﻿using System;
 using System.Collections.Generic;
-using System.Text;
+using Imi.Project.Api.Core.Entities.Base;
+using Imi.Project.Api.Core.Entities.Games;
 
 namespace Imi.Project.Api.Core.Entities
 {

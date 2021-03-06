@@ -1,6 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
+using Imi.Project.Api.Core.Entities.Users;
 
 namespace Imi.Project.Api.Core.Entities.Games
 {
