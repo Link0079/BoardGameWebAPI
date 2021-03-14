@@ -4,9 +4,9 @@ using System.Threading.Tasks;
 
 namespace Imi.Project.Api.Core.Interfaces.Services
 {
-    public interface ICategoryService
+    public interface ICountryService
     {
-        Task<IEnumerable<CategoryResponseDto>> ListAllAsync();
+        Task<IEnumerable<CountryResponseDto>> ListAllAsync();
         Task<CategoryResponseDto> GetByIdAsync();
     }
 }
