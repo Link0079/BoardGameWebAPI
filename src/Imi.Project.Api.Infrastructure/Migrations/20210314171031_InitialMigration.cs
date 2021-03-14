@@ -68,7 +68,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                         column: x => x.CountryId,
                         principalTable: "Countries",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.NoAction);
                 });
 
             migrationBuilder.CreateTable(
@@ -122,13 +122,13 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                         column: x => x.ArtistId,
                         principalTable: "Artists",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_BoardGameArtists_BoardGames_BoardGameId",
                         column: x => x.BoardGameId,
                         principalTable: "BoardGames",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -146,13 +146,13 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                         column: x => x.BoardGameId,
                         principalTable: "BoardGames",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_BoardGameCategories_Categories_CategoryId",
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateIndex(

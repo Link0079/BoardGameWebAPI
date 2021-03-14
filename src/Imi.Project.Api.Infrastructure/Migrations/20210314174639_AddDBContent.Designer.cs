@@ -4,14 +4,16 @@ using Imi.Project.Api.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Imi.Project.Api.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20210314174639_AddDBContent")]
+    partial class AddDBContent
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -2376,7 +2378,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                     b.HasOne("Imi.Project.Api.Core.Entities.Publisher", "Publisher")
                         .WithMany("PublishedBoardGames")
                         .HasForeignKey("PublisherId")
-                        .OnDelete(DeleteBehavior.NoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

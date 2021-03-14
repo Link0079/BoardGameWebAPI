@@ -1,6 +1,7 @@
 ﻿using Imi.Project.Api.Core.Entities;
 using Imi.Project.Api.Core.Entities.Games;
 using Imi.Project.Api.Core.Entities.Users;
+using Imi.Project.Api.Infrastructure.Data.Seeding;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -80,6 +81,13 @@ namespace Imi.Project.Api.Infrastructure.Data
                 .OnDelete(DeleteBehavior.Restrict);
             #endregion
 
+            CategorySeeder.Seed(modelBuilder);
+            CountrySeeder.Seed(modelBuilder);
+            PublisherSeeder.Seed(modelBuilder);
+            ArtistSeeder.Seed(modelBuilder);
+            BoardGameSeeder.Seed(modelBuilder);
+            BoardGameArtistSeeder.Seed(modelBuilder);
+            BoardGameCategorySeeder.Seed(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
