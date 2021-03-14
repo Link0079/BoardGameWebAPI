@@ -6,7 +6,7 @@ namespace Imi.Project.Api.Core.Dtos
     {
         public string Name { get; set; }
         public string CountryName { get; set; }
-        public string Dob { get; set; }
-        public int NumberOfArtwork { get; set; }
+        public string Dob { get; set; } // CreateMap
+        public int NumberOfArtwork { get; set; } // CreateMap
     }
 }

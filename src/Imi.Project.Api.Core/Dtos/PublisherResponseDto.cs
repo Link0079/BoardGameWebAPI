@@ -6,6 +6,6 @@ namespace Imi.Project.Api.Core.Dtos
     {
         public string Name { get; set; }
         public string CountryName { get; set; }
-        public int NumberOfPublishedBoardGames { get; set; }
+        public int NumberOfPublishedBoardGames { get; set; } // CreateMap
     }
 }
