@@ -13,7 +13,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories
 {
     public class EfRepository<T> : IRepository<T> where T : BaseEntity<Guid>
     {
-        private readonly ApplicationDbContext _dbContext;
+        protected readonly ApplicationDbContext _dbContext;
         public EfRepository(ApplicationDbContext dbContext)
         {
             _dbContext = dbContext;
