@@ -8,6 +8,7 @@ namespace Imi.Project.Api.Core.Entities
     public class Category : BaseEntity<Guid>
     {
         public string Name { get; set; }
+        public bool IsDeleted { get; set; }
         public ICollection<BoardGameCategory> BoardGames { get; set; }
     }
 }
