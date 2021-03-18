@@ -1,5 +1,4 @@
 ﻿using System;
-using Imi.Project.Api.Core.Entities.Users;
 
 namespace Imi.Project.Api.Core.Entities.Games
 {

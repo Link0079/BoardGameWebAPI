@@ -1,4 +1,4 @@
-﻿using Imi.Project.Api.Core.Entities.Users;
+﻿using Imi.Project.Api.Core.Entities;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
