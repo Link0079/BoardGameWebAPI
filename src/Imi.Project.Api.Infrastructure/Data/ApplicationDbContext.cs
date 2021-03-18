@@ -1,6 +1,6 @@
 ﻿using Imi.Project.Api.Core.Entities;
 using Imi.Project.Api.Core.Entities.Games;
-//using Imi.Project.Api.Core.Entities.Users;
+using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Infrastructure.Data.Seeding;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -18,6 +18,9 @@ namespace Imi.Project.Api.Infrastructure.Data
         public DbSet<Artist> Artists { get; set; }
         public DbSet<Publisher> Publishers { get; set; }
         public DbSet<BoardGame> BoardGames { get; set; }
+        public DbSet<Player> Players { get; set; }
+        public DbSet<PlayedGame> PlayedGames { get; set; }
+        public DbSet<GameScore> GameScores { get; set; }
         public DbSet<BoardGameArtist> BoardGameArtists { get; set; }
         public DbSet<BoardGameCategory> BoardGameCategories { get; set; }
 
@@ -41,6 +44,9 @@ namespace Imi.Project.Api.Infrastructure.Data
             modelBuilder.Entity<Publisher>().ToTable("Publishers").HasKey(e => e.Id);
             modelBuilder.Entity<Publisher>().Property(e => e.Name)
                 .HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Publisher>().HasMany(e => e.PublishedBoardGames)
+                .WithOne(b => b.Publisher).OnDelete(DeleteBehavior.NoAction);
+
             #endregion
 
             #region Artists Table
@@ -59,15 +65,26 @@ namespace Imi.Project.Api.Infrastructure.Data
             //
             #endregion
 
+            #region Players Table
+            modelBuilder.Entity<Player>().ToTable("Players").HasKey(e => e.Id);
+            modelBuilder.Entity<Player>().Property(e => e.Name)
+                .HasMaxLength(100).IsRequired();
+            #endregion
+
+            #region PlayedGames Table
+            modelBuilder.Entity<PlayedGame>().ToTable("PlayedGames").HasKey(e => e.Id);
+            modelBuilder.Entity<PlayedGame>().Property(e => e.BoardGameId);
+            #endregion
+
             #region BoardGameArtist Tabel
             modelBuilder.Entity<BoardGameArtist>().ToTable("BoardGameArtists")
                 .HasKey(ba => new { ba.BoardGameId, ba.ArtistId });
             modelBuilder.Entity<BoardGameArtist>().HasOne(ba => ba.BoardGame)
                 .WithMany(a => a.Artists).HasForeignKey(ba => ba.BoardGameId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<BoardGameArtist>().HasOne(ba => ba.Artist)
                 .WithMany(b => b.Artwork).HasForeignKey(ba => ba.ArtistId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.NoAction);
             #endregion
 
             #region BoardGameCategory Table
@@ -75,19 +92,33 @@ namespace Imi.Project.Api.Infrastructure.Data
                 .HasKey(bc => new { bc.BoardGameId, bc.CategoryId });
             modelBuilder.Entity<BoardGameCategory>().HasOne(bc => bc.BoardGame)
                 .WithMany(c => c.Categories).HasForeignKey(bc => bc.BoardGameId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.NoAction);
             modelBuilder.Entity<BoardGameCategory>().HasOne(bc => bc.Category)
                 .WithMany(b => b.BoardGames).HasForeignKey(bc => bc.CategoryId)
-                .OnDelete(DeleteBehavior.Restrict);
+                .OnDelete(DeleteBehavior.NoAction);
             #endregion
 
-            CategorySeeder.Seed(modelBuilder);
-            CountrySeeder.Seed(modelBuilder);
-            PublisherSeeder.Seed(modelBuilder);
-            ArtistSeeder.Seed(modelBuilder);
-            BoardGameSeeder.Seed(modelBuilder);
-            BoardGameArtistSeeder.Seed(modelBuilder);
-            BoardGameCategorySeeder.Seed(modelBuilder);
+            #region GameScores Table
+            modelBuilder.Entity<GameScore>().ToTable("GamesScores")
+                .HasKey(gs => new { gs.PlayedGameId, gs.PlayerId });
+            modelBuilder.Entity<GameScore>().HasOne(gs => gs.PlayedGame)
+                .WithMany(p => p.GameScores).HasForeignKey(gs => gs.PlayedGameId)
+                .OnDelete(DeleteBehavior.NoAction);
+            modelBuilder.Entity<GameScore>().HasOne(gs => gs.Player)
+                .WithMany(p => p.GameScores).HasForeignKey(gs => gs.PlayerId)
+                .OnDelete(DeleteBehavior.NoAction);
+            #endregion
+
+            //CategorySeeder.Seed(modelBuilder);
+            //CountrySeeder.Seed(modelBuilder);
+            //ArtistSeeder.Seed(modelBuilder);
+            //PublisherSeeder.Seed(modelBuilder);
+            //PlayerSeeder.Seed(modelBuilder);
+            //BoardGameSeeder.Seed(modelBuilder);
+            //PlayedGameSeeder.Seed(modelBuilder);
+            //GameScoreSeeder.Seed(modelBuilder);
+            //BoardGameArtistSeeder.Seed(modelBuilder);
+            //BoardGameCategorySeeder.Seed(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
