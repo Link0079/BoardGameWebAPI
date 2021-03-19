@@ -8,6 +8,43 @@ namespace Imi.Project.Api.Infrastructure.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
+                name: "Artists",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    Dob = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Artists", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BoardGames",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Title = table.Column<string>(maxLength: 255, nullable: false),
+                    Price = table.Column<decimal>(type: "money", nullable: false),
+                    Year = table.Column<int>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    Age = table.Column<int>(nullable: true),
+                    Rating = table.Column<int>(nullable: true),
+                    PlayTime = table.Column<int>(nullable: true),
+                    MinPlayers = table.Column<int>(nullable: true),
+                    MaxPlayers = table.Column<int>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Stock = table.Column<bool>(nullable: false),
+                    PhotoUrl = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BoardGames", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Categories",
                 columns: table => new
                 {
@@ -21,114 +58,16 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
-                name: "Countries",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 100, nullable: false),
-                    CountryCode = table.Column<string>(maxLength: 3, nullable: true),
-                    IsDeleted = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Countries", x => x.Id);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Artists",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 100, nullable: false),
-                    CountryId = table.Column<Guid>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    Dob = table.Column<DateTime>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Artists", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Artists_Countries_CountryId",
-                        column: x => x.CountryId,
-                        principalTable: "Countries",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "Players",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     Name = table.Column<string>(maxLength: 100, nullable: false),
-                    CountryId = table.Column<Guid>(nullable: false),
                     IsDeleted = table.Column<bool>(nullable: false)
                 },
                 constraints: table =>
                 {
                     table.PrimaryKey("PK_Players", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Players_Countries_CountryId",
-                        column: x => x.CountryId,
-                        principalTable: "Countries",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "Publishers",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Name = table.Column<string>(maxLength: 100, nullable: false),
-                    CountryId = table.Column<Guid>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Publishers", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_Publishers_Countries_CountryId",
-                        column: x => x.CountryId,
-                        principalTable: "Countries",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "BoardGames",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    Title = table.Column<string>(maxLength: 255, nullable: false),
-                    Price = table.Column<decimal>(type: "money", nullable: false),
-                    Year = table.Column<int>(nullable: false),
-                    CountryId = table.Column<Guid>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false),
-                    Age = table.Column<int>(nullable: true),
-                    Rating = table.Column<int>(nullable: true),
-                    PlayTime = table.Column<int>(nullable: true),
-                    MinPlayers = table.Column<int>(nullable: true),
-                    MaxPlayers = table.Column<int>(nullable: true),
-                    Description = table.Column<string>(nullable: true),
-                    Stock = table.Column<bool>(nullable: false),
-                    PhotoUrl = table.Column<string>(nullable: true),
-                    PublisherId = table.Column<Guid>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_BoardGames", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_BoardGames_Countries_CountryId",
-                        column: x => x.CountryId,
-                        principalTable: "Countries",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_BoardGames_Publishers_PublisherId",
-                        column: x => x.PublisherId,
-                        principalTable: "Publishers",
-                        principalColumn: "Id");
                 });
 
             migrationBuilder.CreateTable(
@@ -155,6 +94,26 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "PlayedGames",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    BoardGameId = table.Column<Guid>(nullable: false),
+                    PlayTime = table.Column<int>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlayedGames", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PlayedGames_BoardGames_BoardGameId",
+                        column: x => x.BoardGameId,
+                        principalTable: "BoardGames",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "BoardGameCategories",
                 columns: table => new
                 {
@@ -175,27 +134,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                         column: x => x.CategoryId,
                         principalTable: "Categories",
                         principalColumn: "Id");
-                });
-
-            migrationBuilder.CreateTable(
-                name: "PlayedGames",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(nullable: false),
-                    BoardGameId = table.Column<Guid>(nullable: false),
-                    PlayTime = table.Column<int>(nullable: false),
-                    PlayerCount = table.Column<int>(nullable: false),
-                    IsDeleted = table.Column<bool>(nullable: false)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_PlayedGames", x => x.Id);
-                    table.ForeignKey(
-                        name: "FK_PlayedGames_BoardGames_BoardGameId",
-                        column: x => x.BoardGameId,
-                        principalTable: "BoardGames",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
                 });
 
             migrationBuilder.CreateTable(
@@ -223,11 +161,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Artists_CountryId",
-                table: "Artists",
-                column: "CountryId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_BoardGameArtists_ArtistId",
                 table: "BoardGameArtists",
                 column: "ArtistId");
@@ -238,16 +171,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                 column: "CategoryId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_BoardGames_CountryId",
-                table: "BoardGames",
-                column: "CountryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_BoardGames_PublisherId",
-                table: "BoardGames",
-                column: "PublisherId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_GamesScores_PlayerId",
                 table: "GamesScores",
                 column: "PlayerId");
@@ -256,16 +179,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                 name: "IX_PlayedGames_BoardGameId",
                 table: "PlayedGames",
                 column: "BoardGameId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Players_CountryId",
-                table: "Players",
-                column: "CountryId");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Publishers_CountryId",
-                table: "Publishers",
-                column: "CountryId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -293,12 +206,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
 
             migrationBuilder.DropTable(
                 name: "BoardGames");
-
-            migrationBuilder.DropTable(
-                name: "Publishers");
-
-            migrationBuilder.DropTable(
-                name: "Countries");
         }
     }
 }

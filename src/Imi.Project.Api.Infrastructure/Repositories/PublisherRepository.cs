@@ -16,8 +16,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories
         }
         public override IQueryable<Publisher> GetAllAsync()
         {
-            return _dbContext.Publishers.AsNoTracking().Include(p => p.Country)
-                .Include(p => p.PublishedBoardGames);
+            return null; // _dbContext.Publishers.AsNoTracking().Include(p => p.Country).Include(p => p.PublishedBoardGames);
         }
         public override async Task<Publisher> GetByIdAsync(Guid id)
         {

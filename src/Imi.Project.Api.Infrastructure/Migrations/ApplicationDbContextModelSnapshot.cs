@@ -25,9 +25,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CountryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<DateTime>("Dob")
                         .HasColumnType("datetime2");
 
@@ -40,8 +37,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                         .HasMaxLength(100);
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
 
                     b.ToTable("Artists");
                 });
@@ -65,29 +60,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                     b.ToTable("Categories");
                 });
 
-            modelBuilder.Entity("Imi.Project.Api.Core.Entities.Country", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<string>("CountryCode")
-                        .HasColumnType("nvarchar(3)")
-                        .HasMaxLength(3);
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Countries");
-                });
-
             modelBuilder.Entity("Imi.Project.Api.Core.Entities.Games.BoardGame", b =>
                 {
                     b.Property<Guid>("Id")
@@ -96,9 +68,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
 
                     b.Property<int?>("Age")
                         .HasColumnType("int");
-
-                    b.Property<Guid>("CountryId")
-                        .HasColumnType("uniqueidentifier");
 
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
@@ -121,9 +90,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                     b.Property<decimal>("Price")
                         .HasColumnType("money");
 
-                    b.Property<Guid>("PublisherId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<int?>("Rating")
                         .HasColumnType("int");
 
@@ -139,10 +105,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
-
-                    b.HasIndex("PublisherId");
 
                     b.ToTable("BoardGames");
                 });
@@ -219,38 +181,11 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                     b.Property<int>("PlayTime")
                         .HasColumnType("int");
 
-                    b.Property<int>("PlayerCount")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BoardGameId");
 
                     b.ToTable("PlayedGames");
-                });
-
-            modelBuilder.Entity("Imi.Project.Api.Core.Entities.Publisher", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<Guid>("CountryId")
-                        .HasColumnType("uniqueidentifier");
-
-                    b.Property<bool>("IsDeleted")
-                        .HasColumnType("bit");
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(100)")
-                        .HasMaxLength(100);
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("CountryId");
-
-                    b.ToTable("Publishers");
                 });
 
             modelBuilder.Entity("Imi.Project.Api.Core.Entities.Users.Player", b =>
@@ -259,9 +194,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("CountryId")
-                        .HasColumnType("uniqueidentifier");
-
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -272,33 +204,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("CountryId");
-
                     b.ToTable("Players");
-                });
-
-            modelBuilder.Entity("Imi.Project.Api.Core.Entities.Artist", b =>
-                {
-                    b.HasOne("Imi.Project.Api.Core.Entities.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Imi.Project.Api.Core.Entities.Games.BoardGame", b =>
-                {
-                    b.HasOne("Imi.Project.Api.Core.Entities.Country", "Country")
-                        .WithMany("BoardGames")
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("Imi.Project.Api.Core.Entities.Publisher", "Publisher")
-                        .WithMany("PublishedBoardGames")
-                        .HasForeignKey("PublisherId")
-                        .OnDelete(DeleteBehavior.NoAction)
-                        .IsRequired();
                 });
 
             modelBuilder.Entity("Imi.Project.Api.Core.Entities.Games.BoardGameArtist", b =>
@@ -351,24 +257,6 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                     b.HasOne("Imi.Project.Api.Core.Entities.Games.BoardGame", "BoardGame")
                         .WithMany()
                         .HasForeignKey("BoardGameId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Imi.Project.Api.Core.Entities.Publisher", b =>
-                {
-                    b.HasOne("Imi.Project.Api.Core.Entities.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-                });
-
-            modelBuilder.Entity("Imi.Project.Api.Core.Entities.Users.Player", b =>
-                {
-                    b.HasOne("Imi.Project.Api.Core.Entities.Country", "Country")
-                        .WithMany()
-                        .HasForeignKey("CountryId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

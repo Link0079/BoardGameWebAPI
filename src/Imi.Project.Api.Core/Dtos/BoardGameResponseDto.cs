@@ -8,7 +8,7 @@ namespace Imi.Project.Api.Core.Dtos
         public string Title { get; set; }
         public decimal Price { get; set; }
         public int Year { get; set; }
-        public string CountryName { get; set; }
+        //public string CountryName { get; set; }
         public string Stock { get; set; } // CreateMap
         public string PlayTime { get; set; } // CreateMap
         public int NumberOfCategories { get; set; } // CreateMap

@@ -16,7 +16,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories
         }
         public override IQueryable<Country> GetAllAsync()
         {
-            return _dbContext.Countries.AsNoTracking();
+            return null; // _dbContext.Countries.AsNoTracking();
         }
         public override async Task<Country> GetByIdAsync(Guid id)
         {
