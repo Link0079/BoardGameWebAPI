@@ -115,16 +115,16 @@ namespace Imi.Project.Api.Infrastructure.Data
                 .OnDelete(DeleteBehavior.ClientNoAction);
             #endregion
 
-            ////CountrySeeder.Seed(modelBuilder);
-            ////PublisherSeeder.Seed(modelBuilder);
-            //CategorySeeder.Seed(modelBuilder);
-            //ArtistSeeder.Seed(modelBuilder);
-            //PlayerSeeder.Seed(modelBuilder);
-            //BoardGameSeeder.Seed(modelBuilder);
-            //PlayedGameSeeder.Seed(modelBuilder);
-            //GameScoreSeeder.Seed(modelBuilder);
-            //BoardGameArtistSeeder.Seed(modelBuilder);
-            //BoardGameCategorySeeder.Seed(modelBuilder);
+            //CountrySeeder.Seed(modelBuilder);
+            //PublisherSeeder.Seed(modelBuilder);
+            CategorySeeder.Seed(modelBuilder);
+            ArtistSeeder.Seed(modelBuilder);
+            PlayerSeeder.Seed(modelBuilder);
+            BoardGameSeeder.Seed(modelBuilder);
+            PlayedGameSeeder.Seed(modelBuilder);
+            GameScoreSeeder.Seed(modelBuilder);
+            BoardGameArtistSeeder.Seed(modelBuilder);
+            BoardGameCategorySeeder.Seed(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }
