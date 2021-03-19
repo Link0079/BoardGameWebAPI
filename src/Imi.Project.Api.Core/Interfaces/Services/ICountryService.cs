@@ -7,6 +7,6 @@ namespace Imi.Project.Api.Core.Interfaces.Services
     public interface ICountryService
     {
         Task<IEnumerable<CountryResponseDto>> ListAllAsync();
-        Task<CategoryResponseDto> GetByIdAsync();
+        Task<CountryResponseDto> GetByIdAsync();
     }
 }

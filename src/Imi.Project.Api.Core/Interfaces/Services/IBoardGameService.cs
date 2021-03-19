@@ -9,7 +9,7 @@ namespace Imi.Project.Api.Core.Interfaces.Services
     public interface IBoardGameService
     {
         Task<IEnumerable<BoardGameResponseDto>> ListAllAsync();
-        Task<BoardGameResponseDto> GetByIdAsync();
-
+        Task<BoardGameResponseDto> GetByIdAsync(Guid id);
+        Task<IEnumerable<BoardGameResponseDto>> GetByCategoryIdAsync(Guid id);
     }
 }
