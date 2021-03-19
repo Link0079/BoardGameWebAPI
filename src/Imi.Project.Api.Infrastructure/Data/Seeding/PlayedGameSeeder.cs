@@ -15,7 +15,6 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                 {
                     Id = Guid.Parse("10000000-0000-0000-0000-000000000000"),
                     BoardGameId = Guid.Parse("00000040-0000-0000-0000-000000000000"),
-                    PlayerCount = 3,
                     IsDeleted = false,
                     PlayTime = 160
                 },
@@ -23,7 +22,6 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                 {
                     Id = Guid.Parse("20000000-0000-0000-0000-000000000000"),
                     BoardGameId = Guid.Parse("00000005-0000-0000-0000-000000000000"),
-                    PlayerCount = 4,
                     IsDeleted = false,
                     PlayTime = 70
                 },
@@ -31,12 +29,9 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                 {
                     Id = Guid.Parse("30000000-0000-0000-0000-000000000000"),
                     BoardGameId = Guid.Parse("00000023-0000-0000-0000-000000000000"),
-                    PlayerCount = 5,
                     IsDeleted = false,
                     PlayTime = 480
-                }
-                );
+                });
         }
-
     }
 }
