@@ -1,4 +1,4 @@
-﻿using Imi.Project.Api.Core.Dtos;
+﻿using Imi.Project.Api.Core.Dtos.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;

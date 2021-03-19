@@ -7,6 +7,6 @@ namespace Imi.Project.Api.Core.Interfaces.Services
     public interface IPublisherService
     {
         Task<IEnumerable<PublisherResponseDto>> ListAllAsync();
-        Task<CategoryResponseDto> GetByIdAsync();
+        Task<PublisherResponseDto> GetByIdAsync();
     }
 }

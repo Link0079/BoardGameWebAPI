@@ -1,7 +1,7 @@
 ﻿using Imi.Project.Api.Core.Dtos.Base;
 using System.Collections.Generic;
 
-namespace Imi.Project.Api.Core.Dtos
+namespace Imi.Project.Api.Core.Dtos.Games
 {
     public class BoardGameResponseDto : BaseDto
     {
