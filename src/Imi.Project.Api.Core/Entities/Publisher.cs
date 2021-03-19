@@ -6,6 +6,6 @@ namespace Imi.Project.Api.Core.Entities
 {
     public class Publisher : User
     {
-        public ICollection<BoardGame> PublishedBoardGames { get; set; }
+        //public ICollection<BoardGame> PublishedBoardGames { get; set; }
     }
 }
