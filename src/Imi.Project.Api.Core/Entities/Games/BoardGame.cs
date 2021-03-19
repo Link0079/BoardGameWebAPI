@@ -18,6 +18,7 @@ namespace Imi.Project.Api.Core.Entities.Games
         //public Publisher Publisher { get; set; }
         public ICollection<BoardGameCategory> Categories { get; set; }
         public ICollection<BoardGameArtist> Artists { get; set; }
+        public ICollection<PlayedGame> PlayedGames { get; set; }
 
     }
 }

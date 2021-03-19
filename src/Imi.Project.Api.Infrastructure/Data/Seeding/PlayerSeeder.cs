@@ -49,8 +49,6 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                 }
                 #endregion
                 );
-
         }
-
     }
 }
