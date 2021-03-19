@@ -14,9 +14,9 @@ namespace Imi.Project.Api.Infrastructure.Data
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
         public DbSet<Category> Categories { get; set; }
-        public DbSet<Country> Countries { get; set; }
+        //public DbSet<Country> Countries { get; set; }
         public DbSet<Artist> Artists { get; set; }
-        public DbSet<Publisher> Publishers { get; set; }
+        //public DbSet<Publisher> Publishers { get; set; }
         public DbSet<BoardGame> BoardGames { get; set; }
         public DbSet<Player> Players { get; set; }
         public DbSet<PlayedGame> PlayedGames { get; set; }
@@ -33,20 +33,19 @@ namespace Imi.Project.Api.Infrastructure.Data
             #endregion
 
             #region Countries Table
-            modelBuilder.Entity<Country>().ToTable("Countries").HasKey(e => e.Id);
-            modelBuilder.Entity<Country>().Property(e => e.Name)
-                .HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<Country>().Property(e => e.CountryCode)
-                .HasMaxLength(3);
+            //modelBuilder.Entity<Country>().ToTable("Countries").HasKey(e => e.Id);
+            //modelBuilder.Entity<Country>().Property(e => e.Name)
+            //    .HasMaxLength(100).IsRequired();
+            //modelBuilder.Entity<Country>().Property(e => e.CountryCode)
+            //    .HasMaxLength(3);
             #endregion
 
             #region Publishers Table
-            modelBuilder.Entity<Publisher>().ToTable("Publishers").HasKey(e => e.Id);
-            modelBuilder.Entity<Publisher>().Property(e => e.Name)
-                .HasMaxLength(100).IsRequired();
-            modelBuilder.Entity<Publisher>().HasMany(e => e.PublishedBoardGames)
-                .WithOne(b => b.Publisher).OnDelete(DeleteBehavior.NoAction);
-
+            //modelBuilder.Entity<Publisher>().ToTable("Publishers").HasKey(e => e.Id);
+            //modelBuilder.Entity<Publisher>().Property(e => e.Name)
+            //    .HasMaxLength(100).IsRequired();
+            //modelBuilder.Entity<Publisher>().HasMany(e => e.PublishedBoardGames)
+            //    .WithOne(b => b.Publisher).OnDelete(DeleteBehavior.NoAction);
             #endregion
 
             #region Artists Table
@@ -69,11 +68,16 @@ namespace Imi.Project.Api.Infrastructure.Data
             modelBuilder.Entity<Player>().ToTable("Players").HasKey(e => e.Id);
             modelBuilder.Entity<Player>().Property(e => e.Name)
                 .HasMaxLength(100).IsRequired();
+            modelBuilder.Entity<Player>().HasMany(e => e.GameScores)
+                .WithOne(g => g.Player).OnDelete(DeleteBehavior.NoAction);
             #endregion
 
             #region PlayedGames Table
             modelBuilder.Entity<PlayedGame>().ToTable("PlayedGames").HasKey(e => e.Id);
-            modelBuilder.Entity<PlayedGame>().Property(e => e.BoardGameId);
+            modelBuilder.Entity<PlayedGame>().Property(e => e.BoardGameId)
+                .IsRequired();
+            modelBuilder.Entity<PlayedGame>().HasMany(e => e.GameScores)
+                .WithOne(g => g.PlayedGame).OnDelete(DeleteBehavior.NoAction);
             #endregion
 
             #region BoardGameArtist Tabel
