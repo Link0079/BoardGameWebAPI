@@ -14,10 +14,11 @@ namespace Imi.Project.Api.Core.Entities.Games
         public string Description { get; set; }
         public bool Stock { get; set; }
         public string PhotoUrl { get; set; }
-        public Guid PublisherId { get; set; }
-        public Publisher Publisher { get; set; }
+        //public Guid PublisherId { get; set; }
+        //public Publisher Publisher { get; set; }
         public ICollection<BoardGameCategory> Categories { get; set; }
         public ICollection<BoardGameArtist> Artists { get; set; }
+        public ICollection<PlayedGame> PlayedGames { get; set; }
 
     }
 }

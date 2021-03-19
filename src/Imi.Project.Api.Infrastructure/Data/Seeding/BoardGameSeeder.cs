@@ -36,9 +36,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "until you eventually discover how to remove the curse(s)...or die trying. " +
                                 "The 7th Continent features an easy saving system so that you can stop playing at any time and resume your adventure later on, " +
                                 "just like in a video game!",
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000007"),
-                    PublisherId = Guid.Parse("00000000-0000-0024-0000-000000000000"),
-                    Title = "The 7th Continent"
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000007"),
+                    //PublisherId = Guid.Parse("00000000-0000-0024-0000-000000000000"),
+                    Title = "The 7th Continent",
+                    IsDeleted = false
                 },
                 // Arkham Horror
                 new BoardGame
@@ -48,8 +49,8 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     MaxPlayers = 2,
                     Year = 2016,
                     Rating = 8,
-                    PublisherId = Guid.Parse("00000000-0000-0006-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    //PublisherId = Guid.Parse("00000000-0000-0006-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
                     PlayTime = 120,
                     Age = 14,
                     Stock = true,
@@ -67,7 +68,8 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "No matter what compels you, no matter what haunts you, you'll find both your strengths and weaknesses reflected in your custom deck of cards, " +
                                 "and these cards will be your resources as you work with your friends to unravel the world's most terrifying mysteries. " +
                                 "Each of your adventures in Arkham Horror LCG carries you deeper into mystery. You'll find cultists and foul rituals. " +
-                                "You'll find haunted houses and strange creatures. And you may find signs of the Ancient Ones straining against the barriers to our world..."
+                                "You'll find haunted houses and strange creatures. And you may find signs of the Ancient Ones straining against the barriers to our world...",
+                    IsDeleted = false
                 },
                 // 7 Wonders
                 new BoardGame
@@ -77,8 +79,8 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     MaxPlayers = 7,
                     Rating = 7,
                     Year = 2010,
-                    PublisherId = Guid.Parse("00000000-0000-0004-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000012"),
+                    //PublisherId = Guid.Parse("00000000-0000-0004-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000012"),
                     Stock = true,
                     PlayTime = 30,
                     Age = 10,
@@ -98,7 +100,8 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "Some provide military strength to overpower your neighbors and others give nothing but victory points. " +
                                 "Each card is played immediately after being drafted, so you'll know which cards your neighbor is receiving " +
                                 "and how her choices might affect what you've already built up. " +
-                                "Cards are passed left-right-left over the three ages, so you need to keep an eye on the neighbors in both directions."
+                                "Cards are passed left-right-left over the three ages, so you need to keep an eye on the neighbors in both directions.",
+                    IsDeleted = false
                 },
                 // Joking Hazard
                 new BoardGame
@@ -116,9 +119,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Description = "Draw 7 cards. The deck plays the first card, select a Judge to play the second, " +
                                 "then everyone selects a third card to create a three panel comic strip. The Judge picks a winner. " +
                                 "The game includes a deck of 250 unique panel cards - that’s 15.4 million combinations of comics!",
-                    PublisherId = Guid.Parse("00000000-0000-0019-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "Joking Hazard"
+                    //PublisherId = Guid.Parse("00000000-0000-0019-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "Joking Hazard",
+                    IsDeleted = false
                 },
                 // Wingspan
                 new BoardGame
@@ -138,9 +142,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "You are bird enthusiasts—researchers, bird watchers, ornithologists, and collectors—seeking to discover " +
                                 "and attract the best birds to your network of wildlife preserves. " +
                                 "Each bird extends a chain of powerful combinations in one of your habitats",
-                    PublisherId = Guid.Parse("00000000-0000-0020-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "Wingspan"
+                    //PublisherId = Guid.Parse("00000000-0000-0020-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "Wingspan",
+                    IsDeleted = false
                 },
                 // Mansions of Madness
                 new BoardGame
@@ -159,9 +164,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     "Let the immersive app guide you through the veiled streets of Innsmouth and the haunted corridors of Arkham's cursed mansions as you search for answers and respite. " +
                     "Eight brave investigators stand ready to confront four scenarios of fear and mystery, collecting weapons, tools, and information, solving complex puzzles, and fighting monsters, insanity, and death. " +
                     "Open the door and step inside these hair-raising Mansions of Madness: Second Edition. It will take more than just survival to conquer the evils terrorizing this town.",
-                    PublisherId = Guid.Parse("00000000-0000-0006-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "Mansions of Madness"
+                    //PublisherId = Guid.Parse("00000000-0000-0006-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "Mansions of Madness",
+                    IsDeleted = false
                 },
             #endregion
             #region Party Games "00000000-0000-0000-0003-000000000000"
@@ -190,9 +196,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "The fascists will use those powers to create chaos unless liberals can pull the nation back from the brink of war. " +
                                 "The objective of the liberal team is to pass five liberal policies or assassinate Secret Hitler. " +
                                 "The objective of the fascist team is to pass six fascist policies or elect Secret Hitler chancellor after three fascist policies have passed.",
-                    PublisherId = Guid.Parse("00000000-0000-0008-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "Secret Hitler"
+                    //PublisherId = Guid.Parse("00000000-0000-0008-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "Secret Hitler",
+                    IsDeleted = false
                 },
                 // SpyFall
                 new BoardGame
@@ -217,9 +224,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "the round ends and the accused player has to reveal his identity. If the spy is uncovered, all other players score points. " +
                                 "However, the spy can himself end a round by announcing that he understands what the secret location is; if his guess is correct, " +
                                 "only the spy scores points.",
-                    PublisherId = Guid.Parse("00000000-0000-0009-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000008"),
-                    Title = "SpyFall"
+                    //PublisherId = Guid.Parse("00000000-0000-0009-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000008"),
+                    Title = "SpyFall",
+                    IsDeleted = false
                 },
                 // Pick Your Poison
                 new BoardGame
@@ -240,9 +248,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "After every player plays a perk, the players continue to play poisons face-down on their neighbor's perks. " +
                                 "After everyone has played their cards, it's time for the judge to read all the choices aloud and pick his poison! " +
                                 "The winning perk gets a point and play continues by rotating the role of the judge.",
-                    PublisherId = Guid.Parse("00000000-0000-0004-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000012"),
-                    Title = "Pick Your Poison"
+                    //PublisherId = Guid.Parse("00000000-0000-0004-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000012"),
+                    Title = "Pick Your Poison",
+                    IsDeleted = false
                 },
                 // Pictionary
                 new BoardGame
@@ -265,9 +274,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "empathy for their team mates, and/or a general ability to communicate in restricted circumstances. " +
                                 "A board is provided, just to keep score on, which focuses the competition. " +
                                 "Pictionary was a big hit when it first appeared and has been a classic on the party game scene ever since.",
-                    PublisherId = Guid.Parse("00000000-0000-0018-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000005"),
-                    Title = "Pictionary"
+                    //PublisherId = Guid.Parse("00000000-0000-0018-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000005"),
+                    Title = "Pictionary",
+                    IsDeleted = false
                 },
                 // What The Fuck
                 new BoardGame
@@ -286,9 +296,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "Get your friends to admit the most f*cked up things they have ever done! " +
                                 "When you believe players are not admitting to something f*cked up that you know they've done, you get to coerce them into taking their drinks. " +
                                 "For 3 or more players.",
-                    PublisherId = Guid.Parse("00000000-0000-0021-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "What The Fuck"
+                    //PublisherId = Guid.Parse("00000000-0000-0021-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "What The Fuck",
+                    IsDeleted = false
                 },
                 // Captain Sonar
                 new BoardGame
@@ -304,16 +315,17 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2016,
                     Description = "At the bottom of the ocean, no one will hear you scream! In Captain Sonar, you and your teammates control a state - of - the - art submarine " +
-                    "and are trying to locate an enemy submarine in order to blow it out of the water before they can do the same to you.Every role is important, and the confrontation is merciless. " +
-                    "Be organized and communicate because a captain is nothing without his crew: the Chief Mate, the Radio Operator, and the Engineer. " +
-                    "All the members of a team sit on one side of the table, and they each take a particular role on the submarine, " +
-                    "with the division of labor for these roles being dependent on the number of players in the game: One player might be the captain, " +
-                    "who is responsible for moving the submarine and announcing some details of this movement; " +
-                    "another player is manning the sonar in order to listen to the opposing captain's orders and try to decipher where that sub might be in the water; " +
-                    "a third player might be working in the munitions room to prepare torpedoes, mines and other devices that will allow for combat.",
-                    PublisherId = Guid.Parse("00000000-0000-0007-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000007"),
-                    Title = "Captain Sonar"
+                                "and are trying to locate an enemy submarine in order to blow it out of the water before they can do the same to you.Every role is important, and the confrontation is merciless. " +
+                                "Be organized and communicate because a captain is nothing without his crew: the Chief Mate, the Radio Operator, and the Engineer. " +
+                                "All the members of a team sit on one side of the table, and they each take a particular role on the submarine, " +
+                                "with the division of labor for these roles being dependent on the number of players in the game: One player might be the captain, " +
+                                "who is responsible for moving the submarine and announcing some details of this movement; " +
+                                "another player is manning the sonar in order to listen to the opposing captain's orders and try to decipher where that sub might be in the water; " +
+                                "a third player might be working in the munitions room to prepare torpedoes, mines and other devices that will allow for combat.",
+                    //PublisherId = Guid.Parse("00000000-0000-0007-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000007"),
+                    Title = "Captain Sonar",
+                    IsDeleted = false
                 },
             #endregion
             #region Dice Games "00000000-0000-0000-0004-000000000000"
@@ -333,9 +345,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Description = "Roll for the Galaxy is a dice game of building space empires for 2–5 players. Your dice represent your populace, " +
                                 "whom you direct to develop new technologies, settle worlds, and ship goods. " +
                                 "The player who best manages his workers and builds the most prosperous empire wins!",
-                    PublisherId = Guid.Parse("00000000-0000-0015-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
-                    Title = "Roll for the Galaxy"
+                    //PublisherId = Guid.Parse("00000000-0000-0015-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    Title = "Roll for the Galaxy",
+                    IsDeleted = false
                 },
                 // Dice Hospital
                 new BoardGame
@@ -355,9 +368,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "However, players may also call in specialist staff to react to certain situations that arise to score more points with the authorities! " +
                                 "The game uses worker placement mechanics for the staff, dice as the patients where low scores indicate low health " +
                                 "and a personal player board of actions to treat patients. The player with the highest reputation wins the game!",
-                    PublisherId = Guid.Parse("00000000-0000-0018-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000005"),
-                    Title = "Dice Hospital"
+                    //PublisherId = Guid.Parse("00000000-0000-0018-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000005"),
+                    Title = "Dice Hospital",
+                    IsDeleted = false
                 },
                 // Dice Settlers
                 new BoardGame
@@ -380,9 +394,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "Each turn players reach into their bags of dice, roll and choose their own actions: " +
                                 "from exploring new lands and building the board, through gathering resources and trading, to developing technologies which offer new abilities, " +
                                 "each player chooses their own path to victory.",
-                    PublisherId = Guid.Parse("00000000-0000-0004-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000012"),
-                    Title = "Dice Settlers"
+                    //PublisherId = Guid.Parse("00000000-0000-0004-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000012"),
+                    Title = "Dice Settlers",
+                    IsDeleted = false
                 },
                 // Impact: Battle of Elements
                 new BoardGame
@@ -405,9 +420,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "If a die shows a blank face, it's removed from play; if no symbols match, then the player can end their turn or throw another die in the arena. " +
                                 "If the arena is empty at the start of your turn, then you must throw all of your dice into the arena, " +
                                 "hoping to claim some back because if you ever run out of dice, then you're out of the game. Whoever last holds dice wins!",
-                    PublisherId = Guid.Parse("00000000-0000-0001-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
-                    Title = "Impact: Battle of Elements"
+                    //PublisherId = Guid.Parse("00000000-0000-0001-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    Title = "Impact: Battle of Elements",
+                    IsDeleted = false
                 },
                 // Too Many Bones
                 new BoardGame
@@ -433,9 +449,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "- with dice woven into every aspect! Your party will also be faced with other decisions: when to rest, " +
                                 "when to explore, or even which fights to pursue! The Encounter cards offer fun plot twists and some comic relief, " +
                                 "all while setting the stage for your next battle.",
-                    PublisherId = Guid.Parse("00000000-0000-0017-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "Too Many Bones"
+                    //PublisherId = Guid.Parse("00000000-0000-0017-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "Too Many Bones",
+                    IsDeleted = false
                 },
             #endregion
             #region Roll and Write Games "00000000-0000-0000-0005-000000000000"
@@ -463,9 +480,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "There's lots to do and many paths to becoming the best suburban architect in Welcome To...! " +
                                 "Because of the communal actions, game play is simultaneous and thus supports large groups of players. " +
                                 "With many varying strategies and completely randomized action sets, no two games will feel the same!",
-                    PublisherId = Guid.Parse("00000000-0000-0010-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000007"),
-                    Title = "Welcome To..."
+                    //PublisherId = Guid.Parse("00000000-0000-0010-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000007"),
+                    Title = "Welcome To...",
+                    IsDeleted = false
                 },
                 // Rome and Roll
                 new BoardGame
@@ -483,9 +501,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Description = "Rome & Roll is a heavy roll-and-write board game by Dávid Turczi and Nick Shaw in which 1-4 players compete to craft an empire. " +
                                 "Draft from a pool of custom dice to collect resources, construct the town, and organize armies. " +
                                 "Political alliances, the colonies, and even the Gods all have a part to play. Imperii Gloria!",
-                    PublisherId = Guid.Parse("00000000-0000-0015-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
-                    Title = "Rome and Roll"
+                    //PublisherId = Guid.Parse("00000000-0000-0015-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    Title = "Rome and Roll",
+                    IsDeleted = false
                 },
                 // Railroad Ink
                 new BoardGame
@@ -512,9 +531,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "Try to confine the lava coming from the erupting volcano before it destroys your routes, " +
                                 "or deal with the havoc brought by the meteor strikes and mine the craters for precious ore. " +
                                 "These special rules can spice up things and make each game play and feel different.",
-                    PublisherId = Guid.Parse("00000000-0000-0004-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000012"),
-                    Title = "Railroad Ink"
+                    //PublisherId = Guid.Parse("00000000-0000-0004-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000012"),
+                    Title = "Railroad Ink",
+                    IsDeleted = false
                 },
                 // Cartographers
                 new BoardGame
@@ -538,9 +558,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "In Cartographers: A Roll Player Tale, players compete to earn the most reputation stars by the time four seasons have passed. " +
                                 "Each season, players draw on their map sheets and earn reputation by carrying out the queen's edicts before the season is over. " +
                                 "The player with the most reputation stars at the end of winter wins!",
-                    PublisherId = Guid.Parse("00000000-0000-0015-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
-                    Title = "Cartographers"
+                    //PublisherId = Guid.Parse("00000000-0000-0015-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    Title = "Cartographers",
+                    IsDeleted = false
                 },
                 // Imperial Settlers: Roll and Write
                 new BoardGame
@@ -563,9 +584,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "The adventure mode for a single player offers 48 unique game sheets. " +
                                 "Each sheet presents unique challenges and gameplay as players have different buildings at the start. " +
                                 "Tweak your engine and get as many points as you can! Grab your pencil, roll your dice, and create the most prosperous empire!",
-                    PublisherId = Guid.Parse("00000000-0000-0009-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000008"),
-                    Title = "Imperial Settlers: Roll and Write"
+                    //PublisherId = Guid.Parse("00000000-0000-0009-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000008"),
+                    Title = "Imperial Settlers: Roll and Write",
+                    IsDeleted = false
                 },
             #endregion
             #region Fantasy Games "00000000-0000-0000-0006-000000000000"
@@ -592,9 +614,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "take turns creating the galaxy around Mecatol Rex, the capital planet seated in the center of the board. " +
                                 "An ion storm may block your race from progressing through the galaxy while a fortuitously placed gravity rift may protect you from your closest foes. " +
                                 "The galaxy is yours to both craft and dominate.",
-                    PublisherId = Guid.Parse("00000000-0000-0006-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "Twilight Imperium (4th edition)"
+                    //PublisherId = Guid.Parse("00000000-0000-0006-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "Twilight Imperium (4th edition)",
+                    IsDeleted = false
                 },
                 // Merchants and Marauders
                 new BoardGame
@@ -620,9 +643,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "While some points earned from performing various tasks are permanent, players earn points for amassing gold, " +
                                 "which can be stolen or lost (or at least diminished) if their captain is killed. " +
                                 "Points due to gold are hidden so there's some uncertainty about when the game will end. ",
-                    PublisherId = Guid.Parse("00000000-0000-0015-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
-                    Title = "Merchants and Marauders"
+                    //PublisherId = Guid.Parse("00000000-0000-0015-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    Title = "Merchants and Marauders",
+                    IsDeleted = false
                 },
                 // War of the Ring
                 new BoardGame
@@ -652,9 +676,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "so that they do not overrun Middle Earth before the Ringbearer completes his quest. " +
                                 "Each game turn revolves around the roll of Action Dice: each die corresponds to an action that a player can do during a turn. " +
                                 "Depending on the face rolled on each die, different actions are possible (moving armies, characters, recruiting troops, advancing a Political Track).",
-                    PublisherId = Guid.Parse("00000000-0000-0016-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000003"),
-                    Title = "War of the Rings"
+                    //PublisherId = Guid.Parse("00000000-0000-0016-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000003"),
+                    Title = "War of the Rings",
+                    IsDeleted = false
                 },
                 // Heroes of Land, Air and Sea
                 new BoardGame
@@ -680,9 +705,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "Players gain access to water, and even air, vessels and creatures. " +
                                 "Boarding these vessels and creatures with your units allows for faster travel across the vast game board and " +
                                 "for positioning armies for powerful attacks.",
-                    PublisherId = Guid.Parse("00000000-0000-0005-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "Heroes of Land, Air and Sea"
+                    //PublisherId = Guid.Parse("00000000-0000-0005-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "Heroes of Land, Air and Sea",
+                    IsDeleted = false
                 },
                 // Xia: Legends of a Drift System
                 new BoardGame
@@ -702,9 +728,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "xploring new sectors and battling other ships. Navigating hazardous environments, players choose to mine, salvage, or trade valuable cargo. " +
                                 "Captains vie with each other for Titles, riches, and most importantly Fame. " +
                                 "The most adaptive, risk taking, and creative players will excel. One captain will rise above the others, surpassing mortality by becoming Legend!",
-                    PublisherId = Guid.Parse("00000000-0000-0023-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "Xia: Legends of a Drift System"
+                    //PublisherId = Guid.Parse("00000000-0000-0023-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "Xia: Legends of a Drift System",
+                    IsDeleted = false
                 },
                 // Terraforming Mars
                 new BoardGame
@@ -720,18 +747,19 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2016,
                     Description = "In the 2400s, mankind begins to terraform the planet Mars. Giant corporations, sponsored by the World Government on Earth, initiate huge projects to raise the temperature, " +
-                    "the oxygen level, and the ocean coverage until the environment is habitable. In Terraforming Mars, you play one of those corporations and work together in the terraforming process, " +
-                    "but compete for getting victory points that are awarded not only for your contribution to the terraforming, but also for advancing human infrastructure throughout the solar system, " +
-                    "and doing other commendable things. The players acquire unique project cards(from over two hundred different ones) by buying them to their hand. " +
-                    "The projects(cards) can represent anything from introducing plant life or animals, hurling asteroids at the surface, building cities, " +
-                    "to mining the moons of Jupiter and establishing greenhouse gas industries to heat up the atmosphere.The cards can give you immediate bonuses, " +
-                    "as well as increasing your production of different resources.Many cards also have requirements and they become playable when the temperature, oxygen, or ocean coverage increases enough. " +
-                    "Buying cards is costly, so there is a balance between buying cards(3 megacredits per card) and actually playing them(which can cost anything between 0 to 41 megacredits, depending on the project). " +
-                    "Standard Projects are always available to complement your cards. Your basic income, as well as your basic score, is based on your Terraform Rating(starting at 20), " +
-                    "which increases every time you raise one of the three global parameters.However, your income is complemented with your production, and you also get VPs from many other sources.",
-                    PublisherId = Guid.Parse("00000000-0000-0023-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "Terraforming Mars"
+                                "the oxygen level, and the ocean coverage until the environment is habitable. In Terraforming Mars, you play one of those corporations and work together in the terraforming process, " +
+                                "but compete for getting victory points that are awarded not only for your contribution to the terraforming, but also for advancing human infrastructure throughout the solar system, " +
+                                "and doing other commendable things. The players acquire unique project cards(from over two hundred different ones) by buying them to their hand. " +
+                                "The projects(cards) can represent anything from introducing plant life or animals, hurling asteroids at the surface, building cities, " +
+                                "to mining the moons of Jupiter and establishing greenhouse gas industries to heat up the atmosphere.The cards can give you immediate bonuses, " +
+                                "as well as increasing your production of different resources.Many cards also have requirements and they become playable when the temperature, oxygen, or ocean coverage increases enough. " +
+                                "Buying cards is costly, so there is a balance between buying cards(3 megacredits per card) and actually playing them(which can cost anything between 0 to 41 megacredits, depending on the project). " +
+                                "Standard Projects are always available to complement your cards. Your basic income, as well as your basic score, is based on your Terraform Rating(starting at 20), " +
+                                "which increases every time you raise one of the three global parameters.However, your income is complemented with your production, and you also get VPs from many other sources.",
+                    //PublisherId = Guid.Parse("00000000-0000-0023-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "Terraforming Mars",
+                    IsDeleted = false
                 },
             #endregion
             #region Animal Games "00000000-0000-0000-0008-000000000000"
@@ -755,9 +783,10 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                                 "learn magic spells, deliver gems and apples to Castle Everfree, and perhaps even engage in a pie fight. " +
                                 "Some of My Little Scythe’s mechanisms are inspired by the bestselling game, Scythe. " +
                                 "It caught the eye of Stonemaier Games as a fan-created print-and-play game in 2017 ",
-                    PublisherId = Guid.Parse("00000000-0000-0020-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "My Little Scythe"
+                    //PublisherId = Guid.Parse("00000000-0000-0020-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "My Little Scythe",
+                    IsDeleted = false
                 },
                 // Root
                 new BoardGame
@@ -773,17 +802,18 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2018,
                     Description = "Root is a game of adventure and war in which 2 to 4 (1 to 6 with the 'Riverfolk' expansion) players battle for control of a vast wilderness. " +
-                    "The nefarious Marquise de Cat has seized the great woodland, intent on harvesting its riches.Under her rule, the many creatures of the forest have banded together. " +
-                    "This Alliance will seek to strengthen its resources and subvert the rule of Cats.In this effort, " +
-                    "the Alliance may enlist the help of the wandering Vagabonds who are able to move through the more dangerous woodland paths. " +
-                    "Though some may sympathize with the Alliance’s hopes and dreams, these wanderers are old enough to remember the great birds of prey who once controlled the woods. " +
-                    "Meanwhile, at the edge of the region, the proud, squabbling Eyrie have found a new commander who they hope will lead their faction to resume their ancient birthright. " +
-                    "The stage is set for a contest that will decide the fate of the great woodland.It is up to the players to decide which group will ultimately take root. " +
-                    "Root represents the next step in our development of asymmetric design.Like Vast: The Crystal Caverns, each player in Root has unique capabilities and a different victory condition. " +
-                    "Now, with the aid of gorgeous, multi - use cards, a truly asymmetric design has never been more accessible.",
-                    PublisherId = Guid.Parse("00000000-0000-0007-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000007"),
-                    Title = "Root"
+                                "The nefarious Marquise de Cat has seized the great woodland, intent on harvesting its riches.Under her rule, the many creatures of the forest have banded together. " +
+                                "This Alliance will seek to strengthen its resources and subvert the rule of Cats.In this effort, " +
+                                "the Alliance may enlist the help of the wandering Vagabonds who are able to move through the more dangerous woodland paths. " +
+                                "Though some may sympathize with the Alliance’s hopes and dreams, these wanderers are old enough to remember the great birds of prey who once controlled the woods. " +
+                                "Meanwhile, at the edge of the region, the proud, squabbling Eyrie have found a new commander who they hope will lead their faction to resume their ancient birthright. " +
+                                "The stage is set for a contest that will decide the fate of the great woodland.It is up to the players to decide which group will ultimately take root. " +
+                                "Root represents the next step in our development of asymmetric design.Like Vast: The Crystal Caverns, each player in Root has unique capabilities and a different victory condition. " +
+                                "Now, with the aid of gorgeous, multi - use cards, a truly asymmetric design has never been more accessible.",
+                    //PublisherId = Guid.Parse("00000000-0000-0007-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000007"),
+                    Title = "Root",
+                    IsDeleted = false
                 },
                 // Agricola
                 new BoardGame
@@ -799,15 +829,16 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2007,
                     Description = "In Agricola, you're a farmer in a wooden shack with your spouse and little else. On a turn, you get to take only two actions, one for you and one for the spouse, " +
-                    "from all the possibilities you'll find on a farm: collecting clay, wood, or stone; building fences; and so on. You might think about having kids in order to get more work accomplished, " +
-                    "but first you need to expand your house. And what are you going to feed all the little rugrats? The game supports many levels of complexity, " +
-                    "mainly through the use(or non - use) of two of its main types of cards, Minor Improvements and Occupations. " +
-                    "In the beginner's version (called the Family Variant in the U.S. release), these cards are not used at all. " +
-                    "For advanced play, the U.S. release includes three levels of both types of cards; Basic (E-deck), Interactive (I-deck), " +
-                    "and Complex (K-deck), and the rulebook encourages players to experiment with the various decks and mixtures thereof. Aftermarket decks such as the Z-Deck and the L-Deck also exist.",
-                    PublisherId = Guid.Parse("00000000-0000-0013-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
-                    Title = "Agricola"
+                                "from all the possibilities you'll find on a farm: collecting clay, wood, or stone; building fences; and so on. You might think about having kids in order to get more work accomplished, " +
+                                "but first you need to expand your house. And what are you going to feed all the little rugrats? The game supports many levels of complexity, " +
+                                "mainly through the use(or non - use) of two of its main types of cards, Minor Improvements and Occupations. " +
+                                "In the beginner's version (called the Family Variant in the U.S. release), these cards are not used at all. " +
+                                "For advanced play, the U.S. release includes three levels of both types of cards; Basic (E-deck), Interactive (I-deck), " +
+                                "and Complex (K-deck), and the rulebook encourages players to experiment with the various decks and mixtures thereof. Aftermarket decks such as the Z-Deck and the L-Deck also exist.",
+                    //PublisherId = Guid.Parse("00000000-0000-0013-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    Title = "Agricola",
+                    IsDeleted = false
                 },
                 // Everdell
                 new BoardGame
@@ -823,12 +854,13 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2015,
                     Description = "Within the charming valley of Everdell, beneath the boughs of towering trees, among meandering streams and mossy hollows, a civilization of forest critters is thriving and expanding. " +
-                    "From Everfrost to Bellsong, many a year have come and gone, but the time has come for new territories to be settled and new cities established. " +
-                    "You will be the leader of a group of critters intent on just such a task. There are buildings to construct, lively characters to meet, " +
-                    "events to host—you have a busy year ahead of yourself. Will the sun shine brightest on your city before the winter moon rises?",
-                    PublisherId = Guid.Parse("00000000-0000-0011-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000014"),
-                    Title = "Everdell"
+                                "From Everfrost to Bellsong, many a year have come and gone, but the time has come for new territories to be settled and new cities established. " +
+                                "You will be the leader of a group of critters intent on just such a task. There are buildings to construct, lively characters to meet, " +
+                                "events to host—you have a busy year ahead of yourself. Will the sun shine brightest on your city before the winter moon rises?",
+                    //PublisherId = Guid.Parse("00000000-0000-0011-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000014"),
+                    Title = "Everdell",
+                    IsDeleted = false
                 },
                 // Dinosaur Island
                 new BoardGame
@@ -844,15 +876,16 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2017,
                     Description = "In Dinosaur Island, players will have to collect DNA, research the DNA sequences of extinct dinosaur species, " +
-                    "and then combine the ancient DNA in the correct sequence to bring these prehistoric creatures back to life. Dino cooking! " +
-                    "All players will compete to build the most thrilling park each season, and then work to attract (and keep alive!) the most visitors each season that the park opens. " +
-                    "Do you go big and create a pack of Velociraptors ? They'll definitely excite potential visitors, but you'd better make a large enough enclosure for them. " +
-                    "And maybe hire some(read: a lot of) security.Or they WILL break out and start eating your visitors, and we all know how that ends. " +
-                    "You could play it safe and grow a bunch of herbivores, but then you aren't going to have the most exciting park in the world (sad face). " +
-                    "So maybe buy a roller coaster or two to attract visitors to your park the good old-fashioned way?",
-                    PublisherId = Guid.Parse("00000000-0000-0012-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
-                    Title = "Dinosaur Island"
+                                "and then combine the ancient DNA in the correct sequence to bring these prehistoric creatures back to life. Dino cooking! " +
+                                "All players will compete to build the most thrilling park each season, and then work to attract (and keep alive!) the most visitors each season that the park opens. " +
+                                "Do you go big and create a pack of Velociraptors ? They'll definitely excite potential visitors, but you'd better make a large enough enclosure for them. " +
+                                "And maybe hire some(read: a lot of) security.Or they WILL break out and start eating your visitors, and we all know how that ends. " +
+                                "You could play it safe and grow a bunch of herbivores, but then you aren't going to have the most exciting park in the world (sad face). " +
+                                "So maybe buy a roller coaster or two to attract visitors to your park the good old-fashioned way?",
+                    //PublisherId = Guid.Parse("00000000-0000-0012-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000002"),
+                    Title = "Dinosaur Island",
+                    IsDeleted = false
                 },
             #endregion
             #region Miniatures "00000000-0000-0000-0010-0000000000000"
@@ -870,19 +903,20 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = false,
                     Year = 2017,
                     Description = "Gloomhaven is a game of Euro-inspired tactical combat in a persistent world of shifting motives. " +
-                    "Players will take on the role of a wandering adventurer with their own special set of skills and their own reasons for traveling to this dark corner of the world. " +
-                    "Players must work together out of necessity to clear out menacing dungeons and forgotten ruins. " +
-                    "In the process, they will enhance their abilities with experience and loot, discover new locations to explore and plunder, and expand an ever-branching story fueled by the decisions they make. " +
-                    "This is a game with a persistent and changing world that is ideally played over many game sessions.After a scenario, " +
-                    "players will make decisions on what to do, which will determine how the story continues, kind of like a \"Choose Your Own Adventure\" book. " +
-                    "Playing through a scenario is a cooperative affair where players will fight against automated monsters using an innovative card system to determine the order of play " +
-                    "and what a player does on their turn. Each turn, a player chooses two cards to play out of their hand.The number on the top card determines their initiative for the round. " +
-                    "Each card also has a top and bottom power, and when it is a player’s turn in the initiative order, they determine whether to use the top power of one card and " +
-                    "the bottom power of the other, or vice - versa.Players must be careful, though, because over time they will permanently lose cards from their hands. " +
-                    "If they take too long to clear a dungeon, they may end up exhausted and be forced to retreat.",
-                    PublisherId = Guid.Parse("00000000-0000-0023-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "Gloomhaven"
+                                "Players will take on the role of a wandering adventurer with their own special set of skills and their own reasons for traveling to this dark corner of the world. " +
+                                "Players must work together out of necessity to clear out menacing dungeons and forgotten ruins. " +
+                                "In the process, they will enhance their abilities with experience and loot, discover new locations to explore and plunder, and expand an ever-branching story fueled by the decisions they make. " +
+                                "This is a game with a persistent and changing world that is ideally played over many game sessions.After a scenario, " +
+                                "players will make decisions on what to do, which will determine how the story continues, kind of like a \"Choose Your Own Adventure\" book. " +
+                                "Playing through a scenario is a cooperative affair where players will fight against automated monsters using an innovative card system to determine the order of play " +
+                                "and what a player does on their turn. Each turn, a player chooses two cards to play out of their hand.The number on the top card determines their initiative for the round. " +
+                                "Each card also has a top and bottom power, and when it is a player’s turn in the initiative order, they determine whether to use the top power of one card and " +
+                                "the bottom power of the other, or vice - versa.Players must be careful, though, because over time they will permanently lose cards from their hands. " +
+                                "If they take too long to clear a dungeon, they may end up exhausted and be forced to retreat.",
+                    //PublisherId = Guid.Parse("00000000-0000-0023-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "Gloomhaven",
+                    IsDeleted = false
                 },
                 // Blood Rage
                 new BoardGame
@@ -898,17 +932,18 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2015,
                     Description = "\"Life is Battle; Battle is Glory; Glory is ALL\" In Blood Rage, each player controls their own Viking clan’s warriors, leader, and ship. " +
-                    "Ragnarök has come, and it’s the end of the world!It’s the Vikings’ last chance to go down in a blaze of glory and secure their place in Valhalla at Odin’s side! " +
-                    "For a Viking there are many pathways to glory. You can invade and pillage the land for its rewards, crush your opponents in epic battles, fulfill quests, increase your clan's stats, " +
-                    "or even die gloriously either in battle or from Ragnarök, the ultimate inescapable doom. " +
-                    "Most player strategies are guided by the cards drafted at the beginning of each of the three game rounds(or Ages). " +
-                    "These “Gods’ Gifts” grant you numerous boons for your clan including: increased Viking strength and devious battle strategies, upgrades to your clan, " +
-                    "or even the aid of legendary creatures from Norse mythology.They may also include various quests, from dominating specific provinces, to having lots of your Vikings sent to Valhalla. " +
-                    "Most of these cards are aligned with one of the Norse gods, hinting at the kind of strategy they support.For example, Thor gives more glory for victory in battle, " +
-                    "Heimdall grants you foresight and surprises, Tyr strengthens you in battle, while the trickster Loki actually rewards you for losing battles, or punishes the winner.",
-                    PublisherId = Guid.Parse("00000000-0000-0009-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000008"),
-                    Title = "Blood Rage"
+                                "Ragnarök has come, and it’s the end of the world!It’s the Vikings’ last chance to go down in a blaze of glory and secure their place in Valhalla at Odin’s side! " +
+                                "For a Viking there are many pathways to glory. You can invade and pillage the land for its rewards, crush your opponents in epic battles, fulfill quests, increase your clan's stats, " +
+                                "or even die gloriously either in battle or from Ragnarök, the ultimate inescapable doom. " +
+                                "Most player strategies are guided by the cards drafted at the beginning of each of the three game rounds(or Ages). " +
+                                "These “Gods’ Gifts” grant you numerous boons for your clan including: increased Viking strength and devious battle strategies, upgrades to your clan, " +
+                                "or even the aid of legendary creatures from Norse mythology.They may also include various quests, from dominating specific provinces, to having lots of your Vikings sent to Valhalla. " +
+                                "Most of these cards are aligned with one of the Norse gods, hinting at the kind of strategy they support.For example, Thor gives more glory for victory in battle, " +
+                                "Heimdall grants you foresight and surprises, Tyr strengthens you in battle, while the trickster Loki actually rewards you for losing battles, or punishes the winner.",
+                    //PublisherId = Guid.Parse("00000000-0000-0009-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000008"),
+                    Title = "Blood Rage",
+                    IsDeleted = false
                 },
                 // Nemesis
                 new BoardGame
@@ -924,17 +959,18 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2018,
                     Description = "Playing Nemesis will take you into the heart of sci-fi survival horror in all its terror. A soldier fires blindly down a corridor, trying to stop the alien advance. " +
-                    "A scientist races to find a solution in his makeshift lab. A traitor steals the last escape pod in the very last moment. " +
-                    "Intruders you meet on the ship are not only reacting to the noise you make but also evolve as the time goes by. The longer the game takes, " +
-                    "the stronger they become. During the game, you control one of the crew members with a unique set of skills, personal deck of cards, and individual starting equipment. " +
-                    "These heroes cover all your basic SF horror needs. For example, the scientist is great with computers and research, but will have a hard time in combat. The soldier, on the other hand... " +
-                    "Nemesis is a semi - cooperative game in which you and your crewmates must survive on a ship infested with hostile organisms.To win the game, " +
-                    "you have to complete one of the two objectives dealt to you at the start of the game and get back to Earth in one piece.You will find many obstacles on your way: " +
-                    "swarms of Intruders(the name given to the alien organisms by the ship AI), the poor physical condition of the ship, agendas held by your fellow players, and sometimes just cruel fate. " +
-                    "The gameplay of Nemesis is designed to be full of climactic moments which, hopefully, you will find rewarding even when your best plans are ruined and your character meets a terrible fate.",
-                    PublisherId = Guid.Parse("00000000-0000-0014-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000008"),
-                    Title = "Nemesis"
+                                "A scientist races to find a solution in his makeshift lab. A traitor steals the last escape pod in the very last moment. " +
+                                "Intruders you meet on the ship are not only reacting to the noise you make but also evolve as the time goes by. The longer the game takes, " +
+                                "the stronger they become. During the game, you control one of the crew members with a unique set of skills, personal deck of cards, and individual starting equipment. " +
+                                "These heroes cover all your basic SF horror needs. For example, the scientist is great with computers and research, but will have a hard time in combat. The soldier, on the other hand... " +
+                                "Nemesis is a semi - cooperative game in which you and your crewmates must survive on a ship infested with hostile organisms.To win the game, " +
+                                "you have to complete one of the two objectives dealt to you at the start of the game and get back to Earth in one piece.You will find many obstacles on your way: " +
+                                "swarms of Intruders(the name given to the alien organisms by the ship AI), the poor physical condition of the ship, agendas held by your fellow players, and sometimes just cruel fate. " +
+                                "The gameplay of Nemesis is designed to be full of climactic moments which, hopefully, you will find rewarding even when your best plans are ruined and your character meets a terrible fate.",
+                    //PublisherId = Guid.Parse("00000000-0000-0014-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000008"),
+                    Title = "Nemesis",
+                    IsDeleted = false
                 },
                 // Star Wars: Rebellion
                 new BoardGame
@@ -950,17 +986,18 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2016,
                     Description = "Star Wars: Rebellion is a board game of epic conflict between the Galactic Empire and Rebel Alliance for two to four players. Experience the Galactic Civil War like never before. " +
-                    "In Rebellion, you control the entire Galactic Empire or the fledgling Rebel Alliance.You must command starships, account for troop movements, and rally systems to your cause. " +
-                    "Given the differences between the Empire and Rebel Alliance, each side has different win conditions, and you'll need to adjust your play style depending on who you represent" +
-                    "Featuring more than 150 plastic miniatures and two game boards that account for thirty-two of the Star Wars galaxy's most notable systems, " +
-                    "Rebellion features a scope that is as large and sweeping as any Star Wars game before it. Yet for all its grandiosity, Rebellion remains intensely personal, cinematic, and heroic. " +
-                    "As much as your success depends upon the strength of your starships, vehicles, and troops, it depends upon the individual efforts of such notable characters as Leia Organa, Mon Mothma, " +
-                    "Grand Moff Tarkin, and Emperor Palpatine.As civil war spreads throughout the galaxy, these leaders are invaluable to your efforts, " +
-                    "and the secret missions they attempt will evoke many of the most inspiring moments from the classic trilogy. " +
-                    "You might send Luke Skywalker to receive Jedi training on Dagobah or have Darth Vader spring a trap that freezes Han Solo in carbonite!",
-                    PublisherId = Guid.Parse("00000000-0000-0006-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "Star Wars: Rebellion"
+                                "In Rebellion, you control the entire Galactic Empire or the fledgling Rebel Alliance.You must command starships, account for troop movements, and rally systems to your cause. " +
+                                "Given the differences between the Empire and Rebel Alliance, each side has different win conditions, and you'll need to adjust your play style depending on who you represent" +
+                                "Featuring more than 150 plastic miniatures and two game boards that account for thirty-two of the Star Wars galaxy's most notable systems, " +
+                                "Rebellion features a scope that is as large and sweeping as any Star Wars game before it. Yet for all its grandiosity, Rebellion remains intensely personal, cinematic, and heroic. " +
+                                "As much as your success depends upon the strength of your starships, vehicles, and troops, it depends upon the individual efforts of such notable characters as Leia Organa, Mon Mothma, " +
+                                "Grand Moff Tarkin, and Emperor Palpatine.As civil war spreads throughout the galaxy, these leaders are invaluable to your efforts, " +
+                                "and the secret missions they attempt will evoke many of the most inspiring moments from the classic trilogy. " +
+                                "You might send Luke Skywalker to receive Jedi training on Dagobah or have Darth Vader spring a trap that freezes Han Solo in carbonite!",
+                    //PublisherId = Guid.Parse("00000000-0000-0006-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "Star Wars: Rebellion",
+                    IsDeleted = false
                 },
                 // A Game of Thrones: The Board Game
                 new BoardGame
@@ -976,16 +1013,17 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2011,
                     Description = "King Robert Baratheon is dead, and the lands of Westeros brace for battle. " +
-                    "In the second edition of A Game of Thrones: The Board Game, three to six players take on the roles of the great Houses of the Seven Kingdoms of Westeros, " +
-                    "as they vie for control of the Iron Throne through the use of diplomacy and warfare.Based on the best - selling A Song of Ice and Fire series of fantasy novels by George R.R.Martin, " +
-                    "A Game of Thrones is an epic board game in which it will take more than military might to win.Will you take power through force, use honeyed words to coerce your way onto the throne, " +
-                    "or rally the townsfolk to your side ? Through strategic planning, masterful diplomacy, and clever card play, spread your influence over Westeros!" +
-                    "Tides of Battle cards are an optional mechanism that brings an element of unpredictability to combat, representing erratic shifts in the momentum of war due to factors such as weather, " +
-                    "morale, and tactical opportunity. During each combat, both players draw one Tides of Battle card from a communal deck, and its value modifies the strength of his chosen House card. " +
-                    "What's more, such a card may also contain icons that can affect the outcome of the battle...all of which delivers a new level of intensity to your military engagements.",
-                    PublisherId = Guid.Parse("00000000-0000-0006-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
-                    Title = "A Game of Thrones: The Board Game"
+                                "In the second edition of A Game of Thrones: The Board Game, three to six players take on the roles of the great Houses of the Seven Kingdoms of Westeros, " +
+                                "as they vie for control of the Iron Throne through the use of diplomacy and warfare.Based on the best - selling A Song of Ice and Fire series of fantasy novels by George R.R.Martin, " +
+                                "A Game of Thrones is an epic board game in which it will take more than military might to win.Will you take power through force, use honeyed words to coerce your way onto the throne, " +
+                                "or rally the townsfolk to your side ? Through strategic planning, masterful diplomacy, and clever card play, spread your influence over Westeros!" +
+                                "Tides of Battle cards are an optional mechanism that brings an element of unpredictability to combat, representing erratic shifts in the momentum of war due to factors such as weather, " +
+                                "morale, and tactical opportunity. During each combat, both players draw one Tides of Battle card from a communal deck, and its value modifies the strength of his chosen House card. " +
+                                "What's more, such a card may also contain icons that can affect the outcome of the battle...all of which delivers a new level of intensity to your military engagements.",
+                    //PublisherId = Guid.Parse("00000000-0000-0006-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    Title = "A Game of Thrones: The Board Game",
+                    IsDeleted = false
                 },
                 // Rising Sun
                 new BoardGame
@@ -1001,13 +1039,14 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2018,
                     Description = "Rising Sun is a board game for 3 to 5 players set in legendary feudal Japan. As the Kami descend from the heavens to reshape the land in their image, " +
-                    "it is up to each player to lead their clan to victory. Use politics to further your cause, negotiate to seek the most profitable alliances, worship the Kami to gain their favor, " +
-                    "recruit monsters out of legend to bolster your forces, and use your resources wisely to be victorious in battle. " +
-                    "Created by acclaimed designer Eric M. Lang, Rising Sun reunites the same creative forces responsible for the smash hit Blood Rage, " +
-                    "with stunning artwork by Adrian Smith and intricate miniatures sculpted under the direction of Mike McVey.",
-                    PublisherId = Guid.Parse("00000000-0000-0011-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000014"),
-                    Title = "Rising Sun"
+                                "it is up to each player to lead their clan to victory. Use politics to further your cause, negotiate to seek the most profitable alliances, worship the Kami to gain their favor, " +
+                                "recruit monsters out of legend to bolster your forces, and use your resources wisely to be victorious in battle. " +
+                                "Created by acclaimed designer Eric M. Lang, Rising Sun reunites the same creative forces responsible for the smash hit Blood Rage, " +
+                                "with stunning artwork by Adrian Smith and intricate miniatures sculpted under the direction of Mike McVey.",
+                    //PublisherId = Guid.Parse("00000000-0000-0011-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000014"),
+                    Title = "Rising Sun",
+                    IsDeleted = false
                 },
             #endregion
             #region Base Building Games "00000000-0000-0000-0007-000000000000"
@@ -1025,11 +1064,12 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2018,
                     Description = "Brass: Birmingham is an economic strategy game sequel to Martin Wallace' 2007 masterpiece, Brass. " +
-                    "Birmingham tells the story of competing entrepreneurs in Birmingham during the industrial revolution, between the years of 1770-1870. " +
-                    "As in its predecessor, you must develop, build, and establish your industries and network, in an effort to exploit low or high market demands.",
-                    PublisherId = Guid.Parse("00000000-0000-0002-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000005"),
-                    Title = "Brass: Birmingham"
+                                "Birmingham tells the story of competing entrepreneurs in Birmingham during the industrial revolution, between the years of 1770-1870. " +
+                                "As in its predecessor, you must develop, build, and establish your industries and network, in an effort to exploit low or high market demands.",
+                    //PublisherId = Guid.Parse("00000000-0000-0002-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000005"),
+                    Title = "Brass: Birmingham",
+                    IsDeleted = false
                 },
                 // Teotihuacan: City of Gods
                 new BoardGame
@@ -1045,17 +1085,18 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Year = 2018,
                     Description = "Travel back in time to the greatest city in Mesoamerica. Witness the glory and the twilight of the powerful pre-Columbian civilization. " +
-                    "Strategize, accrue wealth, gain the favour of the gods, and become the builder of the magnificent Pyramid of the Sun. " +
-                    "In Teotihuacan: City of Gods, each player commands a force of worker dice, which grow in strength with every move. " +
-                    "On your turn, you move a worker around a modular board, always choosing one of two areas of the location tile you land on: " +
-                    "one offering you an action(and a worker upgrade), the other providing you with a powerful bonus(but without an upgrade). " +
-                    "While managing their workforce and resources, players develop new technologies, climb the steps of the three great temples, " +
-                    "build houses for the inhabitants of the city, and raise the legendary and breath - taking Pyramid of the Sun in the centre of the city. " +
-                    "Each game is played in three eras.As the dawn of the Aztecs comes closer, player efforts(and their ability to feed their workforce) are evaluated a total of three times. " +
-                    "The player with the most fame is the winner.",
-                    PublisherId = Guid.Parse("00000000-0000-0004-0000-000000000000"),
-                    CountryId = Guid.Parse("00000000-0000-0000-0000-000000000012"),
-                    Title = "Teotihuacan: City of Gods"
+                                "Strategize, accrue wealth, gain the favour of the gods, and become the builder of the magnificent Pyramid of the Sun. " +
+                                "In Teotihuacan: City of Gods, each player commands a force of worker dice, which grow in strength with every move. " +
+                                "On your turn, you move a worker around a modular board, always choosing one of two areas of the location tile you land on: " +
+                                "one offering you an action(and a worker upgrade), the other providing you with a powerful bonus(but without an upgrade). " +
+                                "While managing their workforce and resources, players develop new technologies, climb the steps of the three great temples, " +
+                                "build houses for the inhabitants of the city, and raise the legendary and breath - taking Pyramid of the Sun in the centre of the city. " +
+                                "Each game is played in three eras.As the dawn of the Aztecs comes closer, player efforts(and their ability to feed their workforce) are evaluated a total of three times. " +
+                                "The player with the most fame is the winner.",
+                    //PublisherId = Guid.Parse("00000000-0000-0004-0000-000000000000"),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000012"),
+                    Title = "Teotihuacan: City of Gods",
+                    IsDeleted = false
                 }
                 #endregion
                 );

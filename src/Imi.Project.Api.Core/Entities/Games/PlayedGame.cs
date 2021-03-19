@@ -9,7 +9,6 @@ namespace Imi.Project.Api.Core.Entities.Games
     {
         public Guid BoardGameId { get; set; }
         public int PlayTime { get; set; }
-        public int PlayerCount { get; set; }
         public bool IsDeleted { get; set; }
         public ICollection<GameScore> GameScores { get; set; }
         // NaviProperties
