@@ -8,6 +8,8 @@ namespace Imi.Project.Api.Core.Entities.Games
         public Guid CategoryId { get; set; }
         public BoardGame BoardGame { get; set; }
         public Category Category { get; set; }
+        public bool IsDeleted { get; set; }
+
 
     }
 }

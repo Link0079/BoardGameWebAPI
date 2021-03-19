@@ -1,4 +1,4 @@
-﻿using Imi.Project.Api.Core.Entities.Users;
+﻿using Imi.Project.Api.Core.Entities;
 using Imi.Project.Api.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;

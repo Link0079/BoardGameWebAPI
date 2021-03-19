@@ -1,5 +1,4 @@
 ﻿using System;
-using Imi.Project.Api.Core.Entities.Users;
 
 namespace Imi.Project.Api.Core.Entities.Games
 {
@@ -9,5 +8,7 @@ namespace Imi.Project.Api.Core.Entities.Games
         public Guid ArtistId { get; set; }
         public BoardGame BoardGame { get; set; }
         public Artist Artist { get; set; }
+        public bool IsDeleted { get; set; }
+
     }
 }

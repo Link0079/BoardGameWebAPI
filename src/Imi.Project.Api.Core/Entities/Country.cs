@@ -9,6 +9,7 @@ namespace Imi.Project.Api.Core.Entities
     {
         public string Name { get; set; }
         public string CountryCode { get; set; }
+        public bool IsDeleted { get; set; }
         public ICollection<BoardGame> BoardGames { get; set; }
 
     }
