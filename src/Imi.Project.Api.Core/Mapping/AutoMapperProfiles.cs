@@ -1,7 +1,9 @@
 ﻿using AutoMapper;
 using Imi.Project.Api.Core.Dtos;
+using Imi.Project.Api.Core.Dtos.Games;
 using Imi.Project.Api.Core.Dtos.Users;
 using Imi.Project.Api.Core.Entities;
+using Imi.Project.Api.Core.Entities.Games;
 using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Extentions;
 using System;
@@ -38,7 +40,23 @@ namespace Imi.Project.Api.Core.Mapping
 
             #endregion
             #region BoardGame
-
+            CreateMap<BoardGame, BoardGameResponseDto>()
+                .ForMember(dest => dest.Categories,
+                    opt => opt.MapFrom(src => src.Categories
+                    .Select(bc => new CategoryResponseDto
+                    {
+                        Id = bc.CategoryId,
+                        Name = bc.Category.Name
+                    })))
+                .ForMember(dest => dest.NumberOfCategories,
+                    opt => opt.MapFrom(src => src.Categories
+                    .Where(bc => bc.CategoryId == src.Id).Count()))
+                .ForMember(dest => dest.NumberofArtists,
+                    opt => opt.MapFrom(src => src.Artists
+                    .Where(ba => ba.BoardGameId == src.Id).Count()))
+                .ForMember(dest => dest.PlayTime,
+                    opt => opt.MapFrom(src => src.PlayTime
+                    .ConvertToStringDuration()));
             #endregion
             #region PlayedGame
 
