@@ -1,5 +1,7 @@
 ﻿using AutoMapper;
+using Imi.Project.Api.Core.Dtos;
 using Imi.Project.Api.Core.Dtos.Users;
+using Imi.Project.Api.Core.Entities;
 using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Extentions;
 using System;
@@ -23,12 +25,13 @@ namespace Imi.Project.Api.Core.Mapping
                     .Where(gs => gs.PlayerId == src.Id)
                     .Sum(gs => gs.PlayedGame.PlayTime)
                     .ConvertToStringDuration()));
-                //.ForMember(dest => dest.FavoPlayedGame,
-                //    opt => opt.MapFrom(src => src.GameScores
-                //      .Where(gs => gs.PlayerId == src.Id)
-                //      .GroupBy(gs => gs.PlayedGame.BoardGameId)));
+            //.ForMember(dest => dest.FavoPlayedGame,
+            //    opt => opt.MapFrom(src => src.GameScores
+            //      .Where(gs => gs.PlayerId == src.Id)
+            //      .GroupBy(gs => gs.PlayedGame.BoardGameId)));
             #endregion
             #region Category
+            CreateMap<Category, CategoryResponseDto>();
 
             #endregion
             #region Artist
