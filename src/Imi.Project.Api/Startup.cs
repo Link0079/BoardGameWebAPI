@@ -1,4 +1,8 @@
+using Imi.Project.Api.Core.Interfaces.Repositories;
+using Imi.Project.Api.Core.Interfaces.Services;
+using Imi.Project.Api.Core.Services;
 using Imi.Project.Api.Infrastructure.Data;
+using Imi.Project.Api.Infrastructure.Repositories;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -28,6 +32,17 @@ namespace Imi.Project.Api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+            services.AddScoped<ICategoryRepository, CategoryRepository>();
+            services.AddScoped<IArtistRepository, ArtistRepository>();
+            services.AddScoped<IPlayerRepository, PlayerRepository>();
+            services.AddScoped<IPlayedGameRepository, PlayedGameRepository>();
+            services.AddScoped<IBoardGameRepository, BoardGameRepository>();
+            services.AddScoped<ICategoryService, CategoryService>();
+            services.AddScoped<IArtistService, ArtistService>();
+            services.AddScoped<IPlayerService, PlayerService>();
+            services.AddScoped<IPlayedGameService, PlayedGameService>();
+            services.AddScoped<IBoardGameService, BoardGameService>();
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddControllers();
         }
 

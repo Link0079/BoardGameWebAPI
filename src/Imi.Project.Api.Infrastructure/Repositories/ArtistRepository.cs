@@ -1,4 +1,5 @@
 ﻿using Imi.Project.Api.Core.Entities;
+using Imi.Project.Api.Core.Interfaces.Repositories;
 using Imi.Project.Api.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Imi.Project.Api.Infrastructure.Repositories
 {
-    public class ArtistRepository : EfRepository<Artist>
+    public class ArtistRepository : EfRepository<Artist> , IArtistRepository
     {
         public ArtistRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
