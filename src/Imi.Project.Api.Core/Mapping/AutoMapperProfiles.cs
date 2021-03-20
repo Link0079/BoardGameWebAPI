@@ -26,11 +26,17 @@ namespace Imi.Project.Api.Core.Mapping
                     opt => opt.MapFrom(src => src.GameScores
                     .Where(gs => gs.PlayerId == src.Id)
                     .Sum(gs => gs.PlayedGame.PlayTime)
-                    .ConvertToStringDuration()));
+                    .ConvertToStringDuration()))
             //.ForMember(dest => dest.FavoPlayedGame,
             //    opt => opt.MapFrom(src => src.GameScores
             //      .Where(gs => gs.PlayerId == src.Id)
-            //      .GroupBy(gs => gs.PlayedGame.BoardGameId)));
+            //      .GroupBy(gs => gs.PlayedGame.BoardGameId, 
+            //      (boardGame, boardGames) => new
+            //      {
+            //          Key = boardGame,
+            //          Title = boardGames.Select(b => new {Title = b.PlayedGame.BoardGame.Title})
+            //      })));
+            ;
             #endregion
             #region Category
             CreateMap<Category, CategoryResponseDto>();
