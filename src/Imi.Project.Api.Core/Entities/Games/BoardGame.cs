@@ -8,7 +8,7 @@ namespace Imi.Project.Api.Core.Entities.Games
     {
         public int? Age { get; set; }
         public int? Rating { get; set; }
-        public int? PlayTime { get; set; }
+        public int PlayTime { get; set; }
         public int? MinPlayers { get; set; }
         public int? MaxPlayers { get; set; }
         public string Description { get; set; }
