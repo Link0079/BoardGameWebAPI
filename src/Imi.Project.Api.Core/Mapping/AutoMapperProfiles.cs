@@ -65,7 +65,21 @@ namespace Imi.Project.Api.Core.Mapping
                     .ConvertToStringDuration()));
             #endregion
             #region PlayedGame
-
+            CreateMap<PlayedGame, PlayedGameResponseDto>()
+                .ForMember(dest => dest.PlayTime,
+                    opt => opt.MapFrom(src => src.PlayTime
+                      .ConvertToStringDuration()))
+                .ForMember(dest => dest.PlayerCount,
+                    opt => opt.MapFrom(src => src.GameScores
+                      .Where(gs => gs.PlayedGameId == src.Id).Count()))
+                .ForMember(dest => dest.GameScores,
+                    opt => opt.MapFrom(src => src.GameScores
+                      .Where(gs => gs.PlayedGameId == src.Id)
+                      .Select(gs => new GameScoreResponseDto
+                      {
+                          PlayerName = gs.Player.Name,
+                          Score = gs.Score
+                      }).OrderBy(gs=>gs.Score)));
             #endregion
             #region GameScore
 
