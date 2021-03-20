@@ -31,6 +31,7 @@ namespace Imi.Project.Api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IArtistRepository, ArtistRepository>();
@@ -43,6 +44,7 @@ namespace Imi.Project.Api
             services.AddScoped<IPlayedGameService, PlayedGameService>();
             services.AddScoped<IBoardGameService, BoardGameService>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
+            services.AddSwaggerGen();
             services.AddControllers();
         }
 
@@ -53,7 +55,9 @@ namespace Imi.Project.Api
             {
                 app.UseDeveloperExceptionPage();
             }
-
+            app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
+            app.UseSwagger();
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "MySwagger UI-API"); });
             app.UseHttpsRedirection();
 
             app.UseRouting();
