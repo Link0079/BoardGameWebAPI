@@ -82,6 +82,7 @@ namespace Imi.Project.Api.Core.Mapping
                       }).OrderBy(gs=>gs.Score)));
             #endregion
             #region GameScore
+            CreateMap<GameScore, GameScoreResponseDto>();
 
             #endregion
 
