@@ -85,7 +85,7 @@ namespace Imi.Project.Api.Core.Mapping
                       {
                           PlayerName = gs.Player.Name,
                           Score = gs.Score
-                      }).OrderBy(gs=>gs.Score)));
+                      }).OrderByDescending(gs=>gs.Score)));
             #endregion
             #region GameScore
             CreateMap<GameScore, GameScoreResponseDto>()

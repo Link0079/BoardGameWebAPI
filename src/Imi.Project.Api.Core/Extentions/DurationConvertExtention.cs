@@ -11,15 +11,14 @@ namespace Imi.Project.Api.Core.Extentions
             StringBuilder stringBuilder = new StringBuilder();
 
             if (timeSpan.Hours != 0)
-                stringBuilder.Append($"{timeSpan.Hours}:");
-            stringBuilder.Append($"{timeSpan.Minutes.ToString("00")}:");
+                stringBuilder.Append($"{timeSpan.Hours}h ");
+            stringBuilder.Append($"{timeSpan.Minutes.ToString("00")}");
             //stringBuilder.Append(timeSpan.Seconds.ToString("00"));
             return stringBuilder.ToString();
         }
         public static string ConvertToStringDateNotation(this DateTime dateNotation)
         {
-            var convertedDateNotation = dateNotation.ToString("dd MMM yyyy");
-            return convertedDateNotation;
+            return dateNotation.ToString("dddd dd MMMM yyyy");
         }
     }
 }
