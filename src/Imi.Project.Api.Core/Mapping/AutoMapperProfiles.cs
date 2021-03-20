@@ -37,7 +37,13 @@ namespace Imi.Project.Api.Core.Mapping
 
             #endregion
             #region Artist
-
+            CreateMap<Artist, ArtistResponseDto>()
+                .ForMember(dest => dest.NumberOfArtwork,
+                    opt => opt.MapFrom(src => src.Artwork
+                      .Where(art => art.ArtistId == src.Id).Count()))
+                .ForMember(dest => dest.Dob,
+                    opt => opt.MapFrom(src => src.Dob
+                    .ConvertToStringDateNotation()));
             #endregion
             #region BoardGame
             CreateMap<BoardGame, BoardGameResponseDto>()

@@ -16,5 +16,10 @@ namespace Imi.Project.Api.Core.Extentions
             //stringBuilder.Append(timeSpan.Seconds.ToString("00"));
             return stringBuilder.ToString();
         }
+        public static string ConvertToStringDateNotation(this DateTime dateNotation)
+        {
+            var convertedDateNotation = dateNotation.ToString("dd MMM yyyy");
+            return convertedDateNotation;
+        }
     }
 }
