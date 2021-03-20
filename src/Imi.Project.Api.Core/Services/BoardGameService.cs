@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using Imi.Project.Api.Core.Dtos;
+using Imi.Project.Api.Core.Dtos.Games;
 using Imi.Project.Api.Core.Interfaces.Repositories;
 using Imi.Project.Api.Core.Interfaces.Services;
 using System;
