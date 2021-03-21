@@ -13,9 +13,11 @@ namespace Imi.Project.Api.Controllers
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
-        public CategoriesController(ICategoryService categoryService)
+        private readonly IBoardGameService _boardGameService;
+        public CategoriesController(ICategoryService categoryService, IBoardGameService boardGameService)
         {
             _categoryService = categoryService;
+            _boardGameService = boardGameService;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -31,6 +33,11 @@ namespace Imi.Project.Api.Controllers
                 return NotFound($"Category with id {guid} does not exist.");
             return Ok(category);
         }
-
+        [HttpGet("{guid}/boardgames")]
+        public async Task<IActionResult> GetByCategoryId(Guid guid)
+        {
+            var boardgames = await _boardGameService.GetByCategoryIdAsync(guid);
+            return Ok(boardgames);
+        }
     }
 }
