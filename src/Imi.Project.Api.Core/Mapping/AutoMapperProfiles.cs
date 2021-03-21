@@ -21,22 +21,17 @@ namespace Imi.Project.Api.Core.Mapping
             CreateMap<Player, PlayerResponseDto>()
                 .ForMember(dest => dest.PlayedGameCount,
                     opt => opt.MapFrom(src => src.GameScores
-                    .Where(gs => gs.PlayerId == src.Id).Count()))
+                    .Select(gs => gs.PlayerId == src.Id).Count()))
                 .ForMember(dest => dest.PlayTimeTotal,
                     opt => opt.MapFrom(src => src.GameScores
                     .Where(gs => gs.PlayerId == src.Id)
                     .Sum(gs => gs.PlayedGame.PlayTime)
                     .ConvertToStringDuration()))
-            //.ForMember(dest => dest.FavoPlayedGame,
-            //    opt => opt.MapFrom(src => src.GameScores
-            //      .Where(gs => gs.PlayerId == src.Id)
-            //      .GroupBy(gs => gs.PlayedGame.BoardGameId, 
-            //      (boardGame, boardGames) => new
-            //      {
-            //          Key = boardGame,
-            //          Title = boardGames.Select(b => new {Title = b.PlayedGame.BoardGame.Title})
-            //      })));
-            ;
+                .ForMember(dest => dest.MostPlayedGame,
+                    opt => opt.MapFrom(src => src.GameScores
+                    .GroupBy(i => i.PlayedGame.BoardGame.Title)
+                    .OrderByDescending(grp => grp.Count())
+                    .Select(grp => grp.Key).First()));
             #endregion
             #region Category
             CreateMap<Category, CategoryResponseDto>();
@@ -62,10 +57,10 @@ namespace Imi.Project.Api.Core.Mapping
                     })))
                 .ForMember(dest => dest.NumberOfCategories,
                     opt => opt.MapFrom(src => src.Categories
-                    .Where(bc => bc.CategoryId == src.Id).Count()))
+                    .Select(bc => bc.CategoryId == src.Id).Count()))
                 .ForMember(dest => dest.NumberofArtists,
                     opt => opt.MapFrom(src => src.Artists
-                    .Where(ba => ba.BoardGameId == src.Id).Count()))
+                    .Select(ba => ba.BoardGameId == src.Id).Count()))
                 .ForMember(dest => dest.PlayTime,
                     opt => opt.MapFrom(src => src.PlayTime
                     .ConvertToStringDuration()));

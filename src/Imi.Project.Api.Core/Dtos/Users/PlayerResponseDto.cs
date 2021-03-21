@@ -10,6 +10,6 @@ namespace Imi.Project.Api.Core.Dtos.Users
         public string Name { get; set; }
         public int PlayedGameCount { get; set; }
         public string PlayTimeTotal { get; set; }
-        public string FavoPlayedGame { get; set; }
+        public string MostPlayedGame { get; set; }
     }
 }

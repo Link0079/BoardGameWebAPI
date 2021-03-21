@@ -18,7 +18,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories
         public override IQueryable<Player> GetAllAsync()
         {
             return _dbContext.Players.AsNoTracking().Include(p => p.GameScores)
-                .ThenInclude(gs => gs.PlayedGame);
+                .ThenInclude(gs => gs.PlayedGame).ThenInclude(pg=>pg.BoardGame);
         }
         public override async Task<Player> GetByIdAsync(Guid id)
         {
