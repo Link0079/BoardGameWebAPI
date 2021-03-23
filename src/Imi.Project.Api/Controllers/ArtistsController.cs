@@ -1,4 +1,5 @@
-﻿using Imi.Project.Api.Core.Interfaces.Services;
+﻿using Imi.Project.Api.Core.Dtos;
+using Imi.Project.Api.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -31,6 +32,21 @@ namespace Imi.Project.Api.Controllers
                 return NotFound($"Artist with id {guid} does not exist.");
             return Ok(artist);
         }
-
+        [HttpPost]
+        public async Task<IActionResult> Post(ArtistRequestDto artistRequestDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var artistResponseDto = await _artistService.AddAsync(artistRequestDto);
+            return CreatedAtAction(nameof(Get), new { id = artistResponseDto.Id }, artistResponseDto);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Put(ArtistRequestDto artistRequestDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var artistResponseDto = await _artistService.UpdateAsync(artistRequestDto);
+            return CreatedAtAction(nameof(Get), new { id = artistResponseDto.Id }, artistResponseDto);
+        }
     }
 }

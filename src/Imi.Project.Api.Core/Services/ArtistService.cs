@@ -32,5 +32,22 @@ namespace Imi.Project.Api.Core.Services
             var dto = _mapper.Map<IEnumerable<ArtistResponseDto>>(result);
             return dto;
         }
+        public async Task<ArtistResponseDto> AddAsync(ArtistRequestDto artistRequestDto)
+        {
+            var artistEntity = _mapper.Map<Artist>(artistRequestDto);
+            await _artistRepository.AddAsync(artistEntity);
+            return await GetByIdAsync(artistEntity.Id);
+        }
+        public async Task<ArtistResponseDto> UpdateAsync(ArtistRequestDto artistRequestDto)
+        {
+            var artistEntity = _mapper.Map<Artist>(artistRequestDto);
+            await _artistRepository.UpdateAsync(artistEntity);
+            return await GetByIdAsync(artistEntity.Id);
+        }
+        public Task DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
+        }
+
     }
 }

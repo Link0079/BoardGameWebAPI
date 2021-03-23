@@ -9,6 +9,8 @@ namespace Imi.Project.Api.Core.Interfaces.Services
     {
         Task<IEnumerable<ArtistResponseDto>> ListAllAsync();
         Task<ArtistResponseDto> GetByIdAsync(Guid id);
-
+        Task<ArtistResponseDto> AddAsync(ArtistRequestDto artistRequestDto);
+        Task<ArtistResponseDto> UpdateAsync(ArtistRequestDto artistRequestDto);
+        Task DeleteAsync(Guid id);
     }
 }

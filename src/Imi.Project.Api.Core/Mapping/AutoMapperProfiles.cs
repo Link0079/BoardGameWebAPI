@@ -46,6 +46,7 @@ namespace Imi.Project.Api.Core.Mapping
                 .ForMember(dest => dest.Dob,
                     opt => opt.MapFrom(src => src.Dob
                     .ConvertToStringDateNotation()));
+            CreateMap<ArtistRequestDto, Artist>();
             #endregion
             #region BoardGame
             CreateMap<BoardGame, BoardGameResponseDto>()
