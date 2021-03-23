@@ -14,9 +14,11 @@ namespace Imi.Project.Api.Controllers
     public class ArtistsController : ControllerBase
     {
         private readonly IArtistService _artistService;
-        public ArtistsController(IArtistService artistService)
+        private readonly IBoardGameService _boardGameService;
+        public ArtistsController(IArtistService artistService, IBoardGameService boardGameService)
         {
             _artistService = artistService;
+            _boardGameService = boardGameService;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -31,6 +33,14 @@ namespace Imi.Project.Api.Controllers
             if (artist == null)
                 return NotFound($"Artist with id {guid} does not exist.");
             return Ok(artist);
+        }
+        [HttpGet("{guid}/boardgames")]
+        public async Task<IActionResult> GetbyArtistId(Guid guid)
+        {
+            var boardgames = await _boardGameService.GetByArtistIdAsync(guid);
+            if (!boardgames.Any())
+                return NotFound($"Artist with id {guid} has no boardgames.");
+            return Ok(boardgames);
         }
         [HttpPost]
         public async Task<IActionResult> Post(ArtistRequestDto artistRequestDto)

@@ -9,5 +9,6 @@ namespace Imi.Project.Api.Core.Interfaces.Repositories
     public interface IBoardGameRepository : IRepository<BoardGame>
     {
         Task<IEnumerable<BoardGame>> GetByCategoryIdAsync(Guid id);
+        Task<IEnumerable<BoardGame>> GetByArtistIdAsync(Guid id);
     }
 }

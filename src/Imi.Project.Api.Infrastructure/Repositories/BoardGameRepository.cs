@@ -31,5 +31,10 @@ namespace Imi.Project.Api.Infrastructure.Repositories
             return await GetAllAsync().Where(b => b.Categories
                 .Any(bc => bc.CategoryId.Equals(id))).ToListAsync();
         }
+        public async Task<IEnumerable<BoardGame>> GetByArtistIdAsync(Guid id)
+        {
+            return await GetAllAsync().Where(b => b.Artists
+            .Any(ba => ba.ArtistId.Equals(id))).ToListAsync();
+        }
     }
 }

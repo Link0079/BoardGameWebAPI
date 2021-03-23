@@ -37,6 +37,12 @@ namespace Imi.Project.Api.Core.Services
             var dto = _mapper.Map<IEnumerable<BoardGameResponseDto>>(result);
             return dto;
         }
+        public async Task<IEnumerable<BoardGameResponseDto>> GetByArtistIdAsync(Guid id)
+        {
+            var result = await _boardGameRepository.GetByArtistIdAsync(id);
+            var dto = _mapper.Map<IEnumerable<BoardGameResponseDto>>(result);
+            return dto;
+        }
         public async Task<BoardGameResponseDto> AddAsync(BoardGameRequestDto boardGameRequestDto)
         {
             var boardGameEntity = _mapper.Map<BoardGame>(boardGameRequestDto);

@@ -38,6 +38,8 @@ namespace Imi.Project.Api.Controllers
         public async Task<IActionResult> GetByCategoryId(Guid guid)
         {
             var boardgames = await _boardGameService.GetByCategoryIdAsync(guid);
+            if (!boardgames.Any())
+                return NotFound($"Category with id {guid} has no boardgames.");
             return Ok(boardgames);
         }
         [HttpPost]
