@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Imi.Project.Api.Core.Dtos.Games;
+using Imi.Project.Api.Core.Entities.Games;
 using Imi.Project.Api.Core.Interfaces.Repositories;
 using Imi.Project.Api.Core.Interfaces.Services;
 using System;
@@ -29,6 +30,22 @@ namespace Imi.Project.Api.Core.Services
             var result = await _playedGameRepository.ListAllAsync();
             var dto = _mapper.Map<IEnumerable<PlayedGameResponseDto>>(result);
             return dto;
+        }
+        public async Task<PlayedGameResponseDto> AddAsync(PlayedGameRequestDto playedGameRequestDto)
+        {
+            var playedGameEntity = _mapper.Map<PlayedGame>(playedGameRequestDto);
+            await _playedGameRepository.AddAsync(playedGameEntity);
+            return await GetByIdAsync(playedGameEntity.Id);
+        }
+        public async Task<PlayedGameResponseDto> UpdateAsync(PlayedGameRequestDto playedGameRequestDto)
+        {
+            var playedGameEntity = _mapper.Map<PlayedGame>(playedGameRequestDto);
+            await _playedGameRepository.UpdateAsync(playedGameEntity);
+            return await GetByIdAsync(playedGameEntity.Id);
+        }
+        public Task DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

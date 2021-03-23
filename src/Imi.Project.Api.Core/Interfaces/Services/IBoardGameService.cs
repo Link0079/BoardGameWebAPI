@@ -11,5 +11,9 @@ namespace Imi.Project.Api.Core.Interfaces.Services
         Task<IEnumerable<BoardGameResponseDto>> ListAllAsync();
         Task<BoardGameResponseDto> GetByIdAsync(Guid id);
         Task<IEnumerable<BoardGameResponseDto>> GetByCategoryIdAsync(Guid id);
+        Task<BoardGameResponseDto> AddAsync(BoardGameRequestDto boardGameRequestDto);
+        Task<BoardGameResponseDto> UpdateAsync(BoardGameRequestDto boardGameRequestDto);
+        Task DeleteAsync(Guid id);
+
     }
 }

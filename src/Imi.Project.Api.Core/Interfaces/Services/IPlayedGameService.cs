@@ -10,5 +10,8 @@ namespace Imi.Project.Api.Core.Interfaces.Services
     {
         Task<IEnumerable<PlayedGameResponseDto>> ListAllAsync();
         Task<PlayedGameResponseDto> GetByIdAsync(Guid id);
+        Task<PlayedGameResponseDto> AddAsync(PlayedGameRequestDto playedGameRequestDto);
+        Task<PlayedGameResponseDto> UpdateAsync(PlayedGameRequestDto playedGameRequestDto);
+        Task DeleteAsync(Guid id);
     }
 }

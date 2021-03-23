@@ -1,4 +1,5 @@
-﻿using Imi.Project.Api.Core.Interfaces.Services;
+﻿using Imi.Project.Api.Core.Dtos.Games;
+using Imi.Project.Api.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,6 +31,22 @@ namespace Imi.Project.Api.Controllers
             if (playedGame == null)
                 return NotFound($"Games with id {guid} does not exist.");
             return Ok(playedGame);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Post(PlayedGameRequestDto playedGameRequestDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var playedGameResponseDto = await _playedGameService.AddAsync(playedGameRequestDto);
+            return CreatedAtAction(nameof(Get), new { id = playedGameResponseDto.Id }, playedGameResponseDto);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Put(PlayedGameRequestDto playedGameRequestDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var playedGameResponseDto = await _playedGameService.UpdateAsync(playedGameRequestDto);
+            return CreatedAtAction(nameof(Get), new { id = playedGameResponseDto.Id }, playedGameResponseDto);
         }
     }
 }

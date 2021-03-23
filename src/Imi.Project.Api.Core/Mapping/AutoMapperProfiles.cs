@@ -58,14 +58,15 @@ namespace Imi.Project.Api.Core.Mapping
                         Name = bc.Category.Name
                     })))
                 .ForMember(dest => dest.NumberOfCategories,
-                    opt => opt.MapFrom(src => src.Categories
+                    opt => opt.MapFrom(src => src.Categories == null ? 0 : src.Categories
                     .Select(bc => bc.CategoryId == src.Id).Count()))
                 .ForMember(dest => dest.NumberofArtists,
-                    opt => opt.MapFrom(src => src.Artists
+                    opt => opt.MapFrom(src => src.Artists == null ? 0 : src.Artists
                     .Select(ba => ba.BoardGameId == src.Id).Count()))
                 .ForMember(dest => dest.PlayTime,
                     opt => opt.MapFrom(src => src.PlayTime
                     .ConvertToStringDuration()));
+            CreateMap<BoardGameRequestDto, BoardGame>();
             #endregion
             #region PlayedGame
             CreateMap<PlayedGame, PlayedGameResponseDto>()
@@ -83,6 +84,7 @@ namespace Imi.Project.Api.Core.Mapping
                           PlayerName = gs.Player.Name,
                           Score = gs.Score
                       }).OrderByDescending(gs=>gs.Score)));
+            CreateMap<PlayedGameRequestDto, PlayedGame>();
             #endregion
             #region GameScore
             CreateMap<GameScore, GameScoreResponseDto>()
