@@ -14,9 +14,11 @@ namespace Imi.Project.Api.Controllers
     public class PlayersController : ControllerBase
     {
         private readonly IPlayerService _playerService;
-        public PlayersController(IPlayerService playerService)
+        private readonly IPlayedGameService _playedGameService;
+        public PlayersController(IPlayerService playerService, IPlayedGameService playedGameService)
         {
             _playerService = playerService;
+            _playedGameService = playedGameService;
         }
         [HttpGet]
         public async Task<IActionResult> Get()
@@ -31,6 +33,14 @@ namespace Imi.Project.Api.Controllers
             if (player == null)
                 return NotFound($"Players with id {guid} does not exist.");
             return Ok(player);
+        }
+        [HttpGet("{guid}/playedGames")]
+        public async Task<IActionResult> GetByPlayerId(Guid guid)
+        {
+            var playedGames = await _playedGameService.GetByPlayerIdAsync(guid);
+            if (!playedGames.Any())
+                return NotFound($"Players with id {guid} has not played any games yet.");
+            return Ok(playedGames);
         }
         [HttpPost]
         public async Task<IActionResult> Post(PlayerRequestDto playerRequestDto)

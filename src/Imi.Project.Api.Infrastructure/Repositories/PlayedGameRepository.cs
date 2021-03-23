@@ -24,5 +24,10 @@ namespace Imi.Project.Api.Infrastructure.Repositories
         {
             return await GetAllAsync().SingleOrDefaultAsync(p => p.Id.Equals(id));
         }
+        public async Task<IEnumerable<PlayedGame>> GetByPlayerIdAsync(Guid id)
+        {
+            return await GetAllAsync().Where(pg => pg.GameScores
+                .Any(gs => gs.PlayerId.Equals(id))).ToListAsync();
+        }
     }
 }

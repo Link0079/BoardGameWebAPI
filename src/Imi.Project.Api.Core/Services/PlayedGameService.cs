@@ -25,6 +25,12 @@ namespace Imi.Project.Api.Core.Services
             var dto = _mapper.Map<PlayedGameResponseDto>(result);
             return dto;
         }
+        public async Task<IEnumerable<PlayedGameResponseDto>> GetByPlayerIdAsync(Guid id)
+        {
+            var result = await _playedGameRepository.GetByPlayerIdAsync(id);
+            var dto = _mapper.Map<IEnumerable<PlayedGameResponseDto>>(result);
+            return dto;
+        }
         public async Task<IEnumerable<PlayedGameResponseDto>> ListAllAsync()
         {
             var result = await _playedGameRepository.ListAllAsync();
