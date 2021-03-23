@@ -35,7 +35,7 @@ namespace Imi.Project.Api.Core.Mapping
             #endregion
             #region Category
             CreateMap<Category, CategoryResponseDto>();
-
+            CreateMap<CategoryRequestDto, Category>();
             #endregion
             #region Artist
             CreateMap<Artist, ArtistResponseDto>()

@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Imi.Project.Api.Core.Dtos;
+using Imi.Project.Api.Core.Entities;
 using Imi.Project.Api.Core.Interfaces.Repositories;
 using Imi.Project.Api.Core.Interfaces.Services;
 using System;
@@ -29,6 +30,22 @@ namespace Imi.Project.Api.Core.Services
             var result = await _categoryRepository.ListAllAsync();
             var dto = _mapper.Map<IEnumerable<CategoryResponseDto>>(result);
             return dto;
+        }
+        public async Task<CategoryResponseDto> AddAsync(CategoryRequestDto categoryRequestDto)
+        {
+            var categoryEntity = _mapper.Map<Category>(categoryRequestDto);
+            await _categoryRepository.AddAsync(categoryEntity);
+            return await GetByIdAsync(categoryEntity.Id);
+        }
+        public async Task<CategoryResponseDto> UpdateAsync(CategoryRequestDto categoryRequestDto)
+        {
+            var categoryEntity = _mapper.Map<Category>(categoryRequestDto);
+            await _categoryRepository.UpdateAsync(categoryEntity);
+            return await GetByIdAsync(categoryEntity.Id);
+        }
+        public Task DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

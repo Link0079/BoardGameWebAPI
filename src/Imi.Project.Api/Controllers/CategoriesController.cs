@@ -1,4 +1,5 @@
-﻿using Imi.Project.Api.Core.Interfaces.Services;
+﻿using Imi.Project.Api.Core.Dtos;
+using Imi.Project.Api.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -38,6 +39,14 @@ namespace Imi.Project.Api.Controllers
         {
             var boardgames = await _boardGameService.GetByCategoryIdAsync(guid);
             return Ok(boardgames);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Post(CategoryRequestDto categoryRequestDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var categoryResponseDto = await _categoryService.AddAsync(categoryRequestDto);
+            return CreatedAtAction(nameof(Get), new { id = categoryResponseDto.Id }, categoryResponseDto);
         }
     }
 }
