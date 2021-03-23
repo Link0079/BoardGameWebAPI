@@ -20,7 +20,7 @@ namespace Imi.Project.Api.Core.Mapping
             #region Player
             CreateMap<Player, PlayerResponseDto>()
                 .ForMember(dest => dest.PlayedGameCount,
-                    opt => opt.MapFrom(src => src.GameScores
+                    opt => opt.MapFrom(src => src.GameScores.Count == 0 ? 0 : src.GameScores
                     .Select(gs => gs.PlayerId == src.Id).Count()))
                 .ForMember(dest => dest.PlayTimeTotal,
                     opt => opt.MapFrom(src => src.GameScores
@@ -28,10 +28,11 @@ namespace Imi.Project.Api.Core.Mapping
                     .Sum(gs => gs.PlayedGame.PlayTime)
                     .ConvertToStringDuration()))
                 .ForMember(dest => dest.MostPlayedGame,
-                    opt => opt.MapFrom(src => src.GameScores
+                    opt => opt.MapFrom(src => src.GameScores.Count == 0 ? "no games" : src.GameScores
                     .GroupBy(i => i.PlayedGame.BoardGame.Title)
                     .OrderByDescending(grp => grp.Count())
                     .Select(grp => grp.Key).First()));
+            CreateMap<PlayerRequestDto, Player>();
             #endregion
             #region Category
             CreateMap<Category, CategoryResponseDto>();

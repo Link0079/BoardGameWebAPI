@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Imi.Project.Api.Core.Dtos.Users;
+using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Repositories;
 using Imi.Project.Api.Core.Interfaces.Services;
 using System;
@@ -29,6 +30,22 @@ namespace Imi.Project.Api.Core.Services
             var result = await _playerRepository.ListAllAsync();
             var dto = _mapper.Map<IEnumerable<PlayerResponseDto>>(result);
             return dto;
+        }
+        public async Task<PlayerResponseDto> AddAsync(PlayerRequestDto playerRequestDto)
+        {
+            var playerEntity = _mapper.Map<Player>(playerRequestDto);
+            await _playerRepository.AddAsync(playerEntity);
+            return await GetByIdAsync(playerEntity.Id);
+        }
+        public async Task<PlayerResponseDto> UpdateAsync(PlayerRequestDto playerRequestDto)
+        {
+            var playerEntity = _mapper.Map<Player>(playerRequestDto);
+            await _playerRepository.UpdateAsync(playerEntity);
+            return await GetByIdAsync(playerEntity.Id);
+        }
+        public Task DeleteAsync(Guid id)
+        {
+            throw new NotImplementedException();
         }
     }
 }

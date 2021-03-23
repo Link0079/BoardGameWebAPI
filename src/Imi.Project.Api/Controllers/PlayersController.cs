@@ -1,4 +1,5 @@
-﻿using Imi.Project.Api.Core.Interfaces.Services;
+﻿using Imi.Project.Api.Core.Dtos.Users;
+using Imi.Project.Api.Core.Interfaces.Services;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,6 +31,22 @@ namespace Imi.Project.Api.Controllers
             if (player == null)
                 return NotFound($"Players with id {guid} does not exist.");
             return Ok(player);
+        }
+        [HttpPost]
+        public async Task<IActionResult> Post(PlayerRequestDto playerRequestDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var playerResponseDto = await _playerService.AddAsync(playerRequestDto);
+            return CreatedAtAction(nameof(Get), new { id = playerResponseDto.Id }, playerResponseDto);
+        }
+        [HttpPut]
+        public async Task<IActionResult> Put(PlayerRequestDto playerRequestDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var playerResponseDto = await _playerService.UpdateAsync(playerRequestDto);
+            return CreatedAtAction(nameof(Get), new { id = playerResponseDto.Id }, playerResponseDto);
         }
     }
 }

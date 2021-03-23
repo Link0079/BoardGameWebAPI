@@ -4,9 +4,9 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
 
-namespace Imi.Project.Api.Core.Dtos
+namespace Imi.Project.Api.Core.Dtos.Users
 {
-    public class CategoryRequestDto : BaseDto
+    public class PlayerRequestDto : BaseDto
     {
         [Required]
         public string Name { get; set; }

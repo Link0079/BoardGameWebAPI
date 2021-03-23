@@ -48,5 +48,13 @@ namespace Imi.Project.Api.Controllers
             var categoryResponseDto = await _categoryService.AddAsync(categoryRequestDto);
             return CreatedAtAction(nameof(Get), new { id = categoryResponseDto.Id }, categoryResponseDto);
         }
+        [HttpPut]
+        public async Task<IActionResult> Put(CategoryRequestDto categoryRequestDto)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            var categoryResponseDto = await _categoryService.UpdateAsync(categoryRequestDto);
+            return CreatedAtAction(nameof(Get), new { id = categoryResponseDto.Id }, categoryResponseDto);
+        }
     }
 }
