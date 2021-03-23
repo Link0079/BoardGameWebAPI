@@ -53,13 +53,25 @@ namespace Imi.Project.Api.Core.Services
             await _boardGameRepository.AddAsync(boardGameEntity);
             return await GetByIdAsync(boardGameEntity.Id);
         }
-        public Task<BoardGameResponseDto> UpdateAsync(BoardGameRequestDto boardGameRequestDto)
+        public async Task<BoardGameResponseDto> UpdateAsync(BoardGameRequestDto boardGameRequestDto)
         {
-            throw new NotImplementedException();
+            var boardGameEntity = _mapper.Map<BoardGame>(boardGameRequestDto);
+            //if (boardGameRequestDto.Categories.Count != 0)
+            //    foreach (var category in boardGameRequestDto.Categories)
+            //        boardGameEntity.Categories.Add(new BoardGameCategory { 
+            //            BoardGameId = boardGameEntity.Id, CategoryId = category.Id 
+            //        });
+            //if (boardGameRequestDto.Artists.Count != 0)
+            //    foreach (var artist in boardGameRequestDto.Artists)
+            //        boardGameEntity.Artists.Add(new BoardGameArtist { 
+            //            BoardGameId = boardGameEntity.Id, ArtistId = artist.Id 
+            //        });
+            await _boardGameRepository.UpdateAsync(boardGameEntity);
+            return await GetByIdAsync(boardGameEntity.Id);
         }
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            await _boardGameRepository.DeleteAsync(id);
         }
     }
 }

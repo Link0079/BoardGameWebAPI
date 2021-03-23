@@ -43,9 +43,9 @@ namespace Imi.Project.Api.Core.Services
             await _categoryRepository.UpdateAsync(categoryEntity);
             return await GetByIdAsync(categoryEntity.Id);
         }
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            await _categoryRepository.DeleteAsync(id);
         }
     }
 }

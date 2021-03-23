@@ -48,6 +48,15 @@ namespace Imi.Project.Api.Controllers
             var boarGameResponseDto = await _boardGameService.AddAsync(boardGameRequestDto);
             return CreatedAtAction(nameof(Get), new { id = boarGameResponseDto.Id }, boarGameResponseDto);
         }
+        [HttpDelete("{guid}")]
+        public async Task<IActionResult> Delete(Guid guid)
+        {
+            var boardGameEntity = await _boardGameService.GetByIdAsync(guid);
+            if (boardGameEntity == null)
+                return NotFound($"Artist with id {guid} does not exist.");
+            await _boardGameService.DeleteAsync(guid);
+            return Ok();
+        }
     }
 }
 

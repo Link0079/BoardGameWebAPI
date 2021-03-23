@@ -48,5 +48,14 @@ namespace Imi.Project.Api.Controllers
             var artistResponseDto = await _artistService.UpdateAsync(artistRequestDto);
             return CreatedAtAction(nameof(Get), new { id = artistResponseDto.Id }, artistResponseDto);
         }
+        [HttpDelete("{guid}")]
+        public async Task<IActionResult> Delete(Guid guid)
+        {
+            var artistEntity = await _artistService.GetByIdAsync(guid);
+            if (artistEntity == null)
+                return NotFound($"Artist with id {guid} does not exist.");
+            await _artistService.DeleteAsync(guid);
+            return Ok();
+        }
     }
 }

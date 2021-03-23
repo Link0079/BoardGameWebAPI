@@ -44,10 +44,9 @@ namespace Imi.Project.Api.Core.Services
             await _artistRepository.UpdateAsync(artistEntity);
             return await GetByIdAsync(artistEntity.Id);
         }
-        public Task DeleteAsync(Guid id)
+        public async Task DeleteAsync(Guid id)
         {
-            throw new NotImplementedException();
+            await _artistRepository.DeleteAsync(id);
         }
-
     }
 }

@@ -56,5 +56,14 @@ namespace Imi.Project.Api.Controllers
             var categoryResponseDto = await _categoryService.UpdateAsync(categoryRequestDto);
             return CreatedAtAction(nameof(Get), new { id = categoryResponseDto.Id }, categoryResponseDto);
         }
+        [HttpDelete("{guid}")]
+        public async Task<IActionResult> Delete(Guid guid)
+        {
+            var categoryEntity = await _categoryService.GetByIdAsync(guid);
+            if (categoryEntity == null)
+                return NotFound($"Artist with id {guid} does not exist.");
+            await _categoryService.DeleteAsync(guid);
+            return Ok();
+        }
     }
 }

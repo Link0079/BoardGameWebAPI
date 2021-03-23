@@ -48,5 +48,15 @@ namespace Imi.Project.Api.Controllers
             var playedGameResponseDto = await _playedGameService.UpdateAsync(playedGameRequestDto);
             return CreatedAtAction(nameof(Get), new { id = playedGameResponseDto.Id }, playedGameResponseDto);
         }
+        [HttpDelete("{guid}")]
+        public async Task<IActionResult> Delete(Guid guid)
+        {
+            var playedGameEntity = await _playedGameService.GetByIdAsync(guid);
+            if (playedGameEntity == null)
+                return NotFound($"Artist with id {guid} does not exist.");
+            await _playedGameService.DeleteAsync(guid);
+            return Ok();
+        }
+
     }
 }
