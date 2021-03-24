@@ -45,7 +45,7 @@ namespace Imi.Project.Api.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var boarGameResponseDto = await _boardGameService.AddAsync(boardGameRequestDto);
+            var boarGameResponseDto = await _boardGameService.UpdateAsync(boardGameRequestDto);
             return CreatedAtAction(nameof(Get), new { id = boarGameResponseDto.Id }, boarGameResponseDto);
         }
         [HttpDelete("{guid}")]

@@ -76,7 +76,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories
             return await GetFiltered(predicate).ToListAsync();
         }
 
-        public async Task<T> UpdateAsync(T entity)
+        public virtual async Task<T> UpdateAsync(T entity)
         {
             _dbContext.Entry(entity).State = EntityState.Modified;
             await _dbContext.SaveChangesAsync();
