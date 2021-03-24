@@ -9,6 +9,7 @@ namespace Imi.Project.Api.Core.Dtos.Games
     {
         public int PlayTime { get; set; }
         public Guid BoardGameId { get; set; }
+        public IEnumerable<GameScoreRequestDto> GameScores { get; set; }
 
         //public bool IsDeleted { get; set; }
     }

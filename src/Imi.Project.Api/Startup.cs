@@ -44,7 +44,7 @@ namespace Imi.Project.Api
             services.AddScoped<IPlayedGameService, PlayedGameService>();
             services.AddScoped<IBoardGameService, BoardGameService>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddSwaggerGen();
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "BoardGame WebAPI", Version = "v1" }); });
             services.AddControllers();
         }
 
@@ -57,7 +57,7 @@ namespace Imi.Project.Api
             }
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseSwagger();
-            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "MySwagger UI-API"); });
+            app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "BoardGame WebAPI"); });
             app.UseHttpsRedirection();
 
             app.UseRouting();

@@ -67,6 +67,10 @@ namespace Imi.Project.Api.Core.Mapping
                     opt => opt.MapFrom(src => src.PlayTime
                     .ConvertToStringDuration()));
             CreateMap<BoardGameRequestDto, BoardGame>();
+            CreateMap<BoardGameCategoryRequestDto, BoardGameCategory>()
+                .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.CategoryId));
+            CreateMap<BoardGameArtistRequestDto, BoardGameArtist>()
+                .ForMember(dest => dest.ArtistId, opt => opt.MapFrom(src => src.ArtistId));
             #endregion
             #region PlayedGame
             CreateMap<PlayedGame, PlayedGameResponseDto>()
@@ -92,6 +96,9 @@ namespace Imi.Project.Api.Core.Mapping
                     opt => opt.MapFrom(src => src.Player.Name))
                 .ForMember(dest => dest.Score,
                     opt => opt.MapFrom(src => src.Score));
+            CreateMap<GameScoreRequestDto, GameScore>()
+                .ForMember(dest => dest.PlayerId, opt => opt.MapFrom(src => src.PlayerId))
+                .ForMember(dest => dest.Score, opt => opt.MapFrom(src => src.Score));
             #endregion
 
             #region Country

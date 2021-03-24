@@ -34,12 +34,12 @@ namespace Imi.Project.Api.Controllers
                 return NotFound($"Players with id {guid} does not exist.");
             return Ok(player);
         }
-        [HttpGet("{guid}/playedGames")]
+        [HttpGet("{guid}/playedgames")]
         public async Task<IActionResult> GetByPlayerId(Guid guid)
         {
             var playedGames = await _playedGameService.GetByPlayerIdAsync(guid);
             if (!playedGames.Any())
-                return NotFound($"Players with id {guid} has not played any games yet.");
+                return NotFound($"Player with id {guid} has not played any games yet.");
             return Ok(playedGames);
         }
         [HttpPost]
