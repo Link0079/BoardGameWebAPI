@@ -63,7 +63,7 @@ namespace Imi.Project.Api.Controllers
         {
             var categoryEntity = await _categoryService.GetByIdAsync(guid);
             if (categoryEntity == null)
-                return NotFound($"Artist with id {guid} does not exist.");
+                return NotFound($"Category with id {guid} does not exist.");
             await _categoryService.DeleteAsync(guid);
             return Ok();
         }

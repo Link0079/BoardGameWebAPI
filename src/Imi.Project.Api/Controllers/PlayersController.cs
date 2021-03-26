@@ -63,7 +63,7 @@ namespace Imi.Project.Api.Controllers
         {
             var playerEntity = await _playerService.GetByIdAsync(guid);
             if (playerEntity == null)
-                return NotFound($"Artist with id {guid} does not exist.");
+                return NotFound($"Player with id {guid} does not exist.");
             await _playerService.DeleteAsync(guid);
             return Ok();
         }

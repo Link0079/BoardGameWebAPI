@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Imi.Project.Api.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210319190339_AddSeedingData")]
-    partial class AddSeedingData
+    [Migration("20210326125737_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -500,7 +500,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                     b.Property<string>("PhotoUrl")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("PlayTime")
+                    b.Property<int>("PlayTime")
                         .HasColumnType("int");
 
                     b.Property<decimal>("Price")
@@ -2403,7 +2403,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                     b.HasOne("Imi.Project.Api.Core.Entities.Artist", "Artist")
                         .WithMany("Artwork")
                         .HasForeignKey("ArtistId")
-                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Imi.Project.Api.Core.Entities.Games.BoardGame", "BoardGame")
@@ -2424,7 +2424,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                     b.HasOne("Imi.Project.Api.Core.Entities.Category", "Category")
                         .WithMany("BoardGames")
                         .HasForeignKey("CategoryId")
-                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 

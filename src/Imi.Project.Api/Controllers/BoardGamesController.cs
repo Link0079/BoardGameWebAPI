@@ -53,7 +53,7 @@ namespace Imi.Project.Api.Controllers
         {
             var boardGameEntity = await _boardGameService.GetByIdAsync(guid);
             if (boardGameEntity == null)
-                return NotFound($"Artist with id {guid} does not exist.");
+                return NotFound($"Boardgame with id {guid} does not exist.");
             await _boardGameService.DeleteAsync(guid);
             return Ok();
         }

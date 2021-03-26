@@ -87,10 +87,11 @@ namespace Imi.Project.Api.Infrastructure.Data
                 .HasKey(ba => new { ba.BoardGameId, ba.ArtistId });
             modelBuilder.Entity<BoardGameArtist>().HasOne(ba => ba.BoardGame)
                 .WithMany(a => a.Artists).HasForeignKey(ba => ba.BoardGameId)
-                .OnDelete(DeleteBehavior.ClientNoAction);
+                .OnDelete(DeleteBehavior.ClientNoAction); // Prevents deletion of the boardgame when there is no connection anymore
             modelBuilder.Entity<BoardGameArtist>().HasOne(ba => ba.Artist)
                 .WithMany(b => b.Artwork).HasForeignKey(ba => ba.ArtistId)
-                .OnDelete(DeleteBehavior.ClientNoAction);
+                //.OnDelete(DeleteBehavior.ClientNoAction)
+                ;
             #endregion
 
             #region BoardGameCategory Table
@@ -98,10 +99,11 @@ namespace Imi.Project.Api.Infrastructure.Data
                 .HasKey(bc => new { bc.BoardGameId, bc.CategoryId });
             modelBuilder.Entity<BoardGameCategory>().HasOne(bc => bc.BoardGame)
                 .WithMany(c => c.Categories).HasForeignKey(bc => bc.BoardGameId)
-                .OnDelete(DeleteBehavior.ClientNoAction);
+                .OnDelete(DeleteBehavior.ClientNoAction); // Prevents deletion of the boardgame when there is no connection anymore
             modelBuilder.Entity<BoardGameCategory>().HasOne(bc => bc.Category)
                 .WithMany(b => b.BoardGames).HasForeignKey(bc => bc.CategoryId)
-                .OnDelete(DeleteBehavior.ClientNoAction);
+                //.OnDelete(DeleteBehavior.ClientNoAction)
+                ;
             #endregion
 
             #region GameScores Table

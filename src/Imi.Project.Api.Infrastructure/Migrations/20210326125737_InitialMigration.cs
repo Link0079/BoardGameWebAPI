@@ -3,10 +3,164 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Imi.Project.Api.Infrastructure.Migrations
 {
-    public partial class AddSeedingData : Migration
+    public partial class InitialMigration : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.CreateTable(
+                name: "Artists",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    Dob = table.Column<DateTime>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Artists", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BoardGames",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Title = table.Column<string>(maxLength: 255, nullable: false),
+                    Price = table.Column<decimal>(type: "money", nullable: false),
+                    Year = table.Column<int>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false),
+                    Age = table.Column<int>(nullable: true),
+                    Rating = table.Column<int>(nullable: true),
+                    PlayTime = table.Column<int>(nullable: false),
+                    MinPlayers = table.Column<int>(nullable: true),
+                    MaxPlayers = table.Column<int>(nullable: true),
+                    Description = table.Column<string>(nullable: true),
+                    Stock = table.Column<bool>(nullable: false),
+                    PhotoUrl = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BoardGames", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Categories",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Categories", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Players",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    Name = table.Column<string>(maxLength: 100, nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Players", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BoardGameArtists",
+                columns: table => new
+                {
+                    BoardGameId = table.Column<Guid>(nullable: false),
+                    ArtistId = table.Column<Guid>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BoardGameArtists", x => new { x.BoardGameId, x.ArtistId });
+                    table.ForeignKey(
+                        name: "FK_BoardGameArtists_Artists_ArtistId",
+                        column: x => x.ArtistId,
+                        principalTable: "Artists",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_BoardGameArtists_BoardGames_BoardGameId",
+                        column: x => x.BoardGameId,
+                        principalTable: "BoardGames",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PlayedGames",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    BoardGameId = table.Column<Guid>(nullable: false),
+                    PlayTime = table.Column<int>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PlayedGames", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_PlayedGames_BoardGames_BoardGameId",
+                        column: x => x.BoardGameId,
+                        principalTable: "BoardGames",
+                        principalColumn: "Id");
+                });
+
+            migrationBuilder.CreateTable(
+                name: "BoardGameCategories",
+                columns: table => new
+                {
+                    BoardGameId = table.Column<Guid>(nullable: false),
+                    CategoryId = table.Column<Guid>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BoardGameCategories", x => new { x.BoardGameId, x.CategoryId });
+                    table.ForeignKey(
+                        name: "FK_BoardGameCategories_BoardGames_BoardGameId",
+                        column: x => x.BoardGameId,
+                        principalTable: "BoardGames",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_BoardGameCategories_Categories_CategoryId",
+                        column: x => x.CategoryId,
+                        principalTable: "Categories",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "GamesScores",
+                columns: table => new
+                {
+                    PlayerId = table.Column<Guid>(nullable: false),
+                    PlayedGameId = table.Column<Guid>(nullable: false),
+                    Score = table.Column<int>(nullable: false),
+                    IsDeleted = table.Column<bool>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_GamesScores", x => new { x.PlayedGameId, x.PlayerId });
+                    table.ForeignKey(
+                        name: "FK_GamesScores_PlayedGames_PlayedGameId",
+                        column: x => x.PlayedGameId,
+                        principalTable: "PlayedGames",
+                        principalColumn: "Id");
+                    table.ForeignKey(
+                        name: "FK_GamesScores_Players_PlayerId",
+                        column: x => x.PlayerId,
+                        principalTable: "Players",
+                        principalColumn: "Id");
+                });
+
             migrationBuilder.InsertData(
                 table: "Artists",
                 columns: new[] { "Id", "Dob", "IsDeleted", "Name" },
@@ -345,1424 +499,53 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                     { new Guid("10000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-200000000000"), false, 30 },
                     { new Guid("10000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-400000000000"), false, 40 }
                 });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BoardGameArtists_ArtistId",
+                table: "BoardGameArtists",
+                column: "ArtistId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_BoardGameCategories_CategoryId",
+                table: "BoardGameCategories",
+                column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_GamesScores_PlayerId",
+                table: "GamesScores",
+                column: "PlayerId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_PlayedGames_BoardGameId",
+                table: "PlayedGames",
+                column: "BoardGameId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0004-0000-0000-000000000000"));
+            migrationBuilder.DropTable(
+                name: "BoardGameArtists");
 
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0006-0000-0000-000000000000"));
+            migrationBuilder.DropTable(
+                name: "BoardGameCategories");
 
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0008-0000-0000-000000000000"));
+            migrationBuilder.DropTable(
+                name: "GamesScores");
 
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000001-0000-0000-0000-000000000000"), new Guid("00000000-0001-0000-0000-000000000000") });
+            migrationBuilder.DropTable(
+                name: "Artists");
 
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000002-0000-0000-0000-000000000000"), new Guid("00000000-0011-0000-0000-000000000000") });
+            migrationBuilder.DropTable(
+                name: "Categories");
 
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000002-0000-0000-0000-000000000000"), new Guid("00000000-0012-0000-0000-000000000000") });
+            migrationBuilder.DropTable(
+                name: "PlayedGames");
 
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000002-0000-0000-0000-000000000000"), new Guid("00000000-0013-0000-0000-000000000000") });
+            migrationBuilder.DropTable(
+                name: "Players");
 
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000003-0000-0000-0000-000000000000"), new Guid("00000000-0023-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000003-0000-0000-0000-000000000000"), new Guid("00000000-0024-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000003-0000-0000-0000-000000000000"), new Guid("00000000-0025-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000004-0000-0000-0000-000000000000"), new Guid("00000000-0010-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000005-0000-0000-0000-000000000000"), new Guid("00000000-0014-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000005-0000-0000-0000-000000000000"), new Guid("00000000-0015-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000005-0000-0000-0000-000000000000"), new Guid("00000000-0016-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000006-0000-0000-0000-000000000000"), new Guid("00000000-0020-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000006-0000-0000-0000-000000000000"), new Guid("00000000-0021-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000006-0000-0000-0000-000000000000"), new Guid("00000000-0022-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000007-0000-0000-0000-000000000000"), new Guid("00000000-0018-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000008-0000-0000-0000-000000000000"), new Guid("00000000-0026-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000009-0000-0000-0000-000000000000"), new Guid("00000000-0050-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000010-0000-0000-0000-000000000000"), new Guid("00000000-0007-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000011-0000-0000-0000-000000000000"), new Guid("00000000-0046-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000012-0000-0000-0000-000000000000"), new Guid("00000000-0027-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000013-0000-0000-0000-000000000000"), new Guid("00000000-0031-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000013-0000-0000-0000-000000000000"), new Guid("00000000-0032-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000013-0000-0000-0000-000000000000"), new Guid("00000000-0033-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000014-0000-0000-0000-000000000000"), new Guid("00000000-0026-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000014-0000-0000-0000-000000000000"), new Guid("00000000-0027-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000015-0000-0000-0000-000000000000"), new Guid("00000000-0043-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000016-0000-0000-0000-000000000000"), new Guid("00000000-0039-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000016-0000-0000-0000-000000000000"), new Guid("00000000-0040-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000017-0000-0000-0000-000000000000"), new Guid("00000000-0029-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000017-0000-0000-0000-000000000000"), new Guid("00000000-0030-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000018-0000-0000-0000-000000000000"), new Guid("00000000-0047-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000019-0000-0000-0000-000000000000"), new Guid("00000000-0048-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000020-0000-0000-0000-000000000000"), new Guid("00000000-0014-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000021-0000-0000-0000-000000000000"), new Guid("00000000-0002-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000021-0000-0000-0000-000000000000"), new Guid("00000000-0003-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000022-0000-0000-0000-000000000000"), new Guid("00000000-0010-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000022-0000-0000-0000-000000000000"), new Guid("00000000-0020-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000023-0000-0000-0000-000000000000"), new Guid("00000000-0013-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000023-0000-0000-0000-000000000000"), new Guid("00000000-0023-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000023-0000-0000-0000-000000000000"), new Guid("00000000-0050-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000024-0000-0000-0000-000000000000"), new Guid("00000000-0033-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000024-0000-0000-0000-000000000000"), new Guid("00000000-0035-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000024-0000-0000-0000-000000000000"), new Guid("00000000-0040-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000024-0000-0000-0000-000000000000"), new Guid("00000000-0045-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000025-0000-0000-0000-000000000000"), new Guid("00000000-0025-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000025-0000-0000-0000-000000000000"), new Guid("00000000-0030-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000026-0000-0000-0000-000000000000"), new Guid("00000000-0010-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000026-0000-0000-0000-000000000000"), new Guid("00000000-0015-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000026-0000-0000-0000-000000000000"), new Guid("00000000-0020-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000027-0000-0000-0000-000000000000"), new Guid("00000000-0001-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000027-0000-0000-0000-000000000000"), new Guid("00000000-0005-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000028-0000-0000-0000-000000000000"), new Guid("00000000-0003-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000028-0000-0000-0000-000000000000"), new Guid("00000000-0007-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000029-0000-0000-0000-000000000000"), new Guid("00000000-0009-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000029-0000-0000-0000-000000000000"), new Guid("00000000-0011-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000030-0000-0000-0000-000000000000"), new Guid("00000000-0013-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000030-0000-0000-0000-000000000000"), new Guid("00000000-0016-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000031-0000-0000-0000-000000000000"), new Guid("00000000-0017-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000032-0000-0000-0000-000000000000"), new Guid("00000000-0019-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000033-0000-0000-0000-000000000000"), new Guid("00000000-0019-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000033-0000-0000-0000-000000000000"), new Guid("00000000-0021-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000034-0000-0000-0000-000000000000"), new Guid("00000000-0023-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000034-0000-0000-0000-000000000000"), new Guid("00000000-0026-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000034-0000-0000-0000-000000000000"), new Guid("00000000-0028-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000035-0000-0000-0000-000000000000"), new Guid("00000000-0030-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000035-0000-0000-0000-000000000000"), new Guid("00000000-0032-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000036-0000-0000-0000-000000000000"), new Guid("00000000-0034-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000036-0000-0000-0000-000000000000"), new Guid("00000000-0036-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000036-0000-0000-0000-000000000000"), new Guid("00000000-0038-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000037-0000-0000-0000-000000000000"), new Guid("00000000-0040-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000038-0000-0000-0000-000000000000"), new Guid("00000000-0042-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000038-0000-0000-0000-000000000000"), new Guid("00000000-0044-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000038-0000-0000-0000-000000000000"), new Guid("00000000-0046-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000039-0000-0000-0000-000000000000"), new Guid("00000000-0048-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000039-0000-0000-0000-000000000000"), new Guid("00000000-0049-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000039-0000-0000-0000-000000000000"), new Guid("00000000-0050-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000040-0000-0000-0000-000000000000"), new Guid("00000000-0041-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000040-0000-0000-0000-000000000000"), new Guid("00000000-0043-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000040-0000-0000-0000-000000000000"), new Guid("00000000-0047-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000041-0000-0000-0000-000000000000"), new Guid("00000000-0033-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000041-0000-0000-0000-000000000000"), new Guid("00000000-0037-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameArtists",
-                keyColumns: new[] { "BoardGameId", "ArtistId" },
-                keyValues: new object[] { new Guid("00000041-0000-0000-0000-000000000000"), new Guid("00000000-0039-0000-0000-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000001-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0001-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000001-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000002-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000002-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0009-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000003-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000003-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0007-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000004-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000004-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0003-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000005-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000005-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0008-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000006-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000006-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0009-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000007-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000007-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0003-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000008-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000008-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0003-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000009-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0003-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000010-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0003-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000011-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0003-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000012-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0003-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000013-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0004-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000013-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0007-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000014-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0004-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000014-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0007-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000015-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0004-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000016-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0003-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000016-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0004-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000017-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0004-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000018-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0001-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000018-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0003-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000018-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0005-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000019-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0001-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000019-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0005-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000020-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0001-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000020-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0005-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000021-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0001-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000021-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0005-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000022-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0001-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000022-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0005-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000023-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0006-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000023-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0007-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000023-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000024-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0006-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000024-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000025-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0006-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000025-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000026-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0006-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000026-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0007-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000026-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000027-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0006-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000027-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000028-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000028-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0006-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000028-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0007-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000029-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0008-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000030-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000030-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0008-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000031-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0008-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000031-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000032-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0008-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000033-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0008-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000033-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000034-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000034-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000035-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000035-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0006-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000035-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000036-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0009-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000036-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000037-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0006-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000037-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000038-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0006-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000038-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000039-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0006-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000039-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0007-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000039-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0010-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000040-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0002-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000040-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0007-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000041-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0001-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "BoardGameCategories",
-                keyColumns: new[] { "BoardGameId", "CategoryId" },
-                keyValues: new object[] { new Guid("00000041-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0007-000000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "GamesScores",
-                keyColumns: new[] { "PlayedGameId", "PlayerId" },
-                keyValues: new object[] { new Guid("10000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-100000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "GamesScores",
-                keyColumns: new[] { "PlayedGameId", "PlayerId" },
-                keyValues: new object[] { new Guid("10000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-200000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "GamesScores",
-                keyColumns: new[] { "PlayedGameId", "PlayerId" },
-                keyValues: new object[] { new Guid("10000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-400000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "GamesScores",
-                keyColumns: new[] { "PlayedGameId", "PlayerId" },
-                keyValues: new object[] { new Guid("20000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-100000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "GamesScores",
-                keyColumns: new[] { "PlayedGameId", "PlayerId" },
-                keyValues: new object[] { new Guid("20000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-200000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "GamesScores",
-                keyColumns: new[] { "PlayedGameId", "PlayerId" },
-                keyValues: new object[] { new Guid("20000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-400000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "GamesScores",
-                keyColumns: new[] { "PlayedGameId", "PlayerId" },
-                keyValues: new object[] { new Guid("20000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-500000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "GamesScores",
-                keyColumns: new[] { "PlayedGameId", "PlayerId" },
-                keyValues: new object[] { new Guid("30000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-100000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "GamesScores",
-                keyColumns: new[] { "PlayedGameId", "PlayerId" },
-                keyValues: new object[] { new Guid("30000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-200000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "GamesScores",
-                keyColumns: new[] { "PlayedGameId", "PlayerId" },
-                keyValues: new object[] { new Guid("30000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-300000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "GamesScores",
-                keyColumns: new[] { "PlayedGameId", "PlayerId" },
-                keyValues: new object[] { new Guid("30000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-400000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "GamesScores",
-                keyColumns: new[] { "PlayedGameId", "PlayerId" },
-                keyValues: new object[] { new Guid("30000000-0000-0000-0000-000000000000"), new Guid("00000000-0000-0000-0000-500000000000") });
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0001-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0002-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0003-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0005-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0007-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0009-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0010-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0011-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0012-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0013-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0014-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0015-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0016-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0017-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0018-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0019-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0020-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0021-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0022-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0023-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0024-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0025-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0026-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0027-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0028-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0029-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0030-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0031-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0032-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0033-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0034-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0035-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0036-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0037-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0038-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0039-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0040-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0041-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0042-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0043-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0044-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0045-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0046-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0047-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0048-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0049-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Artists",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0050-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000001-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000002-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000003-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000004-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000006-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000007-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000008-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000009-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000010-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000011-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000012-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000013-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000014-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000015-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000016-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000017-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000018-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000019-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000020-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000021-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000022-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000024-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000025-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000026-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000027-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000028-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000029-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000030-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000031-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000032-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000033-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000034-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000035-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000036-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000037-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000038-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000039-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000041-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0001-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0002-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0003-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0004-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0005-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0006-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0007-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0008-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0009-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Categories",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0010-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "PlayedGames",
-                keyColumn: "Id",
-                keyValue: new Guid("10000000-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "PlayedGames",
-                keyColumn: "Id",
-                keyValue: new Guid("20000000-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "PlayedGames",
-                keyColumn: "Id",
-                keyValue: new Guid("30000000-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Players",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0000-100000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Players",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0000-200000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Players",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0000-300000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Players",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0000-400000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "Players",
-                keyColumn: "Id",
-                keyValue: new Guid("00000000-0000-0000-0000-500000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000005-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000023-0000-0000-0000-000000000000"));
-
-            migrationBuilder.DeleteData(
-                table: "BoardGames",
-                keyColumn: "Id",
-                keyValue: new Guid("00000040-0000-0000-0000-000000000000"));
+            migrationBuilder.DropTable(
+                name: "BoardGames");
         }
     }
 }

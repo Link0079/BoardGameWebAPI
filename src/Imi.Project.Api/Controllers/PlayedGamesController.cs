@@ -53,7 +53,7 @@ namespace Imi.Project.Api.Controllers
         {
             var playedGameEntity = await _playedGameService.GetByIdAsync(guid);
             if (playedGameEntity == null)
-                return NotFound($"Artist with id {guid} does not exist.");
+                return NotFound($"Playedgame with id {guid} does not exist.");
             await _playedGameService.DeleteAsync(guid);
             return Ok();
         }
