@@ -1,8 +1,16 @@
 using Imi.Project.Api.Core.Interfaces.Repositories;
+using Imi.Project.Api.Core.Interfaces.Repositories.Games;
+using Imi.Project.Api.Core.Interfaces.Repositories.Users;
 using Imi.Project.Api.Core.Interfaces.Services;
+using Imi.Project.Api.Core.Interfaces.Services.Games;
+using Imi.Project.Api.Core.Interfaces.Services.Users;
 using Imi.Project.Api.Core.Services;
+using Imi.Project.Api.Core.Services.Games;
+using Imi.Project.Api.Core.Services.Users;
 using Imi.Project.Api.Infrastructure.Data;
 using Imi.Project.Api.Infrastructure.Repositories;
+using Imi.Project.Api.Infrastructure.Repositories.Games;
+using Imi.Project.Api.Infrastructure.Repositories.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
