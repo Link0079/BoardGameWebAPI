@@ -33,16 +33,19 @@ namespace Imi.Project.Api
         {
             services.AddCors();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+            // Repositories
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IArtistRepository, ArtistRepository>();
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<IPlayedGameRepository, PlayedGameRepository>();
             services.AddScoped<IBoardGameRepository, BoardGameRepository>();
+            // Services
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IArtistService, ArtistService>();
             services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<IPlayedGameService, PlayedGameService>();
             services.AddScoped<IBoardGameService, BoardGameService>();
+            // Shizzle to make programming and teacher's life easier
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "BoardGame WebAPI", Version = "v1" }); });
             services.AddControllers();

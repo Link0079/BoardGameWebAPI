@@ -13,10 +13,15 @@ namespace Imi.Project.Api.Core.Services
     public class BoardGameService : IBoardGameService
     {
         private readonly IBoardGameRepository _boardGameRepository;
+        private readonly ICategoryRepository _categoryRepository;
+        private readonly IArtistRepository _artistRepository;
         private readonly IMapper _mapper;
-        public BoardGameService(IBoardGameRepository boardGameRepository, IMapper mapper)
+        public BoardGameService(IBoardGameRepository boardGameRepository, ICategoryRepository categoryRepository,
+            IArtistRepository artistRepository, IMapper mapper)
         {
             _boardGameRepository = boardGameRepository;
+            _categoryRepository = categoryRepository;
+            _artistRepository = artistRepository;
             _mapper = mapper;
         }
         public async Task<BoardGameResponseDto> GetByIdAsync(Guid id)
@@ -46,32 +51,26 @@ namespace Imi.Project.Api.Core.Services
         public async Task<BoardGameResponseDto> AddAsync(BoardGameRequestDto boardGameRequestDto)
         {
             var boardGameEntity = _mapper.Map<BoardGame>(boardGameRequestDto);
-            //if (boardGameRequestDto.Categories.Count != 0)
-            //    foreach (var category in boardGameRequestDto.Categories)
-            //        boardGameEntity.Categories.Add(new BoardGameCategory { 
-            //            BoardGameId = boardGameEntity.Id, CategoryId = category.Id 
-            //        });
-            //if (boardGameRequestDto.Artists.Count != 0)
-            //    foreach (var artist in boardGameRequestDto.Artists)
-            //        boardGameEntity.Artists.Add(new BoardGameArtist { 
-            //            BoardGameId = boardGameEntity.Id, ArtistId = artist.Id 
-            //        });
             await _boardGameRepository.AddAsync(boardGameEntity);
             return await GetByIdAsync(boardGameEntity.Id);
         }
         public async Task<BoardGameResponseDto> UpdateAsync(BoardGameRequestDto boardGameRequestDto)
         {
             var boardGameEntity = _mapper.Map<BoardGame>(boardGameRequestDto);
-            //if (boardGameRequestDto.Categories.Count != 0)
-            //    foreach (var category in boardGameRequestDto.Categories)
-            //        boardGameEntity.Categories.Add(new BoardGameCategory { 
-            //            BoardGameId = boardGameEntity.Id, CategoryId = category.Id 
-            //        });
-            //if (boardGameRequestDto.Artists.Count != 0)
-            //    foreach (var artist in boardGameRequestDto.Artists)
-            //        boardGameEntity.Artists.Add(new BoardGameArtist { 
-            //            BoardGameId = boardGameEntity.Id, ArtistId = artist.Id 
-            //        });
+            if (boardGameRequestDto.Categories != null)
+                boardGameEntity.Categories = new List<BoardGameCategory>();
+                foreach (var category in boardGameRequestDto.Categories)
+                    boardGameEntity.Categories.Add(new BoardGameCategory
+                    {
+                        Category = await _categoryRepository.GetByIdAsync(category.CategoryId)
+                    });
+            if (boardGameRequestDto.Artists != null)
+                boardGameEntity.Artists = new List<BoardGameArtist>();
+                foreach (var artist in boardGameRequestDto.Artists)
+                    boardGameEntity.Artists.Add(new BoardGameArtist
+                    {
+                        Artist = await _artistRepository.GetByIdAsync(artist.ArtistId)
+                    });
             await _boardGameRepository.UpdateAsync(boardGameEntity);
             return await GetByIdAsync(boardGameEntity.Id);
         }
