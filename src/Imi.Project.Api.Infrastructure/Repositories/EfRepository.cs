@@ -24,7 +24,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories
             await _dbContext.SaveChangesAsync();
             return entity;
         }
-        public async Task<T> DeleteAsync(T entity)
+        public virtual async Task<T> DeleteAsync(T entity)
         {
             _dbContext.Set<T>().Remove(entity);
             await _dbContext.SaveChangesAsync();
