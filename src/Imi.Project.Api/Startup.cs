@@ -39,6 +39,8 @@ namespace Imi.Project.Api
             services.AddScoped<IPlayerRepository, PlayerRepository>();
             services.AddScoped<IPlayedGameRepository, PlayedGameRepository>();
             services.AddScoped<IBoardGameRepository, BoardGameRepository>();
+            services.AddScoped<IBoardGameCategoryRepository, BoardGameCategoryRepository>();
+            services.AddScoped<IBoardGameArtistRepository, BoardGameArtistRepository>();
             // Services
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IArtistService, ArtistService>();

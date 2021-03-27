@@ -25,7 +25,6 @@ namespace Imi.Project.Api.Infrastructure.Repositories
         {
             return await GetAllAsync().SingleOrDefaultAsync(b => b.Id.Equals(id));
         }
-
         public async Task<IEnumerable<BoardGame>> GetByCategoryIdAsync(Guid id)
         {
             return await GetAllAsync().Where(b => b.Categories
@@ -36,15 +35,9 @@ namespace Imi.Project.Api.Infrastructure.Repositories
             return await GetAllAsync().Where(b => b.Artists
             .Any(ba => ba.ArtistId.Equals(id))).ToListAsync();
         }
-        public override async Task<BoardGame> UpdateAsync(BoardGame entity)
-        {
-            //var deleteCategoryList = _dbContext.Set<BoardGameCategory>().Where(b=>b.BoardGameId == entity.Id).ToList();
-            //var deleteArtistList = _dbContext.Set<BoardGameArtist>().Where(b => b.BoardGameId == entity.Id).ToList();
-            //_dbContext.Set<BoardGameCategory>().RemoveRange(deleteCategoryList);
-            //_dbContext.Set<BoardGameArtist>().RemoveRange(deleteArtistList);
-            //await _dbContext.SaveChangesAsync();
-            //await base.DeleteAsync(entity.Id);
-            return await base.UpdateAsync(entity);
-        }
+        //public override async Task<BoardGame> UpdateAsync(BoardGame entity)
+        //{
+        //    return await base.UpdateAsync(entity);
+        //}
     }
 }

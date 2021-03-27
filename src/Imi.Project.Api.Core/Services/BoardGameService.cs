@@ -12,16 +12,20 @@ namespace Imi.Project.Api.Core.Services
 {
     public class BoardGameService : IBoardGameService
     {
+        private readonly IBoardGameCategoryRepository _bcRepository;
         private readonly IBoardGameRepository _boardGameRepository;
+        private readonly IBoardGameArtistRepository _baRepository;
         private readonly ICategoryRepository _categoryRepository;
         private readonly IArtistRepository _artistRepository;
         private readonly IMapper _mapper;
-        public BoardGameService(IBoardGameRepository boardGameRepository, ICategoryRepository categoryRepository,
-            IArtistRepository artistRepository, IMapper mapper)
+        public BoardGameService(IBoardGameRepository boardGameRepository, ICategoryRepository categoryRepository, IMapper mapper,
+            IArtistRepository artistRepository, IBoardGameArtistRepository baRepository, IBoardGameCategoryRepository bcRepository )
         {
             _boardGameRepository = boardGameRepository;
             _categoryRepository = categoryRepository;
             _artistRepository = artistRepository;
+            _bcRepository = bcRepository;
+            _baRepository = baRepository;
             _mapper = mapper;
         }
         public async Task<BoardGameResponseDto> GetByIdAsync(Guid id)
@@ -56,22 +60,28 @@ namespace Imi.Project.Api.Core.Services
         }
         public async Task<BoardGameResponseDto> UpdateAsync(BoardGameRequestDto boardGameRequestDto)
         {
-            var boardGameEntity = _mapper.Map<BoardGame>(boardGameRequestDto);
-            if (boardGameRequestDto.Categories != null)
-                boardGameEntity.Categories = new List<BoardGameCategory>();
-                foreach (var category in boardGameRequestDto.Categories)
-                    boardGameEntity.Categories.Add(new BoardGameCategory
-                    {
-                        Category = await _categoryRepository.GetByIdAsync(category.CategoryId)
-                    });
-            if (boardGameRequestDto.Artists != null)
+            var boardGameEntity = _mapper.Map<BoardGame>(boardGameRequestDto);                  // map current Dto to Entity.. 'No way Sherlock'
+            if (boardGameRequestDto.Categories != null)                                         // Check if Dto inner list is null
+            {
+                boardGameEntity.Categories = new List<BoardGameCategory>();                     // make new list in Entity
+                foreach (var category in boardGameRequestDto.Categories)                        // Loop through the Dto inner list
+                    boardGameEntity.Categories.Add(new BoardGameCategory                        // Add the item to the Entity list
+                    {                                                                           // Using ID's of the Entities cuz the Entity that needs to be linked
+                        CategoryId = category.CategoryId, BoardGameId = boardGameEntity.Id      // must already exist. (You might be selecting them from a list)
+                    });                                                                         // Otherwise you'll be making a new item in db which will not work cuz of constrains on Name
+                await _bcRepository.AddAsync(boardGameEntity.Categories);                       // Add the list to the composite table 
+            }
+            if (boardGameRequestDto.Artists != null)                                            // Same logic as Categories list
+            {
                 boardGameEntity.Artists = new List<BoardGameArtist>();
                 foreach (var artist in boardGameRequestDto.Artists)
                     boardGameEntity.Artists.Add(new BoardGameArtist
                     {
-                        Artist = await _artistRepository.GetByIdAsync(artist.ArtistId)
+                        ArtistId = artist.ArtistId, BoardGameId = boardGameEntity.Id
                     });
-            await _boardGameRepository.UpdateAsync(boardGameEntity);
+                await _baRepository.AddAsync(boardGameEntity.Artists);
+            }
+            await _boardGameRepository.UpdateAsync(boardGameEntity);                            // Had to use logic from above cuz update doesn't handle with the composite tables
             return await GetByIdAsync(boardGameEntity.Id);
         }
         public async Task DeleteAsync(Guid id)
