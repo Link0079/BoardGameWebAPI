@@ -19,7 +19,6 @@ namespace Imi.Project.Api.Infrastructure.Repositories
 
         public virtual async Task<T> AddAsync(IEnumerable<T> entityList)
         {
-            var list = GetFiltered(entityList.Any(e))
             foreach (var item in entityList)
                 await _dbContext.Set<T>().AddAsync(item);
             //await _dbContext.SaveChangesAsync();
