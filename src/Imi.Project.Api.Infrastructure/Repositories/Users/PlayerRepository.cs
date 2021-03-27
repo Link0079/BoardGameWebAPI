@@ -1,6 +1,7 @@
 ﻿using Imi.Project.Api.Core.Entities.Users;
-using Imi.Project.Api.Core.Interfaces.Repositories;
+using Imi.Project.Api.Core.Interfaces.Repositories.Users;
 using Imi.Project.Api.Infrastructure.Data;
+using Imi.Project.Api.Infrastructure.Repositories.Base;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -8,7 +9,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Imi.Project.Api.Infrastructure.Repositories
+namespace Imi.Project.Api.Infrastructure.Repositories.Users
 {
     public class PlayerRepository : EfRepository<Player>, IPlayerRepository
     {
