@@ -11,6 +11,7 @@
 
   <ItemGroup>
     <Folder Include="Interfaces\Services\Base\" />
+    <Folder Include="Services\Base\" />
   </ItemGroup>
 
 </Project>
