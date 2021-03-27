@@ -5,6 +5,7 @@ using Imi.Project.Api.Core.Interfaces.Repositories;
 using Imi.Project.Api.Core.Interfaces.Services;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,15 +16,11 @@ namespace Imi.Project.Api.Core.Services
         private readonly IBoardGameCategoryRepository _bcRepository;
         private readonly IBoardGameRepository _boardGameRepository;
         private readonly IBoardGameArtistRepository _baRepository;
-        private readonly ICategoryRepository _categoryRepository;
-        private readonly IArtistRepository _artistRepository;
         private readonly IMapper _mapper;
-        public BoardGameService(IBoardGameRepository boardGameRepository, ICategoryRepository categoryRepository, IMapper mapper,
-            IArtistRepository artistRepository, IBoardGameArtistRepository baRepository, IBoardGameCategoryRepository bcRepository )
+        public BoardGameService(IBoardGameRepository boardGameRepository, IMapper mapper,
+            IBoardGameArtistRepository baRepository, IBoardGameCategoryRepository bcRepository )
         {
             _boardGameRepository = boardGameRepository;
-            _categoryRepository = categoryRepository;
-            _artistRepository = artistRepository;
             _bcRepository = bcRepository;
             _baRepository = baRepository;
             _mapper = mapper;
@@ -60,33 +57,47 @@ namespace Imi.Project.Api.Core.Services
         }
         public async Task<BoardGameResponseDto> UpdateAsync(BoardGameRequestDto boardGameRequestDto)
         {
-            var boardGameEntity = _mapper.Map<BoardGame>(boardGameRequestDto);                  // map current Dto to Entity.. 'No way Sherlock'
-            if (boardGameRequestDto.Categories != null)                                         // Check if Dto inner list is null
-            {
-                boardGameEntity.Categories = new List<BoardGameCategory>();                     // make new list in Entity
-                foreach (var category in boardGameRequestDto.Categories)                        // Loop through the Dto inner list
-                    boardGameEntity.Categories.Add(new BoardGameCategory                        // Add the item to the Entity list
-                    {                                                                           // Using ID's of the Entities cuz the Entity that needs to be linked
-                        CategoryId = category.CategoryId, BoardGameId = boardGameEntity.Id      // must already exist. (You might be selecting them from a list)
-                    });                                                                         // Otherwise you'll be making a new item in db which will not work cuz of constrains on Name
-                await _bcRepository.AddAsync(boardGameEntity.Categories);                       // Add the list to the composite table 
-            }
-            if (boardGameRequestDto.Artists != null)                                            // Same logic as Categories list
-            {
-                boardGameEntity.Artists = new List<BoardGameArtist>();
-                foreach (var artist in boardGameRequestDto.Artists)
-                    boardGameEntity.Artists.Add(new BoardGameArtist
-                    {
-                        ArtistId = artist.ArtistId, BoardGameId = boardGameEntity.Id
-                    });
-                await _baRepository.AddAsync(boardGameEntity.Artists);
-            }
-            await _boardGameRepository.UpdateAsync(boardGameEntity);                            // Had to use logic from above cuz update doesn't handle with the composite tables
+            var boardGameEntity = _mapper.Map<BoardGame>(boardGameRequestDto);                      // map current Dto to Entity.. 'No way Sherlock'
+            Expression<Func<BoardGameCategory, bool>> bcExpression = bc => bc.BoardGameId == boardGameEntity.Id;    // Prepare expression for CurrentBoardGameCategoryList
+            Expression<Func<BoardGameArtist, bool>> baExpression = ba => ba.BoardGameId == boardGameEntity.Id;      // Prepare expression for CurrentBoardGameArtistList
+            var currentBCList = _bcRepository.GetFiltered(bcExpression);                            // Make new List and fill up by BoardGameCategoryExpression
+            var currentBAList = _baRepository.GetFiltered(baExpression);                            // Make new list and fill up by BoardGameArtistExpression
+            await _bcRepository.DeleteAsync(currentBCList);                                         // Drastic but necessary.. Delete CurrentBCList. 
+            await _baRepository.DeleteAsync(currentBAList);                                         // Drastic but necessary.. Delete CurrentBAList.
+            boardGameEntity = HandleCompositeTablesForUpdate(boardGameEntity, boardGameRequestDto); // This will add the new records to the Composite Tables that were just deleted.
+            await _boardGameRepository.UpdateAsync(boardGameEntity);
             return await GetByIdAsync(boardGameEntity.Id);
         }
         public async Task DeleteAsync(Guid id)
         {
             await _boardGameRepository.DeleteAsync(id);
         }
+        private BoardGame HandleCompositeTablesForUpdate(BoardGame boardGameEntity, BoardGameRequestDto boardGameRequestDto)
+        {
+            if (boardGameRequestDto.Artists != null)                        // Check if Dto inner list is null
+            {
+                boardGameEntity.Artists = new List<BoardGameArtist>();      // Make new list in Entity
+                foreach (var artist in boardGameRequestDto.Artists)         // Loop through the Dto inner list
+                    boardGameEntity.Artists.Add(new BoardGameArtist         // Add the item to the Entity list
+                    {                                                       // Using ID's of the Entities cuz if I used the entity
+                        ArtistId = artist.ArtistId,                         // it was trying to create a new Artist.. 
+                        BoardGameId = boardGameEntity.Id                    // which gave an exception for obviouse reasons.. ¯\_(ツ)_/¯
+                    });
+                _baRepository.AddAsync(boardGameEntity.Artists);            // Add the list to the Composite Table..
+            }
+            if (boardGameRequestDto.Categories != null)                     // Check if Dto inner list is null
+            {
+                boardGameEntity.Categories = new List<BoardGameCategory>(); // Same shizzle as Artist
+                foreach (var category in boardGameRequestDto.Categories) 
+                    boardGameEntity.Categories.Add(new BoardGameCategory
+                    {
+                        CategoryId = category.CategoryId,
+                        BoardGameId = boardGameEntity.Id
+                    });
+                _bcRepository.AddAsync(boardGameEntity.Categories);         // Add the list to the Composite Table
+            }
+            return boardGameEntity;
+        }
+
     }
 }

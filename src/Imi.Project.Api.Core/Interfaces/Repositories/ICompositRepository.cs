@@ -9,9 +9,15 @@ namespace Imi.Project.Api.Core.Interfaces.Repositories
 {
     public interface ICompositRepository<T> where T : class
     {
+        Task<IEnumerable<T>> GetByIdAsync(Guid id);
+        Task<T> GetByIdAsync(Guid id, string[] includes);
+        IQueryable<T> GetAllAsync();
+        Task<IEnumerable<T>> ListAllAsync();
         IQueryable<T> GetFiltered(Expression<Func<T, bool>> predicate);
         Task<IEnumerable<T>> ListFiltered(Expression<Func<T, bool>> predicate);
-        Task<T> AddAsync(IEnumerable<T> entityList);
-        Task<T> DeleteAsync(IEnumerable<T> entityList);
+        Task<IEnumerable<T>> AddAsync(IEnumerable<T> entityList);
+        Task<IEnumerable<T>> UpdateAsync(IEnumerable<T> entityList);
+        Task<IEnumerable<T>> DeleteAsync(IEnumerable<T> entityList);
+        Task<T> DeleteAsync(Guid id);
     }
 }

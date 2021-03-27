@@ -13,12 +13,5 @@ namespace Imi.Project.Api.Infrastructure.Repositories
         public BoardGameArtistRepository(ApplicationDbContext dbContext) : base(dbContext)
         {
         }
-        public override async Task<BoardGameArtist> AddAsync(IEnumerable<BoardGameArtist> entityList)
-        {
-            foreach (var item in entityList)
-                await _dbContext.BoardGameArtists.AddAsync(item);
-            //await _dbContext.SaveChangesAsync();
-            return null;
-        }
     }
 }
