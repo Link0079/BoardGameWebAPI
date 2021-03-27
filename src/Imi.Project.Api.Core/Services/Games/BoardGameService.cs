@@ -1,15 +1,15 @@
 ﻿using AutoMapper;
 using Imi.Project.Api.Core.Dtos.Games;
 using Imi.Project.Api.Core.Entities.Games;
-using Imi.Project.Api.Core.Interfaces.Repositories;
-using Imi.Project.Api.Core.Interfaces.Services;
+using Imi.Project.Api.Core.Interfaces.Repositories.Games;
+using Imi.Project.Api.Core.Interfaces.Services.Games;
 using System;
 using System.Collections.Generic;
 using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Imi.Project.Api.Core.Services
+namespace Imi.Project.Api.Core.Services.Games
 {
     public class BoardGameService : IBoardGameService
     {

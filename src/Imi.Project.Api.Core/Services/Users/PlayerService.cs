@@ -1,14 +1,14 @@
 ﻿using AutoMapper;
 using Imi.Project.Api.Core.Dtos.Users;
 using Imi.Project.Api.Core.Entities.Users;
-using Imi.Project.Api.Core.Interfaces.Repositories;
-using Imi.Project.Api.Core.Interfaces.Services;
+using Imi.Project.Api.Core.Interfaces.Repositories.Users;
+using Imi.Project.Api.Core.Interfaces.Services.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Imi.Project.Api.Core.Services
+namespace Imi.Project.Api.Core.Services.Users
 {
     public class PlayerService : IPlayerService
     {

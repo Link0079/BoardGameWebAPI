@@ -1,5 +1,6 @@
 ﻿using Imi.Project.Api.Core.Dtos;
 using Imi.Project.Api.Core.Interfaces.Services;
+using Imi.Project.Api.Core.Interfaces.Services.Games;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;

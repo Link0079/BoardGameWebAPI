@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Imi.Project.Api.Core.Interfaces.Services
+namespace Imi.Project.Api.Core.Interfaces.Services.Games
 {
     public interface IBoardGameService
     {

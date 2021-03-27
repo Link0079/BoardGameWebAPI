@@ -1,5 +1,5 @@
 ﻿using Imi.Project.Api.Core.Entities.Base;
-using Imi.Project.Api.Core.Interfaces.Repositories;
+using Imi.Project.Api.Core.Interfaces.Repositories.Base;
 using Imi.Project.Api.Infrastructure.Data;
 using Microsoft.EntityFrameworkCore;
 using System;
@@ -9,7 +9,7 @@ using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Imi.Project.Api.Infrastructure.Repositories
+namespace Imi.Project.Api.Infrastructure.Repositories.Base
 {
     public class EfRepository<T> : IRepository<T> where T : BaseEntity<Guid>
     {
