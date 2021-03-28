@@ -98,7 +98,6 @@ namespace Imi.Project.Api.Core.Services.Games
             }
             return boardGameEntity;
         }
-
         public async Task<IEnumerable<BoardGameResponseDto>> SearchByNameAsycn(string name)
         {
             var result = await _boardGameRepository.SearchByNameAsync(name);

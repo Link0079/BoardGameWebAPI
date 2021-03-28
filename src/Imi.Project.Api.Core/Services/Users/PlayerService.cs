@@ -47,5 +47,12 @@ namespace Imi.Project.Api.Core.Services.Users
         {
             await _playerRepository.DeleteAsync(id);
         }
+        public async Task<IEnumerable<PlayerResponseDto>> SearchByNameAsycn(string name)
+        {
+            var result = await _playerRepository.SearchByNameAsync(name);
+            var dto = _mapper.Map<IEnumerable<PlayerResponseDto>>(result);
+            return dto;
+        }
+
     }
 }
