@@ -43,5 +43,9 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Games
             await UpdateAsync(entity);
             return entity;
         }
+        public async Task<IEnumerable<BoardGame>> SearchByNameAsync(string name)
+        {
+            return await GetAllAsync().Where(b => b.Title.Contains(name)).ToListAsync();
+        }
     }
 }
