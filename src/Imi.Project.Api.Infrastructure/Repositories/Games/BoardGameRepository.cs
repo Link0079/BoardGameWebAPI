@@ -23,19 +23,25 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Games
                 .Include(b => b.Categories).ThenInclude(bc => bc.Category)  // Include BC table and then the category
                 .Where(b => b.IsDeleted == false);
         }
+        public IQueryable<BoardGame> GetESOAsync()
+        {
+            return _dbContext.BoardGames.AsNoTracking()
+                .Include(b => b.Artists).ThenInclude(ba => ba.Artist)
+                .Include(b => b.Categories).ThenInclude(bc => bc.Category);
+        }
         public override async Task<BoardGame> GetByIdAsync(Guid id)
         {
-            return await GetAllAsync().SingleOrDefaultAsync(b => b.Id.Equals(id) && b.IsDeleted == false);
+            return await GetAllAsync().SingleOrDefaultAsync(b => b.Id.Equals(id));
         }
         public async Task<IEnumerable<BoardGame>> GetByCategoryIdAsync(Guid id)
         {
             return await GetAllAsync().Where(b => b.Categories
-                .Any(bc => bc.CategoryId.Equals(id)) && b.IsDeleted == false).ToListAsync();
+                .Any(bc => bc.CategoryId.Equals(id))).ToListAsync();
         }
         public async Task<IEnumerable<BoardGame>> GetByArtistIdAsync(Guid id)
         {
             return await GetAllAsync().Where(b => b.Artists
-            .Any(ba => ba.ArtistId.Equals(id))&& b.IsDeleted == false).ToListAsync();
+            .Any(ba => ba.ArtistId.Equals(id))).ToListAsync();
         }
         public override async Task<BoardGame> DeleteAsync(BoardGame entity)
         {

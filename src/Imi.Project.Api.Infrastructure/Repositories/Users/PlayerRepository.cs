@@ -19,11 +19,23 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
         public override IQueryable<Player> GetAllAsync()
         {
             return _dbContext.Players.AsNoTracking().Include(p => p.GameScores)
-                .ThenInclude(gs => gs.PlayedGame).ThenInclude(pg=>pg.BoardGame);
+                .ThenInclude(gs => gs.PlayedGame).ThenInclude(pg=>pg.BoardGame)
+                .Where(p=>p.IsDeleted == false);
+        }
+        public IQueryable<Player> GetESOAsync() // Get Every Single One 
+        {
+            return _dbContext.Players.AsNoTracking().Include(p => p.GameScores)
+                .ThenInclude(gs => gs.PlayedGame).ThenInclude(pg => pg.BoardGame);
         }
         public override async Task<Player> GetByIdAsync(Guid id)
         {
             return await GetAllAsync().SingleOrDefaultAsync(p => p.Id.Equals(id));
+        }
+        public override async Task<Player> DeleteAsync(Player entity)
+        {
+            entity.IsDeleted = true;
+            await UpdateAsync(entity);
+            return entity;
         }
         public async Task<IEnumerable<Player>> SearchByNameAsync(string name)
         {
