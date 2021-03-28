@@ -2297,6 +2297,489 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             PlayerId = new Guid("00000000-0000-0000-0000-500000000000"),
                             IsDeleted = false,
                             Score = 2
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("40000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-200000000000"),
+                            IsDeleted = false,
+                            Score = 60
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("40000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-210000000000"),
+                            IsDeleted = false,
+                            Score = 65
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("40000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-220000000000"),
+                            IsDeleted = false,
+                            Score = 69
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("40000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-230000000000"),
+                            IsDeleted = false,
+                            Score = 67
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("40000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-240000000000"),
+                            IsDeleted = false,
+                            Score = 76
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("40000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-250000000000"),
+                            IsDeleted = false,
+                            Score = 96
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("40000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-260000000000"),
+                            IsDeleted = false,
+                            Score = 36
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("40000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-110000000000"),
+                            IsDeleted = false,
+                            Score = 56
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("40000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-120000000000"),
+                            IsDeleted = false,
+                            Score = 66
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("40000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-130000000000"),
+                            IsDeleted = false,
+                            Score = 61
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("50000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-140000000000"),
+                            IsDeleted = false,
+                            Score = 30
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("50000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-150000000000"),
+                            IsDeleted = false,
+                            Score = 40
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("50000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-160000000000"),
+                            IsDeleted = false,
+                            Score = 50
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("50000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-170000000000"),
+                            IsDeleted = false,
+                            Score = 60
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("60000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-100000000000"),
+                            IsDeleted = false,
+                            Score = 1
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("60000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-400000000000"),
+                            IsDeleted = false,
+                            Score = 2
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("60000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-220000000000"),
+                            IsDeleted = false,
+                            Score = 3
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("60000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-140000000000"),
+                            IsDeleted = false,
+                            Score = 4
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("70000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-200000000000"),
+                            IsDeleted = false,
+                            Score = 1
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("70000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-800000000000"),
+                            IsDeleted = false,
+                            Score = 2
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("70000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-900000000000"),
+                            IsDeleted = false,
+                            Score = 3
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("70000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-700000000000"),
+                            IsDeleted = false,
+                            Score = 4
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("70000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-600000000000"),
+                            IsDeleted = false,
+                            Score = 5
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("70000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-500000000000"),
+                            IsDeleted = false,
+                            Score = 6
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("80000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-100000000000"),
+                            IsDeleted = false,
+                            Score = 50
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("80000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-200000000000"),
+                            IsDeleted = false,
+                            Score = 60
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("80000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-300000000000"),
+                            IsDeleted = false,
+                            Score = 25
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("80000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-400000000000"),
+                            IsDeleted = false,
+                            Score = 15
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("80000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-500000000000"),
+                            IsDeleted = false,
+                            Score = 30
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("90000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-100000000000"),
+                            IsDeleted = false,
+                            Score = 1
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("90000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-200000000000"),
+                            IsDeleted = false,
+                            Score = 2
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("90000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-150000000000"),
+                            IsDeleted = false,
+                            Score = 4
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("90000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-250000000000"),
+                            IsDeleted = false,
+                            Score = 3
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("11000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-500000000000"),
+                            IsDeleted = false,
+                            Score = 1
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("11000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-110000000000"),
+                            IsDeleted = false,
+                            Score = 2
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("11000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-160000000000"),
+                            IsDeleted = false,
+                            Score = 6
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("11000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-210000000000"),
+                            IsDeleted = false,
+                            Score = 8
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("11000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-260000000000"),
+                            IsDeleted = false,
+                            Score = 7
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("11000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-230000000000"),
+                            IsDeleted = false,
+                            Score = 3
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("11000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-130000000000"),
+                            IsDeleted = false,
+                            Score = 5
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("11000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-700000000000"),
+                            IsDeleted = false,
+                            Score = 4
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("12000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-100000000000"),
+                            IsDeleted = false,
+                            Score = 1
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("12000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-200000000000"),
+                            IsDeleted = false,
+                            Score = 1
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("12000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-300000000000"),
+                            IsDeleted = false,
+                            Score = 2
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("12000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-400000000000"),
+                            IsDeleted = false,
+                            Score = 2
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("12000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-500000000000"),
+                            IsDeleted = false,
+                            Score = 2
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("12000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-600000000000"),
+                            IsDeleted = false,
+                            Score = 2
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("12000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-700000000000"),
+                            IsDeleted = false,
+                            Score = 1
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("12000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-800000000000"),
+                            IsDeleted = false,
+                            Score = 2
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("12000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-900000000000"),
+                            IsDeleted = false,
+                            Score = 2
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("12000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-190000000000"),
+                            IsDeleted = false,
+                            Score = 1
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("13000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-230000000000"),
+                            IsDeleted = false,
+                            Score = 66
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("13000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-260000000000"),
+                            IsDeleted = false,
+                            Score = 65
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("13000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-250000000000"),
+                            IsDeleted = false,
+                            Score = 67
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("13000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-240000000000"),
+                            IsDeleted = false,
+                            Score = 96
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("14000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-100000000000"),
+                            IsDeleted = false,
+                            Score = 10
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("14000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-190000000000"),
+                            IsDeleted = false,
+                            Score = 9
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("14000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-900000000000"),
+                            IsDeleted = false,
+                            Score = 8
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("14000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-110000000000"),
+                            IsDeleted = false,
+                            Score = 9
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("14000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-210000000000"),
+                            IsDeleted = false,
+                            Score = 5
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("14000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-120000000000"),
+                            IsDeleted = false,
+                            Score = 7
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("14000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-220000000000"),
+                            IsDeleted = false,
+                            Score = 5
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("15000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-100000000000"),
+                            IsDeleted = false,
+                            Score = 6
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("15000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-190000000000"),
+                            IsDeleted = false,
+                            Score = 6
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("15000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-200000000000"),
+                            IsDeleted = false,
+                            Score = 6
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("15000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-150000000000"),
+                            IsDeleted = false,
+                            Score = 6
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("16000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-180000000000"),
+                            IsDeleted = false,
+                            Score = 65
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("16000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-210000000000"),
+                            IsDeleted = false,
+                            Score = 90
+                        },
+                        new
+                        {
+                            PlayedGameId = new Guid("16000000-0000-0000-0000-000000000000"),
+                            PlayerId = new Guid("00000000-0000-0000-0000-120000000000"),
+                            IsDeleted = false,
+                            Score = 30
                         });
                 });
 
@@ -2339,9 +2822,93 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("30000000-0000-0000-0000-000000000000"),
-                            BoardGameId = new Guid("00000023-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000006-0000-0000-0000-000000000000"),
                             IsDeleted = false,
                             PlayTime = 480
+                        },
+                        new
+                        {
+                            Id = new Guid("40000000-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000018-0000-0000-0000-000000000000"),
+                            IsDeleted = false,
+                            PlayTime = 150
+                        },
+                        new
+                        {
+                            Id = new Guid("50000000-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000033-0000-0000-0000-000000000000"),
+                            IsDeleted = false,
+                            PlayTime = 60
+                        },
+                        new
+                        {
+                            Id = new Guid("60000000-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000035-0000-0000-0000-000000000000"),
+                            IsDeleted = false,
+                            PlayTime = 120
+                        },
+                        new
+                        {
+                            Id = new Guid("70000000-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000038-0000-0000-0000-000000000000"),
+                            IsDeleted = false,
+                            PlayTime = 360
+                        },
+                        new
+                        {
+                            Id = new Guid("80000000-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000039-0000-0000-0000-000000000000"),
+                            IsDeleted = false,
+                            PlayTime = 150
+                        },
+                        new
+                        {
+                            Id = new Guid("90000000-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000026-0000-0000-0000-000000000000"),
+                            IsDeleted = false,
+                            PlayTime = 360
+                        },
+                        new
+                        {
+                            Id = new Guid("11000000-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000004-0000-0000-0000-000000000000"),
+                            IsDeleted = false,
+                            PlayTime = 240
+                        },
+                        new
+                        {
+                            Id = new Guid("12000000-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000007-0000-0000-0000-000000000000"),
+                            IsDeleted = false,
+                            PlayTime = 200
+                        },
+                        new
+                        {
+                            Id = new Guid("13000000-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000024-0000-0000-0000-000000000000"),
+                            IsDeleted = false,
+                            PlayTime = 150
+                        },
+                        new
+                        {
+                            Id = new Guid("14000000-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000023-0000-0000-0000-000000000000"),
+                            IsDeleted = false,
+                            PlayTime = 500
+                        },
+                        new
+                        {
+                            Id = new Guid("15000000-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000026-0000-0000-0000-000000000000"),
+                            IsDeleted = false,
+                            PlayTime = 180
+                        },
+                        new
+                        {
+                            Id = new Guid("16000000-0000-0000-0000-000000000000"),
+                            BoardGameId = new Guid("00000017-0000-0000-0000-000000000000"),
+                            IsDeleted = false,
+                            PlayTime = 70
                         });
                 });
 

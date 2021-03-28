@@ -28,7 +28,7 @@ namespace Imi.Project.Api.Controllers
                 if (boardGames.Any())
                     return Ok(boardGames);
                 else
-                    return NotFound($"There were no boardgames found that contain {name} in their title.");
+                    return NotFound($"There were no boardgames found that contain \"{name}\" in their title.");
             }
             else
             {

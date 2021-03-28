@@ -48,7 +48,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                 },
                 new PlayedGame
                 {
-                    Id = Guid.Parse("50000000-0000-0000-0000-000000000000"),
+                    Id = Guid.Parse("60000000-0000-0000-0000-000000000000"),
                     BoardGameId = Guid.Parse("00000035-0000-0000-0000-000000000000"),
                     IsDeleted = false,
                     PlayTime = 120
@@ -91,7 +91,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                 new PlayedGame
                 {
                     Id = Guid.Parse("13000000-0000-0000-0000-000000000000"),
-                    BoardGameId = Guid.Parse("000000024-0000-0000-0000-000000000000"),
+                    BoardGameId = Guid.Parse("00000024-0000-0000-0000-000000000000"),
                     IsDeleted = false,
                     PlayTime = 150
                 },
