@@ -25,7 +25,6 @@ namespace Imi.Project.Api.Core.Services
             var dto = _mapper.Map<ArtistResponseDto>(result);
             return dto;
         }
-
         public async Task<IEnumerable<ArtistResponseDto>> ListAllAsync()
         {
             var result = await _artistRepository.ListAllAsync();
@@ -48,5 +47,12 @@ namespace Imi.Project.Api.Core.Services
         {
             await _artistRepository.DeleteAsync(id);
         }
+        public async Task<IEnumerable<ArtistResponseDto>> SearchByNameAsycn(string name)
+        {
+            var result = await _artistRepository.SearchByNameAsync(name);
+            var dto = _mapper.Map<IEnumerable<ArtistResponseDto>>(result);
+            return dto;
+        }
+
     }
 }

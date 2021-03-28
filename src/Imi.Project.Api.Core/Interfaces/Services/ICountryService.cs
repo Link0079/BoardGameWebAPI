@@ -8,5 +8,6 @@ namespace Imi.Project.Api.Core.Interfaces.Services
     {
         Task<IEnumerable<CountryResponseDto>> ListAllAsync();
         Task<CountryResponseDto> GetByIdAsync();
+        Task<IEnumerable<CountryResponseDto>> SearchByNameAsycn(string name);
     }
 }

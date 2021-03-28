@@ -20,11 +20,28 @@ namespace Imi.Project.Api.Controllers
             _boardGameService = boardGameService;
         }
         [HttpGet]
-        public async Task<IActionResult> Get()
+        public async Task<IActionResult> Get([FromQuery] string name)
         {
-            var boardGames = await _boardGameService.ListAllAsync();
-            return Ok(boardGames);
+            if (!String.IsNullOrWhiteSpace(name))
+            {
+                var boardGames = await _boardGameService.SearchByNameAsycn(name);
+                if (boardGames.Any())
+                    return Ok(boardGames);
+                else
+                    return NotFound($"There were no boardgames found that contain {name} in their title.");
+            }
+            else
+            {
+                var boardGames = await _boardGameService.ListAllAsync();
+                return Ok(boardGames);
+            }
         }
+        //[HttpGet]
+        //public async Task<IActionResult> Get()
+        //{
+        //    var boardGames = await _boardGameService.ListAllAsync();
+        //    return Ok(boardGames);
+        //}
         [HttpGet("{guid}")]
         public async Task<IActionResult> Get(Guid guid)
         {

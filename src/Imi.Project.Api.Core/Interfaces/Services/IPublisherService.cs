@@ -8,5 +8,6 @@ namespace Imi.Project.Api.Core.Interfaces.Services
     {
         Task<IEnumerable<PublisherResponseDto>> ListAllAsync();
         Task<PublisherResponseDto> GetByIdAsync();
+        Task<IEnumerable<PublisherResponseDto>> SearchByNameAsycn(string name);
     }
 }
