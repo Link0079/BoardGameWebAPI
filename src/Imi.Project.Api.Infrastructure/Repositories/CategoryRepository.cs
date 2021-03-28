@@ -24,5 +24,10 @@ namespace Imi.Project.Api.Infrastructure.Repositories
         {
             return _dbContext.Categories.AsNoTracking();
         }
+        public async Task<IEnumerable<Category>> SearchByNameAsync(string name)
+        {
+            return await GetAllAsync().Where(b => b.Name.ToUpper()
+                .Contains(name.ToUpper())).ToListAsync();
+        }
     }
 }

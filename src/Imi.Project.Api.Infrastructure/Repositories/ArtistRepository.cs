@@ -25,5 +25,10 @@ namespace Imi.Project.Api.Infrastructure.Repositories
         {
             return await GetAllAsync().SingleOrDefaultAsync(a => a.Id.Equals(id));
         }
+        public async Task<IEnumerable<Artist>> SearchByNameAsync(string name)
+        {
+            return await GetAllAsync().Where(b => b.Name.ToUpper()
+                .Contains(name.ToUpper())).ToListAsync();
+        }
     }
 }
