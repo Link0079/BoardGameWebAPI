@@ -5,6 +5,7 @@ using Imi.Project.Api.Core.Interfaces.Repositories.Games;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
 using System;
 using System.Collections.Generic;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -13,10 +14,13 @@ namespace Imi.Project.Api.Core.Services.Games
     public class PlayedGameService : IPlayedGameService
     {
         private readonly IPlayedGameRepository _playedGameRepository;
+        private readonly IGameScoreRepository _gameScoreRepository;
         private readonly IMapper _mapper;
-        public PlayedGameService(IPlayedGameRepository playedGameRepository, IMapper mapper)
+        public PlayedGameService(IPlayedGameRepository playedGameRepository, 
+            IMapper mapper, IGameScoreRepository gameScoreRepository)
         {
             _playedGameRepository = playedGameRepository;
+            _gameScoreRepository = gameScoreRepository;
             _mapper = mapper;
         }
         public async Task<PlayedGameResponseDto> GetByIdAsync(Guid id)
@@ -46,6 +50,21 @@ namespace Imi.Project.Api.Core.Services.Games
         public async Task<PlayedGameResponseDto> UpdateAsync(PlayedGameRequestDto playedGameRequestDto)
         {
             var playedGameEntity = _mapper.Map<PlayedGame>(playedGameRequestDto);
+            Expression<Func<GameScore, bool>> gsExpression = gs => gs.PlayedGameId == playedGameEntity.Id;
+            var currentGameScoreList = _gameScoreRepository.GetFiltered(gsExpression);
+            await _gameScoreRepository.DeleteAsync(currentGameScoreList);
+            if(playedGameRequestDto.GameScores != null)
+            {
+                playedGameEntity.GameScores = new List<GameScore>();
+                foreach (var score in playedGameRequestDto.GameScores)
+                    playedGameEntity.GameScores.Add(new GameScore
+                    { 
+                        PlayerId = score.PlayerId,
+                        Score = score.Score,
+                        PlayedGameId = playedGameEntity.Id
+                    });
+                await _gameScoreRepository.AddAsync(playedGameEntity.GameScores);
+            }
             await _playedGameRepository.UpdateAsync(playedGameEntity);
             return await GetByIdAsync(playedGameEntity.Id);
         }
