@@ -22,6 +22,8 @@ namespace Imi.Project.Api.Core.Mapping
                 .ForMember(dest => dest.PlayedGameCount,
                     opt => opt.MapFrom(src => src.GameScores.Count == 0 ? 0 : src.GameScores
                     .Select(gs => gs.PlayerId == src.Id).Count()))
+                .ForMember(dest => dest.Dob, opt => opt.MapFrom(p => p.Dob
+                    .ConvertToStringDateNotation()))
                 .ForMember(dest => dest.PlayTimeTotal,
                     opt => opt.MapFrom(src => src.GameScores
                     .Where(gs => gs.PlayerId == src.Id)

@@ -76,10 +76,10 @@ namespace Imi.Project.Api.Infrastructure.Data
             modelBuilder.Entity<PlayedGame>().ToTable("PlayedGames").HasKey(e => e.Id);
             modelBuilder.Entity<PlayedGame>().Property(e => e.BoardGameId)
                 .IsRequired();
-            modelBuilder.Entity<PlayedGame>().HasMany(e => e.GameScores)
-                .WithOne(g => g.PlayedGame).OnDelete(DeleteBehavior.ClientNoAction);
-            modelBuilder.Entity<PlayedGame>().HasOne(e => e.BoardGame)
-                .WithMany(b => b.PlayedGames).OnDelete(DeleteBehavior.ClientNoAction);
+            //modelBuilder.Entity<PlayedGame>().HasMany(e => e.GameScores)
+            //    .WithOne(g => g.PlayedGame).OnDelete(DeleteBehavior.ClientNoAction);
+            //modelBuilder.Entity<PlayedGame>().HasOne(e => e.BoardGame)
+            //    .WithMany(b => b.PlayedGames).OnDelete(DeleteBehavior.ClientNoAction);
             #endregion
 
             #region BoardGameArtist Tabel
@@ -111,7 +111,8 @@ namespace Imi.Project.Api.Infrastructure.Data
                 .HasKey(gs => new { gs.PlayedGameId, gs.PlayerId });
             modelBuilder.Entity<GameScore>().HasOne(gs => gs.PlayedGame)
                 .WithMany(p => p.GameScores).HasForeignKey(gs => gs.PlayedGameId)
-                .OnDelete(DeleteBehavior.ClientNoAction);
+                //.OnDelete(DeleteBehavior.ClientNoAction)
+                ;
             modelBuilder.Entity<GameScore>().HasOne(gs => gs.Player)
                 .WithMany(p => p.GameScores).HasForeignKey(gs => gs.PlayerId)
                 .OnDelete(DeleteBehavior.ClientNoAction);

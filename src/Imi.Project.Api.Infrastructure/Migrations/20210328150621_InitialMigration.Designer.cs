@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Imi.Project.Api.Infrastructure.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210326125737_InitialMigration")]
+    [Migration("20210328150621_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -2353,6 +2353,9 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<DateTime>("Dob")
+                        .HasColumnType("datetime2");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
 
@@ -2369,32 +2372,177 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-100000000000"),
+                            Dob = new DateTime(1988, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Bjorn Vossen"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-200000000000"),
+                            Dob = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Sofie Brauwers"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-300000000000"),
+                            Dob = new DateTime(1997, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Athena Faris"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-400000000000"),
+                            Dob = new DateTime(1981, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Abigail Spencer"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-500000000000"),
+                            Dob = new DateTime(1985, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
                             IsDeleted = false,
                             Name = "Kaley Cuoco"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-600000000000"),
+                            Dob = new DateTime(1973, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Jim Parsons"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-700000000000"),
+                            Dob = new DateTime(1975, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Johnny Galecki"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-800000000000"),
+                            Dob = new DateTime(1981, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Kunal Nayyar"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-900000000000"),
+                            Dob = new DateTime(1980, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Simon Helberg"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-110000000000"),
+                            Dob = new DateTime(1980, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Melissa Rauch"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-120000000000"),
+                            Dob = new DateTime(1973, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Mayim Bialik"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-130000000000"),
+                            Dob = new DateTime(1972, 1, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Gabriel Macht"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-140000000000"),
+                            Dob = new DateTime(1981, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Megan Markle"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-150000000000"),
+                            Dob = new DateTime(1981, 8, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Patrick J. Adams"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-160000000000"),
+                            Dob = new DateTime(1972, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Sarah Rafferty"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-170000000000"),
+                            Dob = new DateTime(1970, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Rick Hoffman"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-180000000000"),
+                            Dob = new DateTime(1956, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Eric Roberts"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-190000000000"),
+                            Dob = new DateTime(1990, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Margot Robbie"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-210000000000"),
+                            Dob = new DateTime(1986, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Erin Richards"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-220000000000"),
+                            Dob = new DateTime(1979, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Morena Baccarin"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-230000000000"),
+                            Dob = new DateTime(1985, 9, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Jessica Lucas"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-240000000000"),
+                            Dob = new DateTime(1983, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Jamie Chung"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-250000000000"),
+                            Dob = new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Natalie Alyn Lind"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-260000000000"),
+                            Dob = new DateTime(1986, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Amber Heard"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-270000000000"),
+                            Dob = new DateTime(1986, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            IsDeleted = false,
+                            Name = "Megan Fox"
                         });
                 });
 
@@ -2433,7 +2581,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                     b.HasOne("Imi.Project.Api.Core.Entities.Games.PlayedGame", "PlayedGame")
                         .WithMany("GameScores")
                         .HasForeignKey("PlayedGameId")
-                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.HasOne("Imi.Project.Api.Core.Entities.Users.Player", "Player")
@@ -2448,7 +2596,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                     b.HasOne("Imi.Project.Api.Core.Entities.Games.BoardGame", "BoardGame")
                         .WithMany("PlayedGames")
                         .HasForeignKey("BoardGameId")
-                        .OnDelete(DeleteBehavior.ClientNoAction)
+                        .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });
 #pragma warning restore 612, 618

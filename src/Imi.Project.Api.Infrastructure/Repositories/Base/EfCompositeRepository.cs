@@ -17,7 +17,6 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Base
         {
             _dbContext = dbContext;
         }
-
         public async Task<IEnumerable<T>> AddAsync(IEnumerable<T> entityList)
         {
             foreach (var item in entityList)
