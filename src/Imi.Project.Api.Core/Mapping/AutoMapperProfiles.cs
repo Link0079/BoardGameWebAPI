@@ -22,13 +22,15 @@ namespace Imi.Project.Api.Core.Mapping
                 .ForMember(dest => dest.PlayedGameCount,
                     opt => opt.MapFrom(src => src.GameScores.Count == 0 ? 0 : src.GameScores
                     .Select(gs => gs.PlayerId == src.Id).Count()))
+                .ForMember(dest => dest.Dob, opt => opt.MapFrom(p => p.Dob
+                    .ConvertToStringDateNotation()))
                 .ForMember(dest => dest.PlayTimeTotal,
                     opt => opt.MapFrom(src => src.GameScores
                     .Where(gs => gs.PlayerId == src.Id)
                     .Sum(gs => gs.PlayedGame.PlayTime)
                     .ConvertToStringDuration()))
                 .ForMember(dest => dest.MostPlayedGame,
-                    opt => opt.MapFrom(src => src.GameScores.Count == 0 ? "no games" : src.GameScores
+                    opt => opt.MapFrom(src => src.GameScores.Count == 0 ? "Player has not played any games yet.." : src.GameScores
                     .GroupBy(i => i.PlayedGame.BoardGame.Title)
                     .OrderByDescending(grp => grp.Count())
                     .Select(grp => grp.Key).First()));
@@ -58,10 +60,10 @@ namespace Imi.Project.Api.Core.Mapping
                         Name = bc.Category.Name
                     })))
                 .ForMember(dest => dest.NumberOfCategories,
-                    opt => opt.MapFrom(src => src.Categories == null ? 0 : src.Categories
+                    opt => opt.MapFrom(src => src.Categories.Count == 0 ? 0 : src.Categories
                     .Select(bc => bc.CategoryId == src.Id).Count()))
                 .ForMember(dest => dest.NumberofArtists,
-                    opt => opt.MapFrom(src => src.Artists == null ? 0 : src.Artists
+                    opt => opt.MapFrom(src => src.Artists.Count == 0 ? 0 : src.Artists
                     .Select(ba => ba.BoardGameId == src.Id).Count()))
                 .ForMember(dest => dest.PlayTime,
                     opt => opt.MapFrom(src => src.PlayTime

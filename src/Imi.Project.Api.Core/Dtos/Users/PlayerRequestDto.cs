@@ -10,6 +10,7 @@ namespace Imi.Project.Api.Core.Dtos.Users
     {
         [Required]
         public string Name { get; set; }
+        public DateTime Dob { get; set; }
         //public bool IsDeleted { get; set; }
     }
 }

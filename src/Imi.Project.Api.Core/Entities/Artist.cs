@@ -7,7 +7,6 @@ namespace Imi.Project.Api.Core.Entities
 {
     public class Artist : User
     {
-        public DateTime Dob { get; set; }
         public ICollection<BoardGameArtist> Artwork { get; set; }
     }
 }

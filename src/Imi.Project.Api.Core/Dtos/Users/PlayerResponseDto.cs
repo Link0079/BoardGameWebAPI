@@ -8,6 +8,7 @@ namespace Imi.Project.Api.Core.Dtos.Users
     public class PlayerResponseDto : BaseDto
     {
         public string Name { get; set; }
+        public string Dob { get; set; }
         public int? PlayedGameCount { get; set; }
         public string PlayTimeTotal { get; set; }
         public string MostPlayedGame { get; set; }

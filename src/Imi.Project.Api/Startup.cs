@@ -49,13 +49,14 @@ namespace Imi.Project.Api
             services.AddScoped<IBoardGameRepository, BoardGameRepository>();
             services.AddScoped<IBoardGameCategoryRepository, BoardGameCategoryRepository>();
             services.AddScoped<IBoardGameArtistRepository, BoardGameArtistRepository>();
+            services.AddScoped<IGameScoreRepository, GameScoreRepository>();
             // Services
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IArtistService, ArtistService>();
             services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<IPlayedGameService, PlayedGameService>();
             services.AddScoped<IBoardGameService, BoardGameService>();
-            // Shizzle to make programming and teacher's life easier
+            // Shizzle to make programmer's and teacher's life easier
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "BoardGame WebAPI", Version = "v1" }); });
             services.AddControllers();
