@@ -42,5 +42,18 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
             return await GetAllAsync().Where(b => b.Name.ToUpper()
                 .Contains(name.ToUpper())).ToListAsync();
         }
+        public async Task<IEnumerable<Player>> GetTopPlayerWithLongestTotalPlaytime(int totalItems)
+        {
+            return await GetAllAsync().OrderByDescending(p => p.GameScores
+                .Sum(gs => gs.PlayedGame.PlayTime)).Take(totalItems).ToListAsync();
+        }
+        public async Task<IEnumerable<Player>> TopPlayerWithMostPlayedGames(int totalItems)
+        {
+            return await GetAllAsync().OrderByDescending(p => p.GameScores.Count()).Take(totalItems).ToListAsync();
+        }
+        public async Task<IEnumerable<Player>> TopFirstPlayers(int totalItems)
+        {
+            return await GetAllAsync().OrderByDescending(p => p.GameScores.Max(gs => gs.Score)).Take(totalItems).ToListAsync();
+        }
     }
 }
