@@ -49,10 +49,10 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Games
             await UpdateAsync(entity);
             return entity;
         }
-        public async Task<IEnumerable<BoardGame>> SearchByNameAsync(string name)
+        public async Task<IEnumerable<BoardGame>> SearchByNameAsync(string title)
         {
             return await GetAllAsync().Where(b => b.Title.ToUpper()
-                .Contains(name.ToUpper())).ToListAsync();
+                .Contains(title.ToUpper())).ToListAsync();
         }
     }
 }

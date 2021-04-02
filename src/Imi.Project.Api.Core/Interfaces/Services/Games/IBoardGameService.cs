@@ -12,7 +12,7 @@ namespace Imi.Project.Api.Core.Interfaces.Services.Games
         Task<BoardGameResponseDto> GetByIdAsync(Guid id);
         Task<IEnumerable<BoardGameResponseDto>> GetByCategoryIdAsync(Guid id);
         Task<IEnumerable<BoardGameResponseDto>> GetByArtistIdAsync(Guid id);
-        Task<IEnumerable<BoardGameResponseDto>> SearchByNameAsycn(string name);
+        Task<IEnumerable<BoardGameResponseDto>> SearchByNameAsycn(string title);
         Task<BoardGameResponseDto> AddAsync(BoardGameRequestDto boardGameRequestDto);
         Task<BoardGameResponseDto> UpdateAsync(BoardGameRequestDto boardGameRequestDto);
         Task DeleteAsync(Guid id);

@@ -98,9 +98,9 @@ namespace Imi.Project.Api.Core.Services.Games
             }
             return boardGameEntity;
         }
-        public async Task<IEnumerable<BoardGameResponseDto>> SearchByNameAsycn(string name)
+        public async Task<IEnumerable<BoardGameResponseDto>> SearchByNameAsycn(string title)
         {
-            var result = await _boardGameRepository.SearchByNameAsync(name);
+            var result = await _boardGameRepository.SearchByNameAsync(title);
             var dto = _mapper.Map<IEnumerable<BoardGameResponseDto>>(result);
             return dto;
         }

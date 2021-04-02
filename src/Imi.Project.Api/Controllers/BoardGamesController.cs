@@ -20,15 +20,15 @@ namespace Imi.Project.Api.Controllers
             _boardGameService = boardGameService;
         }
         [HttpGet]
-        public async Task<IActionResult> Get([FromQuery] string name)
+        public async Task<IActionResult> Get([FromQuery] string title)
         {
-            if (!String.IsNullOrWhiteSpace(name))
+            if (!String.IsNullOrWhiteSpace(title))
             {
-                var boardGames = await _boardGameService.SearchByNameAsycn(name);
+                var boardGames = await _boardGameService.SearchByNameAsycn(title);
                 if (boardGames.Any())
                     return Ok(boardGames);
                 else
-                    return NotFound($"There were no boardgames found that contain \"{name}\" in their title.");
+                    return NotFound($"There were no boardgames found that contain \"{title}\" in their title.");
             }
             else
             {
@@ -36,12 +36,6 @@ namespace Imi.Project.Api.Controllers
                 return Ok(boardGames);
             }
         }
-        //[HttpGet]
-        //public async Task<IActionResult> Get()
-        //{
-        //    var boardGames = await _boardGameService.ListAllAsync();
-        //    return Ok(boardGames);
-        //}
         [HttpGet("{guid}")]
         public async Task<IActionResult> Get(Guid guid)
         {
