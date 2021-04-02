@@ -12,5 +12,8 @@ namespace Imi.Project.Api.Core.Interfaces.Repositories.Users
     {
         Task<IEnumerable<Player>> SearchByNameAsync(string name);
         IQueryable<Player> GetESOAsync(); // Get"EverySingleOne"Async
+        Task<IEnumerable<Player>> GetTopPlayerWithLongestTotalPlaytime(int totalItems);
+        Task<IEnumerable<Player>> TopPlayerWithMostPlayedGames(int totalItems);
+        Task<IEnumerable<Player>> TopFirstPlayers(int totalItems);
     }
 }

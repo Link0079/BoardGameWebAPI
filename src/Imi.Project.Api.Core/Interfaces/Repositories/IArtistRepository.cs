@@ -10,5 +10,6 @@ namespace Imi.Project.Api.Core.Interfaces.Repositories
     public interface IArtistRepository : IRepository<Artist>
     {
         Task<IEnumerable<Artist>> SearchByNameAsync(string name);
+        Task<IEnumerable<Artist>> TopArtistWithMostArtwork(int totalItems);
     }
 }
