@@ -30,7 +30,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories
             return await GetAllAsync().Where(b => b.Name.ToUpper()
                 .Contains(name.ToUpper())).ToListAsync();
         }
-        public async Task<IEnumerable<Artist>> TopArtistWithMostArtwork(int totalItems)
+        public async Task<IEnumerable<Artist>> TopArtistWithMostArtworkAsync (int totalItems)
         {
             return await GetAllAsync().OrderByDescending(a => a.Artwork.Count()).Take(totalItems).ToListAsync();
         }

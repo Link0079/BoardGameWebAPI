@@ -32,13 +32,13 @@ namespace Imi.Project.Api.Core.Services.Statistics
         public async Task<StatisticsResponseDto> GetStatisticsAsync(int totalItems)
         {
             var statisticsResponseDto = new StatisticsResponseDto();
-            statisticsResponseDto.TopBoardgamePlayTime = _mapper.Map<ICollection<BoardGameResponseDto>>(await _boardGameRepository.GetTopBoardGameWithLongestPlayTime(totalItems));
-            statisticsResponseDto.TopHighesRatedBoardGames = _mapper.Map<ICollection<BoardGameResponseDto>>(await _boardGameRepository.GetTopBoardGameWithHighestRating(totalItems));
-            statisticsResponseDto.GetTopPlayerWithLongestTotalPlaytime = _mapper.Map<ICollection<PlayerResponseDto>>(await _playerRepository.GetTopPlayerWithLongestTotalPlaytime(totalItems));
-            statisticsResponseDto.TopPlayerWithMostPlayedGames = _mapper.Map<ICollection<PlayerResponseDto>>(await _playerRepository.TopPlayerWithMostPlayedGames(totalItems));
-            statisticsResponseDto.TopFirstPlayers = _mapper.Map<ICollection<PlayerResponseDto>>(await _playerRepository.TopFirstPlayers(totalItems));
-            statisticsResponseDto.TopArtistWithMostArtwork = _mapper.Map<ICollection<ArtistResponseDto>>(await _artistRepository.TopArtistWithMostArtwork(totalItems));
-            statisticsResponseDto.TotalBoardGamesPlayTime = _boardGameRepository.GetTotalBoardGamePlayTime().Result.ConvertToSTringDuration();
+            statisticsResponseDto.TopBoardgamePlayTime = _mapper.Map<ICollection<BoardGameResponseDto>>(await _boardGameRepository.GetTopBoardGameWithLongestPlayTimeAsync(totalItems));
+            statisticsResponseDto.TopHighesRatedBoardGames = _mapper.Map<ICollection<BoardGameResponseDto>>(await _boardGameRepository.GetTopBoardGameWithHighestRatingAsync(totalItems));
+            statisticsResponseDto.GetTopPlayerWithLongestTotalPlaytime = _mapper.Map<ICollection<PlayerResponseDto>>(await _playerRepository.GetTopPlayerWithLongestTotalPlaytimeAsync(totalItems));
+            statisticsResponseDto.TopPlayerWithMostPlayedGames = _mapper.Map<ICollection<PlayerResponseDto>>(await _playerRepository.TopPlayerWithMostPlayedGamesAsync(totalItems));
+            statisticsResponseDto.TopFirstPlayers = _mapper.Map<ICollection<PlayerResponseDto>>(await _playerRepository.TopFirstPlayersAsync(totalItems));
+            statisticsResponseDto.TopArtistWithMostArtwork = _mapper.Map<ICollection<ArtistResponseDto>>(await _artistRepository.TopArtistWithMostArtworkAsync(totalItems));
+            statisticsResponseDto.TotalBoardGamesPlayTime = _boardGameRepository.GetTotalBoardGamePlayTimeAsync().Result.ConvertToSTringDuration();
 
             return statisticsResponseDto;
         }
