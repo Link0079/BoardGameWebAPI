@@ -7,14 +7,9 @@ namespace Imi.Project.Api.Core.Extentions
     {
         public static string ConvertToStringDuration(this int minutes)
         {
-            TimeSpan timeSpan = TimeSpan.FromMinutes(minutes);
-            StringBuilder stringBuilder = new StringBuilder();
-
-            if (timeSpan.Hours != 0)
-                stringBuilder.Append($"{timeSpan.Hours}h ");
-            stringBuilder.Append($"{timeSpan.Minutes.ToString("00")}m");
-            //stringBuilder.Append(timeSpan.Seconds.ToString("00"));
-            return stringBuilder.ToString();
+            long newMinutes = (long)minutes;
+            var result = newMinutes.ConvertToSTringDuration();
+            return result;
         }
         public static string ConvertToStringDateNotation(this DateTime dateNotation)
         {
@@ -30,7 +25,7 @@ namespace Imi.Project.Api.Core.Extentions
             if (timeSpan.Hours != 0)
                 stringBuilder.Append($"{timeSpan.Hours} hours, ");
 
-            stringBuilder.Append($"{timeSpan.Minutes.ToString("00")} minutes ");
+            stringBuilder.Append($"{timeSpan.Minutes.ToString("00")} minutes.");
             //stringBuilder.Append($"{timeSpan.Seconds.ToString("00")} seconds");
             return stringBuilder.ToString();
         }
