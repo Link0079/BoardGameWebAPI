@@ -54,5 +54,17 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Games
             return await GetAllAsync().Where(b => b.Title.ToUpper()
                 .Contains(title.ToUpper())).ToListAsync();
         }
+        public async Task<IEnumerable<BoardGame>> GetTopBoardGameWithLongestPlayTimeAsync (int totalItems)
+        {
+            return await GetAllAsync().OrderByDescending(b => b.PlayTime).Take(totalItems).ToListAsync();
+        }
+        public async Task<IEnumerable<BoardGame>> GetTopBoardGameWithHighestRatingAsync (int totalItems)
+        {
+            return await GetAllAsync().OrderByDescending(b => b.Rating).Take(totalItems).ToListAsync();
+        }
+        public async Task<long> GetTotalBoardGamePlayTimeAsync ()
+        {
+            return await GetAllAsync().SumAsync(b => b.PlayTime);
+        }
     }
 }

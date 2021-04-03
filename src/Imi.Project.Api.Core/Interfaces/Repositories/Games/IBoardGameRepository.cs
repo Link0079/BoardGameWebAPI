@@ -14,5 +14,8 @@ namespace Imi.Project.Api.Core.Interfaces.Repositories.Games
         Task<IEnumerable<BoardGame>> GetByCategoryIdAsync(Guid id);
         Task<IEnumerable<BoardGame>> GetByArtistIdAsync(Guid id);
         Task<IEnumerable<BoardGame>> SearchByNameAsync(string title);
+        Task<IEnumerable<BoardGame>> GetTopBoardGameWithLongestPlayTimeAsync(int totalItems);
+        Task<IEnumerable<BoardGame>> GetTopBoardGameWithHighestRatingAsync(int totalItems);
+        Task<long> GetTotalBoardGamePlayTimeAsync();
     }
 }
