@@ -44,7 +44,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
         }
         public async Task<IEnumerable<Player>> GetTopPlayerWithLongestTotalPlaytime(int totalItems)
         {
-            return await GetAllAsync().OrderByDescending(p => p.GameScores
+            return await GetAllAsync().OrderByDescending(p => p.GameScores.Where(gs=> gs.PlayerId == p.Id)
                 .Sum(gs => gs.PlayedGame.PlayTime)).Take(totalItems).ToListAsync();
         }
         public async Task<IEnumerable<Player>> TopPlayerWithMostPlayedGames(int totalItems)
@@ -53,7 +53,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
         }
         public async Task<IEnumerable<Player>> TopFirstPlayers(int totalItems)
         {
-            return await GetAllAsync().OrderByDescending(p => p.GameScores.Max(gs => gs.Score)).Take(totalItems).ToListAsync();
+            return await GetAllAsync().OrderByDescending(p => p.GameScores.Where(gs=>gs.PlayerId == p.Id).Max(gs=>gs.Score)).Take(totalItems).ToListAsync();
         }
     }
 }

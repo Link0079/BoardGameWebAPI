@@ -3,9 +3,11 @@ using Imi.Project.Api.Core.Interfaces.Repositories.Games;
 using Imi.Project.Api.Core.Interfaces.Repositories.Users;
 using Imi.Project.Api.Core.Interfaces.Services;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
+using Imi.Project.Api.Core.Interfaces.Services.Statistics;
 using Imi.Project.Api.Core.Interfaces.Services.Users;
 using Imi.Project.Api.Core.Services;
 using Imi.Project.Api.Core.Services.Games;
+using Imi.Project.Api.Core.Services.Statistics;
 using Imi.Project.Api.Core.Services.Users;
 using Imi.Project.Api.Infrastructure.Data;
 using Imi.Project.Api.Infrastructure.Repositories;
@@ -56,6 +58,7 @@ namespace Imi.Project.Api
             services.AddScoped<IPlayerService, PlayerService>();
             services.AddScoped<IPlayedGameService, PlayedGameService>();
             services.AddScoped<IBoardGameService, BoardGameService>();
+            services.AddScoped<IStatisticsService, StatisticsService>();
             // Shizzle to make programmer's and teacher's life easier
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "BoardGame WebAPI", Version = "v1" }); });
