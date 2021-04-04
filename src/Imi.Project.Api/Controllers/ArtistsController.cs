@@ -1,6 +1,7 @@
 ﻿using Imi.Project.Api.Core.Dtos;
 using Imi.Project.Api.Core.Interfaces.Services;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
+using Imi.Project.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,7 +31,7 @@ namespace Imi.Project.Api.Controllers
                 if (boardGames.Any())
                     return Ok(boardGames);
                 else
-                    return NotFound($"There were no artists found that contain \"{name}\" in their Name.");
+                    return NotFound(string.Format(CustomExceptionMessages.NotFoundArtistName, name));
             }
             else
             {
@@ -38,23 +39,20 @@ namespace Imi.Project.Api.Controllers
                 return Ok(boardGames);
             }
         }
-        //[HttpGet]
-        //public async Task<IActionResult> Get()
-        //{
-        //    var artists = await _artistService.ListAllAsync();
-        //    return Ok(artists);
-        //}
         [HttpGet("{guid}")]
         public async Task<IActionResult> Get(Guid guid)
         {
             var artist = await _artistService.GetByIdAsync(guid);
             if (artist == null)
-                return NotFound($"Artist with id {guid} does not exist.");
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundArtistId, guid));
             return Ok(artist);
         }
         [HttpGet("{guid}/boardgames")]
         public async Task<IActionResult> GetbyArtistId(Guid guid)
         {
+            var artist = await _artistService.GetByIdAsync(guid);
+            if(artist == null)
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundArtistId, guid));
             var boardgames = await _boardGameService.GetByArtistIdAsync(guid);
             if (!boardgames.Any())
                 return NotFound($"Artist with id {guid} has no boardgames.");
@@ -81,7 +79,7 @@ namespace Imi.Project.Api.Controllers
         {
             var artistEntity = await _artistService.GetByIdAsync(guid);
             if (artistEntity == null)
-                return NotFound($"Artist with id {guid} does not exist.");
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundArtistId, guid));
             await _artistService.DeleteAsync(guid);
             return Ok();
         }
