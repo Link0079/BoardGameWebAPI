@@ -1,4 +1,5 @@
 ﻿using Imi.Project.Api.Core.Interfaces.Services.Statistics;
+using Imi.Project.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,6 +21,8 @@ namespace Imi.Project.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] int totalItems)
         {
+            if (totalItems < 1)
+                return BadRequest(string.Format(CustomExceptionMessages.NotFoundStatisticsTotalItems, totalItems));
             var result = await _statisticsService.GetStatisticsAsync(totalItems);
             return Ok(result);
         }
