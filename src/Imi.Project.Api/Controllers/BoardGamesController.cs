@@ -1,6 +1,7 @@
 ﻿using Imi.Project.Api.Core.Dtos.Games;
 using Imi.Project.Api.Core.Interfaces.Services;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
+using Imi.Project.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -28,7 +29,7 @@ namespace Imi.Project.Api.Controllers
                 if (boardGames.Any())
                     return Ok(boardGames);
                 else
-                    return NotFound($"There were no boardgames found that contain \"{title}\" in their title.");
+                    return NotFound(string.Format(CustomExceptionMessages.NotFoundBoardGameTitle, title));
             }
             else
             {
@@ -41,7 +42,7 @@ namespace Imi.Project.Api.Controllers
         {
             var boardGame = await _boardGameService.GetByIdAsync(guid);
             if (boardGame == null)
-                return NotFound($"Boardgame with id {guid} does not exist.");
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundBoardGameId, guid));
             return Ok(boardGame);
         }
         [HttpPost]
@@ -65,33 +66,9 @@ namespace Imi.Project.Api.Controllers
         {
             var boardGameEntity = await _boardGameService.GetByIdAsync(guid);
             if (boardGameEntity == null)
-                return NotFound($"Boardgame with id {guid} does not exist.");
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundBoardGameId, guid));
             await _boardGameService.DeleteAsync(guid);
             return Ok();
         }
     }
 }
-
-//{
-//  "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6",
-//  "title": "The BoardGame Game",
-//  "price": 50,
-//  "year": 2020,
-//  "age": 10,
-//  "rating": 4,
-//  "minPlayers": 2,
-//  "maxPlayers": 4,
-//  "stock": false,
-//  "playTime": 120,
-//  "description": "Just a boardgame",
-//  "categories": [
-//    {
-//        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-//    }
-//  ],
-//  "artists": [
-//    {
-//        "id": "3fa85f64-5717-4562-b3fc-2c963f66afa6"
-//    }
-//  ]
-//}
