@@ -39,6 +39,8 @@ namespace Imi.Project.Common
         public const string NotFoundPlayerName = "There were no players found that contain '{0}' in their name.";
         public const string NotFoundPlayerId = "Player with id '{0}' does not exist.";
         public const string NotFoundPlayerPlayedGames = "Player wit id '{0}' has not played any games.";
+        // Statistics
+        public const string NotFoundStatisticsTotalItems = "'{0}' is not a valid number, please enter a number.";
         #endregion
 
     }
