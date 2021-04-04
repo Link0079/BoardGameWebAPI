@@ -1,6 +1,7 @@
 ﻿using Imi.Project.Api.Core.Dtos.Base;
 using Imi.Project.Api.Core.Entities;
 using Imi.Project.Api.Core.Entities.Games;
+using Imi.Project.Common;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -10,11 +11,11 @@ namespace Imi.Project.Api.Core.Dtos.Games
 {
     public class BoardGameRequestDto : BaseDto
     {
-        [Required]
+        [Required(ErrorMessage = CustomExceptionMessages.RequiredBoardGameTitle)]
         public string Title { get; set; }
-        [Required]
+        [Required(ErrorMessage = CustomExceptionMessages.RequiredBoardGamePrice)]
         public decimal Price { get; set; }
-        [Required]
+        [Required(ErrorMessage = CustomExceptionMessages.RequiredBoardGameYear)]
         public int Year { get; set; }
         public int Age { get; set; }
         public int Rating { get; set; }
