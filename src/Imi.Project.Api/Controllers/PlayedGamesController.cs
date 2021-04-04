@@ -1,6 +1,7 @@
 ﻿using Imi.Project.Api.Core.Dtos.Games;
 using Imi.Project.Api.Core.Interfaces.Services;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
+using Imi.Project.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -30,7 +31,7 @@ namespace Imi.Project.Api.Controllers
         {
             var playedGame = await _playedGameService.GetByIdAsync(guid);
             if (playedGame == null)
-                return NotFound($"Games with id {guid} does not exist.");
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayedGameId, guid));
             return Ok(playedGame);
         }
         [HttpPost]
@@ -54,7 +55,7 @@ namespace Imi.Project.Api.Controllers
         {
             var playedGameEntity = await _playedGameService.GetByIdAsync(guid);
             if (playedGameEntity == null)
-                return NotFound($"Playedgame with id {guid} does not exist.");
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayedGameId, guid));
             await _playedGameService.DeleteAsync(guid);
             return Ok();
         }
