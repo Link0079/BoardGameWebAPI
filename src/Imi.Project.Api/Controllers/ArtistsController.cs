@@ -27,16 +27,16 @@ namespace Imi.Project.Api.Controllers
         {
             if (!String.IsNullOrWhiteSpace(name))
             {
-                var boardGames = await _artistService.SearchByNameAsycn(name);
-                if (boardGames.Any())
-                    return Ok(boardGames);
+                var artists = await _artistService.SearchByNameAsycn(name);
+                if (artists.Any())
+                    return Ok(artists);
                 else
                     return NotFound(string.Format(CustomExceptionMessages.NotFoundArtistName, name));
             }
             else
             {
-                var boardGames = await _artistService.ListAllAsync();
-                return Ok(boardGames);
+                var artists = await _artistService.ListAllAsync();
+                return Ok(artists);
             }
         }
         [HttpGet("{guid}")]
@@ -55,7 +55,7 @@ namespace Imi.Project.Api.Controllers
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundArtistId, guid));
             var boardgames = await _boardGameService.GetByArtistIdAsync(guid);
             if (!boardgames.Any())
-                return NotFound($"Artist with id {guid} has no boardgames.");
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundArtistBoardGames, guid));
             return Ok(boardgames);
         }
         [HttpPost]

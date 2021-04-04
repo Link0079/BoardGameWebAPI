@@ -1,6 +1,7 @@
 ﻿using Imi.Project.Api.Core.Dtos;
 using Imi.Project.Api.Core.Interfaces.Services;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
+using Imi.Project.Common;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -26,38 +27,35 @@ namespace Imi.Project.Api.Controllers
         {
             if (!String.IsNullOrWhiteSpace(name))
             {
-                var boardGames = await _categoryService.SearchByNameAsycn(name);
-                if (boardGames.Any())
-                    return Ok(boardGames);
+                var categories = await _categoryService.SearchByNameAsycn(name);
+                if (categories.Any())
+                    return Ok(categories);
                 else
-                    return NotFound($"There were no categories found that contain \"{name}\" in their name.");
+                    return NotFound(string.Format(CustomExceptionMessages.NotFoundCategoryName, name));
             }
             else
             {
-                var boardGames = await _categoryService.ListAllAsync();
-                return Ok(boardGames);
+                var categories = await _categoryService.ListAllAsync();
+                return Ok(categories);
             }
         }
-        //[HttpGet]
-        //public async Task<IActionResult> Get()
-        //{
-        //    var categories = await _categoryService.ListAllAsync();
-        //    return Ok(categories);
-        //}
         [HttpGet("{guid}")]
         public async Task<IActionResult> Get(Guid guid)
         {
             var category = await _categoryService.GetByIdAsync(guid);
             if (category == null)
-                return NotFound($"Category with id {guid} does not exist.");
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundCategoryId, guid));
             return Ok(category);
         }
         [HttpGet("{guid}/boardgames")]
         public async Task<IActionResult> GetByCategoryId(Guid guid)
         {
+            var category = await _categoryService.GetByIdAsync(guid);
+            if(category == null)
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundCategoryId, guid));
             var boardgames = await _boardGameService.GetByCategoryIdAsync(guid);
             if (!boardgames.Any())
-                return NotFound($"Category with id {guid} has no boardgames.");
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundCategoryBoardGames, guid));
             return Ok(boardgames);
         }
         [HttpPost]
@@ -81,7 +79,7 @@ namespace Imi.Project.Api.Controllers
         {
             var categoryEntity = await _categoryService.GetByIdAsync(guid);
             if (categoryEntity == null)
-                return NotFound($"Category with id {guid} does not exist.");
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundCategoryId, guid));
             await _categoryService.DeleteAsync(guid);
             return Ok();
         }
