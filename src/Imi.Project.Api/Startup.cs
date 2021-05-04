@@ -1,3 +1,5 @@
+using Imi.Project.Api.Core.Entities.Base;
+using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Repositories;
 using Imi.Project.Api.Core.Interfaces.Repositories.Games;
 using Imi.Project.Api.Core.Interfaces.Repositories.Users;
@@ -16,6 +18,7 @@ using Imi.Project.Api.Infrastructure.Repositories.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -43,6 +46,8 @@ namespace Imi.Project.Api
         {
             services.AddCors();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+            services.AddIdentity<Player, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             // Repositories
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IArtistRepository, ArtistRepository>();
@@ -52,6 +57,7 @@ namespace Imi.Project.Api
             services.AddScoped<IBoardGameCategoryRepository, BoardGameCategoryRepository>();
             services.AddScoped<IBoardGameArtistRepository, BoardGameArtistRepository>();
             services.AddScoped<IGameScoreRepository, GameScoreRepository>();
+            services.AddScoped<UserManager<Player>>();
             // Services
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IArtistService, ArtistService>();
