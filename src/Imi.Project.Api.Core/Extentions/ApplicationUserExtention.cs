@@ -1,4 +1,4 @@
-﻿using Imi.Project.Api.Core.Entities.Base;
+﻿using Imi.Project.Api.Core.Entities.Users;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -7,16 +7,16 @@ namespace Imi.Project.Api.Core.Extentions
 {
     public static class ApplicationUserExtention
     {
-        public static string MakeUserNameFromPlayerName(this ApplicationUser applicationUser)
+        public static string MakeUserNameFromPlayerName(this Player applicationUser)
         {
             return SplitNameOfPlayer(applicationUser);
         }
-        public static string MakeEmailFromPlayerName(this ApplicationUser applicationUser)
+        public static string MakeEmailFromPlayerName(this Player applicationUser)
         {
             string result = SplitNameOfPlayer(applicationUser);
             return $"{result}@BoardGameWebAPI.com";
         }
-        private static string SplitNameOfPlayer(ApplicationUser applicationUser)
+        private static string SplitNameOfPlayer(Player applicationUser)
         {
             var result = "";
             var splitName = applicationUser.Name.Split(" ");
