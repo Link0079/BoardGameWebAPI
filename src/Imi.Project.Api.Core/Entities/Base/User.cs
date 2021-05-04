@@ -1,8 +1,9 @@
-﻿using System;
+﻿using Microsoft.AspNetCore.Identity;
+using System;
 
 namespace Imi.Project.Api.Core.Entities.Base
 {
-    public abstract class User : BaseEntity<Guid>
+    public abstract class User : IdentityUser<Guid>
     {
         public string Name { get; set; }
         public DateTime Dob { get; set; }
