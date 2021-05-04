@@ -1,3 +1,5 @@
+using Imi.Project.Api.Core.Entities.Base;
+using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Repositories;
 using Imi.Project.Api.Core.Interfaces.Repositories.Games;
 using Imi.Project.Api.Core.Interfaces.Repositories.Users;
@@ -43,6 +45,8 @@ namespace Imi.Project.Api
         {
             services.AddCors();
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
+            services.AddIdentity<ApplicationUser, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = false)
+                .AddEntityFrameworkStores<ApplicationDbContext>();
             // Repositories
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IArtistRepository, ArtistRepository>();
