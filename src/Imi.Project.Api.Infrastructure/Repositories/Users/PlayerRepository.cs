@@ -1,7 +1,9 @@
-﻿using Imi.Project.Api.Core.Entities.Users;
+﻿using Imi.Project.Api.Core.Entities.Base;
+using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Repositories.Users;
 using Imi.Project.Api.Infrastructure.Data;
 using Imi.Project.Api.Infrastructure.Repositories.Base;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -11,20 +13,20 @@ using System.Threading.Tasks;
 
 namespace Imi.Project.Api.Infrastructure.Repositories.Users
 {
-    public class PlayerRepository : EfRepository<Player>, IPlayerRepository
+    public class PlayerRepository : EfUserRepository<Player>, IPlayerRepository
     {
-        public PlayerRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public PlayerRepository(UserManager<Player> userManager) : base(userManager)
         {
         }
         public override IQueryable<Player> GetAllAsync()
         {
-            return _dbContext.Players.AsNoTracking().Include(p => p.GameScores)
+            return _userManager.Users.AsNoTracking().Include(p => p.GameScores)
                 .ThenInclude(gs => gs.PlayedGame).ThenInclude(pg=>pg.BoardGame)
                 .Where(p=>p.IsDeleted == false);
         }
         public IQueryable<Player> GetESOAsync() // Get Every Single One 
         {
-            return _dbContext.Players.AsNoTracking().Include(p => p.GameScores)
+            return _userManager.Users.AsNoTracking().Include(p => p.GameScores)
                 .ThenInclude(gs => gs.PlayedGame).ThenInclude(pg => pg.BoardGame);
         }
         public override async Task<Player> GetByIdAsync(Guid id)
