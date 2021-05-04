@@ -3,7 +3,7 @@ using System;
 
 namespace Imi.Project.Api.Core.Entities.Base
 {
-    public abstract class User : IdentityUser<Guid>
+    public abstract class ApplicationUser : IdentityUser<Guid>
     {
         public string Name { get; set; }
         public DateTime Dob { get; set; }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 
 namespace Imi.Project.Api.Core.Entities.Users
 {
-    public class Player : User
+    public class Player : ApplicationUser
     {
         public ICollection<GameScore> GameScores { get; set; }
     }
