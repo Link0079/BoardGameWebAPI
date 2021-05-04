@@ -1,7 +1,5 @@
-﻿using Imi.Project.Api.Core.Entities.Base;
-using Imi.Project.Api.Core.Entities.Users;
+﻿using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Repositories.Users;
-using Imi.Project.Api.Infrastructure.Data;
 using Imi.Project.Api.Infrastructure.Repositories.Base;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;

@@ -18,6 +18,7 @@ using Imi.Project.Api.Infrastructure.Repositories.Users;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
@@ -56,6 +57,7 @@ namespace Imi.Project.Api
             services.AddScoped<IBoardGameCategoryRepository, BoardGameCategoryRepository>();
             services.AddScoped<IBoardGameArtistRepository, BoardGameArtistRepository>();
             services.AddScoped<IGameScoreRepository, GameScoreRepository>();
+            services.AddScoped<UserManager<Player>>();
             // Services
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IArtistService, ArtistService>();
