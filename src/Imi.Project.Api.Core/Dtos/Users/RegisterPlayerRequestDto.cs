@@ -8,6 +8,9 @@ namespace Imi.Project.Api.Core.Dtos.Users
 {
     public class RegisterPlayerRequestDto
     {
+        [Required(ErrorMessage = CustomExceptionMessages.RequiredPlayerName)]
+        [StringLength(100, MinimumLength = 2)]
+        public string Name { get; set; }
         [Required(ErrorMessage = CustomExceptionMessages.RequiredPlayerUserName)]
         [StringLength(100, MinimumLength = 5)]
         public string Username { get; set; }

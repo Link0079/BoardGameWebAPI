@@ -6,6 +6,7 @@ using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -55,6 +56,18 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
         public async Task<IEnumerable<Player>> TopFirstPlayersAsync (int totalItems)
         {
             return await GetAllAsync().OrderByDescending(p => p.GameScores.Where(gs=>gs.PlayerId == p.Id).Max(gs=>gs.Score)).Take(totalItems).ToListAsync();
+        }
+        public async Task<IdentityResult> AddRegisteredPlayerAsync(Player entity, string password)
+        {
+            var result = await _userManager.CreateAsync(entity, password);
+            if (result.Succeeded)
+            {
+                var newPlayer = await _userManager.FindByEmailAsync(entity.Email);
+                await _userManager.AddToRoleAsync(newPlayer, "Player");
+                await _userManager.AddClaimAsync(newPlayer, new Claim("registration-date", DateTime.UtcNow.ToString("yyyy-MM-dd")));
+                await _userManager.AddClaimAsync(newPlayer, new Claim("Dob", entity.Dob.ToString("yyyy-MM-dd")));
+            }
+            return result;
         }
     }
 }

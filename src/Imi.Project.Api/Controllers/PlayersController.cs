@@ -1,8 +1,11 @@
-﻿using Imi.Project.Api.Core.Dtos.Users;
+﻿using AutoMapper.Configuration;
+using Imi.Project.Api.Core.Dtos.Users;
+using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
 using Imi.Project.Api.Core.Interfaces.Services.Users;
 using Imi.Project.Common;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -17,10 +20,12 @@ namespace Imi.Project.Api.Controllers
     {
         private readonly IPlayerService _playerService;
         private readonly IPlayedGameService _playedGameService;
-        public PlayersController(IPlayerService playerService, IPlayedGameService playedGameService)
+        private readonly SignInManager<Player> _signInManager;
+        public PlayersController(IPlayerService playerService, IPlayedGameService playedGameService, SignInManager<Player> signInManager)
         {
             _playerService = playerService;
             _playedGameService = playedGameService;
+            _signInManager = signInManager;
         }
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] string name)
@@ -81,6 +86,20 @@ namespace Imi.Project.Api.Controllers
             if (playerEntity == null)
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
             await _playerService.DeleteAsync(guid);
+            return Ok();
+        }
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterPlayerRequestDto registration)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            IdentityResult result = await _playerService.AddRegisteredPlayerAsync(registration); 
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                    ModelState.AddModelError(error.Code, error.Description);
+                return BadRequest(ModelState);
+            }
             return Ok();
         }
     }

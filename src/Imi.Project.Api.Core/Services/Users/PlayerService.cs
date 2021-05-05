@@ -3,6 +3,7 @@ using Imi.Project.Api.Core.Dtos.Users;
 using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Repositories.Users;
 using Imi.Project.Api.Core.Interfaces.Services.Users;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -53,6 +54,11 @@ namespace Imi.Project.Api.Core.Services.Users
             var dto = _mapper.Map<IEnumerable<PlayerResponseDto>>(result);
             return dto;
         }
-
+        public async Task<IdentityResult> AddRegisteredPlayerAsync(RegisterPlayerRequestDto registerPlayerRequestDto)
+        {
+            var playerEntity = _mapper.Map<Player>(registerPlayerRequestDto);
+            var result = await _playerRepository.AddRegisteredPlayerAsync(playerEntity, registerPlayerRequestDto.Password);
+            return result;
+        }
     }
 }
