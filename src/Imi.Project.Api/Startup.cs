@@ -15,6 +15,7 @@ using Imi.Project.Api.Infrastructure.Data;
 using Imi.Project.Api.Infrastructure.Repositories;
 using Imi.Project.Api.Infrastructure.Repositories.Games;
 using Imi.Project.Api.Infrastructure.Repositories.Users;
+using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -25,9 +26,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.IdentityModel.Tokens;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Imi.Project.Api
@@ -67,7 +71,48 @@ namespace Imi.Project.Api
             services.AddScoped<IStatisticsService, StatisticsService>();
             // Shizzle to make programmer's and teacher's life easier
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo { Title = "BoardGame WebAPI", Version = "v1" }); });
+            services.AddAuthentication(options =>
+            {
+                options.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
+                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
+            })
+                .AddJwtBearer(jwtOptions =>
+                {
+                    jwtOptions.TokenValidationParameters = new TokenValidationParameters()
+                    {
+                        ValidateActor = true,
+                        ValidateAudience = true,
+                        ValidateLifetime = true,
+                        ValidIssuer = Configuration["JWTConfiguration:Issuer"],
+                        ValidAudience = Configuration["JWTConfiguration:Audience"],
+                        IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWTConfiguration:SigningKey"]))
+                    };
+                });
+
+            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "BoardGame WebAPI", Version = "v1" });
+                var jwtSecurityScheme = new OpenApiSecurityScheme
+                {
+                    Scheme = "Bearer",
+                    BearerFormat = "JWT",
+                    Name = "JWT Authentication",
+                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
+
+                    Reference = new OpenApiReference
+                    {
+                        Id = JwtBearerDefaults.AuthenticationScheme,
+                        Type = ReferenceType.SecurityScheme
+                    }
+                };
+                c.AddSecurityDefinition(jwtSecurityScheme.Reference.Id, jwtSecurityScheme);
+                c.AddSecurityRequirement(new OpenApiSecurityRequirement()
+                {
+                    {
+                        jwtSecurityScheme, Array.Empty<string>()
+                    }
+                });
+            });
             services.AddControllers();
         }
 
@@ -81,10 +126,12 @@ namespace Imi.Project.Api
             app.UseCors(builder => builder.AllowAnyOrigin().AllowAnyHeader().AllowAnyMethod());
             app.UseSwagger();
             app.UseSwaggerUI(c => { c.SwaggerEndpoint("/swagger/v1/swagger.json", "BoardGame WebAPI"); });
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
