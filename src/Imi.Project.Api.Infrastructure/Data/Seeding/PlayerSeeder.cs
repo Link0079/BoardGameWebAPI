@@ -234,7 +234,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                 new Player
                 {
                     Id = Guid.Parse("00000000-0000-0000-0000-310000000000"),
-                    Name = "Joachim François",
+                    Name = "Joachim Francois",
                     Dob = new DateTime(1980, 05, 16),
                     //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
                     IsDeleted = false
@@ -250,7 +250,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                 new Player
                 {
                     Id = Guid.Parse("00000000-0000-0000-0000-330000000000"),
-                    Name = "William Scholkkelé",
+                    Name = "William Schokkele",
                     Dob = new DateTime(1975, 05, 16),
                     //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
                     IsDeleted = false
