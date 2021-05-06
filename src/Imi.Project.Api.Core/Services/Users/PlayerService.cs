@@ -40,9 +40,13 @@ namespace Imi.Project.Api.Core.Services.Users
         }
         public async Task<PlayerResponseDto> UpdateAsync(PlayerRequestDto playerRequestDto)
         {
-            var playerEntity = _mapper.Map<Player>(playerRequestDto);
-            await _playerRepository.UpdateAsync(playerEntity);
-            return await GetByIdAsync(playerEntity.Id);
+            var updatePlayerEntity = _mapper.Map<Player>(playerRequestDto);
+            var comparingPlayerEntity = await _playerRepository.GetByIdAsync(updatePlayerEntity.Id);
+            comparingPlayerEntity.Name = updatePlayerEntity.Name == null ? comparingPlayerEntity.Name : updatePlayerEntity.Name;
+            comparingPlayerEntity.Dob = updatePlayerEntity.Dob == null ? comparingPlayerEntity.Dob : updatePlayerEntity.Dob;
+            comparingPlayerEntity.SecurityStamp = Guid.NewGuid().ToString("N");
+            await _playerRepository.UpdateAsync(comparingPlayerEntity);
+            return await GetByIdAsync(comparingPlayerEntity.Id);
         }
         public async Task DeleteAsync(Guid id)
         {

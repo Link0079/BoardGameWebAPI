@@ -19,13 +19,13 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
         }
         public override IQueryable<Player> GetAllAsync()
         {
-            return _userManager.Users.AsNoTracking().Include(p => p.GameScores)
+            return _userManager.Users.Include(p => p.GameScores)
                 .ThenInclude(gs => gs.PlayedGame).ThenInclude(pg=>pg.BoardGame)
                 .Where(p=>p.IsDeleted == false);
         }
         public IQueryable<Player> GetESOAsync() // Get Every Single One 
         {
-            return _userManager.Users.AsNoTracking().Include(p => p.GameScores)
+            return _userManager.Users.Include(p => p.GameScores)
                 .ThenInclude(gs => gs.PlayedGame).ThenInclude(pg => pg.BoardGame);
         }
         public override async Task<Player> GetByIdAsync(Guid id)
@@ -66,6 +66,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
                 await _userManager.AddToRoleAsync(newPlayer, "Player");
                 await _userManager.AddClaimAsync(newPlayer, new Claim("registration-date", DateTime.UtcNow.ToString("yyyy-MM-dd")));
                 await _userManager.AddClaimAsync(newPlayer, new Claim("Dob", entity.Dob.ToString("yyyy-MM-dd")));
+                await _userManager.AddClaimAsync(newPlayer, new Claim("FirstNameChar", $"{entity.Name.ToUpper().Take(1)}"));
             }
             return result;
         }
