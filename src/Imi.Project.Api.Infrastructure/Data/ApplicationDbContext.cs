@@ -132,6 +132,7 @@ namespace Imi.Project.Api.Infrastructure.Data
             BoardGameCategorySeeder.Seed(modelBuilder);
             ApplicationRoleSeeder.Seed(modelBuilder);
             ApplicationUserRoleSeeder.Seed(modelBuilder);
+            ApplicationUserClaimsSeeder.Seeding(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }

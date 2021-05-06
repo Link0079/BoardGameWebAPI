@@ -24,6 +24,15 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                 new IdentityUserRole<Guid> { RoleId = Guid.Parse("00000003-0000-0000-0000-000000000000"), UserId = Guid.Parse("00000000-0000-0000-0000-700000000000") },
             #endregion
 
+            #region ArtistEditors
+                new IdentityUserRole<Guid> { RoleId = Guid.Parse("00000004-0000-0000-0000-000000000000"), UserId = Guid.Parse("00000000-0000-0000-0000-280000000000") },
+                new IdentityUserRole<Guid> { RoleId = Guid.Parse("00000004-0000-0000-0000-000000000000"), UserId = Guid.Parse("00000000-0000-0000-0000-290000000000") },
+                new IdentityUserRole<Guid> { RoleId = Guid.Parse("00000004-0000-0000-0000-000000000000"), UserId = Guid.Parse("00000000-0000-0000-0000-310000000000") },
+                new IdentityUserRole<Guid> { RoleId = Guid.Parse("00000004-0000-0000-0000-000000000000"), UserId = Guid.Parse("00000000-0000-0000-0000-320000000000") },
+                new IdentityUserRole<Guid> { RoleId = Guid.Parse("00000004-0000-0000-0000-000000000000"), UserId = Guid.Parse("00000000-0000-0000-0000-330000000000") },
+                new IdentityUserRole<Guid> { RoleId = Guid.Parse("00000004-0000-0000-0000-000000000000"), UserId = Guid.Parse("00000000-0000-0000-0000-340000000000") },
+            #endregion
+
             #region Players
                 new IdentityUserRole<Guid> { RoleId = Guid.Parse("00000002-0000-0000-0000-000000000000"), UserId = Guid.Parse("00000000-0000-0000-0000-800000000000") },
                 new IdentityUserRole<Guid> { RoleId = Guid.Parse("00000002-0000-0000-0000-000000000000"), UserId = Guid.Parse("00000000-0000-0000-0000-900000000000") },
