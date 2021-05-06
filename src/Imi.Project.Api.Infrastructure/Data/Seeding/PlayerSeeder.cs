@@ -214,7 +214,55 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Dob = new DateTime(1986, 05, 16),
                     //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
                     IsDeleted = false
-                } 
+                },                
+                new Player
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-280000000000"),
+                    Name = "Stefaan Vercaemer",
+                    Dob = new DateTime(1975, 05, 16),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    IsDeleted = false
+                },
+                new Player
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-290000000000"),
+                    Name = "Maxim Lesy",
+                    Dob = new DateTime(1980, 05, 16),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    IsDeleted = false
+                },
+                new Player
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-310000000000"),
+                    Name = "Joachim François",
+                    Dob = new DateTime(1980, 05, 16),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    IsDeleted = false
+                },
+                new Player
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-320000000000"),
+                    Name = "Siegried Derdeyn",
+                    Dob = new DateTime(1980, 05, 16),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    IsDeleted = false
+                },
+                new Player
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-330000000000"),
+                    Name = "William Scholkkelé",
+                    Dob = new DateTime(1975, 05, 16),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    IsDeleted = false
+                },
+                new Player
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-340000000000"),
+                    Name = "Mileto Di Marco",
+                    Dob = new DateTime(1980, 05, 16),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    IsDeleted = false
+                }
             };
             #endregion
             //);
@@ -230,7 +278,8 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
             player.NormalizedEmail = player.Email.ToUpper();
             player.UserName = player.MakeUserNameFromPlayerName();
             player.NormalizedUserName = player.UserName.ToUpper();
-            player.EmailConfirmed = true;
+            player.EmailConfirmed = false;
+            player.SecurityStamp = Guid.NewGuid().ToString("N");
             modelBuilder.Entity<Player>().HasData(player);
         }
     }
