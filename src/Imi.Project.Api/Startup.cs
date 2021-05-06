@@ -52,6 +52,23 @@ namespace Imi.Project.Api
             services.AddDbContext<ApplicationDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("DatabaseConnection")));
             services.AddIdentity<Player, ApplicationRole>(options => options.SignIn.RequireConfirmedAccount = false)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            #region IdentityConfiguration
+            services.Configure<IdentityOptions>(opt =>
+                {
+                    opt.Password.RequiredLength = 8;
+                    opt.Password.RequireLowercase = true;
+                    opt.Password.RequireUppercase = true;
+                    opt.Password.RequireDigit = true;
+                    opt.Password.RequireNonAlphanumeric = false;
+                    opt.User.RequireUniqueEmail = true;
+                    opt.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(5);
+                    opt.Lockout.MaxFailedAccessAttempts = 3;
+
+                });
+            #endregion
+
+            #region DI Repositories
             // Repositories
             services.AddScoped<ICategoryRepository, CategoryRepository>();
             services.AddScoped<IArtistRepository, ArtistRepository>();
@@ -61,7 +78,9 @@ namespace Imi.Project.Api
             services.AddScoped<IBoardGameCategoryRepository, BoardGameCategoryRepository>();
             services.AddScoped<IBoardGameArtistRepository, BoardGameArtistRepository>();
             services.AddScoped<IGameScoreRepository, GameScoreRepository>();
-            services.AddScoped<UserManager<Player>>();
+            #endregion
+
+            #region DI Services
             // Services
             services.AddScoped<ICategoryService, CategoryService>();
             services.AddScoped<IArtistService, ArtistService>();
@@ -69,6 +88,9 @@ namespace Imi.Project.Api
             services.AddScoped<IPlayedGameService, PlayedGameService>();
             services.AddScoped<IBoardGameService, BoardGameService>();
             services.AddScoped<IStatisticsService, StatisticsService>();
+            #endregion
+
+            #region AutoMapper, AuthenticationOptions, Swagger
             // Shizzle to make programmer's and teacher's life easier
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
             services.AddAuthentication(options =>
@@ -89,7 +111,9 @@ namespace Imi.Project.Api
                     };
                 });
 
-            services.AddSwaggerGen(c => { c.SwaggerDoc("v1", new OpenApiInfo { Title = "BoardGame WebAPI", Version = "v1" });
+            services.AddSwaggerGen(c =>
+            {
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "BoardGame WebAPI", Version = "v1" });
                 var jwtSecurityScheme = new OpenApiSecurityScheme
                 {
                     Scheme = "Bearer",
@@ -112,7 +136,9 @@ namespace Imi.Project.Api
                         jwtSecurityScheme, Array.Empty<string>()
                     }
                 });
-            });
+            }); 
+            #endregion
+
             services.AddControllers();
         }
 

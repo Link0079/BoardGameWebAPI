@@ -1,12 +1,19 @@
 ﻿using Imi.Project.Api.Core.Dtos.Users;
+using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
 using Imi.Project.Api.Core.Interfaces.Services.Users;
 using Imi.Project.Common;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
+using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
+using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
+using System.Security.Claims;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Imi.Project.Api.Controllers
@@ -17,10 +24,15 @@ namespace Imi.Project.Api.Controllers
     {
         private readonly IPlayerService _playerService;
         private readonly IPlayedGameService _playedGameService;
-        public PlayersController(IPlayerService playerService, IPlayedGameService playedGameService)
+        private readonly SignInManager<Player> _signInManager;
+        private readonly IConfiguration _configuration;
+        public PlayersController(IPlayerService playerService, IPlayedGameService playedGameService, 
+            SignInManager<Player> signInManager, IConfiguration configuration)
         {
             _playerService = playerService;
             _playedGameService = playedGameService;
+            _signInManager = signInManager;
+            _configuration = configuration;
         }
         [HttpGet]
         public async Task<IActionResult> Get([FromQuery] string name)
@@ -82,6 +94,53 @@ namespace Imi.Project.Api.Controllers
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
             await _playerService.DeleteAsync(guid);
             return Ok();
+        }
+        [HttpPost("register")]
+        public async Task<IActionResult> Register([FromBody] RegisterPlayerRequestDto registration)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            IdentityResult result = await _playerService.AddRegisteredPlayerAsync(registration); 
+            if (!result.Succeeded)
+            {
+                foreach (var error in result.Errors)
+                    ModelState.AddModelError(error.Code, error.Description);
+                return BadRequest(ModelState);
+            }
+            return Ok();
+        }
+        [HttpPost("login")]
+        public async Task<IActionResult> Login([FromBody]LoginPlayerRequestDto login)
+        {
+            var result = await _signInManager.PasswordSignInAsync(login.Username, login.Password, isPersistent: false, lockoutOnFailure: false);
+            if (!result.Succeeded)
+                return Unauthorized();
+            var player = await _signInManager.UserManager.FindByNameAsync(login.Username);
+            string token = await GenerateJwtSecurityTokenAsync(player);
+            return Ok(new LoginPlayerResponseDto { Token = token });
+        }
+        private async Task<string> GenerateJwtSecurityTokenAsync(Player player)
+        {
+            var claims = new List<Claim>();
+            var userClaims = await _signInManager.UserManager.GetClaimsAsync(player);
+            claims.AddRange(userClaims);
+
+            var roleClaims = await _signInManager.UserManager.GetRolesAsync(player);
+            foreach (var roleClaim in roleClaims)
+                claims.Add(new Claim(ClaimTypes.Role, roleClaim));
+            var expirationDays = _configuration.GetValue<int>("JWTConfiguration:TokenExpirationDays");
+            var signingKey = Encoding.UTF8.GetBytes(_configuration.GetValue<string>("JWTConfiguration:SigningKey"));
+            var token = new JwtSecurityToken
+            (
+                issuer: _configuration.GetValue<string>("JWTConfiguration:Issuer"),
+                audience: _configuration.GetValue<string>("JWTConfiguration:Audience"),
+                claims: claims,
+                expires: DateTime.UtcNow.Add(TimeSpan.FromDays(expirationDays)),
+                notBefore: DateTime.UtcNow,
+                signingCredentials: new SigningCredentials(new SymmetricSecurityKey(signingKey), SecurityAlgorithms.HmacSha256)                
+            );
+            var serializedToken = new JwtSecurityTokenHandler().WriteToken(token);
+            return serializedToken;
         }
     }
 }

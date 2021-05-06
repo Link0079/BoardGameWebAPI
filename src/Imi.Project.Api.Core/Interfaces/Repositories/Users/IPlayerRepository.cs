@@ -1,5 +1,6 @@
 ﻿using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Repositories.Base;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,5 +16,6 @@ namespace Imi.Project.Api.Core.Interfaces.Repositories.Users
         Task<IEnumerable<Player>> GetTopPlayerWithLongestTotalPlaytimeAsync(int totalItems);
         Task<IEnumerable<Player>> TopPlayerWithMostPlayedGamesAsync(int totalItems);
         Task<IEnumerable<Player>> TopFirstPlayersAsync(int totalItems);
+        Task<IdentityResult> AddRegisteredPlayerAsync(Player entity, string password);
     }
 }
