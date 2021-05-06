@@ -31,9 +31,9 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                 },
                 new ApplicationRole
                 {
-                    Id = Guid.Parse("00000003-0000-0000-0000-000000000000"),
-                    Name = "BoardGameEditor",
-                    NormalizedName = "BOARDGAMEEDITOR"
+                    Id = Guid.Parse("00000004-0000-0000-0000-000000000000"),
+                    Name = "ArtistEditor",
+                    NormalizedName = "ARTISTEDITOR"
                 }
             );
         }
