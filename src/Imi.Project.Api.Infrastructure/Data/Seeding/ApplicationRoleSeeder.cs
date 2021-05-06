@@ -28,6 +28,12 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Id = Guid.Parse("00000003-0000-0000-0000-000000000000"),
                     Name = "BoardGameEditor",
                     NormalizedName = "BOARDGAMEEDITOR"
+                },
+                new ApplicationRole
+                {
+                    Id = Guid.Parse("00000003-0000-0000-0000-000000000000"),
+                    Name = "BoardGameEditor",
+                    NormalizedName = "BOARDGAMEEDITOR"
                 }
             );
         }
