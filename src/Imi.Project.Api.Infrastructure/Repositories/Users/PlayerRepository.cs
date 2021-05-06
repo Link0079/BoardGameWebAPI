@@ -65,8 +65,8 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
                 var newPlayer = await _userManager.FindByEmailAsync(entity.Email);
                 await _userManager.AddToRoleAsync(newPlayer, "Player");
                 await _userManager.AddClaimAsync(newPlayer, new Claim("registration-date", DateTime.UtcNow.ToString("yyyy-MM-dd")));
-                await _userManager.AddClaimAsync(newPlayer, new Claim("Dob", entity.Dob.ToString("yyyy-MM-dd")));
-                await _userManager.AddClaimAsync(newPlayer, new Claim("FirstNameChar", $"{entity.Name.ToUpper().Take(1)}"));
+                await _userManager.AddClaimAsync(newPlayer, new Claim("dob", entity.Dob.ToString("yyyy-MM-dd")));
+                await _userManager.AddClaimAsync(newPlayer, new Claim("firstnamechar", $"{entity.Name.ToUpper().Take(1)}"));
             }
             return result;
         }
