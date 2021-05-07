@@ -1,8 +1,11 @@
 ﻿using Imi.Project.Api.Core.Dtos.Games;
+using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Services;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
 using Imi.Project.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,14 +16,18 @@ namespace Imi.Project.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "OnlyUserAccess")]
     public class PlayedGamesController : ControllerBase
     {
         private readonly IPlayedGameService _playedGameService;
-        public PlayedGamesController(IPlayedGameService playedGameService)
+        private readonly SignInManager<Player> _signInManager;
+        public PlayedGamesController(IPlayedGameService playedGameService, SignInManager<Player> signInManager)
         {
             _playedGameService = playedGameService;
+            _signInManager = signInManager;
         }
         [HttpGet]
+        [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> Get()
         {
             var playedGames = await _playedGameService.ListAllAsync();

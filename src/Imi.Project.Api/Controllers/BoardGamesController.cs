@@ -2,6 +2,7 @@
 using Imi.Project.Api.Core.Interfaces.Services;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
 using Imi.Project.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +14,7 @@ namespace Imi.Project.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class BoardGamesController : ControllerBase
     {
         private readonly IBoardGameService _boardGameService;
@@ -21,6 +23,7 @@ namespace Imi.Project.Api.Controllers
             _boardGameService = boardGameService;
         }
         [HttpGet]
+        [AllowAnonymous]
         public async Task<IActionResult> Get([FromQuery] string title)
         {
             if (!String.IsNullOrWhiteSpace(title))
@@ -38,6 +41,7 @@ namespace Imi.Project.Api.Controllers
             }
         }
         [HttpGet("{guid}")]
+        [AllowAnonymous]
         public async Task<IActionResult> Get(Guid guid)
         {
             var boardGame = await _boardGameService.GetByIdAsync(guid);
@@ -46,6 +50,7 @@ namespace Imi.Project.Api.Controllers
             return Ok(boardGame);
         }
         [HttpPost]
+        [Authorize(Policy = "BoardGameEditors")]
         public async Task<IActionResult> Post(BoardGameRequestDto boardGameRequestDto)
         {
             if (!ModelState.IsValid)
@@ -54,6 +59,7 @@ namespace Imi.Project.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = boarGameResponseDto.Id }, boarGameResponseDto);
         }
         [HttpPut]
+        [Authorize(Policy = "BoardGameEditors")]
         public async Task<IActionResult> Put(BoardGameRequestDto boardGameRequestDto)
         {
             if (!ModelState.IsValid)
@@ -62,6 +68,7 @@ namespace Imi.Project.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = boarGameResponseDto.Id }, boarGameResponseDto);
         }
         [HttpDelete("{guid}")]
+        [Authorize(Policy = "BoardGameEditors")]
         public async Task<IActionResult> Delete(Guid guid)
         {
             var boardGameEntity = await _boardGameService.GetByIdAsync(guid);

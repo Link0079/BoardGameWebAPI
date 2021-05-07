@@ -3,6 +3,7 @@ using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
 using Imi.Project.Api.Core.Interfaces.Services.Users;
 using Imi.Project.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -20,6 +21,7 @@ namespace Imi.Project.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "OnlyUserAccess")]
     public class PlayersController : ControllerBase
     {
         private readonly IPlayerService _playerService;
@@ -71,6 +73,7 @@ namespace Imi.Project.Api.Controllers
             return Ok(playedGames);
         }
         [HttpPost]
+        [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> Post(PlayerRequestDto playerRequestDto)
         {
             if (!ModelState.IsValid)
@@ -87,6 +90,7 @@ namespace Imi.Project.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = playerResponseDto.Id }, playerResponseDto);
         }
         [HttpDelete("{guid}")]
+        [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> Delete(Guid guid)
         {
             var playerEntity = await _playerService.GetByIdAsync(guid);
@@ -96,6 +100,7 @@ namespace Imi.Project.Api.Controllers
             return Ok();
         }
         [HttpPost("register")]
+        [AllowAnonymous]
         public async Task<IActionResult> Register([FromBody] RegisterPlayerRequestDto registration)
         {
             if (!ModelState.IsValid)
@@ -110,6 +115,7 @@ namespace Imi.Project.Api.Controllers
             return Ok();
         }
         [HttpPost("login")]
+        [AllowAnonymous]
         public async Task<IActionResult> Login([FromBody]LoginPlayerRequestDto login)
         {
             var result = await _signInManager.PasswordSignInAsync(login.Username, login.Password, isPersistent: false, lockoutOnFailure: false);

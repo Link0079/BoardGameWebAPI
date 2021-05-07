@@ -2,6 +2,7 @@
 using Imi.Project.Api.Core.Interfaces.Services;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
 using Imi.Project.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +14,7 @@ namespace Imi.Project.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "OnlyUserAccess")]
     public class ArtistsController : ControllerBase
     {
         private readonly IArtistService _artistService;
@@ -59,6 +61,7 @@ namespace Imi.Project.Api.Controllers
             return Ok(boardgames);
         }
         [HttpPost]
+        [Authorize(Policy = "ArtistEditors")]
         public async Task<IActionResult> Post(ArtistRequestDto artistRequestDto)
         {
             if (!ModelState.IsValid)
@@ -67,6 +70,7 @@ namespace Imi.Project.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = artistResponseDto.Id }, artistResponseDto);
         }
         [HttpPut]
+        [Authorize(Policy = "ArtistEditors")]
         public async Task<IActionResult> Put(ArtistRequestDto artistRequestDto)
         {
             if (!ModelState.IsValid)
@@ -75,6 +79,7 @@ namespace Imi.Project.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = artistResponseDto.Id }, artistResponseDto);
         }
         [HttpDelete("{guid}")]
+        [Authorize(Policy = "ArtistEditors")]
         public async Task<IActionResult> Delete(Guid guid)
         {
             var artistEntity = await _artistService.GetByIdAsync(guid);

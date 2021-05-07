@@ -30,6 +30,7 @@ using Microsoft.IdentityModel.Tokens;
 using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -110,7 +111,24 @@ namespace Imi.Project.Api
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["JWTConfiguration:SigningKey"]))
                     };
                 });
-
+            //services.AddAuthorization(opt => opt.AddPolicy("AccesFor8And5Users", policy => { policy.RequireClaim("firstnamechar", new string[] { "B", "S" }); }));
+            services.AddAuthorization(options => { 
+                options.AddPolicy("AccesFor8And5Users", policy => { policy.RequireClaim("firstnamechar", new string[] { "B", "S", "b", "s" }); }); 
+                options.AddPolicy("Administrators", policy => policy.RequireRole(new string[] { "Admin" }));
+                options.AddPolicy("BoardGameEditors", policy => policy.RequireRole(new string[] { "BoardGameEditor", "Admin" }));
+                options.AddPolicy("ArtistEditors", policy => { policy.RequireRole(new string[] { "ArtistEditor", "Admin" }); });
+                options.AddPolicy("OnlyUserAccess", policy => { policy.RequireRole(new string[] { "Player", "ArtistEditor", "BoardGameEditor", "Admin" }); });
+                options.AddPolicy("OlderThen50", policy =>
+                {
+                    policy.RequireAssertion(context => 
+                    {
+                        var userClaimValue = context.User.Claims.SingleOrDefault(c=>c.Type == "dob")?.Value;
+                        if (DateTime.TryParseExact(userClaimValue, "yyyy-MM-dd", CultureInfo.InvariantCulture, DateTimeStyles.AdjustToUniversal, out var dob))
+                            return dob.AddYears(50) < DateTime.UtcNow;
+                        return false;
+                    });
+                });
+            });
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "BoardGame WebAPI", Version = "v1" });
@@ -121,7 +139,7 @@ namespace Imi.Project.Api
                     Name = "JWT Authentication",
                     In = ParameterLocation.Header,
                     Type = SecuritySchemeType.Http,
-                    Description = "Put **_ONLY_** your JWT Bearer token on textbox below!",
+                    Description = "Put **_ONLY_** your JWT Bearer token on textbox below! <br>Example: 12345abcdef",
 
                     Reference = new OpenApiReference
                     {

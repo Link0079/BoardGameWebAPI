@@ -2,6 +2,7 @@
 using Imi.Project.Api.Core.Interfaces.Services;
 using Imi.Project.Api.Core.Interfaces.Services.Games;
 using Imi.Project.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -13,6 +14,7 @@ namespace Imi.Project.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize(Policy = "OnlyUserAccess")]
     public class CategoriesController : ControllerBase
     {
         private readonly ICategoryService _categoryService;
@@ -59,6 +61,7 @@ namespace Imi.Project.Api.Controllers
             return Ok(boardgames);
         }
         [HttpPost]
+        [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> Post(CategoryRequestDto categoryRequestDto)
         {
             if (!ModelState.IsValid)
@@ -67,6 +70,7 @@ namespace Imi.Project.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = categoryResponseDto.Id }, categoryResponseDto);
         }
         [HttpPut]
+        [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> Put(CategoryRequestDto categoryRequestDto)
         {
             if (!ModelState.IsValid)
@@ -75,6 +79,7 @@ namespace Imi.Project.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = categoryResponseDto.Id }, categoryResponseDto);
         }
         [HttpDelete("{guid}")]
+        [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> Delete(Guid guid)
         {
             var categoryEntity = await _categoryService.GetByIdAsync(guid);
