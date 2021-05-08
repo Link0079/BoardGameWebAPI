@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Imi.Project.Api.Core.Dtos;
 using Imi.Project.Api.Core.Dtos.Games;
+using Imi.Project.Api.Core.Dtos.IdentityManagment;
 using Imi.Project.Api.Core.Dtos.Users;
 using Imi.Project.Api.Core.Entities;
 using Imi.Project.Api.Core.Entities.Games;
@@ -110,6 +111,10 @@ namespace Imi.Project.Api.Core.Mapping
             CreateMap<GameScoreRequestDto, GameScore>()
                 .ForMember(dest => dest.PlayerId, opt => opt.MapFrom(src => src.PlayerId))
                 .ForMember(dest => dest.Score, opt => opt.MapFrom(src => src.Score));
+            #endregion
+            #region ApplicationRoles
+            CreateMap<ApplicationRole, RoleResponseDto>();
+            CreateMap<RoleRequestDto, ApplicationRole>();
             #endregion
             // expansion for Country and Publisher
             #region Country

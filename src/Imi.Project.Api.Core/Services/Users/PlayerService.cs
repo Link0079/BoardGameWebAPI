@@ -75,16 +75,13 @@ namespace Imi.Project.Api.Core.Services.Users
             var result = await _playerRepository.AddRegisteredPlayerAsync(playerEntity, registerPlayerRequestDto.Password);
             return result;
         }
-
         public async Task<PlayerResponseDto> UpdateAsync(Guid guid, bool isActive)
         {
-            var comparingPlayerEntity = await _playerRepository.GetByIdESOAsync(guid);
-
-            comparingPlayerEntity.SecurityStamp = Guid.NewGuid().ToString("N");
-            comparingPlayerEntity.IsDeleted = isActive;
-
-            await _playerRepository.UpdateAsync(comparingPlayerEntity);
-            return await GetByIdAsync(comparingPlayerEntity.Id);
+            var updatePlayerEntity = await _playerRepository.GetByIdESOAsync(guid);
+            updatePlayerEntity.SecurityStamp = Guid.NewGuid().ToString("N");
+            updatePlayerEntity.IsDeleted = isActive;
+            await _playerRepository.UpdateAsync(updatePlayerEntity);
+            return await GetByIdAsync(updatePlayerEntity.Id);
         }
     }
 }
