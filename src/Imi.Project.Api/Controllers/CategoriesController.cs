@@ -29,7 +29,7 @@ namespace Imi.Project.Api.Controllers
         {
             if (!String.IsNullOrWhiteSpace(name))
             {
-                var categories = await _categoryService.SearchByNameAsycn(name);
+                var categories = await _categoryService.SearchByNameAsync(name);
                 if (categories.Any())
                     return Ok(categories);
                 else
