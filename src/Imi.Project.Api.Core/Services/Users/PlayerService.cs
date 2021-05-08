@@ -40,11 +40,22 @@ namespace Imi.Project.Api.Core.Services.Users
         }
         public async Task<PlayerResponseDto> UpdateAsync(PlayerRequestDto playerRequestDto)
         {
-            var updatePlayerEntity = _mapper.Map<Player>(playerRequestDto);
-            var comparingPlayerEntity = await _playerRepository.GetByIdAsync(updatePlayerEntity.Id);
-            comparingPlayerEntity.Name = updatePlayerEntity.Name == null ? comparingPlayerEntity.Name : updatePlayerEntity.Name;
-            comparingPlayerEntity.Dob = updatePlayerEntity.Dob == null ? comparingPlayerEntity.Dob : updatePlayerEntity.Dob;
+            //var updatePlayerEntity = _mapper.Map<Player>(playerRequestDto);
+            var comparingPlayerEntity = await _playerRepository.GetByIdAsync(playerRequestDto.Id);
+
+            comparingPlayerEntity.Name = playerRequestDto.Name == null ? comparingPlayerEntity.Name : playerRequestDto.Name;    // Not really necessary to check on null
+            comparingPlayerEntity.Dob = playerRequestDto.Dob == null ? comparingPlayerEntity.Dob : playerRequestDto.Dob;        // Not really necessary to check on null
             comparingPlayerEntity.SecurityStamp = Guid.NewGuid().ToString("N");
+            if (!string.IsNullOrWhiteSpace(playerRequestDto.Email))
+            {
+                comparingPlayerEntity.Email = playerRequestDto.Email;
+                comparingPlayerEntity.NormalizedEmail = playerRequestDto.Email.ToUpper();
+            }
+            if (!string.IsNullOrWhiteSpace(playerRequestDto.Password))
+            {
+                var passwordHasher = new PasswordHasher<Player>();
+                comparingPlayerEntity.PasswordHash = passwordHasher.HashPassword(comparingPlayerEntity, playerRequestDto.Password);
+            }
             await _playerRepository.UpdateAsync(comparingPlayerEntity);
             return await GetByIdAsync(comparingPlayerEntity.Id);
         }
@@ -63,6 +74,14 @@ namespace Imi.Project.Api.Core.Services.Users
             var playerEntity = _mapper.Map<Player>(registerPlayerRequestDto);
             var result = await _playerRepository.AddRegisteredPlayerAsync(playerEntity, registerPlayerRequestDto.Password);
             return result;
+        }
+        public async Task<PlayerResponseDto> UpdateAsync(Guid guid, bool isActive)
+        {
+            var updatePlayerEntity = await _playerRepository.GetByIdESOAsync(guid);
+            updatePlayerEntity.SecurityStamp = Guid.NewGuid().ToString("N");
+            updatePlayerEntity.IsDeleted = isActive;
+            await _playerRepository.UpdateAsync(updatePlayerEntity);
+            return await GetByIdAsync(updatePlayerEntity.Id);
         }
     }
 }

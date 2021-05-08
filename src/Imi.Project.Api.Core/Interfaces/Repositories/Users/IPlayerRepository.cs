@@ -13,6 +13,7 @@ namespace Imi.Project.Api.Core.Interfaces.Repositories.Users
     {
         Task<IEnumerable<Player>> SearchByNameAsync(string name);
         IQueryable<Player> GetESOAsync(); // Get"EverySingleOne"Async
+        Task<Player> GetByIdESOAsync(Guid id);
         Task<IEnumerable<Player>> GetTopPlayerWithLongestTotalPlaytimeAsync(int totalItems);
         Task<IEnumerable<Player>> TopPlayerWithMostPlayedGamesAsync(int totalItems);
         Task<IEnumerable<Player>> TopFirstPlayersAsync(int totalItems);

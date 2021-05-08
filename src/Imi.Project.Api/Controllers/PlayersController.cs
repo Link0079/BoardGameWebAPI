@@ -28,7 +28,7 @@ namespace Imi.Project.Api.Controllers
         private readonly IPlayedGameService _playedGameService;
         private readonly SignInManager<Player> _signInManager;
         private readonly IConfiguration _configuration;
-        public PlayersController(IPlayerService playerService, IPlayedGameService playedGameService, 
+        public PlayersController(IPlayerService playerService, IPlayedGameService playedGameService,
             SignInManager<Player> signInManager, IConfiguration configuration)
         {
             _playerService = playerService;
@@ -82,12 +82,21 @@ namespace Imi.Project.Api.Controllers
             return CreatedAtAction(nameof(Get), new { id = playerResponseDto.Id }, playerResponseDto);
         }
         [HttpPut]
-        public async Task<IActionResult> Put(PlayerRequestDto playerRequestDto)
+        public async Task<IActionResult> UpdateByPlayer(PlayerRequestDto playerRequestDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
             var playerResponseDto = await _playerService.UpdateAsync(playerRequestDto);
             return CreatedAtAction(nameof(Get), new { id = playerResponseDto.Id }, playerResponseDto);
+        }
+        [HttpPut("{guid}/IsActive")]
+        [Authorize(Policy = "Administrators")]
+        public async Task<IActionResult> Put(Guid guid, [FromQuery] bool isActive)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            await _playerService.UpdateAsync(guid, isActive);
+            return Ok(string.Format(CustomExceptionMessages.UpdatePlayerInfo, guid));
         }
         [HttpDelete("{guid}")]
         [Authorize(Policy = "Administrators")]

@@ -23,6 +23,7 @@ namespace Imi.Project.Common
         public const string RequiredPlayerEmail = "Please enter a valid email.";
         public const string RequiredPlayerPassword = "Please enter a password.";
         public const string RequiredPlayerConfirmPassword = "The password and confirmation password do not match.";
+        public const string RequierdPlayerDob = "Please enter a date of birth.";
         #endregion
 
         #region Not Found Messages
@@ -45,7 +46,28 @@ namespace Imi.Project.Common
         public const string NotFoundPlayerPlayedGames = "Player wit id '{0}' has not played any games.";
         // Statistics
         public const string NotFoundStatisticsTotalItems = "'{0}' is not a valid number, please enter a number.";
+        //Roles
+        public const string NotFoundRoleId = "Role with id '{0}' does not exist";
+        public const string NotFoundRoleName = "Ther were no roles found that contain '{0}' in their name.";
         #endregion
 
+        #region Update
+        // Player
+        public const string UpdatePlayerInfo = "Player with id '{0}' has been updated."; 
+        #endregion
+
+        #region Conflicts
+        // Roles
+        public const string ConfiltRoleNameExists = "Role with name '{0}' does already exists.";
+        #endregion
+
+        #region Deleted
+        public const string DeleteRoleId = "Role with id {0} has been deleted.";
+        public const string DeletePlayerId = "Player with id {0} has been deleted.";
+        public const string DeleteBoardGameId = "Boardgame with id {0} has been deleted.";
+        public const string DeleteCategoryId = "Category with id {0} has been deleted.";
+        public const string DeleteArtistId = "Artist with id {0} has been deleted.";
+        public const string DeletePlayedGameId = "Playedgame with id {0} has been deleted.";
+        #endregion
     }
 }
