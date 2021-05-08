@@ -23,8 +23,9 @@ namespace Imi.Project.Api.Core.Dtos.Users
         public string Password { get; set; }
         [Required]
         [Compare("Password", ErrorMessage = CustomExceptionMessages.RequiredPlayerConfirmPassword)]
+        [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
-        [Required]
+        [Required(ErrorMessage = CustomExceptionMessages.RequierdPlayerDob)]
         [DataType(DataType.Date)]
         public DateTime Dob { get; set; }
     }

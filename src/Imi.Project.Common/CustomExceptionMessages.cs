@@ -23,6 +23,7 @@ namespace Imi.Project.Common
         public const string RequiredPlayerEmail = "Please enter a valid email.";
         public const string RequiredPlayerPassword = "Please enter a password.";
         public const string RequiredPlayerConfirmPassword = "The password and confirmation password do not match.";
+        public const string RequierdPlayerDob = "Please enter a date of birth.";
         #endregion
 
         #region Not Found Messages

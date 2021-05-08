@@ -42,9 +42,20 @@ namespace Imi.Project.Api.Core.Services.Users
         {
             var updatePlayerEntity = _mapper.Map<Player>(playerRequestDto);
             var comparingPlayerEntity = await _playerRepository.GetByIdAsync(updatePlayerEntity.Id);
-            comparingPlayerEntity.Name = updatePlayerEntity.Name == null ? comparingPlayerEntity.Name : updatePlayerEntity.Name;
-            comparingPlayerEntity.Dob = updatePlayerEntity.Dob == null ? comparingPlayerEntity.Dob : updatePlayerEntity.Dob;
+
+            comparingPlayerEntity.Name = playerRequestDto.Name == null ? comparingPlayerEntity.Name : playerRequestDto.Name;    // Not really necessary to check on null
+            comparingPlayerEntity.Dob = playerRequestDto.Dob == null ? comparingPlayerEntity.Dob : playerRequestDto.Dob;        // Not really necessary to check on null
             comparingPlayerEntity.SecurityStamp = Guid.NewGuid().ToString("N");
+            if (!string.IsNullOrWhiteSpace(updatePlayerEntity.Email))
+            {
+                comparingPlayerEntity.Email = playerRequestDto.Email;
+                comparingPlayerEntity.NormalizedEmail = playerRequestDto.Email.ToUpper();
+            }
+            if (!string.IsNullOrWhiteSpace(playerRequestDto.Password))
+            {
+                var passwordHasher = new PasswordHasher<Player>();
+                comparingPlayerEntity.PasswordHash = passwordHasher.HashPassword(comparingPlayerEntity, playerRequestDto.Password);
+            }
             await _playerRepository.UpdateAsync(comparingPlayerEntity);
             return await GetByIdAsync(comparingPlayerEntity.Id);
         }
