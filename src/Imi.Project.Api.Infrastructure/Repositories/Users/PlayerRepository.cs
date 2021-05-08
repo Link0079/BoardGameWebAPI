@@ -32,6 +32,10 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
         {
             return await GetAllAsync().SingleOrDefaultAsync(p => p.Id.Equals(id));
         }
+        public async Task<Player> GetByIdESOAsync(Guid id)
+        {
+            return await GetESOAsync().SingleOrDefaultAsync(p => p.Id.Equals(id));
+        }
         public override async Task<Player> DeleteAsync(Player entity)
         {
             entity.IsDeleted = true;

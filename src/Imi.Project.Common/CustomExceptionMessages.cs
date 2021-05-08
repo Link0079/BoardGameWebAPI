@@ -48,5 +48,6 @@ namespace Imi.Project.Common
         public const string NotFoundStatisticsTotalItems = "'{0}' is not a valid number, please enter a number.";
         #endregion
 
+        public const string UpdatePlayerInfo = "Player with id '{0}' has been updated.";
     }
 }

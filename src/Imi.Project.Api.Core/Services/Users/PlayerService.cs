@@ -40,13 +40,13 @@ namespace Imi.Project.Api.Core.Services.Users
         }
         public async Task<PlayerResponseDto> UpdateAsync(PlayerRequestDto playerRequestDto)
         {
-            var updatePlayerEntity = _mapper.Map<Player>(playerRequestDto);
-            var comparingPlayerEntity = await _playerRepository.GetByIdAsync(updatePlayerEntity.Id);
+            //var updatePlayerEntity = _mapper.Map<Player>(playerRequestDto);
+            var comparingPlayerEntity = await _playerRepository.GetByIdAsync(playerRequestDto.Id);
 
             comparingPlayerEntity.Name = playerRequestDto.Name == null ? comparingPlayerEntity.Name : playerRequestDto.Name;    // Not really necessary to check on null
             comparingPlayerEntity.Dob = playerRequestDto.Dob == null ? comparingPlayerEntity.Dob : playerRequestDto.Dob;        // Not really necessary to check on null
             comparingPlayerEntity.SecurityStamp = Guid.NewGuid().ToString("N");
-            if (!string.IsNullOrWhiteSpace(updatePlayerEntity.Email))
+            if (!string.IsNullOrWhiteSpace(playerRequestDto.Email))
             {
                 comparingPlayerEntity.Email = playerRequestDto.Email;
                 comparingPlayerEntity.NormalizedEmail = playerRequestDto.Email.ToUpper();
@@ -74,6 +74,17 @@ namespace Imi.Project.Api.Core.Services.Users
             var playerEntity = _mapper.Map<Player>(registerPlayerRequestDto);
             var result = await _playerRepository.AddRegisteredPlayerAsync(playerEntity, registerPlayerRequestDto.Password);
             return result;
+        }
+
+        public async Task<PlayerResponseDto> UpdateAsync(Guid guid, bool isActive)
+        {
+            var comparingPlayerEntity = await _playerRepository.GetByIdESOAsync(guid);
+
+            comparingPlayerEntity.SecurityStamp = Guid.NewGuid().ToString("N");
+            comparingPlayerEntity.IsDeleted = isActive;
+
+            await _playerRepository.UpdateAsync(comparingPlayerEntity);
+            return await GetByIdAsync(comparingPlayerEntity.Id);
         }
     }
 }

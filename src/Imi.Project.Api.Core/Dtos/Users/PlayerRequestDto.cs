@@ -15,15 +15,16 @@ namespace Imi.Project.Api.Core.Dtos.Users
         [Required(ErrorMessage = CustomExceptionMessages.RequierdPlayerDob)]
         [DataType(DataType.Date)]
         public DateTime Dob { get; set; }
+        [Required(ErrorMessage = CustomExceptionMessages.RequiredPlayerEmail)]
         [DataType(DataType.EmailAddress)]
         public string Email { get; set; }
+        [Required(ErrorMessage = CustomExceptionMessages.RequiredPlayerPassword)]
         [StringLength(100, MinimumLength = 8)]
         [DataType(DataType.Password)]
         public string Password { get; set; }
+        [Required(ErrorMessage = CustomExceptionMessages.RequiredPlayerConfirmPassword)]
         [Compare("Password", ErrorMessage = CustomExceptionMessages.RequiredPlayerConfirmPassword)]
         [DataType(DataType.Password)]
         public string ConfirmPassword { get; set; }
-
-        //public bool IsDeleted { get; set; }
     }
 }
