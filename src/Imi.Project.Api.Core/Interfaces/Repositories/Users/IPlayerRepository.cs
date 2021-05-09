@@ -19,5 +19,7 @@ namespace Imi.Project.Api.Core.Interfaces.Repositories.Users
         Task<IEnumerable<Player>> TopFirstPlayersAsync(int totalItems);
         Task<IdentityResult> AddRegisteredPlayerAsync(Player entity, string password);
         Task<IEnumerable<string>> GetRolesByPlayer(Player entity);
+        Task<IdentityResult> DeletePlayerFromRoles(Player entity, IEnumerable<string> roles);
+        Task<IdentityResult> AddPlayerToRole(Player entity, ApplicationRole role);
     }
 }

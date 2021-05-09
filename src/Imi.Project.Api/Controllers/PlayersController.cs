@@ -97,7 +97,7 @@ namespace Imi.Project.Api.Controllers
             if (playerEntity == null)
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
             await _playerService.DeleteAsync(guid);
-            return Ok();
+            return Ok(string.Format(CustomExceptionMessages.DeletePlayerId, guid));
         }
         [HttpPut("{guid}/IsActive")]
         [Authorize(Policy = "Administrators")]
@@ -145,6 +145,24 @@ namespace Imi.Project.Api.Controllers
             if (!roles.Any())
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerRoles, guid));
             return Ok(roles);
+        }
+        [HttpDelete("{guid}/Roles")]
+        [Authorize(Policy = "Administrators")]
+        public async Task<IActionResult> DeletePlayerFromRole(Guid guid)
+        {
+            var result = await _playerService.DeletePlayerFromRoles(guid);
+            if (!result.Succeeded)
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
+            return Ok(string.Format(CustomExceptionMessages.DeleteRoleFromPlayer, guid));
+        }
+        [HttpPost("{guid}/Roles/{roleId}")]
+        [Authorize(Policy = "Administrators")]
+        public async Task<IActionResult> AddPlayerToRole(Guid guid, Guid roleId)
+        {
+            var result = await _playerService.AddPlayerToRole(guid, roleId);
+            if (!result.Succeeded)
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
+            return Ok(string.Format(CustomExceptionMessages.AddPlayerRole, guid));
         }
         private async Task<string> GenerateJwtSecurityTokenAsync(Player player)
         {

@@ -78,5 +78,13 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
         {
             return await _userManager.GetRolesAsync(entity);
         }
+        public async Task<IdentityResult> DeletePlayerFromRoles(Player entity, IEnumerable<string> roles)
+        {
+            return await _userManager.RemoveFromRolesAsync(entity, roles);
+        }
+        public async Task<IdentityResult> AddPlayerToRole(Player entity, ApplicationRole role)
+        {
+            return await _userManager.AddToRoleAsync(entity, role.Name);
+        }
     }
 }

@@ -52,14 +52,21 @@ namespace Imi.Project.Common
         public const string NotFoundRoleName = "There were no roles found that contain '{0}' in their name.";
         #endregion
 
-        #region Update
-        // Player
-        public const string UpdatePlayerInfo = "Player with id '{0}' has been updated."; 
-        #endregion
 
         #region Conflicts
         // Roles
         public const string ConfiltRoleNameExists = "Role with name '{0}' does already exists.";
+        #endregion
+
+        #region Add
+        // Player
+        public const string AddPlayerRole = "Role has been add to player with id '{0}'.";
+        #endregion
+
+        #region Update
+        // Player
+        public const string UpdatePlayerInfo = "Player with id '{0}' has been updated.";
+        public const string UpdatePlayerRole = "Role from player with id '{0}' has been updated.";
         #endregion
 
         #region Deleted
@@ -69,6 +76,8 @@ namespace Imi.Project.Common
         public const string DeleteCategoryId = "Category with id {0} has been deleted.";
         public const string DeleteArtistId = "Artist with id {0} has been deleted.";
         public const string DeletePlayedGameId = "Playedgame with id {0} has been deleted.";
+        public const string DeleteRoleFromPlayer = "Role from player with id '{0}' has been deleted";
         #endregion
+
     }
 }

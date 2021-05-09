@@ -16,10 +16,13 @@ namespace Imi.Project.Api.Core.Services.Users
     public class PlayerService : IPlayerService
     {
         private readonly IPlayerRepository _playerRepository;
+        private readonly RoleManager<ApplicationRole> _roleManager;
         private readonly IMapper _mapper;
-        public PlayerService(IPlayerRepository playerRepository, IMapper mapper)
+        public PlayerService(IPlayerRepository playerRepository,
+            RoleManager<ApplicationRole> roleManager, IMapper mapper)
         {
             _playerRepository = playerRepository;
+            _roleManager = roleManager;
             _mapper = mapper;
         }
         public async Task<PlayerResponseDto> GetByIdAsync(Guid id)
@@ -97,6 +100,18 @@ namespace Imi.Project.Api.Core.Services.Users
             }
             var dto = _mapper.Map<IEnumerable<RoleResponseDto>>(result);
             return dto;
+        }
+        public async Task<IdentityResult> DeletePlayerFromRoles(Guid playerId)
+        {
+            var playerEntity = await _playerRepository.GetByIdAsync(playerId);
+            var roles = await _playerRepository.GetRolesByPlayer(playerEntity);
+            return await _playerRepository.DeletePlayerFromRoles(playerEntity, roles);
+        }
+        public async Task<IdentityResult> AddPlayerToRole(Guid playerId, Guid roleId)
+        {
+            var playerEntity = await _playerRepository.GetByIdAsync(playerId);
+            var role = await _roleManager.FindByIdAsync(roleId.ToString());
+            return await _playerRepository.AddPlayerToRole(playerEntity, role);
         }
     }
 }

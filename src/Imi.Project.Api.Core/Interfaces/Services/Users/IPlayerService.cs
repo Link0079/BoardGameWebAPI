@@ -20,5 +20,7 @@ namespace Imi.Project.Api.Core.Interfaces.Services.Users
         Task<PlayerResponseDto> UpdateAsync(Guid guid, bool isActive);
         Task<IdentityResult> AddRegisteredPlayerAsync(RegisterPlayerRequestDto registerPlayerRequestDto);
         Task<IEnumerable<RoleResponseDto>> GetRolesByPlayerId(Guid guid);
+        Task<IdentityResult> DeletePlayerFromRoles(Guid playerId);
+        Task<IdentityResult> AddPlayerToRole(Guid playerId, Guid roleId);
     }
 }
