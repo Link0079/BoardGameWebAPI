@@ -18,5 +18,6 @@ namespace Imi.Project.Api.Core.Interfaces.Repositories.Users
         Task<IEnumerable<Player>> TopPlayerWithMostPlayedGamesAsync(int totalItems);
         Task<IEnumerable<Player>> TopFirstPlayersAsync(int totalItems);
         Task<IdentityResult> AddRegisteredPlayerAsync(Player entity, string password);
+        Task<IEnumerable<string>> GetRolesByPlayer(Player entity);
     }
 }
