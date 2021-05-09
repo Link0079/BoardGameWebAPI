@@ -64,7 +64,7 @@ namespace Imi.Project.Api.Controllers
             if (playedGameEntity == null)
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayedGameId, guid));
             await _playedGameService.DeleteAsync(guid);
-            return Ok();
+            return Ok(string.Format(CustomExceptionMessages.DeletePlayedGameId, guid));
         }
 
     }

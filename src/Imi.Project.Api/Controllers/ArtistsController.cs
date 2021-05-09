@@ -86,7 +86,7 @@ namespace Imi.Project.Api.Controllers
             if (artistEntity == null)
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundArtistId, guid));
             await _artistService.DeleteAsync(guid);
-            return Ok();
+            return Ok(string.Format(CustomExceptionMessages.DeleteArtistId, guid));
         }
     }
 }

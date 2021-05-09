@@ -75,7 +75,7 @@ namespace Imi.Project.Api.Controllers
             if (boardGameEntity == null)
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundBoardGameId, guid));
             await _boardGameService.DeleteAsync(guid);
-            return Ok();
+            return Ok(string.Format(CustomExceptionMessages.DeleteBoardGameId, guid));
         }
     }
 }

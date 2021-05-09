@@ -86,7 +86,7 @@ namespace Imi.Project.Api.Controllers
             if (categoryEntity == null)
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundCategoryId, guid));
             await _categoryService.DeleteAsync(guid);
-            return Ok();
+            return Ok(string.Format(CustomExceptionMessages.DeleteCategoryId, guid));
         }
     }
 }
