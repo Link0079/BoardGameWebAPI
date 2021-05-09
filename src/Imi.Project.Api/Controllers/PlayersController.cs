@@ -41,16 +41,16 @@ namespace Imi.Project.Api.Controllers
         {
             if (!String.IsNullOrWhiteSpace(name))
             {
-                var boardGames = await _playerService.SearchByNameAsycn(name);
-                if (boardGames.Any())
-                    return Ok(boardGames);
+                var players = await _playerService.SearchByNameAsycn(name);
+                if (players.Any())
+                    return Ok(players);
                 else
                     return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerName, name));
             }
             else
             {
-                var boardGames = await _playerService.ListAllAsync();
-                return Ok(boardGames);
+                var players = await _playerService.ListAllAsync();
+                return Ok(players);
             }
         }
         [HttpGet("{guid}")]
@@ -88,16 +88,7 @@ namespace Imi.Project.Api.Controllers
                 return BadRequest(ModelState);
             var playerResponseDto = await _playerService.UpdateAsync(playerRequestDto);
             return CreatedAtAction(nameof(Get), new { id = playerResponseDto.Id }, playerResponseDto);
-        }
-        [HttpPut("{guid}/IsActive")]
-        [Authorize(Policy = "Administrators")]
-        public async Task<IActionResult> Put(Guid guid, [FromQuery] bool isActive)
-        {
-            if (!ModelState.IsValid)
-                return BadRequest(ModelState);
-            await _playerService.UpdateAsync(guid, isActive);
-            return Ok(string.Format(CustomExceptionMessages.UpdatePlayerInfo, guid));
-        }
+        }        
         [HttpDelete("{guid}")]
         [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> Delete(Guid guid)
@@ -107,6 +98,15 @@ namespace Imi.Project.Api.Controllers
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
             await _playerService.DeleteAsync(guid);
             return Ok();
+        }
+        [HttpPut("{guid}/IsActive")]
+        [Authorize(Policy = "Administrators")]
+        public async Task<IActionResult> Put(Guid guid, [FromQuery] bool isActive)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            await _playerService.UpdateAsync(guid, isActive);
+            return Ok(string.Format(CustomExceptionMessages.UpdatePlayerInfo, guid));
         }
         [HttpPost("register")]
         [AllowAnonymous]
@@ -133,6 +133,18 @@ namespace Imi.Project.Api.Controllers
             var player = await _signInManager.UserManager.FindByNameAsync(login.Username);
             string token = await GenerateJwtSecurityTokenAsync(player);
             return Ok(new LoginPlayerResponseDto { Token = token });
+        }
+        [HttpGet("{guid}/Roles")]
+        [Authorize(Policy = "Administrators")]
+        public async Task<IActionResult> GetRolesByPlayerId(Guid guid)
+        {
+            var result = await _playerService.GetByIdAsync(guid);
+            if (result == null)
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
+            var roles = await _playerService.GetRolesByPlayerId(guid);
+            if (!roles.Any())
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerRoles, guid));
+            return Ok(roles);
         }
         private async Task<string> GenerateJwtSecurityTokenAsync(Player player)
         {

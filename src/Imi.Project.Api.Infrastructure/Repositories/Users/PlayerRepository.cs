@@ -74,5 +74,9 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
             }
             return result;
         }
+        public async Task<IEnumerable<string>> GetRolesByPlayer(Player entity)
+        {
+            return await _userManager.GetRolesAsync(entity);
+        }
     }
 }

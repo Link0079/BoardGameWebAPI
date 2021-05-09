@@ -1,8 +1,10 @@
 ﻿using AutoMapper;
+using Imi.Project.Api.Core.Dtos.IdentityManagment;
 using Imi.Project.Api.Core.Dtos.Users;
 using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Repositories.Users;
 using Imi.Project.Api.Core.Interfaces.Services.Users;
+using Imi.Project.Common;
 using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
@@ -82,6 +84,19 @@ namespace Imi.Project.Api.Core.Services.Users
             updatePlayerEntity.IsDeleted = isActive;
             await _playerRepository.UpdateAsync(updatePlayerEntity);
             return await GetByIdAsync(updatePlayerEntity.Id);
+        }
+        public async Task<IEnumerable<RoleResponseDto>> GetRolesByPlayerId(Guid guid)
+        {
+            var entity = await _playerRepository.GetByIdAsync(guid);
+            var roles = await _playerRepository.GetRolesByPlayer(entity);
+            var result = new List<ApplicationRole>();
+            foreach (var role in roles)
+            {
+                var applicationRole = new ApplicationRole { Name = role, NormalizedName = role.ToUpper() };
+                result.Add(applicationRole);
+            }
+            var dto = _mapper.Map<IEnumerable<RoleResponseDto>>(result);
+            return dto;
         }
     }
 }

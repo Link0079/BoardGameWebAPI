@@ -1,4 +1,5 @@
-﻿using Imi.Project.Api.Core.Dtos.Users;
+﻿using Imi.Project.Api.Core.Dtos.IdentityManagment;
+using Imi.Project.Api.Core.Dtos.Users;
 using Imi.Project.Api.Core.Interfaces.Services.Base;
 using Microsoft.AspNetCore.Identity;
 using System;
@@ -18,5 +19,6 @@ namespace Imi.Project.Api.Core.Interfaces.Services.Users
         Task<IEnumerable<PlayerResponseDto>> SearchByNameAsycn(string name);
         Task<PlayerResponseDto> UpdateAsync(Guid guid, bool isActive);
         Task<IdentityResult> AddRegisteredPlayerAsync(RegisterPlayerRequestDto registerPlayerRequestDto);
+        Task<IEnumerable<RoleResponseDto>> GetRolesByPlayerId(Guid guid);
     }
 }

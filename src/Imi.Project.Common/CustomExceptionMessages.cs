@@ -43,12 +43,13 @@ namespace Imi.Project.Common
         // Player
         public const string NotFoundPlayerName = "There were no players found that contain '{0}' in their name.";
         public const string NotFoundPlayerId = "Player with id '{0}' does not exist.";
-        public const string NotFoundPlayerPlayedGames = "Player wit id '{0}' has not played any games.";
+        public const string NotFoundPlayerPlayedGames = "Player with id '{0}' has not played any games.";
+        public const string NotFoundPlayerRoles = "Player with id '{0}' has no role(s).";
         // Statistics
         public const string NotFoundStatisticsTotalItems = "'{0}' is not a valid number, please enter a number.";
         //Roles
         public const string NotFoundRoleId = "Role with id '{0}' does not exist";
-        public const string NotFoundRoleName = "Ther were no roles found that contain '{0}' in their name.";
+        public const string NotFoundRoleName = "There were no roles found that contain '{0}' in their name.";
         #endregion
 
         #region Update
