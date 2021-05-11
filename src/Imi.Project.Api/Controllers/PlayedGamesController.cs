@@ -20,11 +20,9 @@ namespace Imi.Project.Api.Controllers
     public class PlayedGamesController : ControllerBase
     {
         private readonly IPlayedGameService _playedGameService;
-        private readonly SignInManager<Player> _signInManager;
-        public PlayedGamesController(IPlayedGameService playedGameService, SignInManager<Player> signInManager)
+        public PlayedGamesController(IPlayedGameService playedGameService)
         {
             _playedGameService = playedGameService;
-            _signInManager = signInManager;
         }
         [HttpGet]
         [Authorize(Policy = "Administrators")]

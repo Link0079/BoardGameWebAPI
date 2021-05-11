@@ -17,6 +17,10 @@ namespace Imi.Project.Api.Core.Interfaces.Services.Games
         Task<IEnumerable<BoardGameResponseDto>> GetByArtistIdAsync(Guid id);
         Task<IEnumerable<BoardGameResponseDto>> SearchByNameAsycn(string title);
         Task<IEnumerable<BoardGameResponseDto>> GetByCategoryIdAsync(Guid id);
+        Task<bool> AddCategoryToBoardGame(Guid boardGameId, Guid categoryId);
+        Task<bool> AddArtistToBoardGame(Guid boardGameId, Guid artistId);
+        Task<bool> DeleteCategoryFromBoardGame(Guid boardGameId, Guid categoryId);
+        Task<bool> DeleteArtistFromBoardGame(Guid boardGameId, Guid artistId);
 
     }
 }

@@ -18,9 +18,13 @@ namespace Imi.Project.Api.Controllers
     public class BoardGamesController : ControllerBase
     {
         private readonly IBoardGameService _boardGameService;
-        public BoardGamesController(IBoardGameService boardGameService)
+        private readonly ICategoryService _categoryService;
+        private readonly IArtistService _artistService;
+        public BoardGamesController(IBoardGameService boardGameService, ICategoryService categoryService, IArtistService artistService)
         {
             _boardGameService = boardGameService;
+            _categoryService = categoryService;
+            _artistService = artistService;
         }
         [HttpGet]
         [AllowAnonymous]
@@ -76,6 +80,42 @@ namespace Imi.Project.Api.Controllers
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundBoardGameId, guid));
             await _boardGameService.DeleteAsync(guid);
             return Ok(string.Format(CustomExceptionMessages.DeleteBoardGameId, guid));
+        }
+        [HttpPost("{guid}/Categories/{categoryId}")]
+        [Authorize(Policy = "BoardGameEditors")]
+        public async Task<IActionResult> PostBoardgameCategory(Guid guid, Guid categoryId)
+        {
+            var result = await _boardGameService.AddCategoryToBoardGame(guid, categoryId);
+            if (!result)
+                return BadRequest("Category was not added to the boardgame.");
+            return Ok();
+        }
+        [HttpPost("{guid}/Artists/{artistId}")]
+        [Authorize(Policy = "BoardGameEditors")]
+        public async Task<IActionResult> PostBoardgameArtist(Guid guid, Guid artistId)
+        {
+            var result = await _boardGameService.AddArtistToBoardGame(guid, artistId);
+            if (!result)
+                return BadRequest("Artist was not added to the boardgame.");
+            return Ok();
+        }
+        [HttpDelete("{guid}/Categories/{categoryId}")]
+        [Authorize(Policy = "BoardGameEditors")]
+        public async Task<IActionResult> DeleteBoardgameCategory(Guid guid, Guid categoryId)
+        {
+            var result = await _boardGameService.DeleteCategoryFromBoardGame(guid, categoryId);
+            if (!result)
+                return BadRequest("Category was not deleted from the boardgame.");
+            return Ok();
+        }
+        [HttpDelete("{guid}/Artists/{artistId}")]
+        [Authorize(Policy = "BoardGameEditors")]
+        public async Task<IActionResult> DeleteBoardgameArtist(Guid guid, Guid artistId)
+        {
+            var result = await _boardGameService.DeleteArtistFromBoardGame(guid, artistId);
+            if (!result)
+                return BadRequest("Artist was not deleted from the boardgame.");
+            return Ok();
         }
     }
 }
