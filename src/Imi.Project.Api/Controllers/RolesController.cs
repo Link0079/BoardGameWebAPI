@@ -20,10 +20,13 @@ namespace Imi.Project.Api.Controllers
     public class RolesController : ControllerBase
     {
         private readonly RoleManager<ApplicationRole> _roleManager;
+        private readonly IPlayerService _playerService;
         private readonly IMapper _mapper;
-        public RolesController(RoleManager<ApplicationRole> roleManager, IMapper mapper)
+        public RolesController(RoleManager<ApplicationRole> roleManager,
+            IPlayerService playerService,IMapper mapper)
         {
             _roleManager = roleManager;
+            _playerService = playerService;
             _mapper = mapper;
         }
         [HttpGet]
@@ -111,6 +114,15 @@ namespace Imi.Project.Api.Controllers
             }
             else
                 return Ok(string.Format(CustomExceptionMessages.DeleteRoleId, guid));
+        }
+        [HttpGet("{guid}/Users")]
+        public async Task<IActionResult> GetPlayersByRoleId(Guid guid)
+        {
+            var result = await _roleManager.FindByIdAsync(guid.ToString());
+            if (result == null)
+                return NotFound(string.Format(CustomExceptionMessages.NotFoundRoleId, guid));
+            var dto = await _playerService.GetPlayersByRole(guid);
+            return Ok(dto);
         }
     }
 }

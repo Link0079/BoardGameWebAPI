@@ -41,6 +41,7 @@ namespace Imi.Project.Api.Core.Mapping
                     opt.MapFrom(src => src.Email.ToUpper()))
                 .ForMember(dest => dest.NormalizedUserName, opt => 
                     opt.MapFrom(src => src.Username.ToUpper()));
+            CreateMap<Player, RolePlayerResponseDto>();
             #endregion
             #region Category
             CreateMap<Category, CategoryResponseDto>();

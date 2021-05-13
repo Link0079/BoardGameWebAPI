@@ -101,6 +101,13 @@ namespace Imi.Project.Api.Core.Services.Users
             var dto = _mapper.Map<IEnumerable<RoleResponseDto>>(result);
             return dto;
         }
+        public async Task<IEnumerable<RolePlayerResponseDto>> GetPlayersByRole(Guid guid)
+        {
+            var role = await _roleManager.FindByIdAsync(guid.ToString());
+            var result = await _playerRepository.GetPlayersByRole(role);
+            var dto = _mapper.Map<IEnumerable<RolePlayerResponseDto>>(result);
+            return dto;
+        }
         public async Task<IdentityResult> DeletePlayerFromRoles(Guid playerId)
         {
             var playerEntity = await _playerRepository.GetByIdAsync(playerId);
