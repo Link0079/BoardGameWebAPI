@@ -32,26 +32,26 @@ namespace Imi.Project.Api.Controllers
         {
             if (!String.IsNullOrWhiteSpace(title))
             {
-                var boardGames = await _boardGameService.SearchByNameAsycn(title);
-                if (boardGames.Any())
-                    return Ok(boardGames);
+                var boardGamesDto = await _boardGameService.SearchByNameAsycn(title);
+                if (boardGamesDto.Any())
+                    return Ok(boardGamesDto);
                 else
                     return NotFound(string.Format(CustomExceptionMessages.NotFoundBoardGameTitle, title));
             }
             else
             {
-                var boardGames = await _boardGameService.ListAllAsync();
-                return Ok(boardGames);
+                var boardGamesDto = await _boardGameService.ListAllAsync();
+                return Ok(boardGamesDto);
             }
         }
         [HttpGet("{guid}")]
         [AllowAnonymous]
         public async Task<IActionResult> Get(Guid guid)
         {
-            var boardGame = await _boardGameService.GetByIdAsync(guid);
-            if (boardGame == null)
+            var boardGameDto = await _boardGameService.GetByIdAsync(guid);
+            if (boardGameDto == null)
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundBoardGameId, guid));
-            return Ok(boardGame);
+            return Ok(boardGameDto);
         }
         [HttpPost]
         [Authorize(Policy = "BoardGameEditors")]
@@ -59,8 +59,13 @@ namespace Imi.Project.Api.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var boarGameResponseDto = await _boardGameService.AddAsync(boardGameRequestDto);
-            return CreatedAtAction(nameof(Get), new { id = boarGameResponseDto.Id }, boarGameResponseDto);
+            try
+            {
+                var boarGameResponseDto = await _boardGameService.AddAsync(boardGameRequestDto);
+                return CreatedAtAction(nameof(Get), new { id = boarGameResponseDto.Id }, boarGameResponseDto);
+            }
+            catch (Exception)
+            { return Conflict(CustomExceptionMessages.ConflictAddBoardGame); }
         }
         [HttpPut]
         [Authorize(Policy = "BoardGameEditors")]
@@ -68,36 +73,56 @@ namespace Imi.Project.Api.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var boarGameResponseDto = await _boardGameService.UpdateAsync(boardGameRequestDto);
-            return CreatedAtAction(nameof(Get), new { id = boarGameResponseDto.Id }, boarGameResponseDto);
+            try
+            {
+                var boarGameResponseDto = await _boardGameService.UpdateAsync(boardGameRequestDto);
+                return CreatedAtAction(nameof(Get), new { id = boarGameResponseDto.Id }, boarGameResponseDto)
+            }
+            catch (Exception)
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictUpdateBoardgame, boardGameRequestDto.Id)); }
         }
         [HttpDelete("{guid}")]
         [Authorize(Policy = "BoardGameEditors")]
         public async Task<IActionResult> Delete(Guid guid)
         {
-            var boardGameEntity = await _boardGameService.GetByIdAsync(guid);
-            if (boardGameEntity == null)
-                return NotFound(string.Format(CustomExceptionMessages.NotFoundBoardGameId, guid));
-            await _boardGameService.DeleteAsync(guid);
-            return Ok(string.Format(CustomExceptionMessages.DeleteBoardGameId, guid));
+            try
+            {
+                var boardGameEntity = await _boardGameService.GetByIdAsync(guid);
+                if (boardGameEntity == null)
+                    return NotFound(string.Format(CustomExceptionMessages.NotFoundBoardGameId, guid));
+                await _boardGameService.DeleteAsync(guid);
+                return Ok(string.Format(CustomExceptionMessages.DeleteBoardGameId, guid));
+            }
+            catch (Exception)
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictDeleteBoardGameId, guid)); }
         }
         [HttpPost("{guid}/Categories/{categoryId}")]
         [Authorize(Policy = "BoardGameEditors")]
         public async Task<IActionResult> PostBoardgameCategory(Guid guid, Guid categoryId)
         {
-            var result = await _boardGameService.AddCategoryToBoardGame(guid, categoryId);
-            if (!result)
-                return BadRequest("Category was not added to the boardgame.");
-            return Ok();
+            try
+            {
+                var result = await _boardGameService.AddCategoryToBoardGame(guid, categoryId);
+                if (!result)
+                    return BadRequest("Category was not added to the boardgame");
+                return Ok();
+            }
+            catch (Exception)
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictAddCategory, guid, categoryId)); }
         }
         [HttpPost("{guid}/Artists/{artistId}")]
         [Authorize(Policy = "BoardGameEditors")]
         public async Task<IActionResult> PostBoardgameArtist(Guid guid, Guid artistId)
         {
-            var result = await _boardGameService.AddArtistToBoardGame(guid, artistId);
-            if (!result)
-                return BadRequest("Artist was not added to the boardgame.");
-            return Ok();
+            try
+            {
+                var result = await _boardGameService.AddArtistToBoardGame(guid, artistId);
+                if (!result)
+                    return BadRequest("Artist was not added to the boardgame.");
+                return Ok();
+            }
+            catch (Exception)
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictAddArtist, guid, artistId)); }
         }
         [HttpDelete("{guid}/Categories/{categoryId}")]
         [Authorize(Policy = "BoardGameEditors")]
@@ -111,16 +136,21 @@ namespace Imi.Project.Api.Controllers
                 return Ok();
             }
             catch (Exception)
-            { return BadRequest("Could not delete Category"); }
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictDeleteCategory, guid, categoryId)); }
         }
         [HttpDelete("{guid}/Artists/{artistId}")]
         [Authorize(Policy = "BoardGameEditors")]
         public async Task<IActionResult> DeleteBoardgameArtist(Guid guid, Guid artistId)
         {
-            var result = await _boardGameService.DeleteArtistFromBoardGame(guid, artistId);
-            if (!result)
-                return BadRequest("Artist was not deleted from the boardgame.");
-            return Ok();
+            try
+            {
+                var result = await _boardGameService.DeleteArtistFromBoardGame(guid, artistId);
+                if (!result)
+                    return BadRequest("Artist was not deleted from the boardgame.");
+                return Ok();
+            }
+            catch (Exception)
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictDeleteArtist, guid, artistId)); }
         }
     }
 }
