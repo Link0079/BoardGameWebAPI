@@ -11,19 +11,23 @@ namespace Imi.Project.Common
         public const string RequiredBoardGameTitle = "Please enter a valid name.";
         public const string RequiredBoardGamePrice = "Please enter a valid price.";
         public const string RequiredBoardGameYear = "Please enter a valid year.";
-        // PlayedGame
 
+        // PlayedGame
+        public const string RequiredPlayedGameBoardGameId = "Please enter a valid boardgame";
+        
         // Artist
         public const string RequiredArtistName = "Please enter a valid name.";
+        
         // Category
         public const string RequiredCategryName = "Please enter a valid name.";
+        
         // Player
         public const string RequiredPlayerName = "Please enter a valid name.";
         public const string RequiredPlayerUserName = "Please enter a valid username.";
         public const string RequiredPlayerEmail = "Please enter a valid email.";
         public const string RequiredPlayerPassword = "Please enter a password.";
         public const string RequiredPlayerConfirmPassword = "The password and confirmation password do not match.";
-        public const string RequierdPlayerDob = "Please enter a date of birth.";
+        public const string RequiredPlayerDob = "Please enter a date of birth.";
         #endregion
 
         #region Not Found Messages
@@ -88,12 +92,12 @@ namespace Imi.Project.Common
         public const string ConflictUpdatePlayedGame = "There was a conflict with updating playedgame with id '{0}'.";
         public const string ConflictDeletePlayedGameId = "There was a conflict with deleting playedgame with id '{0}'.";
 
-
         #endregion
 
         #region Add
         // Player
         public const string AddPlayerRole = "Role has been add to player with id '{0}'.";
+        public const string RegisterPlayer = "You have been registered.";
         #endregion
 
         #region Update
@@ -114,4 +118,3 @@ namespace Imi.Project.Common
 
     }
 }
-

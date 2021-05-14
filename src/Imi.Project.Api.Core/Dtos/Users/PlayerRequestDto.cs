@@ -12,7 +12,7 @@ namespace Imi.Project.Api.Core.Dtos.Users
         [Required(ErrorMessage = CustomExceptionMessages.RequiredPlayerName)]
         [StringLength(100, MinimumLength = 2)]
         public string Name { get; set; }
-        [Required(ErrorMessage = CustomExceptionMessages.RequierdPlayerDob)]
+        [Required(ErrorMessage = CustomExceptionMessages.RequiredPlayerDob)]
         [DataType(DataType.Date)]
         public DateTime Dob { get; set; }
         [Required(ErrorMessage = CustomExceptionMessages.RequiredPlayerEmail)]

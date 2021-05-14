@@ -141,7 +141,7 @@ namespace Imi.Project.Api.Controllers
                     ModelState.AddModelError(error.Code, error.Description);
                 return BadRequest(ModelState);
             }
-            return Ok();
+            return Ok(CustomExceptionMessages.RegisterPlayer);
         }
         [HttpPost("login")]
         [AllowAnonymous]
@@ -158,20 +158,20 @@ namespace Imi.Project.Api.Controllers
         [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> GetRolesByPlayerId(Guid guid)
         {
-            var result = await _playerService.GetByIdAsync(guid);
-            if (result == null)
+            var playerDto = await _playerService.GetByIdAsync(guid);
+            if (playerDto == null)
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
-            var roles = await _playerService.GetRolesByPlayerId(guid);
-            if (!roles.Any())
+            var rolesDto = await _playerService.GetRolesByPlayerId(guid);
+            if (!rolesDto.Any())
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerRoles, guid));
-            return Ok(roles);
+            return Ok(rolesDto);
         }
         [HttpDelete("{guid}/Roles")]
         [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> DeletePlayerFromRole(Guid guid)
         {
-            var result = await _playerService.DeletePlayerFromRoles(guid);
-            if (!result.Succeeded)
+            var identityResult = await _playerService.DeletePlayerFromRoles(guid);
+            if (!identityResult.Succeeded)
                 return Conflict(string.Format(CustomExceptionMessages.ConflictDeleteRolesFromPlayer, guid));
             return Ok(string.Format(CustomExceptionMessages.DeleteRolesFromPlayer, guid));
         }
@@ -179,8 +179,8 @@ namespace Imi.Project.Api.Controllers
         [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> AddPlayerToRole(Guid guid, Guid roleId)
         {
-            var result = await _playerService.AddPlayerToRole(guid, roleId);
-            if (!result.Succeeded)
+            var IdentityResult = await _playerService.AddPlayerToRole(guid, roleId);
+            if (!IdentityResult.Succeeded)
                 return Conflict(string.Format(CustomExceptionMessages.ConflictAddRoleToPlayer, roleId, guid));
             return Ok(string.Format(CustomExceptionMessages.AddPlayerRole, guid));
         }
