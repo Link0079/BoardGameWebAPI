@@ -1,5 +1,6 @@
 # Boardgame WebApi
 
+
 ## Project BoardGame WebAPI
 De ontwikkeling van deze API heeft vooral het doel om: 
  - een lijst van gespeelde BoardGames bij te houden;
@@ -32,6 +33,7 @@ Er werd een endpoint voorzien in de API om statistieken op te vragen.
 Eventueel nog uitbreiden met een toernooi gedeelte. 
 > Maar zal niet voor nu zijn wss.. ¯\\__(ツ)_/¯
 
+
 ## Extra info
 Plaats hier de nodig informatie om het
 project te kunnen uitvoeren:
@@ -46,6 +48,32 @@ project te kunnen uitvoeren:
 > Players -|--< GameScores >--|- PlayedGames
 > 
 > PlayeGames >--|- BoardGame
+
+
+## Identity Info
+UserManager is volledig geintegreerd in PlayerRepository.
+> Overal waar een speler opgevraagd wordt, is dit via PlayerService.
+
+RoleManager voor de RolesController gebruikt ook PlayerService.
+
+Nieuwe geregistreerde gebruikers krijgen standaard de **Player** Role toegekend.
+
+
+## Policies
+**OnlyUserAccess** => Kunnen enkel de Gets uitvoeren van de API (behalve Stats)            || **Player** Role
+
+**BoardGameEditors** => Kunnen alles zoals 'OnlyUsersAccess' en Boardgames CRUD operaties. || **BoardGameEditor** Role
+
+**ArtistEditors** => Kunnen alles zoals 'OnlyUsersAccess' en Artist CRUD operaties.        || **ArtistEditor** Role
+
+**Administrators** => Kunnen alles zoals 'OnlyUsersAcces', 'BoardGameEditors' en ArtistEditors.
+
+Zij beheren ook de Categories, Players en Roles CRUD operaties + zie Algemene Info.        || **Admin** Role
+
+**AccesFor8And5Users** => Kunnen alles zoals 'OnlyUserAccess' en Stats opvragen.           || Based on **firstletter** Claim
+
+**OlderThen50** => Wordt niet gebruikt, maar is een logica die kan gebruikt worden.        || Based on **dob** Claim
+
 
 ## Algemene info
 Leden en Boardgames worden niet verwijderd uit de databank. 
