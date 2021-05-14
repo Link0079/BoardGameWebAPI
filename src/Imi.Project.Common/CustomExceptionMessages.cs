@@ -68,10 +68,15 @@ namespace Imi.Project.Common
         public const string ConflictAddBoardGame = "There was a conflict with adding a boardgame.";
         public const string ConflictUpdateBoardgame = "There was a conflict with updating boardgame with id '{0}'.";
         public const string ConflictDeleteBoardGameId = "There was a conflict with deleting boardgame with id '{0}'.";
-        public const string ConflictAddCategory = "There was a conflict with adding a category with id '{1}' to boardgame with id '{0}'.";
-        public const string ConflictAddArtist = "There was a conflict with adding an artist with id '{1}' to boardgame with id '{0}'.";
-        public const string ConflictDeleteCategory = "There was a conflict with deleting a category with id '{1}' from boardgame with id '{0}'.";
-        public const string ConflictDeleteArtist= "There was a conflict with deleting an artist with id '{1}' from boardgame with id '{0}'.";
+        public const string ConflictAddCategoryToBoardGame = "There was a conflict with adding a category with id '{1}' to boardgame with id '{0}'.";
+        public const string ConflictAddArtistToBoardGame = "There was a conflict with adding an artist with id '{1}' to boardgame with id '{0}'.";
+        public const string ConflictDeleteCategoryFromBoardGame = "There was a conflict with deleting a category with id '{1}' from boardgame with id '{0}'.";
+        public const string ConflictDeleteArtistFromBoardGame = "There was a conflict with deleting an artist with id '{1}' from boardgame with id '{0}'.";
+
+        // Artists
+        public const string ConflictAddArtist = "There was a conflict with adding an artist.";
+        public const string ConflictUpdateArtist = "There was a conflict with updating artist with id '{0}'.";
+        public const string ConflictDeleteArtistId = "There was a conflict with deleting artist with id '{0}'.";
 
 
         #endregion

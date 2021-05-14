@@ -76,7 +76,7 @@ namespace Imi.Project.Api.Controllers
             try
             {
                 var boarGameResponseDto = await _boardGameService.UpdateAsync(boardGameRequestDto);
-                return CreatedAtAction(nameof(Get), new { id = boarGameResponseDto.Id }, boarGameResponseDto)
+                return CreatedAtAction(nameof(Get), new { id = boarGameResponseDto.Id }, boarGameResponseDto);
             }
             catch (Exception)
             { return Conflict(string.Format(CustomExceptionMessages.ConflictUpdateBoardgame, boardGameRequestDto.Id)); }
@@ -108,7 +108,7 @@ namespace Imi.Project.Api.Controllers
                 return Ok();
             }
             catch (Exception)
-            { return Conflict(string.Format(CustomExceptionMessages.ConflictAddCategory, guid, categoryId)); }
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictAddCategoryToBoardGame, guid, categoryId)); }
         }
         [HttpPost("{guid}/Artists/{artistId}")]
         [Authorize(Policy = "BoardGameEditors")]
@@ -122,7 +122,7 @@ namespace Imi.Project.Api.Controllers
                 return Ok();
             }
             catch (Exception)
-            { return Conflict(string.Format(CustomExceptionMessages.ConflictAddArtist, guid, artistId)); }
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictAddArtistToBoardGame, guid, artistId)); }
         }
         [HttpDelete("{guid}/Categories/{categoryId}")]
         [Authorize(Policy = "BoardGameEditors")]
@@ -136,7 +136,7 @@ namespace Imi.Project.Api.Controllers
                 return Ok();
             }
             catch (Exception)
-            { return Conflict(string.Format(CustomExceptionMessages.ConflictDeleteCategory, guid, categoryId)); }
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictDeleteCategoryFromBoardGame, guid, categoryId)); }
         }
         [HttpDelete("{guid}/Artists/{artistId}")]
         [Authorize(Policy = "BoardGameEditors")]
@@ -150,7 +150,7 @@ namespace Imi.Project.Api.Controllers
                 return Ok();
             }
             catch (Exception)
-            { return Conflict(string.Format(CustomExceptionMessages.ConflictDeleteArtist, guid, artistId)); }
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictDeleteArtistFromBoardGame, guid, artistId)); }
         }
     }
 }
