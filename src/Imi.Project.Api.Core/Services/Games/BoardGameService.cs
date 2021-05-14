@@ -84,6 +84,13 @@ namespace Imi.Project.Api.Core.Services.Games
         {
             await _boardGameRepository.DeleteAsync(id);
         }
+        public async Task<BoardGameResponseDto> UpdateAsync(Guid guid, bool isActive)
+        {
+            var updateBoardGameEntity = await _boardGameRepository.GetByIdAsync(guid);
+            updateBoardGameEntity.IsDeleted = isActive;
+            await _boardGameRepository.UpdateAsync(updateBoardGameEntity);
+            return await GetByIdAsync(updateBoardGameEntity.Id);
+        }
         public async Task<bool> AddCategoryToBoardGame(Guid boardGameId, Guid categoryId)
         {
             var result = false;

@@ -96,6 +96,19 @@ namespace Imi.Project.Api.Controllers
             catch (Exception)
             { return Conflict(string.Format(CustomExceptionMessages.ConflictDeleteBoardGameId, guid)); }
         }
+        [HttpPut("{guid}/IsActive")]
+        public async Task<IActionResult> Put(Guid guid, [FromQuery] bool isActive)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest(ModelState);
+            try
+            {
+                await _boardGameService.UpdateAsync(guid, isActive);
+                return Ok(string.Format(CustomExceptionMessages.UpdateBoardGameInfo, guid));
+            }
+            catch (Exception)
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictUpdateBaordGameIsActive, guid)); }
+        }
         [HttpPost("{guid}/Categories/{categoryId}")]
         [Authorize(Policy = "BoardGameEditors")]
         public async Task<IActionResult> PostBoardgameCategory(Guid guid, Guid categoryId)

@@ -72,6 +72,7 @@ namespace Imi.Project.Common
         public const string ConflictAddBoardGame = "There was a conflict with adding a boardgame.";
         public const string ConflictUpdateBoardgame = "There was a conflict with updating boardgame with id '{0}'.";
         public const string ConflictDeleteBoardGameId = "There was a conflict with deleting boardgame with id '{0}'.";
+        public const string ConflictUpdateBaordGameIsActive = "There was a conflict with deactivating/activating boardgame with id '{0}'.";
         public const string ConflictAddCategoryToBoardGame = "There was a conflict with adding a category with id '{1}' to boardgame with id '{0}'.";
         public const string ConflictAddArtistToBoardGame = "There was a conflict with adding an artist with id '{1}' to boardgame with id '{0}'.";
         public const string ConflictDeleteCategoryFromBoardGame = "There was a conflict with deleting a category with id '{1}' from boardgame with id '{0}'.";
@@ -104,6 +105,7 @@ namespace Imi.Project.Common
         // Player
         public const string UpdatePlayerInfo = "Player with id '{0}' has been updated.";
         public const string UpdatePlayerRole = "Role from player with id '{0}' has been updated.";
+        public const string UpdateBoardGameInfo = "Boardgame with id '{0}' has been updated.";
         #endregion
 
         #region Deleted

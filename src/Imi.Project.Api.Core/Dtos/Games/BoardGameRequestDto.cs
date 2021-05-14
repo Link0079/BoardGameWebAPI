@@ -24,8 +24,8 @@ namespace Imi.Project.Api.Core.Dtos.Games
         public int PlayTime { get; set; }
         public bool Stock { get; set; }
         public string Description { get; set; }
-        public IEnumerable<BoardGameCategoryRequestDto> Categories { get; set; }
-        public IEnumerable<BoardGameArtistRequestDto> Artists { get; set; }
+        //public IEnumerable<BoardGameCategoryRequestDto> Categories { get; set; }
+        //public IEnumerable<BoardGameArtistRequestDto> Artists { get; set; }
 
     }
 }

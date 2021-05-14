@@ -43,10 +43,12 @@ namespace Imi.Project.Api.Core.Mapping
                     opt.MapFrom(src => src.Username.ToUpper()));
             CreateMap<Player, RolePlayerResponseDto>();
             #endregion
+
             #region Category
             CreateMap<Category, CategoryResponseDto>();
             CreateMap<CategoryRequestDto, Category>();
             #endregion
+
             #region Artist
             CreateMap<Artist, ArtistResponseDto>()
                 .ForMember(dest => dest.NumberOfArtwork,
@@ -57,6 +59,7 @@ namespace Imi.Project.Api.Core.Mapping
                     .ConvertToStringDateNotation()));
             CreateMap<ArtistRequestDto, Artist>();
             #endregion
+
             #region BoardGame
             CreateMap<BoardGame, BoardGameResponseDto>()
                 .ForMember(dest => dest.Categories,
@@ -77,14 +80,17 @@ namespace Imi.Project.Api.Core.Mapping
                     .ConvertToStringDuration()));
             CreateMap<BoardGameRequestDto, BoardGame>();
             #endregion
+
             #region BoardGameCategory
             CreateMap<BoardGameCategoryRequestDto, BoardGameCategory>()
                 .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.CategoryId));
             #endregion
+
             #region BoardGameArtist
             CreateMap<BoardGameArtistRequestDto, BoardGameArtist>()
                 .ForMember(dest => dest.ArtistId, opt => opt.MapFrom(src => src.ArtistId));
             #endregion
+
             #region PlayedGame
             CreateMap<PlayedGame, PlayedGameResponseDto>()
                 .ForMember(dest => dest.PlayTime,
@@ -103,6 +109,7 @@ namespace Imi.Project.Api.Core.Mapping
                       }).OrderByDescending(gs=>gs.Score)));
             CreateMap<PlayedGameRequestDto, PlayedGame>();
             #endregion
+
             #region GameScore
             CreateMap<GameScore, GameScoreResponseDto>()
                 .ForMember(dest => dest.PlayerName,
@@ -113,14 +120,17 @@ namespace Imi.Project.Api.Core.Mapping
                 .ForMember(dest => dest.PlayerId, opt => opt.MapFrom(src => src.PlayerId))
                 .ForMember(dest => dest.Score, opt => opt.MapFrom(src => src.Score));
             #endregion
+
             #region ApplicationRoles
             CreateMap<ApplicationRole, RoleResponseDto>();
             CreateMap<RoleRequestDto, ApplicationRole>();
             #endregion
+
             // expansion for Country and Publisher
             #region Country
 
             #endregion
+
             #region Publisher
 
             #endregion
