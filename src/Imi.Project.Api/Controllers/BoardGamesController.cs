@@ -103,10 +103,15 @@ namespace Imi.Project.Api.Controllers
         [Authorize(Policy = "BoardGameEditors")]
         public async Task<IActionResult> DeleteBoardgameCategory(Guid guid, Guid categoryId)
         {
-            var result = await _boardGameService.DeleteCategoryFromBoardGame(guid, categoryId);
-            if (!result)
-                return BadRequest("Category was not deleted from the boardgame.");
-            return Ok();
+            try
+            {
+                var result = await _boardGameService.DeleteCategoryFromBoardGame(guid, categoryId);
+                if (!result)
+                    return BadRequest("Category was not deleted from the boardgame.");
+                return Ok();
+            }
+            catch (Exception)
+            { return BadRequest("Could not delete Category"); }
         }
         [HttpDelete("{guid}/Artists/{artistId}")]
         [Authorize(Policy = "BoardGameEditors")]

@@ -52,10 +52,16 @@ namespace Imi.Project.Common
         public const string NotFoundRoleName = "There were no roles found that contain '{0}' in their name.";
         #endregion
 
-
         #region Conflicts
         // Roles
-        public const string ConfiltRoleNameExists = "Role with name '{0}' does already exists.";
+        public const string ConflictRoleNameExists = "Role with name '{0}' does already exists.";
+        public const string ConflictAddRoleToPlayer = "There was a conflict with adding a role with id '{0}' to player with id '{1}'.";
+        public const string ConflictDeleteRolesFromPlayer = "There was a conflict with deleting the roles from player with id '{0}'.";
+        public const string ConflictUpdatePlayerIsActive = "There was a conflict with deactivating/activating player with id '{0}'.";
+        public const string ConflictDeletePlayerId = "There was a conflict with deleting player with id '{0}'.";
+        public const string ConflictUpdatePlayer = "There was a conflict with updating player with id '{0}'.";
+        public const string ConflictAddPlayer = "There was a conflict with adding a player.";
+
         #endregion
 
         #region Add
@@ -76,7 +82,7 @@ namespace Imi.Project.Common
         public const string DeleteCategoryId = "Category with id {0} has been deleted.";
         public const string DeleteArtistId = "Artist with id {0} has been deleted.";
         public const string DeletePlayedGameId = "Playedgame with id {0} has been deleted.";
-        public const string DeleteRoleFromPlayer = "Role from player with id '{0}' has been deleted";
+        public const string DeleteRolesFromPlayer = "Roles from player with id '{0}' has been deleted";
         #endregion
 
     }

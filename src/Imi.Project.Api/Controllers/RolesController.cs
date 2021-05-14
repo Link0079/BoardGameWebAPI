@@ -66,16 +66,16 @@ namespace Imi.Project.Api.Controllers
                 return BadRequest(ModelState);
             var result = await _roleManager.RoleExistsAsync(roleRequestDto.Name);
             if (result)
-                return Conflict(string.Format(CustomExceptionMessages.ConfiltRoleNameExists, roleRequestDto.Name));
+                return Conflict(string.Format(CustomExceptionMessages.ConflictRoleNameExists, roleRequestDto.Name));
             var newRole = new ApplicationRole
             {
                 Name = roleRequestDto.Name,
                 NormalizedName = roleRequestDto.Name.ToUpper()
             };
-            var identityResult = await _roleManager.CreateAsync(newRole);
-            if (!identityResult.Succeeded)
+            var identityResultRole = await _roleManager.CreateAsync(newRole);
+            if (!identityResultRole.Succeeded)
             {
-                foreach (var error in identityResult.Errors)
+                foreach (var error in identityResultRole.Errors)
                     ModelState.AddModelError(error.Code, error.Description);
                 return BadRequest(ModelState);
             }
@@ -89,10 +89,10 @@ namespace Imi.Project.Api.Controllers
                 return BadRequest(ModelState);
             var role = await _roleManager.FindByIdAsync(roleRequestDto.Id.ToString());
             role.Name = roleRequestDto.Name;
-            var identityResult = await _roleManager.UpdateAsync(role);
-            if(!identityResult.Succeeded)
+            var identityResultRole = await _roleManager.UpdateAsync(role);
+            if(!identityResultRole.Succeeded)
             {
-                foreach (var error in identityResult.Errors)
+                foreach (var error in identityResultRole.Errors)
                     ModelState.AddModelError(error.Code, error.Description);
                 return BadRequest(ModelState);
             }
@@ -105,10 +105,10 @@ namespace Imi.Project.Api.Controllers
             var result = await _roleManager.FindByIdAsync(guid.ToString());
             if (result == null)
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundRoleId, guid));
-            var identityResult = await _roleManager.DeleteAsync(result);
-            if (!identityResult.Succeeded)
+            var identityResultRole = await _roleManager.DeleteAsync(result);
+            if (!identityResultRole.Succeeded)
             {
-                foreach (var error in identityResult.Errors)
+                foreach (var error in identityResultRole.Errors)
                     ModelState.AddModelError(error.Code, error.Description);
                 return BadRequest(ModelState);
             }

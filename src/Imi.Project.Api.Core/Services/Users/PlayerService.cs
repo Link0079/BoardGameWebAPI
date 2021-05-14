@@ -54,7 +54,7 @@ namespace Imi.Project.Api.Core.Services.Users
             if (!string.IsNullOrWhiteSpace(playerRequestDto.Email))
             {
                 comparingPlayerEntity.Email = playerRequestDto.Email;
-                comparingPlayerEntity.NormalizedEmail = playerRequestDto.Email.ToUpper();
+                //comparingPlayerEntity.NormalizedEmail = playerRequestDto.Email.ToUpper();
             }
             if (!string.IsNullOrWhiteSpace(playerRequestDto.Password))
             {

@@ -41,36 +41,36 @@ namespace Imi.Project.Api.Controllers
         {
             if (!String.IsNullOrWhiteSpace(name))
             {
-                var players = await _playerService.SearchByNameAsycn(name);
-                if (players.Any())
-                    return Ok(players);
+                var playersDto = await _playerService.SearchByNameAsycn(name);
+                if (playersDto.Any())
+                    return Ok(playersDto);
                 else
                     return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerName, name));
             }
             else
             {
-                var players = await _playerService.ListAllAsync();
-                return Ok(players);
+                var playersDto = await _playerService.ListAllAsync();
+                return Ok(playersDto);
             }
         }
         [HttpGet("{guid}")]
         public async Task<IActionResult> Get(Guid guid)
         {
-            var player = await _playerService.GetByIdAsync(guid);
-            if (player == null)
+            var playerDto = await _playerService.GetByIdAsync(guid);
+            if (playerDto == null)
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
-            return Ok(player);
+            return Ok(playerDto);
         }
         [HttpGet("{guid}/playedgames")]
         public async Task<IActionResult> GetByPlayerId(Guid guid)
         {
-            var player = await _playerService.GetByIdAsync(guid);
-            if(player == null)
+            var playerDto = await _playerService.GetByIdAsync(guid);
+            if(playerDto == null)
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
-            var playedGames = await _playedGameService.GetByPlayerIdAsync(guid);
-            if (!playedGames.Any())
+            var playedGamesDto = await _playedGameService.GetByPlayerIdAsync(guid);
+            if (!playedGamesDto.Any())
                 return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerPlayedGames, guid));
-            return Ok(playedGames);
+            return Ok(playedGamesDto);
         }
         [HttpPost]
         [Authorize(Policy = "Administrators")]
@@ -78,26 +78,41 @@ namespace Imi.Project.Api.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var playerResponseDto = await _playerService.AddAsync(playerRequestDto);
-            return CreatedAtAction(nameof(Get), new { id = playerResponseDto.Id }, playerResponseDto);
+            try
+            {
+                var playerResponseDto = await _playerService.AddAsync(playerRequestDto);
+                return CreatedAtAction(nameof(Get), new { id = playerResponseDto.Id }, playerResponseDto);
+            }
+            catch (Exception)
+            { return Conflict(CustomExceptionMessages.ConflictAddPlayer); }
         }
         [HttpPut]
         public async Task<IActionResult> UpdateByPlayer(PlayerRequestDto playerRequestDto)
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var playerResponseDto = await _playerService.UpdateAsync(playerRequestDto);
-            return CreatedAtAction(nameof(Get), new { id = playerResponseDto.Id }, playerResponseDto);
+            try
+            {
+                var playerResponseDto = await _playerService.UpdateAsync(playerRequestDto);
+                return CreatedAtAction(nameof(Get), new { id = playerResponseDto.Id }, playerResponseDto);
+            }
+            catch (Exception)
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictUpdatePlayer, playerRequestDto.Id)); }
         }        
         [HttpDelete("{guid}")]
         [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> Delete(Guid guid)
         {
-            var playerEntity = await _playerService.GetByIdAsync(guid);
-            if (playerEntity == null)
-                return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
-            await _playerService.DeleteAsync(guid);
-            return Ok(string.Format(CustomExceptionMessages.DeletePlayerId, guid));
+            try
+            {
+                var playerEntity = await _playerService.GetByIdAsync(guid);
+                if (playerEntity == null)
+                    return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
+                await _playerService.DeleteAsync(guid);
+                return Ok(string.Format(CustomExceptionMessages.DeletePlayerId, guid));
+            }
+            catch (Exception)
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictDeletePlayerId, guid)); }
         }
         [HttpPut("{guid}/IsActive")]
         [Authorize(Policy = "Administrators")]
@@ -105,8 +120,13 @@ namespace Imi.Project.Api.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            await _playerService.UpdateAsync(guid, isActive);
-            return Ok(string.Format(CustomExceptionMessages.UpdatePlayerInfo, guid));
+            try
+            {
+                await _playerService.UpdateAsync(guid, isActive);
+                return Ok(string.Format(CustomExceptionMessages.UpdatePlayerInfo, guid));
+            }
+            catch (Exception)
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictUpdatePlayerIsActive, guid)); }
         }
         [HttpPost("register")]
         [AllowAnonymous]
@@ -114,10 +134,10 @@ namespace Imi.Project.Api.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            IdentityResult result = await _playerService.AddRegisteredPlayerAsync(registration); 
-            if (!result.Succeeded)
+            var identityResultUser= await _playerService.AddRegisteredPlayerAsync(registration); 
+            if (!identityResultUser.Succeeded)
             {
-                foreach (var error in result.Errors)
+                foreach (var error in identityResultUser.Errors)
                     ModelState.AddModelError(error.Code, error.Description);
                 return BadRequest(ModelState);
             }
@@ -152,8 +172,8 @@ namespace Imi.Project.Api.Controllers
         {
             var result = await _playerService.DeletePlayerFromRoles(guid);
             if (!result.Succeeded)
-                return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
-            return Ok(string.Format(CustomExceptionMessages.DeleteRoleFromPlayer, guid));
+                return Conflict(string.Format(CustomExceptionMessages.ConflictDeleteRolesFromPlayer, guid));
+            return Ok(string.Format(CustomExceptionMessages.DeleteRolesFromPlayer, guid));
         }
         [HttpPost("{guid}/Roles/{roleId}")]
         [Authorize(Policy = "Administrators")]
@@ -161,7 +181,7 @@ namespace Imi.Project.Api.Controllers
         {
             var result = await _playerService.AddPlayerToRole(guid, roleId);
             if (!result.Succeeded)
-                return NotFound(string.Format(CustomExceptionMessages.NotFoundPlayerId, guid));
+                return Conflict(string.Format(CustomExceptionMessages.ConflictAddRoleToPlayer, roleId, guid));
             return Ok(string.Format(CustomExceptionMessages.AddPlayerRole, guid));
         }
         private async Task<string> GenerateJwtSecurityTokenAsync(Player player)

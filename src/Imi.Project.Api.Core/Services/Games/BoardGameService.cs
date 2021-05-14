@@ -93,7 +93,7 @@ namespace Imi.Project.Api.Core.Services.Games
             {
                 var boardGameEntity = await _boardGameRepository.GetByIdAsync(boardGameId);
                 var categoryEntity = await _categoryRepository.GetByIdAsync(categoryId);
-                var bcEntityList = new List<BoardGameCategory>{ new BoardGameCategory { BoardGame = boardGameEntity, Category = categoryEntity } };
+                var bcEntityList = new List<BoardGameCategory>{ new BoardGameCategory { BoardGameId = boardGameEntity.Id, CategoryId = categoryEntity.Id } };
                 result = await _bcRepository.AddAsync(bcEntityList);
             }
             return result;
@@ -107,7 +107,7 @@ namespace Imi.Project.Api.Core.Services.Games
             {
                 var boardGameEntity = await _boardGameRepository.GetByIdAsync(boardGameId);
                 var artistEntity = await _artistRepository.GetByIdAsync(artistId);
-                var baEntityList = new List<BoardGameArtist>{ new BoardGameArtist { BoardGame = boardGameEntity, Artist = artistEntity } };
+                var baEntityList = new List<BoardGameArtist>{ new BoardGameArtist { BoardGameId = boardGameEntity.Id, ArtistId = artistEntity.Id } };
                 result = await _baRepository.AddAsync(baEntityList);
             }
             return result;
@@ -119,9 +119,9 @@ namespace Imi.Project.Api.Core.Services.Games
             var categoryExists = await _categoryRepository.EntityExists(categoryId);
             if (boardGameExists && categoryExists)
             {
-                var boardGameEntity = await _boardGameRepository.GetByIdAsync(boardGameId);
-                var categoryEntity = await _categoryRepository.GetByIdAsync(categoryId);
-                var bcEntityList = new List<BoardGameCategory> { new BoardGameCategory { BoardGame = boardGameEntity, Category = categoryEntity } };
+                //var boardGameEntity = await _boardGameRepository.GetByIdAsync(boardGameId);
+                //var categoryEntity = await _categoryRepository.GetByIdAsync(categoryId);
+                var bcEntityList = new List<BoardGameCategory> { new BoardGameCategory { BoardGameId = boardGameId, CategoryId = categoryId } };
                 result = await _bcRepository.DeleteAsync(bcEntityList);
             }
             return result;
@@ -133,39 +133,12 @@ namespace Imi.Project.Api.Core.Services.Games
             var artistExists = await _artistRepository.EntityExists(artistId);
             if (boardGameExists && artistExists)
             {
-                var boardGameEntity = await _boardGameRepository.GetByIdAsync(boardGameId);
-                var artistEntity = await _artistRepository.GetByIdAsync(artistId);
-                var baEntityList = new List<BoardGameArtist> { new BoardGameArtist { BoardGame = boardGameEntity, Artist = artistEntity } };
+                //var boardGameEntity = await _boardGameRepository.GetByIdAsync(boardGameId);
+                //var artistEntity = await _artistRepository.GetByIdAsync(artistId);
+                var baEntityList = new List<BoardGameArtist> { new BoardGameArtist { BoardGameId = boardGameId, ArtistId = artistId } };
                 result = await _baRepository.DeleteAsync(baEntityList);
             }
             return result;
-        }
-
-        private BoardGame HandleCompositeTablesForUpdate(BoardGame boardGameEntity, BoardGameRequestDto boardGameRequestDto)
-        {
-            if (boardGameRequestDto.Artists != null)                        // Check if Dto inner list is null
-            {
-                boardGameEntity.Artists = new List<BoardGameArtist>();      // Make new list in Entity
-                foreach (var artist in boardGameRequestDto.Artists)         // Loop through the Dto inner list
-                    boardGameEntity.Artists.Add(new BoardGameArtist         // Add the item to the Entity list
-                    {                                                       // Using ID's of the Entities cuz if I used the entity
-                        ArtistId = artist.ArtistId,                         // it was trying to create a new Artist.. 
-                        BoardGameId = boardGameEntity.Id                    // which gave an exception for obviouse reasons.. ¯\_(ツ)_/¯
-                    });
-                _baRepository.AddAsync(boardGameEntity.Artists);            // Add the list to the Composite Table..
-            }
-            if (boardGameRequestDto.Categories != null)                     // Check if Dto inner list is null
-            {
-                boardGameEntity.Categories = new List<BoardGameCategory>(); // Same shizzle as Artist
-                foreach (var category in boardGameRequestDto.Categories) 
-                    boardGameEntity.Categories.Add(new BoardGameCategory
-                    {
-                        CategoryId = category.CategoryId,
-                        BoardGameId = boardGameEntity.Id
-                    });
-                _bcRepository.AddAsync(boardGameEntity.Categories);         // Add the list to the Composite Table
-            }
-            return boardGameEntity;
         }
         public async Task<IEnumerable<BoardGameResponseDto>> SearchByNameAsycn(string title)
         {
@@ -173,5 +146,35 @@ namespace Imi.Project.Api.Core.Services.Games
             var dto = _mapper.Map<IEnumerable<BoardGameResponseDto>>(result);
             return dto;
         }
+
+        #region Old logic for making Boardgames
+        //private BoardGame HandleCompositeTablesForUpdate(BoardGame boardGameEntity, BoardGameRequestDto boardGameRequestDto)
+        //{
+        //    if (boardGameRequestDto.Artists != null)                        // Check if Dto inner list is null
+        //    {
+        //        boardGameEntity.Artists = new List<BoardGameArtist>();      // Make new list in Entity
+        //        foreach (var artist in boardGameRequestDto.Artists)         // Loop through the Dto inner list
+        //            boardGameEntity.Artists.Add(new BoardGameArtist         // Add the item to the Entity list
+        //            {                                                       // Using ID's of the Entities cuz if I used the entity
+        //                ArtistId = artist.ArtistId,                         // it was trying to create a new Artist.. 
+        //                BoardGameId = boardGameEntity.Id                    // which gave an exception for obviouse reasons.. ¯\_(ツ)_/¯
+        //            });
+        //        _baRepository.AddAsync(boardGameEntity.Artists);            // Add the list to the Composite Table..
+        //    }
+        //    if (boardGameRequestDto.Categories != null)                     // Check if Dto inner list is null
+        //    {
+        //        boardGameEntity.Categories = new List<BoardGameCategory>(); // Same shizzle as Artist
+        //        foreach (var category in boardGameRequestDto.Categories) 
+        //            boardGameEntity.Categories.Add(new BoardGameCategory
+        //            {
+        //                CategoryId = category.CategoryId,
+        //                BoardGameId = boardGameEntity.Id
+        //            });
+        //        _bcRepository.AddAsync(boardGameEntity.Categories);         // Add the list to the Composite Table
+        //    }
+        //    return boardGameEntity;
+        //}
+        #endregion
+
     }
 }
