@@ -47,20 +47,13 @@ namespace Imi.Project.Api.Core.Services.Users
         {
             //var updatePlayerEntity = _mapper.Map<Player>(playerRequestDto);
             var comparingPlayerEntity = await _playerRepository.GetByIdAsync(playerRequestDto.Id);
-
-            comparingPlayerEntity.Name = playerRequestDto.Name == null ? comparingPlayerEntity.Name : playerRequestDto.Name;    // Not really necessary to check on null
-            comparingPlayerEntity.Dob = playerRequestDto.Dob == null ? comparingPlayerEntity.Dob : playerRequestDto.Dob;        // Not really necessary to check on null
+            comparingPlayerEntity.Name = playerRequestDto.Name;
+            comparingPlayerEntity.Dob = playerRequestDto.Dob;
             comparingPlayerEntity.SecurityStamp = Guid.NewGuid().ToString("N");
-            if (!string.IsNullOrWhiteSpace(playerRequestDto.Email))
-            {
-                comparingPlayerEntity.Email = playerRequestDto.Email;
-                //comparingPlayerEntity.NormalizedEmail = playerRequestDto.Email.ToUpper();
-            }
-            if (!string.IsNullOrWhiteSpace(playerRequestDto.Password))
-            {
-                var passwordHasher = new PasswordHasher<Player>();
-                comparingPlayerEntity.PasswordHash = passwordHasher.HashPassword(comparingPlayerEntity, playerRequestDto.Password);
-            }
+            comparingPlayerEntity.Email = playerRequestDto.Email;
+            //comparingPlayerEntity.NormalizedEmail = playerRequestDto.Email.ToUpper();
+            var passwordHasher = new PasswordHasher<Player>();
+            comparingPlayerEntity.PasswordHash = passwordHasher.HashPassword(comparingPlayerEntity, playerRequestDto.Password);
             await _playerRepository.UpdateAsync(comparingPlayerEntity);
             return await GetByIdAsync(comparingPlayerEntity.Id);
         }
@@ -119,6 +112,10 @@ namespace Imi.Project.Api.Core.Services.Users
             var playerEntity = await _playerRepository.GetByIdAsync(playerId);
             var role = await _roleManager.FindByIdAsync(roleId.ToString());
             return await _playerRepository.AddPlayerToRole(playerEntity, role);
+        }
+        public async Task<bool> EntityExists(Guid guid)
+        {
+            return await _playerRepository.EntityExists(guid);
         }
     }
 }

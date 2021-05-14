@@ -93,6 +93,9 @@ namespace Imi.Project.Api.Controllers
                 return BadRequest(ModelState);
             try
             {
+                var result = await _playerService.EntityExists(playerRequestDto.Id);
+                if (!result)
+                    return BadRequest(string.Format(CustomExceptionMessages.NotFoundPlayerId, playerRequestDto.Id));
                 var playerResponseDto = await _playerService.UpdateAsync(playerRequestDto);
                 return CreatedAtAction(nameof(Get), new { id = playerResponseDto.Id }, playerResponseDto);
             }

@@ -23,5 +23,6 @@ namespace Imi.Project.Api.Core.Interfaces.Services.Users
         Task<IEnumerable<RolePlayerResponseDto>> GetPlayersByRole(Guid guid);
         Task<IdentityResult> DeletePlayerFromRoles(Guid playerId);
         Task<IdentityResult> AddPlayerToRole(Guid playerId, Guid roleId);
+        Task<bool> EntityExists(Guid guid);
     }
 }
