@@ -76,7 +76,6 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Base
         public async Task<bool> EntityExists(Guid id)
         {
             return await _dbContext.Set<T>().AnyAsync(e=>e.Id.Equals(id));
-
         }
     }
 }

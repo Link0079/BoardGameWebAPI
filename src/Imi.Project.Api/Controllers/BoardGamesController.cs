@@ -97,6 +97,7 @@ namespace Imi.Project.Api.Controllers
             { return Conflict(string.Format(CustomExceptionMessages.ConflictDeleteBoardGameId, guid)); }
         }
         [HttpPut("{guid}/IsActive")]
+        [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> Put(Guid guid, [FromQuery] bool isActive)
         {
             if (!ModelState.IsValid)

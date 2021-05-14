@@ -33,6 +33,10 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Games
         {
             return await GetAllAsync().SingleOrDefaultAsync(b => b.Id.Equals(id));
         }
+        public async Task<BoardGame> GetByIdESOAsync(Guid id)
+        {
+            return await GetESOAsync().SingleAsync(b => b.Id.Equals(id));
+        }
         public async Task<IEnumerable<BoardGame>> GetByCategoryIdAsync(Guid id)
         {
             return await GetAllAsync().Where(b => b.Categories

@@ -86,7 +86,7 @@ namespace Imi.Project.Api.Core.Services.Games
         }
         public async Task<BoardGameResponseDto> UpdateAsync(Guid guid, bool isActive)
         {
-            var updateBoardGameEntity = await _boardGameRepository.GetByIdAsync(guid);
+            var updateBoardGameEntity = await _boardGameRepository.GetByIdESOAsync(guid);
             updateBoardGameEntity.IsDeleted = isActive;
             await _boardGameRepository.UpdateAsync(updateBoardGameEntity);
             return await GetByIdAsync(updateBoardGameEntity.Id);

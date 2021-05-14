@@ -86,7 +86,6 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
         {
             return await _userManager.AddToRoleAsync(entity, role.Name);
         }
-
         public async Task<IEnumerable<Player>> GetPlayersByRole(ApplicationRole role)
         {
             return await _userManager.GetUsersInRoleAsync(role.Name);
