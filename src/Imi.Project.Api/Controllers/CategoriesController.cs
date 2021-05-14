@@ -29,16 +29,16 @@ namespace Imi.Project.Api.Controllers
         {
             if (!String.IsNullOrWhiteSpace(name))
             {
-                var categories = await _categoryService.SearchByNameAsync(name);
-                if (categories.Any())
-                    return Ok(categories);
+                var categoriesDto = await _categoryService.SearchByNameAsync(name);
+                if (categoriesDto.Any())
+                    return Ok(categoriesDto);
                 else
                     return NotFound(string.Format(CustomExceptionMessages.NotFoundCategoryName, name));
             }
             else
             {
-                var categories = await _categoryService.ListAllAsync();
-                return Ok(categories);
+                var categoriesDto = await _categoryService.ListAllAsync();
+                return Ok(categoriesDto);
             }
         }
         [HttpGet("{guid}")]
@@ -66,8 +66,13 @@ namespace Imi.Project.Api.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var categoryResponseDto = await _categoryService.AddAsync(categoryRequestDto);
-            return CreatedAtAction(nameof(Get), new { id = categoryResponseDto.Id }, categoryResponseDto);
+            try
+            {
+                var categoryResponseDto = await _categoryService.AddAsync(categoryRequestDto);
+                return CreatedAtAction(nameof(Get), new { id = categoryResponseDto.Id }, categoryResponseDto);
+            }
+            catch (Exception)
+            { return Conflict(CustomExceptionMessages.ConflictAddCategory); }
         }
         [HttpPut]
         [Authorize(Policy = "Administrators")]
@@ -75,18 +80,28 @@ namespace Imi.Project.Api.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest(ModelState);
-            var categoryResponseDto = await _categoryService.UpdateAsync(categoryRequestDto);
-            return CreatedAtAction(nameof(Get), new { id = categoryResponseDto.Id }, categoryResponseDto);
+            try
+            {
+                var categoryResponseDto = await _categoryService.UpdateAsync(categoryRequestDto);
+                return CreatedAtAction(nameof(Get), new { id = categoryResponseDto.Id }, categoryResponseDto);
+            }
+            catch (Exception)
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictUpdateCategory, categoryRequestDto.Id)); }
         }
         [HttpDelete("{guid}")]
         [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> Delete(Guid guid)
         {
-            var categoryEntity = await _categoryService.GetByIdAsync(guid);
-            if (categoryEntity == null)
-                return NotFound(string.Format(CustomExceptionMessages.NotFoundCategoryId, guid));
-            await _categoryService.DeleteAsync(guid);
-            return Ok(string.Format(CustomExceptionMessages.DeleteCategoryId, guid));
+            try
+            {
+                var categoryEntity = await _categoryService.GetByIdAsync(guid);
+                if (categoryEntity == null)
+                    return NotFound(string.Format(CustomExceptionMessages.NotFoundCategoryId, guid));
+                await _categoryService.DeleteAsync(guid);
+                return Ok(string.Format(CustomExceptionMessages.DeleteCategoryId, guid));
+            }
+            catch (Exception)
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictDeleteCategoryId, guid)); }
         }
     }
 }

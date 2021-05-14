@@ -78,6 +78,10 @@ namespace Imi.Project.Common
         public const string ConflictUpdateArtist = "There was a conflict with updating artist with id '{0}'.";
         public const string ConflictDeleteArtistId = "There was a conflict with deleting artist with id '{0}'.";
 
+        // Categories
+        public const string ConflictAddCategory = "There was a conflict with adding a category.";
+        public const string ConflictUpdateCategory = "There was a conflict with updating category with id '{0}'.";
+        public const string ConflictDeleteCategoryId = "There was a conflict with deleting category with id '{0}'.";
 
         #endregion
 
