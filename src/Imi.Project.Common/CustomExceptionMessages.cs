@@ -83,6 +83,12 @@ namespace Imi.Project.Common
         public const string ConflictUpdateCategory = "There was a conflict with updating category with id '{0}'.";
         public const string ConflictDeleteCategoryId = "There was a conflict with deleting category with id '{0}'.";
 
+        // PlayedGames
+        public const string ConflictAddPlayedGame = "There was a conflict with adding a playedgame.";
+        public const string ConflictUpdatePlayedGame = "There was a conflict with updating playedgame with id '{0}'.";
+        public const string ConflictDeletePlayedGameId = "There was a conflict with deleting playedgame with id '{0}'.";
+
+
         #endregion
 
         #region Add
