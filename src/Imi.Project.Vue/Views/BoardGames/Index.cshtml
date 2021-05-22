@@ -8,35 +8,40 @@
     </div>
 </div>
 
-<div id="boardGameApp" class="row">
-    <div class="col-md-6">
-        <ul class="list-group">
-            <li class="list-group-item list-group-item-action" v-bind:class="getBoardGameCssClass(boardGame)" v-for="boardGame in boardgames" v-on:click="getBoardGameDetails(boardGame)">
-                <a>{{boardGame.title}}</a>
-            </li>
-        </ul>
+<div id="boardGameApp">
+    <div v-if="false" class="col">
+        <div class="alert alert-info"></div>
     </div>
-    <div class="col-md-6">
-        <div v-if="currentBoardGame">
-            <div class="form-group">
-                <label>ID</label>
-                <input class="form-control" v-model="currentBoardGame.id" readonly="readonly" />
-            </div>
-            <div class="form-group">
-                <label>Title</label>
-                <input class="form-control" v-model="currentBoardGame.title" readonly="readonly" />
-            </div>
-            <div class="form-group">
-                <label>Year</label>
-                <input class="form-control" v-model="currentBoardGame.year" readonly="readonly" />
-            </div>
-            <div class="form-group">
-                <label>Price</label>
-                <input class="form-control" v-model="currentBoardGame.price" readonly="readonly" />
-            </div>
-            <div class="form-group">
-                <label>Stock</label>
-                <input class="form-control" v-model="currentBoardGame.stock" readonly="readonly" />
+    <div class="row">
+        <div class="col-md-6">
+            <ul class="list-group">
+                <li class="list-group-item list-group-item-action" v-for="boardGame in boardgames" v-on:click="getBoardGameDetails(boardGame)">
+                    <a>{{boardGame.title}}<div class="float-right " v-bind:class="IsInStock(boardGame)">In Stock</div></a>
+                </li>
+            </ul>
+        </div>
+        <div class="col-md-6">
+            <div v-if="currentBoardGame">
+                <div class="form-group">
+                    <label>ID</label>
+                    <input class="form-control" v-model="currentBoardGame.id" readonly="readonly" />
+                </div>
+                <div class="form-group">
+                    <label>Title</label>
+                    <input class="form-control" v-model="currentBoardGame.title" readonly="readonly" />
+                </div>
+                <div class="form-group">
+                    <label>Year</label>
+                    <input class="form-control" v-model="currentBoardGame.year" readonly="readonly" />
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <input class="form-control" v-model="currentBoardGame.price" readonly="readonly" />
+                </div>
+                <div class="form-group">
+                    <label>Stock</label>
+                    <input class="form-control" v-model="currentBoardGame.stock" readonly="readonly" />
+                </div>
             </div>
         </div>
     </div>

@@ -20,10 +20,14 @@
                         console.error(error);
                     });
             },
-        getBoardGameCssClass:
+        IsInStock:
             function (boardGame) {
+                let self = this;
                 if (boardGame.stock == "True") {
-                   return "list-group-item-success";
+                    return "badge badge-success";
+                }
+                else {
+                    return "text-hide";
                 }
             },
         getBoardGameDetails:
