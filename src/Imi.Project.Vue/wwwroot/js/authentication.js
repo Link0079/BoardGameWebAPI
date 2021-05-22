@@ -1,16 +1,4 @@
-﻿var playerApiURL = 'https://localhost:5001/api/players';
-var playerToken = "";
-const axiosConfig = { headers: { Authorization: `${playerToken}` } };
-
-function parseJwt(token) {
-    try {
-        return JSON.parse(atob(token.split('.')[1]));
-    } catch (e) {
-        return null;
-    }
-};
-
-var authenticationApp = new Vue({
+﻿var authenticationApp = new Vue({
     el: '#authenticationApp',
     data: {
         isRegisterPage: false,
@@ -94,7 +82,7 @@ var authenticationApp = new Vue({
                 sessionStorage.setItem("sessionToken", token);
                 //let playerJwt = sessionStorage.getItem("sessionToken");               // get token from sessionStorage..
                 //console.log(playerJwt + "playerJwt Testing Token");                   // log token into console for verification
-                let playerParsedJwt = parseJwt(token);                                  // parse token with function above..
+                let playerParsedJwt = self.parseJwt(token);                             // parse token with function above..
 
                 for (var prop in playerParsedJwt) {                                     // loop through all properties of the object
                     //console.log(prop + " => No hasOwnProp");                          // log prop into console for verification !!Could fail!!
@@ -107,6 +95,14 @@ var authenticationApp = new Vue({
                     //    }
                 }
             },
+        parseJwt:
+        function (token) {
+            try { 
+                return JSON.parse(atob(token.split('.')[1]));
+            } catch (e) {
+                return null;
+            }
+        },
         RedirectFrom:
             function (redirectFrom) {
                 let self = this;
