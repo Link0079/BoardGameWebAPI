@@ -80,6 +80,7 @@
             function (token) {
                 let self = this;
                 sessionStorage.setItem("sessionToken", token);
+                sessionStorage.setItem("sessionLogedIn", "true");
                 //let playerJwt = sessionStorage.getItem("sessionToken");               // get token from sessionStorage..
                 //console.log(playerJwt + "playerJwt Testing Token");                   // log token into console for verification
                 let playerParsedJwt = self.parseJwt(token);                             // parse token with function above..
@@ -88,7 +89,7 @@
                     //console.log(prop + " => No hasOwnProp");                          // log prop into console for verification !!Could fail!!
                     if (prop.includes("role")) {                                        // check if prop has "role" => true of false
                         //console.log(playerParsedJwt[prop] + " => PlayerRole");        // log role into console for verification
-                        sessionStorage.setItem("playerRole", playerParsedJwt[prop]);    // set new sessionStorage entry
+                        sessionStorage.setItem("sessionPlayerRole", playerParsedJwt[prop]);    // set new sessionStorage entry
                     }
                     //    if (playerParsedJwt.hasOwnProperty(prop)) {                   // if "No hasOnwProp" fails.?? This will resolve it.
                     //        console.log(prop + " => Short hasOwnProp");

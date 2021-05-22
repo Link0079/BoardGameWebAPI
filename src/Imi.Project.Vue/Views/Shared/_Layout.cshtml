@@ -22,6 +22,9 @@
                     @await Component.InvokeAsync("MainNavigation")
                 </ul>
             </div>
+            <div id="logoutApp">
+                <button class="btn btn-danger" v-if="isLogedIn" v-on:click="LogoutPlayer()">Logout</button>
+            </div>
         </div>
     </nav>
     <div class="container body-content">
@@ -35,6 +38,7 @@
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/LogoutPlayer.js"></script>
     @RenderSection("Scripts", required: false)
 </body>
 </html>
