@@ -1,23 +1,26 @@
-﻿var boardGameApiURL = 'https://localhost:5001/api/boardgames';
-var playerApiURL = 'https://localhost:5001/api/players';
-var categoriesApiURL = 'https://localhost:5001/api/categories';
-var artistsApiURL = 'https://localhost:5001/api/artists';
-var playedGamesApiURL = 'https://localhost:5001/api/playedgames';
-var rolesApiURL = 'https://localhost:5001/api/Roles';
+﻿var playerApiURL = 'https://localhost:5001/api/players';
 var playerToken = "";
 const axiosConfig = { headers: { Authorization: `${playerToken}` } };
-sessionStorage.setItem("token", `${playerToken}`);
+
+function parseJwt(token) {
+    try {
+        return JSON.parse(atob(token.split('.')[1]));
+    } catch (e) {
+        return null;
+    }
+};
 
 var authenticationApp = new Vue({
     el: '#authenticationApp',
     data: {
+        isRegisterPage: false,
         playerToRegister: null,
         playerToLogin: null,
-        playerInfo: null,
-        isRegisterPage: false,
-        loginButton: "Register",
-        signButton: "Sign In",
-        parsedPlayerJwt: null
+        signButton: "Let's Go",
+        apiErrorInfo: null,
+        hasError: false,
+        hasSuccess: false,
+        redirect: false,
     },
     created:
         function () {
@@ -26,54 +29,102 @@ var authenticationApp = new Vue({
             self.playerToLogin = { userName: "", password: "" }
     },
     methods: {
-        toLoginOrRegister:
-            function (signButton) {
+        ShowLoginOrRegister:
+            function (showForm) {
                 let self = this;
-                if (signButton != "Register") {
-                    self.registerPlayer();
-                }
-                else {
-                    self.loginPlayer();
-                }
-            },
-        registerPlayer:
-            function () {
-                let self = this;
-                axios.post(`${playerApiURL}/register`, self.playerToRegister)
-                    .then(function (response) { self.playerInfo = response.data; })
-                    .catch(function (error) { console.log(error); });
-            },
-        wantToLogin:
-            function () {
-                let self = this;
-                if (self.isRegisterPage) {
-                    self.isRegisterPage = false;
-                    self.loginButton = "Register";
-                    self.signButton = "Sign In";
+                if (showForm) {
+                        self.isRegisterPage = false;
+                        self.signButton = "Let's Go";
                 }
                 else {
                     self.isRegisterPage = true;
-                    self.loginButton = "Login";
                     self.signButton = "Sign Up";
                 }
             },
-        loginPlayer:
-            function () {
+        HandleLoginForm:
+            function (bool) {
                 let self = this;
-                axios.post(`${playerApiURL}/login`, self.playerToLogin)
-                    .then(function (response) { self.playerToken = response.token; })
-                    .catch(function (error) { console.log(error); });
-                localStorage.setItem("token", self.playerToken);
-                self.parsedPlayerJwt = self.parseJwt(self.playerToken);
+                if (bool) {
+                    axios.post(`${playerApiURL}/login`, self.playerToLogin)
+                        .then(function (response) {
+                            self.HandleSessionStorage(response.data.token);
+                            console.log("Login Success");
+                            self.apiErrorInfo = "Login Success";
+                            self.redirect = true;
+                            self.hasSuccess = true;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                            self.apiErrorInfo = "You are not Authorized.";
+                            self.hasError = true;
+                        })
+                        .finally(function () {
+                            setTimeout(function () {
+                                self.hasError = false;
+                                self.hasSuccess = false;
+                                self.RedirectFrom("Login");
+                            }, 2500);
+                        });
+                }
+                else {
+                    axios.post(`${playerApiURL}/register`, self.playerToRegister)
+                        .then(function (response) {
+                            self.apiErrorInfo = response.data;
+                            console.log("Registeration Success");
+                            self.redirect = true;
+                            self.hasSuccess = true;
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                            self.apiErrorInfo = "Registration Failed";
+                            self.hasError = true;
+                        })
+                        .finally(function () {
+                            setTimeout(function () {
+                                self.hasError = false;
+                                self.hasSuccess = false;
+                                self.RedirectFrom("Register");
+                            }, 2500);
+                        });
+                }
             },
-        parseJwt:
+        HandleSessionStorage:
             function (token) {
-            try {
-                return JSON.parse(atob(token.split('.')[1]));
-            } catch (e) {
-                return null;
-            }
-        }
+                let self = this;
+                sessionStorage.setItem("sessionToken", token);
+                //let playerJwt = sessionStorage.getItem("sessionToken");               // get token from sessionStorage..
+                //console.log(playerJwt + "playerJwt Testing Token");                   // log token into console for verification
+                let playerParsedJwt = parseJwt(token);                                  // parse token with function above..
 
+                for (var prop in playerParsedJwt) {                                     // loop through all properties of the object
+                    //console.log(prop + " => No hasOwnProp");                          // log prop into console for verification !!Could fail!!
+                    if (prop.includes("role")) {                                        // check if prop has "role" => true of false
+                        //console.log(playerParsedJwt[prop] + " => PlayerRole");        // log role into console for verification
+                        sessionStorage.setItem("playerRole", playerParsedJwt[prop]);    // set new sessionStorage entry
+                    }
+                    //    if (playerParsedJwt.hasOwnProperty(prop)) {                   // if "No hasOnwProp" fails.?? This will resolve it.
+                    //        console.log(prop + " => Short hasOwnProp");
+                    //    }
+                }
+            },
+        RedirectFrom:
+            function (redirectFrom) {
+                let self = this;
+                switch (redirectFrom) {
+                    case "Login":
+                        if (self.redirect) {
+                            window.location.href = "https://localhost:5002/boardgames";
+                        }
+                        break;
+                    case "Register":
+                        if (self.redirect) {
+                            self.ShowLoginOrRegister(true);
+                            self.playerToRegister = { userName: "", email: "", password: "", confirmPassword: "", name: "", dob: "" };
+                            break;
+                        }
+                    default:
+                }
+                self.redirect = false;
+            }
     }
 });
