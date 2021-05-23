@@ -13,7 +13,7 @@
                 console.log(self.isLogedIn);
                 if (self.isLogedIn) {
                     sessionStorage.clear();
-                    window.location.href = "https://localhost:5002";
+                    window.location.href = "/";
                 }
             }
     }

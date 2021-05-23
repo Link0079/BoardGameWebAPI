@@ -106,7 +106,7 @@
                 switch (redirectFrom) {
                     case "Login":
                         if (self.redirect) {
-                            window.location.href = "https://localhost:5002/boardgames";
+                            window.location.href = "/boardgames";
                         }
                         break;
                     case "Register":

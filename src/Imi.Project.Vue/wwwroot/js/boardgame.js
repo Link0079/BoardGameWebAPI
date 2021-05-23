@@ -8,10 +8,10 @@
     created:
         function () {
             let self = this;
-            self.fetchBoardGames();
+            self.FetchBoardGames();
         },
     methods: {
-        fetchBoardGames:
+        FetchBoardGames:
             function () {
                 let self = this;
                 axios
@@ -27,7 +27,7 @@
                         setTimeout(function () {
                             self.loading = false;
 
-                        }, 1500);
+                        }, 1000);
                     });
             },
         IsInStock:
@@ -40,7 +40,7 @@
                     return "text-hide";
                 }
             },
-        getBoardGameDetails:
+        GetBoardGameDetails:
             function (boardGame) {
                 let self = this;
                 self.currentBoardGame = boardGame;
