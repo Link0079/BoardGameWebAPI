@@ -11,10 +11,7 @@
 <div id="boardGameApp">
     <div class="col">
         <div v-if="loading" class="row">
-            <div class="mx-auto">
-                <div class="spinner-grow" role="status"></div>
-                <strong>Loading..</strong>
-            </div>
+            <div class="mx-auto"><div class="spinner-grow" role="status"></div><strong>Loading..</strong></div>
         </div>
         <div v-if="!loading" class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
             <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mb-4" v-for="boardGame in boardgames" v-on:click="GetBoardGameDetails(boardGame)">
@@ -26,14 +23,14 @@
                                 {{boardGame.price}}<br />
                             </div>
                         </div>
-                    <div class="card-body pb-0">
-                        <div class="float-right " v-bind:class="IsInStock(boardGame)">In Stock</div>
-                        <small>{{boardGame.title}}</small>
-                        <ul class="text-muted">
-                            <!-- Categories list should be here -->
-                            <li v-for="cat in boardGame.categories"><small>{{cat.name}}</small></li>
-                        </ul>
-                    </div>
+                        <div class="card-body pb-0">
+                            <div class="float-right " v-bind:class="IsInStock(boardGame)">In Stock</div>
+                            <small>{{boardGame.title}}</small>
+                            <ul class="text-muted">
+                                <!-- Categories list should be here -->
+                                <li v-for="cat in boardGame.categories"><small>{{cat.name}}</small></li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -104,10 +101,23 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" rows="5" v-model="currentBoardGame.description" readonly="readonly"></textarea>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Edit</button>
+                        <div class="btn-group" v-if="isAuthorized">
+                            <button v-on:click="CreateNewBoardGame" type="button" class="btn btn-group btn-success">Create</button>
+                            <button v-on:click="EditBoardGame" type="button" class="btn btn-group btn-primary">Edit</button>
+                            <button v-on:click="SaveBoardGame" type="button" class="btn btn-primary btn-group">Save</button>
+                            <button v-on:click="DeleteBoardGame" type="button" class="btn btn-danger btn-group">Delete</button>
+                        </div>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
