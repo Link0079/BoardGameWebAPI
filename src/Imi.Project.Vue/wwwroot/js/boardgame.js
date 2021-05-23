@@ -3,6 +3,7 @@
     data: {
         boardgames: null,
         currentBoardGame: null,
+        loading: true,
     },
     created:
         function () {
@@ -15,9 +16,18 @@
                 let self = this;
                 axios
                     .get(`${boardGameApiURL}`)
-                    .then(function (response) { self.boardgames = response.data; })
+                    .then(function (response) {
+                        self.boardgames = response.data;
+                        self.loading = true;
+                    })
                     .catch(function (error) {
                         console.error(error);
+                    })
+                    .finally(function () {
+                        setTimeout(function () {
+                            self.loading = false;
+
+                        }, 1500);
                     });
             },
         IsInStock:

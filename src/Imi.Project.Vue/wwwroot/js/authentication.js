@@ -30,9 +30,9 @@
                 }
             },
         HandleLoginForm:
-            function (bool) {
+            function (isLogin) {
                 let self = this;
-                if (bool) {
+                if (isLogin) {
                     axios.post(`${playerApiURL}/login`, self.playerToLogin)
                         .then(function (response) {
                             self.HandleSessionStorage(response.data.token);
@@ -79,8 +79,8 @@
         HandleSessionStorage:
             function (token) {
                 let self = this;
-                sessionStorage.setItem("sessionToken", token);
-                sessionStorage.setItem("sessionLogedIn", "true");
+                sessionStorage.setItem("sessionPlayerToken", token);
+                sessionStorage.setItem("sessionPlayerLogedIn", "true");
                 //let playerJwt = sessionStorage.getItem("sessionToken");               // get token from sessionStorage..
                 //console.log(playerJwt + "playerJwt Testing Token");                   // log token into console for verification
                 let playerParsedJwt = self.parseJwt(token);                             // parse token with function above..
@@ -98,12 +98,8 @@
             },
         parseJwt:
         function (token) {
-            try { 
-                return JSON.parse(atob(token.split('.')[1]));
-            } catch (e) {
-                return null;
-            }
-        },
+            try { return JSON.parse(atob(token.split('.')[1])); }
+            catch (e) {return null; } },
         RedirectFrom:
             function (redirectFrom) {
                 let self = this;

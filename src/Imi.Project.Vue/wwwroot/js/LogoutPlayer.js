@@ -1,7 +1,7 @@
 ﻿var logoutApp = new Vue({
     el: '#logoutApp',
     data: {
-        isLogedIn: sessionStorage.getItem("sessionLogedIn"),
+        isLogedIn: sessionStorage.getItem("sessionPlayerLogedIn"),
     },
     watch: {
 

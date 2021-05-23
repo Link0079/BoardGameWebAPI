@@ -8,11 +8,15 @@
     </div>
 </div>
 
-<div id="boardGameApp">
-    <div v-if="false" class="col">
-        <div class="alert alert-info"></div>
+<div id="boardGameApp" class="col">
+    <div v-if="loading" class="row">
+        <div class="mx-auto">
+        <div class="spinner-grow" role="status"></div>
+        <strong>Loading..</strong>
+
+        </div>
     </div>
-    <div class="row">
+    <div v-if="!loading" class="row">
         <div class="col-md-6">
             <ul class="list-group">
                 <li class="list-group-item list-group-item-action" v-for="boardGame in boardgames" v-on:click="getBoardGameDetails(boardGame)">
