@@ -126,7 +126,7 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
-                        self.apiErrorInfo = `Boardgame with id '${self.currentBoardGame.id}' has been created.<br/> Refresh page.!!`
+                        self.apiErrorInfo = `Boardgame with id '${self.currentBoardGame.id}' has been created. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -148,7 +148,7 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
-                        self.apiErrorInfo = `Boardgame with id '${self.currentBoardGame.id}' has been updated.<br/> Refresh page.!!`
+                        self.apiErrorInfo = `Boardgame with id '${self.currentBoardGame.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -192,16 +192,13 @@
                 let deleteBoardGameUrl = `${boardGameApiURL}/${self.currentBoardGame.id}`;
                 axios.delete(deleteBoardGameUrl, axiosBoardGameConfig)
                     .then(function (response) {
-                        console.log(response.data);
                         self.apiErrorInfo = response.data;
                         self.hasSuccess = true;
-                        console.log("Delete");
                     })
                     .catch(function (error) {
                         console.log(error);
                         self.apiErrorInfo = error;
                         self.hasError = true;
-                        console.log("Failed at Delete");
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -238,18 +235,6 @@
                 }
                 else {
                     return "text-hide";
-                }
-            },
-        SetCssApiInfo:
-            function (hasInfo) {
-                switch (hasInfo) {
-                    case "response":
-                        return "alert-success";
-                        break;
-                    case "error":
-                        return "alert-danger";
-                        break;
-                    default:
                 }
             },
         GetBoardGameDetails:
