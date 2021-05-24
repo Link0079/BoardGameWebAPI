@@ -1,13 +1,14 @@
 ﻿var boardGameApp = new Vue({
     el: '#boardGameApp',
     data: {
-        boardgames: null,
-        currentBoardGame: null,
-        loading: true,
         playerRole: sessionStorage.getItem("sessionPlayerRole"),
         isAuthorized: false,
-        deleteResponseInfo: null,
-        deleteErrorInfo: "",
+        loading: true,
+        boardgames: null,
+        currentBoardGame: null,
+        hasError: false,
+        hasSuccess: false,
+        isAdmin: false,
     },
     created:
         function () {
@@ -40,6 +41,7 @@
                 switch (self.playerRole) {
                     case "Admin":
                         self.isAuthorized = true;
+                        self.isAdmin = true;
                         break;
                     case "BoardGameEditor":
                         self.isAuthorized = true;
@@ -79,20 +81,37 @@
             function () {
                 let self = this;
                 let deleteBoardGameUrl = `${boardGameApiURL}/${self.currentBoardGame.id}`;
-
                 axios.delete(deleteBoardGameUrl, axiosBoardGameConfig)
                     .then(function (response) {
-                        console.log(response);
-                        self.deleteResponseInfo = response;
+                        console.log(response.data);
+                        self.apiErrorInfo = response.data;
+                        self.hasSuccess = true;
                         console.log("Delete");
                     })
                     .catch(function (error) {
                         console.log(error);
-                        self.deleteErrorInfo = error;
+                        self.apiErrorInfo = error;
+                        self.hasError = true;
+                        console.log("Failed at Delete");
                     })
                     .finally(function () {
-                        console.log("Ready With Deletion");
+                        setTimeout(function () {
+                            self.hasSuccess = false;
+                            self.hasError = false;
+                        }, 2500);
                     });
+            },
+        SetCssApiInfo:
+            function (hasInfo) {
+                switch (hasInfo) {
+                    case "response":
+                        return "alert-success";
+                        break;
+                    case "error":
+                        return "alert-danger";
+                        break;
+                    default:
+                }
             },
 
         GetBoardGameDetails:
