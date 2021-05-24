@@ -85,7 +85,7 @@
                 //console.log(playerJwt + "playerJwt Testing Token");                   // log token into console for verification
                 let playerParsedJwt = self.parseJwt(token);                             // parse token with function above..
 
-                for (var prop in playerParsedJwt) {                                     // loop through all properties of the object
+                for (let prop in playerParsedJwt) {                                     // loop through all properties of the object
                     //console.log(prop + " => No hasOwnProp");                          // log prop into console for verification !!Could fail!!
                     if (prop.includes("role")) {                                        // check if prop has "role" => true of false
                         //console.log(playerParsedJwt[prop] + " => PlayerRole");        // log role into console for verification

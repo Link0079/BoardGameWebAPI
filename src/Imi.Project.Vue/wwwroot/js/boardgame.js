@@ -4,8 +4,12 @@
         playerRole: sessionStorage.getItem("sessionPlayerRole"),
         isAuthorized: false,
         loading: true,
-        boardgames: null,
+        boardgames: [],
         currentBoardGame: null,
+        selectedCategories: [],
+        selectedArtists: [],
+        allCategories: [],
+        allArtists: [],
         hasError: false,
         hasSuccess: false,
         isAdmin: false,
@@ -33,6 +37,28 @@
                             self.loading = false;
 
                         }, 1000);
+                    });
+            },
+        FetchCategories:
+            function () {
+                let self = this;
+                axios.get(`${categoriesApiURL}`, axiosBoardGameConfig)
+                    .then(function (response) {
+                        self.allCategories = response.data;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+        FetchArtists:
+            function () {
+                let self = this;
+                axios.get(`${artistsApiURL}`, axiosBoardGameConfig)
+                    .then(function (response) {
+                        self.allArtists = response.data;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
                     });
             },
         IsPlayerAuthorizedBoardGames:
@@ -114,11 +140,16 @@
                 }
             },
 
+
         GetBoardGameDetails:
             function (boardGame) {
                 let self = this;
                 self.currentBoardGame = boardGame;
+                self.FetchCategories();
+                self.FetchArtists();
+                //self.selectedCategories = boardGame.categories;
                 self.IsPlayerAuthorizedBoardGames();
+                //self.GetCurrentBoardGameCategories();
             }
     }
 });
