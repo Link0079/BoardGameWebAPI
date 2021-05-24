@@ -17,9 +17,10 @@ namespace Imi.Project.Vue.Components
         publicLinks = new List<MainNavLinkViewModel>
             {
                 new MainNavLinkViewModel { Area = null, Controller = "Home", Action = "Index", Text = "Home", IsActive = false },
-                new MainNavLinkViewModel { Area = null, Controller = "Players", Action = "Index", Text = "Players", IsActive = false },
+                new MainNavLinkViewModel { Area = null, Controller = "Players", Action = "Index", Text = "Player", IsActive = false },
                 new MainNavLinkViewModel { Area = null, Controller = "BoardGames", Action = "Index", Text = "BoardGames", IsActive = false },
-                new MainNavLinkViewModel { Area = null, Controller = "PlayedGames", Action = "Index", Text = "PlayedGames", IsActive = false }
+                new MainNavLinkViewModel { Area = null, Controller = "Categories", Action = "Index", Text = "Categories", IsActive = false },
+                new MainNavLinkViewModel { Area = null, Controller = "Artists", Action = "Index", Text = "Artists", IsActive = false }
             };
         }
         public async Task<IViewComponentResult> InvokeAsync(bool showAdmin = false)

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Imi.Project.Vue.Controllers
 {
-    public class PlayedGamesController : Controller
+    public class CategoriesController : Controller
     {
         public IActionResult Index()
         {
