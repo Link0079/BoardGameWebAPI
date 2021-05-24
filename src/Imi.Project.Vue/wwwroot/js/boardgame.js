@@ -3,16 +3,20 @@
     data: {
         playerRole: sessionStorage.getItem("sessionPlayerRole"),
         isAuthorized: false,
+        isAdmin: false,
         loading: true,
         boardgames: [],
+        allCategories: [],
+        allArtists: [],
         currentBoardGame: null,
         selectedCategories: [],
         selectedArtists: [],
-        allCategories: [],
-        allArtists: [],
+        isDisabled: true,
+        isActive: true,
         hasError: false,
         hasSuccess: false,
-        isAdmin: false,
+        editBoardGame: false,
+
     },
     created:
         function () {
@@ -91,17 +95,69 @@
                     return "text-hide";
                 }
             },
-        CreateNewBoardGame:
-            function () {
-                console.log("Create");
-            },
         EditBoardGame:
-            function () {
-                console.log("Edit");
+            function (editBoardGame) {
+                let self = this;
+                self.editBoardGame = editBoardGame;
+                self.isDisabled = false;
+                if (!self.editBoardGame) {
+                    function createGuid() {
+                        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
+                            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
+                            return v.toString(16);
+                        });
+                    }
+
+                    self.currentBoardGame = {
+                        id: createGuid(),
+                        title: "",
+                        price: 0,
+                        stock: false,
+                        minPlayers: 0,
+                        maxPlayers: 0,
+                        age: 0,
+                        year: 2000,
+                        rating: 0,
+                        playTime: "0",
+                        photoUrl: "",
+                        description: "",
+                        isDeleted: false,
+                }
+                    console.log("Create new Boardgame");
+                }
+                else {
+                    console.log("Edit old BoardGame");
+                }
             },
         SaveBoardGame:
             function () {
+                let self = this;
                 console.log("Save");
+                if (!self.editBoardGame) {
+                    console.log("Create");
+                    let postBoardGameUrl = `${boardGameApiURL}`;
+                    let stock = self.currentBoardGame.stock;
+                    if (stock === "true") {
+                        self.currentBoardGame.stock = true;
+                    }
+                    else {
+                        self.currentBoardGame.stock = false;
+                    }
+                    axios.post(postBoardGameUrl, self.currentBoardGame, axiosBoardGameConfig)
+                        .then(function (response) {
+                            console.log(response.data);
+                            //self.currentBoardGame = response.data;
+                            self.isDisabled = true;
+
+                        })
+                        .catch(function (error) {
+                            console.log(error);
+                        });
+                }
+                else {
+                    console.log("Edit");
+                }
+
             },
         DeleteBoardGame:
             function () {
@@ -144,12 +200,11 @@
         GetBoardGameDetails:
             function (boardGame) {
                 let self = this;
+                self.isDisabled = true;
                 self.currentBoardGame = boardGame;
                 self.FetchCategories();
                 self.FetchArtists();
-                //self.selectedCategories = boardGame.categories;
                 self.IsPlayerAuthorizedBoardGames();
-                //self.GetCurrentBoardGameCategories();
             }
     }
 });

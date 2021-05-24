@@ -55,13 +55,13 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>ID</label>
-                                    <input class="form-control" v-model="currentBoardGame.id" readonly="readonly" />
+                                    <input class="form-control" v-model="currentBoardGame.id" disabled="disabled" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Title</label>
-                                    <input class="form-control" v-model="currentBoardGame.title" readonly="readonly" />
+                                    <input type="text" required class="form-control" v-model="currentBoardGame.title" v-bind:disabled="isDisabled" />
                                 </div>
                             </div>
                         </div>
@@ -69,27 +69,31 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Year</label>
-                                    <input class="form-control" v-model="currentBoardGame.year" readonly="readonly" />
+                                    <input type="number" min="1900" max="2050" class="form-control" v-model.number="currentBoardGame.year" v-bind:disabled="isDisabled" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Price</label>
-                                    <input class="form-control" v-model="currentBoardGame.price" readonly="readonly" />
+                                    <input type="number" min="1" class="form-control" v-model.number="currentBoardGame.price" v-bind:disabled="isDisabled" />
                                 </div>
                             </div>
                         </div>
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
-                                    <label>Stock</label>
-                                    <input class="form-control" v-model="currentBoardGame.stock" readonly="readonly" />
+                                    <label>Stock</label><br />
+                                    <input v-if="isDisabled" type="text" class="form-control" v-model="currentBoardGame.stock" v-bind:disabled="isDisabled" />
+                                    <select v-else v-model="currentBoardGame.stock" class="form-control">
+                                        <option value="true">In Stock</option>
+                                        <option value="false">Out of Stock</option>
+                                    </select>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Rating</label>
-                                    <input class="form-control" v-model="currentBoardGame.rating" readonly="readonly" />
+                                    <input type="number" min="1" max="10" class="form-control" v-model.number="currentBoardGame.rating" v-bind:disabled="isDisabled" />
                                 </div>
                             </div>
                         </div>
@@ -97,13 +101,48 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Play Time</label>
-                                    <input class="form-control" v-model="currentBoardGame.playTime" readonly="readonly" />
+                                    <input v-if="isDisabled" type="text" min="0" class="form-control" v-model="currentBoardGame.playTime" v-bind:disabled="isDisabled" />
+                                    <input v-else type="number" min="0" class="form-control" v-model.number="currentBoardGame.playTime" v-bind:disabled="isDisabled" />
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Photo Url</label>
-                                    <input class="form-control" v-model="currentBoardGame.photoUrl" readonly="readonly" />
+                                    <input type="url" maxlength="255" class="form-control" v-model="currentBoardGame.photoUrl" v-bind:disabled="isDisabled" />
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="isAuthorized">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Minimum Players</label>
+                                        <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.minPlayers" v-bind:disabled="isDisabled" />
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Maximum Players</label>
+                                        <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.maxPlayers" v-bind:disabled="isDisabled" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>age</label>
+                                        <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.age" v-bind:disabled="isDisabled" />
+                                    </div>
+                                </div>
+                                <div class="col-6" v-if="isAdmin">
+                                    <div class="form-group">
+                                        <label>Is Deleted</label><br />
+                                        <input v-if="isDisabled" type="text" class="form-control" v-model.bool="currentBoardGame.isDeleted" v-bind:disabled="isDisabled" />
+                                        <select v-else v-model="currentBoardGame.isDeleted" class="form-control">
+                                            <option value=1>Is Deleted</option>
+                                            <option value=0>Is not Deleted</option>
+                                        </select>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -111,16 +150,20 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Categories:</label><br />
-                                    <select class="form-control" v-model="selectedCategories" multiple>
+                                    <select v-if="isDisabled" class="form-control" v-model="selectedCategories" multiple v-bind:disabled="isDisabled">
                                         <option v-for="cat in currentBoardGame.categories" v-bind:value="cat.id">{{cat.name}}</option>
+                                    </select>
+                                    <select v-else class="form-control" v-model="selectedCategories" multiple v-bind:disabled="isDisabled">
+                                        <option v-for="cat in allCategories" v-bind:value="cat.id">{{cat.name}}</option>
                                     </select>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Artist:</label><br />
-                                    <select class="form-control" v-model="selectedArtists" multiple>
-                                        <option v-for="artist in currentBoardGame.artists" v-bind:value="artist.id">{{artist.name}}</option>
+
+                                    <select class="form-control" v-model="selectedArtists" multiple v-bind:disabled="isDisabled">
+                                        <option v-for="artist in allArtists" v-bind:value="artist.id">{{artist.name}}</option>
                                     </select>
                                 </div>
                             </div>
@@ -129,19 +172,19 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea class="form-control" rows="5" v-model="currentBoardGame.description" readonly="readonly"></textarea>
+                                    <textarea class="form-control" rows="5" v-model="currentBoardGame.description" v-bind:disabled="isDisabled"></textarea>
                                 </div>
                             </div>
                         </div>
                     </div>
                     <div class="modal-footer">
                         <div class="btn-group" v-if="isAuthorized">
-                            <button v-on:click="CreateNewBoardGame" type="button" class="btn btn-group btn-success">Create</button>
-                            <button v-on:click="EditBoardGame" type="button" class="btn btn-group btn-primary">Edit</button>
+                            <button v-on:click="EditBoardGame(false)" type="button" class="btn btn-group btn-success">Create</button>
+                            <button v-on:click="EditBoardGame(true)" type="button" class="btn btn-group btn-primary">Edit</button>
                             <button v-on:click="SaveBoardGame" type="button" class="btn btn-primary btn-group">Save</button>
                             <button v-on:click="DeleteBoardGame" type="button" class="btn btn-danger btn-group" data-dismiss="modal">Delete</button>
+                            @*<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>*@
                         </div>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
