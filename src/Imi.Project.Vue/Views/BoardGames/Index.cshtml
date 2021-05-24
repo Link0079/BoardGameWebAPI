@@ -10,12 +10,6 @@
 
 <div id="boardGameApp">
     <div class="col">
-        <section v-if="hasError" class="alert alert-danger text-center shadow-sm">
-            <p>{{apiErrorInfo}}</p>
-        </section>
-        <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
-            <p>{{apiErrorInfo}}</p>
-        </section>
         <section v-if="loading" class="row">
             <div class="mx-auto"><div class="spinner-grow" role="status"></div><strong>Loading..</strong></div>
         </section>
@@ -51,6 +45,12 @@
                         </button>
                     </div>
                     <div class="modal-body">
+                        <section v-if="hasError" class="alert alert-danger text-center shadow-sm">
+                            <p>{{apiErrorInfo}}</p>
+                        </section>
+                        <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
+                            <p>{{apiErrorInfo}}</p>
+                        </section>
                         <div class="row">
                             <div class="col-6">
                                 <div class="form-group">
@@ -139,8 +139,8 @@
                                         <label>Is Deleted</label><br />
                                         <input v-if="isDisabled" type="text" class="form-control" v-model.bool="currentBoardGame.isDeleted" v-bind:disabled="isDisabled" />
                                         <select v-else v-model="currentBoardGame.isDeleted" class="form-control">
-                                            <option value=1>Is Deleted</option>
-                                            <option value=0>Is not Deleted</option>
+                                            <option value="true">Is Deleted</option>
+                                            <option value="false">Is not Deleted</option>
                                         </select>
                                     </div>
                                 </div>
@@ -161,8 +161,8 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Artist:</label><br />
-
-                                    <select class="form-control" v-model="selectedArtists" multiple v-bind:disabled="isDisabled">
+                                    <input v-if="isDisabled" type="number"  class="form-control" v-model="currentBoardGame.numberofArtists" v-bind:disabled="isDisabled" />
+                                    <select v-if="!isDisabled" class="form-control" v-model="selectedArtists" multiple v-bind:disabled="isDisabled">
                                         <option v-for="artist in allArtists" v-bind:value="artist.id">{{artist.name}}</option>
                                     </select>
                                 </div>
@@ -179,12 +179,12 @@
                     </div>
                     <div class="modal-footer">
                         <div class="btn-group" v-if="isAuthorized">
-                            <button v-on:click="EditBoardGame(false)" type="button" class="btn btn-group btn-success">Create</button>
+                            <button v-on:click="EditBoardGame(false)" type="button" class="btn btn-group btn-primary">Create</button>
                             <button v-on:click="EditBoardGame(true)" type="button" class="btn btn-group btn-primary">Edit</button>
-                            <button v-on:click="SaveBoardGame" type="button" class="btn btn-primary btn-group">Save</button>
+                            <button v-on:click="SaveBoardGame" type="button" class="btn btn-success btn-group">Save</button>
                             <button v-on:click="DeleteBoardGame" type="button" class="btn btn-danger btn-group" data-dismiss="modal">Delete</button>
-                            @*<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>*@
                         </div>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>

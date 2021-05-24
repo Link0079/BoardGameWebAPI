@@ -22,6 +22,7 @@
         function () {
             let self = this;
             self.FetchBoardGames();
+            self.IsPlayerAuthorizedBoardGames();
         },
     methods: {
         FetchBoardGames:
@@ -65,6 +66,150 @@
                         console.log(error);
                     });
             },
+        EditBoardGame:
+            function (editBoardGame) {
+                let self = this;
+                self.editBoardGame = editBoardGame;
+                self.isDisabled = false;
+                if (!self.editBoardGame) {
+                    self.currentBoardGame = {
+                        id: createGuid(),
+                        title: "",
+                        price: 0,
+                        stock: false,
+                        minPlayers: 0,
+                        maxPlayers: 0,
+                        age: 0,
+                        year: 2000,
+                        rating: 0,
+                        playTime: "0",
+                        photoUrl: "",
+                        description: "",
+                        isDeleted: false,
+                }
+                    console.log("Create new Boardgame");
+                }
+            },
+        SaveBoardGame:
+            function () {
+                let self = this;
+                let stock = self.currentBoardGame.stock;
+                let isDeleted = self.currentBoardGame.isDeleted;
+                self.currentBoardGame.stock = (stock === "true") ? true : false;
+                self.currentBoardGame.isDeleted = (isDeleted === "true") ? true : false;
+                if (!self.editBoardGame) {
+                    console.log("Create");
+                    self.PostBoardGame();
+                    self.selectedCategories.forEach(function (id) {
+                        setTimeout(function () { self.PostBoarGameCategories(id); }, 2000);
+                    });
+                    self.selectedArtists.forEach(function (id) {
+                        setTimeout(function () { self.PostBoardGameArtists(id); }, 2000);
+                    });
+                }
+                else {
+                    console.log("Edit");
+                    self.PutBoardGame();
+                    self.selectedCategories.forEach(function (id) {
+                        setTimeout(function () { self.PostBoarGameCategories(id); }, 2000);
+                    });
+                    self.selectedArtists.forEach(function (id) {
+                        setTimeout(function () { self.PostBoardGameArtists(id); }, 2000);
+                    });
+                }
+            },
+        PostBoardGame:
+            function() {
+                let self = this;
+                let postBoardGameUrl = `${boardGameApiURL}`;
+                axios.post(postBoardGameUrl, self.currentBoardGame, axiosBoardGameConfig)
+                    .then(function (response) {
+                        self.isDisabled = true;
+                        self.hasSuccess = true;
+                        self.apiErrorInfo = `Boardgame with id '${self.currentBoardGame.id}' has been created.<br/> Refresh page.!!`
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        self.hasError = true;
+                        self.apiErrorInfo = "Creating new boardgame Failed, check all values!";
+                    })
+                    .finally(function () {
+                        setTimeout(function () {
+                            self.hasSuccess = false;
+                            self.hasError = false;
+                        }, 2000)
+                    });
+            },
+        PutBoardGame:
+            function () {
+                let self = this;
+                let putBoardGameUrl = `${boardGameApiURL}`;
+                axios.put(putBoardGameUrl, self.currentBoardGame, axiosBoardGameConfig)
+                    .then(function (response) {
+                        self.isDisabled = true;
+                        self.hasSuccess = true;
+                        self.apiErrorInfo = `Boardgame with id '${self.currentBoardGame.id}' has been updated.<br/> Refresh page.!!`
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        self.hasError = true;
+                        self.apiErrorInfo = `There was a conflict with updating boardgame with id '${self.currentBoardGame.id}'!`;
+                    })
+                    .finally(function () {
+                        setTimeout(function () {
+                            self.hasSuccess = false;
+                            self.hasError = false;
+                        }, 2000)
+                    });
+            },
+        PostBoarGameCategories:
+            function(categoryId) {
+                let self = this;
+                let postBoardGameCategoryUrl = `${boardGameApiURL}/${self.currentBoardGame.id}/Categories/${categoryId}`;
+                axios.post(postBoardGameCategoryUrl, [self.currentBoardGame.id, categoryId], axiosBoardGameConfig)
+                    .then(function (response) {
+                        console.log("Category was added to BoardGame");
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+        PostBoardGameArtists:
+            function (artistId) {
+                let self = this;
+                let postBoardGameArtistUrl = `${boardGameApiURL}/${self.currentBoardGame.id}/Artists/${artistId}`;
+                axios.post(postBoardGameArtistUrl, [self.currentBoardGame.id, artistId], axiosBoardGameConfig)
+                    .then(function (response) {
+                        console.log("Artist was added to Boardgame.");
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    });
+            },
+        DeleteBoardGame:
+            function () {
+                let self = this;
+                let deleteBoardGameUrl = `${boardGameApiURL}/${self.currentBoardGame.id}`;
+                axios.delete(deleteBoardGameUrl, axiosBoardGameConfig)
+                    .then(function (response) {
+                        console.log(response.data);
+                        self.apiErrorInfo = response.data;
+                        self.hasSuccess = true;
+                        console.log("Delete");
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        self.apiErrorInfo = error;
+                        self.hasError = true;
+                        console.log("Failed at Delete");
+                    })
+                    .finally(function () {
+                        setTimeout(function () {
+                            self.hasSuccess = false;
+                            self.hasError = false;
+                        }, 2500);
+                    });
+            },
         IsPlayerAuthorizedBoardGames:
             function () {
                 let self = this;
@@ -95,94 +240,6 @@
                     return "text-hide";
                 }
             },
-        EditBoardGame:
-            function (editBoardGame) {
-                let self = this;
-                self.editBoardGame = editBoardGame;
-                self.isDisabled = false;
-                if (!self.editBoardGame) {
-                    function createGuid() {
-                        return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function (c) {
-                            var r = Math.random() * 16 | 0, v = c === 'x' ? r : (r & 0x3 | 0x8);
-                            return v.toString(16);
-                        });
-                    }
-
-                    self.currentBoardGame = {
-                        id: createGuid(),
-                        title: "",
-                        price: 0,
-                        stock: false,
-                        minPlayers: 0,
-                        maxPlayers: 0,
-                        age: 0,
-                        year: 2000,
-                        rating: 0,
-                        playTime: "0",
-                        photoUrl: "",
-                        description: "",
-                        isDeleted: false,
-                }
-                    console.log("Create new Boardgame");
-                }
-                else {
-                    console.log("Edit old BoardGame");
-                }
-            },
-        SaveBoardGame:
-            function () {
-                let self = this;
-                console.log("Save");
-                if (!self.editBoardGame) {
-                    console.log("Create");
-                    let postBoardGameUrl = `${boardGameApiURL}`;
-                    let stock = self.currentBoardGame.stock;
-                    if (stock === "true") {
-                        self.currentBoardGame.stock = true;
-                    }
-                    else {
-                        self.currentBoardGame.stock = false;
-                    }
-                    axios.post(postBoardGameUrl, self.currentBoardGame, axiosBoardGameConfig)
-                        .then(function (response) {
-                            console.log(response.data);
-                            //self.currentBoardGame = response.data;
-                            self.isDisabled = true;
-
-                        })
-                        .catch(function (error) {
-                            console.log(error);
-                        });
-                }
-                else {
-                    console.log("Edit");
-                }
-
-            },
-        DeleteBoardGame:
-            function () {
-                let self = this;
-                let deleteBoardGameUrl = `${boardGameApiURL}/${self.currentBoardGame.id}`;
-                axios.delete(deleteBoardGameUrl, axiosBoardGameConfig)
-                    .then(function (response) {
-                        console.log(response.data);
-                        self.apiErrorInfo = response.data;
-                        self.hasSuccess = true;
-                        console.log("Delete");
-                    })
-                    .catch(function (error) {
-                        console.log(error);
-                        self.apiErrorInfo = error;
-                        self.hasError = true;
-                        console.log("Failed at Delete");
-                    })
-                    .finally(function () {
-                        setTimeout(function () {
-                            self.hasSuccess = false;
-                            self.hasError = false;
-                        }, 2500);
-                    });
-            },
         SetCssApiInfo:
             function (hasInfo) {
                 switch (hasInfo) {
@@ -195,8 +252,6 @@
                     default:
                 }
             },
-
-
         GetBoardGameDetails:
             function (boardGame) {
                 let self = this;
@@ -204,7 +259,6 @@
                 self.currentBoardGame = boardGame;
                 self.FetchCategories();
                 self.FetchArtists();
-                self.IsPlayerAuthorizedBoardGames();
             }
     }
 });

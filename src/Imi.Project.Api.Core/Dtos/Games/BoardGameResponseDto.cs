@@ -10,6 +10,9 @@ namespace Imi.Project.Api.Core.Dtos.Games
         public int Year { get; set; }
         public string PhotoUrl { get; set; }
         public int Rating { get; set; }
+        public int MinPlayers { get; set; }
+        public int MaxPlayers { get; set; }
+        public int Age { get; set; }
         public string Description { get; set; }
         //public string CountryName { get; set; }
         public string Stock { get; set; } // CreateMap
