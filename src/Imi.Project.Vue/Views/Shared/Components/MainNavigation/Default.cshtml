@@ -1,0 +1,10 @@
+﻿@model IEnumerable<Imi.Project.Vue.ViewModels.Components.MainNavLinkViewModel>
+@foreach (var naviLink in Model)
+{
+    <li class="nav-item">
+        <a class="nav-link text-dark @(Html.Raw(naviLink.IsActive ? "active" : ""))"
+           asp-area="@naviLink.Area"
+           asp-controller="@naviLink.Controller"
+           asp-action="@naviLink.Action">@naviLink.Text</a>
+    </li>
+}

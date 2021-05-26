@@ -1,0 +1,198 @@
+﻿@{
+    ViewData["Title"] = "BoardGame Page";
+}
+
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Boardgames</h1>
+    </div>
+</div>
+
+<div id="boardGameApp">
+    <div class="col">
+        <section v-if="loading" class="row">
+            <div class="mx-auto"><div class="spinner-grow" role="status"></div><strong>Loading..</strong></div>
+        </section>
+        <div v-if="!loading" class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+            <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mb-4" v-for="boardGame in boardgames" v-on:click="GetBoardGameDetails(boardGame)">
+                <div class="card h-100 shadow-sm">
+                    <div data-toggle="modal" data-target="#exampleModalCenter">
+                        <img v-bind:src="boardGame.photoUrl" class="card-img-top" v-bind:alt="boardGame.title" />
+                        <div class="card-img-overlay">
+                            <div class="badge badge-danger float-right">
+                                {{boardGame.price}} €<br />
+                            </div>
+                        </div>
+                        <div class="card-body pb-0">
+                            <div class="float-right " v-bind:class="IsInStock(boardGame)">In Stock</div>
+                            <small>{{boardGame.title}}</small>
+                            <ul class="text-muted">
+                                <!-- Categories list should be here -->
+                                <li v-for="cat in boardGame.categories"><small>{{cat.name}}</small></li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div v-if="currentBoardGame" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalCenterTitle">{{currentBoardGame.title}}</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        <section v-if="hasError" class="alert alert-danger text-center shadow-sm">
+                            <p>{{apiErrorInfo}}</p>
+                        </section>
+                        <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
+                            <p>{{apiErrorInfo}}</p>
+                        </section>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>ID</label>
+                                    <input class="form-control" v-model="currentBoardGame.id" disabled="disabled" />
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Title</label>
+                                    <input type="text" required class="form-control" v-model="currentBoardGame.title" v-bind:disabled="isDisabled" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Year</label>
+                                    <input type="number" min="1900" max="2050" class="form-control" v-model.number="currentBoardGame.year" v-bind:disabled="isDisabled" />
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Price</label>
+                                    <input type="number" min="1" class="form-control" v-model.number="currentBoardGame.price" v-bind:disabled="isDisabled" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Stock</label><br />
+                                    <input v-if="isDisabled" type="text" class="form-control" v-model="currentBoardGame.stock" v-bind:disabled="isDisabled" />
+                                    <select v-else v-model="currentBoardGame.stock" class="form-control">
+                                        <option value="true">In Stock</option>
+                                        <option value="false">Out of Stock</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Rating</label>
+                                    <input type="number" min="1" max="10" class="form-control" v-model.number="currentBoardGame.rating" v-bind:disabled="isDisabled" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Play Time</label>
+                                    <input v-if="isDisabled" type="text" min="0" class="form-control" v-model="currentBoardGame.playTime" v-bind:disabled="isDisabled" />
+                                    <input v-else type="number" min="0" class="form-control" v-model.number="currentBoardGame.playTime" v-bind:disabled="isDisabled" />
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Photo Url</label>
+                                    <input type="url" maxlength="255" class="form-control" v-model="currentBoardGame.photoUrl" v-bind:disabled="isDisabled" />
+                                </div>
+                            </div>
+                        </div>
+                        <div v-if="isAuthorized">
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Minimum Players</label>
+                                        <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.minPlayers" v-bind:disabled="isDisabled" />
+                                    </div>
+                                </div>
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>Maximum Players</label>
+                                        <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.maxPlayers" v-bind:disabled="isDisabled" />
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <div class="form-group">
+                                        <label>age</label>
+                                        <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.age" v-bind:disabled="isDisabled" />
+                                    </div>
+                                </div>
+                                <div class="col-6" v-if="isAdmin">
+                                    <div class="form-group">
+                                        <label>Is Deleted</label><br />
+                                        <input v-if="isDisabled" type="text" class="form-control" v-model.bool="currentBoardGame.isDeleted" v-bind:disabled="isDisabled" />
+                                        <select v-else v-model="currentBoardGame.isDeleted" class="form-control">
+                                            <option value="true">Is Deleted</option>
+                                            <option value="false">Is not Deleted</option>
+                                        </select>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Categories:</label><br />
+                                    <select v-if="isDisabled" class="form-control" v-model="selectedCategories" multiple v-bind:disabled="isDisabled">
+                                        <option v-for="cat in currentBoardGame.categories" v-bind:value="cat.id">{{cat.name}}</option>
+                                    </select>
+                                    <select v-else class="form-control" v-model="selectedCategories" multiple v-bind:disabled="isDisabled">
+                                        <option v-for="cat in allCategories" v-bind:value="cat.id">{{cat.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label>Artist:</label><br />
+                                    <input v-if="isDisabled" type="number"  class="form-control" v-model="currentBoardGame.numberofArtists" v-bind:disabled="isDisabled" />
+                                    <select v-if="!isDisabled" class="form-control" v-model="selectedArtists" multiple v-bind:disabled="isDisabled">
+                                        <option v-for="artist in allArtists" v-bind:value="artist.id">{{artist.name}}</option>
+                                    </select>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label>Description</label>
+                                    <textarea class="form-control" rows="5" v-model="currentBoardGame.description" v-bind:disabled="isDisabled"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="modal-footer">
+                        <div class="btn-group" v-if="isAuthorized">
+                            <button v-on:click="EditBoardGame(false)" type="button" class="btn btn-group btn-primary">Create</button>
+                            <button v-on:click="EditBoardGame(true)" type="button" class="btn btn-group btn-primary">Edit</button>
+                            <button v-on:click="SaveBoardGame" type="button" class="btn btn-success btn-group">Save</button>
+                            <button v-on:click="DeleteBoardGame" type="button" class="btn btn-danger btn-group" data-dismiss="modal">Delete</button>
+                        </div>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/js/Boardgame.js"></script>
+}
+@* BoardGame Index.cshtml *@

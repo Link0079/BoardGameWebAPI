@@ -1,0 +1,111 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Welcome</h1>
+    </div>
+</div>
+
+<div id="authenticationApp" class="container">
+    <div class="col-9 mx-auto">
+        <section v-if="hasError" class="alert alert-danger text-center shadow-sm">
+            <p>{{apiErrorInfo}}</p>
+        </section>
+        <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
+            <p>{{apiErrorInfo}}</p>
+        </section>
+        <div class="card shadow-lg ">
+            <div class="card-header">
+                <div class="form-row">
+                    <div class="form-group col">
+                        <button class="btn btn-secondary btn-block" v-on:click="ShowLoginOrRegister(true)">Login</button>
+                    </div>
+                    <div class="form-group col">
+                        <button class="btn btn-secondary btn-block" v-on:click="ShowLoginOrRegister(false)">Register</button>
+                    </div>
+                </div>
+            </div>
+            <div class="card-body">
+                <div v-if="isRegisterPage">
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="userName">Username: *</label>
+                        </div>
+                        <div class="form-group col">
+                            <input type="text" class="form-control" v-model="playerToRegister.userName" required="required" placeholder="Username...">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="email">Email: *</label>
+                        </div>
+                        <div class="form-group col">
+                            <input type="email" class="form-control" v-model="playerToRegister.email" required="required" placeholder="Email...">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="password">Password: *</label>
+                        </div>
+                        <div class="form-group col">
+                            <input type="password" class="form-control" v-model="playerToRegister.password" required="required" placeholder="Password...">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="confirmPassword">Confirm password: *</label>
+                        </div>
+                        <div class="form-group col">
+                            <input type="password" class="form-control" v-model="playerToRegister.confirmPassword" required="required" placeholder="Confirm password...">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="name">Name: *</label>
+                        </div>
+                        <div class="form-group col">
+                            <input type="text" class="form-control" v-model="playerToRegister.name" required="required" placeholder="Fistname lastname...">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="dob">Birthday: *</label>
+                        </div>
+                        <div class="form-group col">
+                            <input type="date" class="form-control" v-model="playerToRegister.dob" required="required">
+                        </div>
+                    </div>
+                    <button class="btn btn-success btn-block btn-lg" v-on:click="HandleLoginForm(false)">{{signButton}}</button>
+                </div>
+                <div v-if="!isRegisterPage">
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="userName">Username: *</label>
+                        </div>
+                        <div class="form-group col">
+                            <input type="text" id="userName" class="form-control" v-model="playerToLogin.userName" required="required" placeholder="Username...">
+                        </div>
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group col-4">
+                            <label for="password">Password: *</label>
+                        </div>
+                        <div class="form-group col">
+                            <input type="password" id="password" class="form-control" v-model="playerToLogin.password" required="required" placeholder="Password...">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <button class="btn btn-success btn-block btn-lg" v-on:click="HandleLoginForm(true)">{{signButton}}</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/js/Authentication.js"></script>
+}
+
+@*Home Index.cshtml*@

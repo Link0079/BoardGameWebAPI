@@ -10,37 +10,38 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
     {
         public static void Seed(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<BoardGame>().HasData(
+            //modelBuilder.Entity<BoardGame>().HasData(
+            var boardGameList = new List<BoardGame> {
             #region CardGames "00000000-0000-0000-0002-000000000000"
-                // The 7th Continent
+            // The 7th Continent
                 new BoardGame
-                {
-                    Id = Guid.Parse("00000001-0000-0000-0000-000000000000"),
-                    Price = 99M,
-                    MinPlayers = 1,
-                    MaxPlayers = 4,
-                    PlayTime = 180,
-                    Age = 14,
-                    Rating = 8,
-                    Stock = false,
-                    Year = 2017,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
-                    Description = "It's the early 20th century. You have decided to sail back to the newly discovered seventh continent " +
-                                "to attempt to lift the terrible curse that has struck you since your return from the previous expedition. " +
-                                "In The 7th Continent, a solo or cooperative \"choose-your-own-adventure\" exploration board game, " +
-                                "you choose a character and begin your adventure on your own or with a team of other explorers. " +
-                                "Inspired by the Fighting Fantasy book series, you will discover the extent of this wild new land through a variety of terrain and event cards. " +
-                                "In a land fraught with danger and wonders, you have to use every ounce of wit and cunning to survive, " +
-                                "crafting tools, weapons, and shelter to ensure your survival. " +
-                                "Unlike most board games, it will take you many, MANY hours of exploring and searching the seventh continent " +
-                                "until you eventually discover how to remove the curse(s)...or die trying. " +
-                                "The 7th Continent features an easy saving system so that you can stop playing at any time and resume your adventure later on, " +
-                                "just like in a video game!",
-                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000007"),
-                    //PublisherId = Guid.Parse("00000000-0000-0024-0000-000000000000"),
-                    Title = "The 7th Continent",
-                    IsDeleted = false
-                },
+            {
+                Id = Guid.Parse("00000001-0000-0000-0000-000000000000"),
+                Price = 99M,
+                MinPlayers = 1,
+                MaxPlayers = 4,
+                PlayTime = 180,
+                Age = 14,
+                Rating = 8,
+                Stock = false,
+                Year = 2017,
+                PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                Description = "It's the early 20th century. You have decided to sail back to the newly discovered seventh continent " +
+                            "to attempt to lift the terrible curse that has struck you since your return from the previous expedition. " +
+                            "In The 7th Continent, a solo or cooperative \"choose-your-own-adventure\" exploration board game, " +
+                            "you choose a character and begin your adventure on your own or with a team of other explorers. " +
+                            "Inspired by the Fighting Fantasy book series, you will discover the extent of this wild new land through a variety of terrain and event cards. " +
+                            "In a land fraught with danger and wonders, you have to use every ounce of wit and cunning to survive, " +
+                            "crafting tools, weapons, and shelter to ensure your survival. " +
+                            "Unlike most board games, it will take you many, MANY hours of exploring and searching the seventh continent " +
+                            "until you eventually discover how to remove the curse(s)...or die trying. " +
+                            "The 7th Continent features an easy saving system so that you can stop playing at any time and resume your adventure later on, " +
+                            "just like in a video game!",
+                //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000007"),
+                //PublisherId = Guid.Parse("00000000-0000-0024-0000-000000000000"),
+                Title = "The 7th Continent",
+                IsDeleted = false
+            },
                 // Arkham Horror
                 new BoardGame
                 {
@@ -1099,7 +1100,17 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     IsDeleted = false
                 }
                 #endregion
-                );
+        };
+                //);
+
+            foreach (var boardGame in boardGameList)
+                AddPhotoUrl(modelBuilder, boardGame);
+        }
+        private static void AddPhotoUrl(ModelBuilder modelBuilder, BoardGame boardGame)
+        {
+            var boardGameTitle = boardGame.Title.Replace(" ", "+");
+            boardGame.PhotoUrl = $"https://dummyimage.com/600x600/000/fff.jpg&text={boardGameTitle}";
+            modelBuilder.Entity<BoardGame>().HasData(boardGame);
         }
     }
 }
