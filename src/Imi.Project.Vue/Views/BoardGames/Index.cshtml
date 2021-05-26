@@ -19,11 +19,13 @@
                     <div data-toggle="modal" data-target="#exampleModalCenter">
                         <img v-bind:src="boardGame.photoUrl" class="card-img-top" v-bind:alt="boardGame.title" />
                         <div class="card-img-overlay">
-                            <div class="badge badge-danger float-right">
+                            <h5>
+                                <span class="badge badge-danger float-right">
                                 {{boardGame.price}} €<br />
-                            </div>
+                                </span>
+                            </h5>
                         </div>
-                        <div class="card-body pb-0">
+                        <div class="card-body">
                             <div class="float-right " v-bind:class="IsInStock(boardGame)">In Stock</div>
                             <small>{{boardGame.title}}</small>
                             <ul class="text-muted">
@@ -178,13 +180,14 @@
                         </div>
                     </div>
                     <div class="modal-footer">
-                        <div class="btn-group" v-if="isAuthorized">
-                            <button v-on:click="EditBoardGame(false)" type="button" class="btn btn-group btn-primary">Create</button>
-                            <button v-on:click="EditBoardGame(true)" type="button" class="btn btn-group btn-primary">Edit</button>
-                            <button v-on:click="SaveBoardGame" type="button" class="btn btn-success btn-group">Save</button>
-                            <button v-on:click="DeleteBoardGame" type="button" class="btn btn-danger btn-group" data-dismiss="modal">Delete</button>
+                        <div v-if="isAuthorized">
+                            <button v-on:click="EditBoardGame(false)" type="button" class="btn btn-primary">Create</button>
+                            <div class="or" text-data="or">OR</div>
+                            <button v-on:click="EditBoardGame(true)" type="button" class="btn btn-primary">Edit</button>
+                            <button v-on:click="SaveBoardGame" type="button" class="btn btn-success">Save</button>
+                            <button v-on:click="DeleteBoardGame" type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
                         </div>
-                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
                 </div>
             </div>
