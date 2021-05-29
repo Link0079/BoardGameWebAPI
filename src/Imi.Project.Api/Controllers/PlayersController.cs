@@ -155,7 +155,7 @@ namespace Imi.Project.Api.Controllers
                 return Unauthorized();
             var player = await _signInManager.UserManager.FindByNameAsync(login.Username);
             string token = await GenerateJwtSecurityTokenAsync(player);
-            return Ok(new LoginPlayerResponseDto { Token = token });
+            return Ok(new LoginPlayerResponseDto { Token = token, PlayerId = player.Id });
         }
         [HttpGet("{guid}/Roles")]
         [Authorize(Policy = "Administrators")]

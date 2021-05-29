@@ -16,12 +16,14 @@
         hasError: false,
         hasSuccess: false,
         editBoardGame: false,
+        boardgamesCount: 0,
 
     },
     created:
         function () {
             let self = this;
             self.FetchBoardGames();
+            console.log(self.boardgames.length);
             self.IsPlayerAuthorizedBoardGames();
         },
     methods: {
@@ -33,6 +35,7 @@
                     .then(function (response) {
                         self.boardgames = response.data;
                         self.loading = true;
+                        self.boardgamesCount = response.data.length;
                     })
                     .catch(function (error) {
                         console.error(error);

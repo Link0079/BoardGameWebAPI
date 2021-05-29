@@ -1,4 +1,4 @@
-﻿var categoryApp = new Vue({
+﻿var artistApp = new Vue({
     el: '#artistApp',
     data: {
         playerRole: sessionStorage.getItem("sessionPlayerRole"),
