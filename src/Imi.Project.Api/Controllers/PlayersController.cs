@@ -103,7 +103,6 @@ namespace Imi.Project.Api.Controllers
             { return Conflict(string.Format(CustomExceptionMessages.ConflictUpdatePlayer, playerRequestDto.Id)); }
         }        
         [HttpDelete("{guid}")]
-        [Authorize(Policy = "Administrators")]
         public async Task<IActionResult> Delete(Guid guid)
         {
             try
@@ -212,5 +211,3 @@ namespace Imi.Project.Api.Controllers
         }
     }
 }
-
-// eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJyZWdpc3RyYXRpb24tZGF0ZSI6IjIwMTUtMDEtMDEiLCJkb2IiOiIxOTg4LTAyLTA5IiwiZmlyc3RuYW1lY2hhciI6IkIiLCJodHRwOi8vc2NoZW1hcy5taWNyb3NvZnQuY29tL3dzLzIwMDgvMDYvaWRlbnRpdHkvY2xhaW1zL3JvbGUiOiJBZG1pbiIsIm5iZiI6MTYyMDkxMjY3MiwiZXhwIjoxNjIxNTE3NDcyLCJpc3MiOiJCb2FyZEdhbWVEQkJWV2ViQXBpIiwiYXVkIjoiaHR0cHM6Ly9sb2NhbGhvc3Q6NTAwMSJ9.A-Ube1bDpARjEWY4nIvI0FHirl0cq4KzeoIzk5n6vuQ
