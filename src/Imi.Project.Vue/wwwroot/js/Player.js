@@ -8,8 +8,11 @@
         loading: false,
         players: [],
         currentPlayer: null,
+        playedGames: [],
+        currentPlayedGame: null,
         apiErrorInfo: "",
-        isDisabled: true,
+        isDisabledPlayer: true,
+        hasPlayedGames: false,
         hasError: false,
         hasSuccess: false,
         editPlayer: false,
@@ -19,21 +22,22 @@
             let self = this;
             self.IsPlayerAuthorizedPlayers();
             if (self.isAuthorized) {
-                self.FetchArtists();
+                self.FetchCurrentPlayer();
+                self.FetchCurrentPlayerPlayedGames();
             }
             else {
                 self.hasError = true;
-                self.apiErrorInfo = "You are not Authorized.!!";
+                self.apiErrorInfo = "Please register or login.";
             }
         },
     methods: {
-        FetchPlayer:
+        FetchCurrentPlayer:
             function () {
                 let self = this;
                 let playerId = sessionStorage.getItem("sessionPlayerId");
-                axios.get(`${playerApiURL}`/`${playerId}`, axiosBoardGameConfig)
+                axios.get(`${playerApiURL}/${playerId}`, axiosBoardGameConfig)
                     .then(function (response) {
-                        self.artists = response.data;
+                        self.currentPlayer = response.data;
                         self.loading = true;
                     })
                     .catch(function (error) {
@@ -45,28 +49,49 @@
                         }, 1000)
                     });
             },
+        FetchCurrentPlayerPlayedGames:
+            function () {
+                let self = this;
+                let playerId = sessionStorage.getItem("sessionPlayerId");
+                axios.get(`${playerApiURL}/${playerId}/playedgames`, axiosBoardGameConfig)
+                    .then(function (response) {
+                        self.playedGames = response.data;
+                        self.hasPlayedGames = true;
+                    })
+                    .catch(function (error) {
+                        console.log(error.response);
+                        self.hasPlayedGames = false;
+                    });
+            },
         IsPlayerAuthorizedPlayers:
             function () {
                 let self = this;
+                console.log(self.playerRole);
                 switch (self.playerRole) {
-                    case "":
-                        self.isAuthorized = false;
-                        break;
                     case "Admin":
                         self.isAuthorized = true;
                         self.isAdmin = true;
                         break;
-                    default:
+                    case "BoardGameEditor":
                         self.isAuthorized = true;
+                        break;
+                    case "ArtistEditor":
+                        self.isAuthorized = true;
+                        break;
+                    case "Player":
+                        self.isAuthorized = true;
+                        break;
+                    default:
+                        self.isAuthorized = false;
                 }
             },
-        EditArtist:
+        EditPlayer:
             function (editPlayer) {
                 let self = this;
                 self.editPlayer = editPlayer;
-                self.isDisabled = false;
+                self.isDisabledPlayer = false;
                 if (!self.editPlayer) {
-                    self.playerToRegister = { email: "", name: "", dob: "" };
+                    self.editPlayer = { email: "", name: "", dob: "" };
                 }
             },
         SavePlayer:
@@ -80,7 +105,7 @@
                 let putPlayersUrl = `${playerApiURL}`;
                 axios.put(putPlayersUrl, self.currentPlayer, axiosBoardGameConfig)
                     .then(function (response) {
-                        self.isDisabled = true;
+                        self.isDisabledPlayer = true;
                         self.hasSuccess = true;
                         self.apiErrorInfo = `Player with id '${playerId}' has been updated. Refresh page.!!`
                     })
@@ -96,7 +121,7 @@
                         }, 2000)
                     });
             },
-        DeleteArtist:
+        DeletePlayer:
             function () {
                 let self = this;
                 let deletePlayersUrl = `${playerApiURL}/${playerId}`;
@@ -117,11 +142,12 @@
                         }, 2500);
                     });
             },
-        GetPlayerDetails:
-            function (player) {
+        GetPlayedGameDetails:
+            function (playedGame) {
                 let self = this;
-                self.isDisabled = true;
-                self.currentPlayer = player;
+                self.isDisabledPlayer = true;
+                self.currentPlayedGame = playedGame;
+                console.log(self.currentPlayedGame);
             },
     },
 });

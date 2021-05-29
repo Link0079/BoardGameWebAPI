@@ -1,24 +1,25 @@
 ﻿@{
     ViewData["Title"] = "Category Page";
 }
-
 <div class="container">
     <div class="jumbotron text-center">
         <h1 class="display-4">Categories</h1>
     </div>
 </div>
 
-<div id="categoryApp" class="row">
-    <div class="col-10 mx-auto">
-        <section v-if="loading" class="text-center">
-            <div class="spinner-grow" role="status"></div><strong>Loading..</strong>
-        </section>
-        <section v-if="hasError" class="alert alert-danger text-center shadow-sm ">
-            <p>{{apiErrorInfo}}</p>
-        </section>
-        <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
-            <p>{{apiErrorInfo}}</p>
-        </section>
+<div id="categoryApp">
+    <div class="col">
+        <div class="row mx-auto d-block">
+            <section v-if="loading" class="text-center">
+                <div class="spinner-grow" role="status"></div><strong>Loading..</strong>
+            </section>
+            <section v-if="hasError" class="alert alert-danger text-center shadow-sm ">
+                <p>{{apiErrorInfo}}</p>
+            </section>
+            <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
+                <p>{{apiErrorInfo}}</p>
+            </section>
+        </div>
         <div class="row">
             <div v-if="!loading" class="col-md-6">
                 <ul class="list-group">

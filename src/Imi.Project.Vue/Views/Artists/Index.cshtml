@@ -7,17 +7,19 @@
         <h1 class="display-4">Artists</h1>
     </div>
 </div>
-<div id="artistApp" class="row">
-    <div class="col-10 mx-auto">
-        <section v-if="loading" class="text-center">
-            <div class="spinner-grow" role="status"></div><strong>Loading..</strong>
-        </section>
-        <section v-if="hasError" class="alert alert-danger text-center shadow-sm ">
-            <p>{{apiErrorInfo}}</p>
-        </section>
-        <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
-            <p>{{apiErrorInfo}}</p>
-        </section>
+<div id="artistApp">
+    <div class="col">
+        <div class="row mx-auto d-block">
+            <section v-if="loading" class="text-center">
+                <div class="spinner-grow" role="status"></div><strong>Loading..</strong>
+            </section>
+            <section v-if="hasError" class="alert alert-danger text-center shadow-sm ">
+                <p>{{apiErrorInfo}}</p>
+            </section>
+            <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
+                <p>{{apiErrorInfo}}</p>
+            </section>
+        </div>
         <div class="row">
             <div v-if="!loading" class="col-md-6 mb-4">
                 <ul class="list-group">
@@ -38,15 +40,15 @@
                     </div>
                     <div class="form-group">
                         <label>Date of birth</label>
-                        <input v-if="isDisabled" type="text" class="form-control" v-model="currentArtist.dob" v-bind:disabled="isDisabled" placeholder="Date of birth.."/>
-                        <input v-else type="date" class="form-control" v-model="currentArtist.dob"/>
+                        <input v-if="isDisabled" type="text" class="form-control" v-model="currentArtist.dob" v-bind:disabled="isDisabled" placeholder="Date of birth.." />
+                        <input v-else type="date" class="form-control" v-model="currentArtist.dob" />
                     </div>
                     <div class="form-group float-right" v-if="isAuthorized">
-                            <button v-on:click="EditArtist(false)" type="button" class="btn btn-primary">Create</button>
-                            <button v-on:click="EditArtist(true)" type="button" class="btn btn-primary">Edit</button>
-                            <button v-on:click="SaveArtist" type="button" class="btn btn-success" v-bind:disabled="isDisabled">Save</button>
-                            <button v-on:click="DeleteArtist" type="button" class="btn btn-danger" v-bind:disabled="!isDisabled">Delete</button>
-                            <button v-on:click="isDisabled = true" type="button" class="btn btn-danger">Cancal</button>
+                        <button v-on:click="EditArtist(false)" type="button" class="btn btn-primary">Create</button>
+                        <button v-on:click="EditArtist(true)" type="button" class="btn btn-primary">Edit</button>
+                        <button v-on:click="SaveArtist" type="button" class="btn btn-success" v-bind:disabled="isDisabled">Save</button>
+                        <button v-on:click="DeleteArtist" type="button" class="btn btn-danger" v-bind:disabled="!isDisabled">Delete</button>
+                        <button v-on:click="isDisabled = true" type="button" class="btn btn-danger">Cancal</button>
                     </div>
                 </div>
             </div>

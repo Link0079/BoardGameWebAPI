@@ -22,7 +22,7 @@
             }
             else {
                 self.hasError = true;
-                self.apiErrorInfo = "You are not Authorized.!!";
+                self.apiErrorInfo = "Please register of login.";
             }
         },
     methods: {
