@@ -66,7 +66,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Title</label>
-                                    <input type="text" required class="form-control" v-model="currentBoardGame.title" v-bind:disabled="isDisabled" />
+                                    <input type="text" required class="form-control" v-model="currentBoardGame.title" v-bind:disabled="isDisabled" placeholder="Title.."/>
                                 </div>
                             </div>
                         </div>
@@ -74,13 +74,13 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Year</label>
-                                    <input type="number" min="1900" max="2050" class="form-control" v-model.number="currentBoardGame.year" v-bind:disabled="isDisabled" />
+                                    <input type="number" min="1900" max="2050" class="form-control" v-model.number="currentBoardGame.year" v-bind:disabled="isDisabled" placeholder="Year.."/>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Price</label>
-                                    <input type="number" min="1" class="form-control" v-model.number="currentBoardGame.price" v-bind:disabled="isDisabled" />
+                                    <input type="number" min="1" class="form-control" v-model.number="currentBoardGame.price" v-bind:disabled="isDisabled" placeholder="Price.."/>
                                 </div>
                             </div>
                         </div>
@@ -88,7 +88,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Stock</label><br />
-                                    <input v-if="isDisabled" type="text" class="form-control" v-model="currentBoardGame.stock" v-bind:disabled="isDisabled" />
+                                    <input v-if="isDisabled" type="text" class="form-control" v-model="currentBoardGame.stock" v-bind:disabled="isDisabled" placeholder="Stock.."/>
                                     <select v-else v-model="currentBoardGame.stock" class="form-control">
                                         <option value="true">In Stock</option>
                                         <option value="false">Out of Stock</option>
@@ -98,7 +98,7 @@
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Rating</label>
-                                    <input type="number" min="1" max="10" class="form-control" v-model.number="currentBoardGame.rating" v-bind:disabled="isDisabled" />
+                                    <input type="number" min="1" max="10" class="form-control" v-model.number="currentBoardGame.rating" v-bind:disabled="isDisabled" placeholder="Rating.."/>
                                 </div>
                             </div>
                         </div>
@@ -107,13 +107,13 @@
                                 <div class="form-group">
                                     <label>Play Time</label>
                                     <input v-if="isDisabled" type="text" min="0" class="form-control" v-model="currentBoardGame.playTime" v-bind:disabled="isDisabled" />
-                                    <input v-else type="number" min="0" class="form-control" v-model.number="currentBoardGame.playTime" v-bind:disabled="isDisabled" />
+                                    <input v-else type="number" min="0" class="form-control" v-model.number="currentBoardGame.playTime" v-bind:disabled="isDisabled" placeholder="Playtime in minutes.."/>
                                 </div>
                             </div>
                             <div class="col-6">
                                 <div class="form-group">
                                     <label>Photo Url</label>
-                                    <input type="url" maxlength="255" class="form-control" v-model="currentBoardGame.photoUrl" v-bind:disabled="isDisabled" />
+                                    <input type="url" maxlength="255" class="form-control" v-model="currentBoardGame.photoUrl" v-bind:disabled="isDisabled" placeholder="Phoro Url (http://..)"/>
                                 </div>
                             </div>
                         </div>
@@ -122,13 +122,13 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>Minimum Players</label>
-                                        <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.minPlayers" v-bind:disabled="isDisabled" />
+                                        <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.minPlayers" v-bind:disabled="isDisabled" placeholder="Min players.."/>
                                     </div>
                                 </div>
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>Maximum Players</label>
-                                        <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.maxPlayers" v-bind:disabled="isDisabled" />
+                                        <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.maxPlayers" v-bind:disabled="isDisabled" placeholder="Max players.."/>
                                     </div>
                                 </div>
                             </div>
@@ -136,13 +136,13 @@
                                 <div class="col-6">
                                     <div class="form-group">
                                         <label>age</label>
-                                        <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.age" v-bind:disabled="isDisabled" />
+                                        <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.age" v-bind:disabled="isDisabled" placeholder="Age.."/>
                                     </div>
                                 </div>
                                 <div class="col-6" v-if="isAdmin">
                                     <div class="form-group">
                                         <label>Is Deleted</label><br />
-                                        <input v-if="isDisabled" type="text" class="form-control" v-model.bool="currentBoardGame.isDeleted" v-bind:disabled="isDisabled" />
+                                        <input v-if="isDisabled" type="text" class="form-control" v-model.bool="currentBoardGame.isDeleted" v-bind:disabled="isDisabled" placeholder="Deleted.."/>
                                         <select v-else v-model="currentBoardGame.isDeleted" class="form-control">
                                             <option value="true">Is Deleted</option>
                                             <option value="false">Is not Deleted</option>
@@ -177,7 +177,7 @@
                             <div class="col-12">
                                 <div class="form-group">
                                     <label>Description</label>
-                                    <textarea class="form-control" rows="5" v-model="currentBoardGame.description" v-bind:disabled="isDisabled"></textarea>
+                                    <textarea class="form-control" rows="5" v-model="currentBoardGame.description" v-bind:disabled="isDisabled" placeholder="Description.."></textarea>
                                 </div>
                             </div>
                         </div>
@@ -185,10 +185,9 @@
                     <div class="modal-footer">
                         <div v-if="isAuthorized">
                             <button v-on:click="EditBoardGame(false)" type="button" class="btn btn-primary">Create</button>
-                            <div class="or" text-data="or">OR</div>
                             <button v-on:click="EditBoardGame(true)" type="button" class="btn btn-primary">Edit</button>
-                            <button v-on:click="SaveBoardGame" type="button" class="btn btn-success">Save</button>
-                            <button v-on:click="DeleteBoardGame" type="button" class="btn btn-danger" data-dismiss="modal">Delete</button>
+                            <button v-on:click="SaveBoardGame" type="button" class="btn btn-success" v-bind:disabled="isDisabled">Save</button>
+                            <button v-on:click="DeleteBoardGame" type="button" class="btn btn-danger" data-dismiss="modal" v-bind:disabled="!isDisabled">Delete</button>
                         </div>
                             <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                     </div>
