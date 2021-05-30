@@ -11,11 +11,13 @@
         currentBoardGame: null,
         selectedCategories: [],
         selectedArtists: [],
+        apiMessageInfo: "",
         isDisabled: true,
         isActive: true,
         hasError: false,
         hasSuccess: false,
         editBoardGame: false,
+        boardgamesCount: 0,
 
     },
     created:
@@ -33,6 +35,7 @@
                     .then(function (response) {
                         self.boardgames = response.data;
                         self.loading = true;
+                        self.boardgamesCount = response.data.length;
                     })
                     .catch(function (error) {
                         console.error(error);
@@ -75,14 +78,8 @@
                     self.currentBoardGame = {
                         id: createGuid(),
                         title: "",
-                        price: 0,
                         stock: false,
-                        minPlayers: 0,
-                        maxPlayers: 0,
-                        age: 0,
-                        year: 2000,
-                        rating: 0,
-                        playTime: "0",
+                        playTime: "",
                         photoUrl: "",
                         description: "",
                         isDeleted: false,
@@ -126,12 +123,12 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
-                        self.apiErrorInfo = `Boardgame with id '${self.currentBoardGame.id}' has been created. Refresh page.!!`
+                        self.apiMessageInfo = `Boardgame with id '${self.currentBoardGame.id}' has been created. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
                         self.hasError = true;
-                        self.apiErrorInfo = "Creating new boardgame Failed, check all values!";
+                        self.apiMessageInfo = "Creating new boardgame Failed, check all values!";
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -148,12 +145,12 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
-                        self.apiErrorInfo = `Boardgame with id '${self.currentBoardGame.id}' has been updated. Refresh page.!!`
+                        self.apiMessageInfo = `Boardgame with id '${self.currentBoardGame.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
                         self.hasError = true;
-                        self.apiErrorInfo = `There was a conflict with updating boardgame with id '${self.currentBoardGame.id}'!`;
+                        self.apiMessageInfo = `There was a conflict with updating boardgame with id '${self.currentBoardGame.id}'!`;
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -192,12 +189,12 @@
                 let deleteBoardGameUrl = `${boardGameApiURL}/${self.currentBoardGame.id}`;
                 axios.delete(deleteBoardGameUrl, axiosBoardGameConfig)
                     .then(function (response) {
-                        self.apiErrorInfo = response.data;
+                        self.apiMessageInfo = response.data;
                         self.hasSuccess = true;
                     })
                     .catch(function (error) {
                         console.log(error);
-                        self.apiErrorInfo = error;
+                        self.apiMessageInfo = error;
                         self.hasError = true;
                     })
                     .finally(function () {

@@ -1,24 +1,25 @@
 ﻿@{
     ViewData["Title"] = "Category Page";
 }
-
 <div class="container">
     <div class="jumbotron text-center">
         <h1 class="display-4">Categories</h1>
     </div>
 </div>
 
-<div id="categoryApp" class="row">
-    <div class="col-10 mx-auto">
-        <section v-if="loading" class="text-center">
-            <div class="spinner-grow" role="status"></div><strong>Loading..</strong>
-        </section>
-        <section v-if="hasError" class="alert alert-danger text-center shadow-sm ">
-            <p>{{apiErrorInfo}}</p>
-        </section>
-        <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
-            <p>{{apiErrorInfo}}</p>
-        </section>
+<div id="categoryApp">
+    <div class="col">
+        <div class="row mx-auto d-block">
+            <section v-if="loading" class="text-center">
+                <div class="spinner-grow" role="status"></div><strong>Loading..</strong>
+            </section>
+            <section v-if="hasError" class="alert alert-danger text-center shadow-sm ">
+                <p>{{apiMessageInfo}}</p>
+            </section>
+            <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
+                <p>{{apiMessageInfo}}</p>
+            </section>
+        </div>
         <div class="row">
             <div v-if="!loading" class="col-md-6">
                 <ul class="list-group">
@@ -35,17 +36,14 @@
                     </div>
                     <div class="form-group">
                         <label>Name</label>
-                        <input class="form-control" v-model="currentCategory.name" v-bind:disabled="isDisabled" />
+                        <input class="form-control" v-model="currentCategory.name" v-bind:disabled="isDisabled" placeholder="Name.."/>
                     </div>
-                    <div class="form-group" v-if="isAuthorized">
-                        <div class="btn-group" role="group" aria-label="Buttons for category">
+                    <div class="form-group float-right" v-if="isAuthorized">
                             <button v-on:click="EditCategory(false)" type="button" class="btn btn-group btn-primary">Create</button>
                             <button v-on:click="EditCategory(true)" type="button" class="btn btn-group btn-primary">Edit</button>
-                            <button v-on:click="SaveCategory" type="button" class="btn btn-success btn-group">Save</button>
-                            <button v-on:click="DeleteCategory" type="button" class="btn btn-danger btn-group">Delete</button>
-                            <button v-on:click="isDisabled = true" type="button" class="btn btn-danger btn-group">Cancal</button>
-                        </div>
-
+                            <button v-on:click="SaveCategory" type="button" class="btn btn-success btn-group" v-bind:disabled="isDisabled">Save</button>
+                            <button v-on:click="DeleteCategory" type="button" class="btn btn-danger btn-group" v-bind:disabled="!isDisabled">Delete</button>
+                            <button v-on:click="isDisabled = true" type="button" class="btn btn-danger btn-group">Cancel</button>
                     </div>
                 </div>
             </div>

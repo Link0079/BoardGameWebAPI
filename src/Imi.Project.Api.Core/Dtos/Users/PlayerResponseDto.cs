@@ -9,6 +9,7 @@ namespace Imi.Project.Api.Core.Dtos.Users
     {
         public string Name { get; set; }
         public string Dob { get; set; }
+        public string Email { get; set; }
         public int? PlayedGameCount { get; set; }
         public string PlayTimeTotal { get; set; }
         public string MostPlayedGame { get; set; }

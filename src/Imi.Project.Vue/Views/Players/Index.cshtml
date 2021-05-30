@@ -7,5 +7,144 @@
     </div>
 </div>
 
-
+<div id="playerApp">
+    <div class="col">
+        <div class="row mx-auto d-block">
+            <section v-if="loading" class="text-center">
+                <div class="spinner-grow" role="status"></div><strong>Loading..</strong>
+            </section>
+            <section v-if="hasError" class="alert alert-danger text-center shadow-sm ">
+                <p>{{apiMessageInfo}}</p>
+            </section>
+            <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
+                <p>{{apiMessageInfo}}</p>
+            </section>
+        </div>
+        <div v-if="!loading">
+            <div v-if="isAuthorized">
+                <div class="row mb-4">
+                    <div v-on:click="SeeArea('PlayedGames')" class="col-4">
+                        <button class="btn btn-secondary btn-block">Playedgames</button>
+                    </div>
+                    <div v-on:click="SeeArea('Profile')" class="col-4">
+                        <button class="btn btn-secondary btn-block">Profile</button>
+                    </div>
+                    <div v-if="isAdmin" v-on:click="SeeArea('AdminArea')" class="col-4">
+                        <button class="btn btn-secondary btn-block">Admin</button>
+                    </div>
+                </div>
+                <div  v-if="seePlayedGames" class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
+                    <div class="col-12 mb-4">
+                        <button v-on:click="EditPlayedGame(false)" class="btn btn-primary btn-block" 
+                                data-toggle="modal" data-target="#exampleModalCenter">Host a game</button>
+                    </div>
+                    <div v-if="hasPlayedGames" class="col-lg-4 col-md-6 col-sm-6 col-12 mb-4" v-for="playedGame in playedGames">
+                        <div class="card h-100 shadow-sm" data-toggle="modal" data-target="#exampleModalCenter">
+                            <div class="card-header" v-on:click="GetPlayedGameDetails(playedGame)">
+                                <h6 class="mb-0">{{playedGame.boardGameTitle}}</h6>
+                            </div>
+                            <div class="card-body">
+                                <p>Gamescores:</p>
+                                <ul>
+                                    <li v-for="gameScore in playedGame.gameScores">
+                                        {{gameScore.playerName}}: {{gameScore.score}}
+                                    </li>
+                                </ul>
+                            </div>
+                            <div class="card-footer">
+                                <h6>PlayTime:</h6>
+                                <p>{{playedGame.playTime}}</p>
+                            </div>
+                        </div>
+                        <div v-if="currentPlayedGame" class="modal fade" id="exampleModalCenter" tabindex="-1" 
+                                role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                            <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                        <h5 v-if="isDisabledGameScore" class="modal-title" id="exampleModalCenterTitle">
+                                            {{currentPlayedGame.boardGameTitle}}</h5>
+                                        <select v-if="!isDisabledGameScore" v-model="currentPlayedGame.boardGameTitle">
+                                            <option v-for="boardgame in boardGames" v-bind:value="boardgame.id">{{boardgame.title}}</option>
+                                        </select>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                            <span aria-hidden="true">&times;</span>
+                                        </button>
+                                    </div>
+                                    <div class="modal-body">
+                                        <p>Gamescores:</p>
+                                        <div v-if="isDisabledGameScore" v-for="gameScore in currentPlayedGame.gameScores" >
+                                            <input type="text" v-bind:value="gameScore.playerName" v-bind:disabled="isDisabledGameScore"/>
+                                            <input type="number" v-bind:value="gameScore.score" v-bind:disabled="isDisabledGameScore" />
+                                        </div>
+                                        <div v-if="!isDisabledGameScore">
+                                            <select v-model="selectedPlayer">
+                                                <option v-for="player in players" v-bind:value="player.id">{{player.name}}</option>
+                                            </select>
+                                            <select v-model="selectedPlayer">
+                                                <option v-for="player in players" v-bind:value="player.id">{{player.name}}</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="modal-footer">
+                                        <button v-on:click="EditPlayedGame(true)" type="button" class="btn btn-primary">Edit</button>
+                                        <button v-on:click="SavePlayedGame" type="button" class="btn btn-success" 
+                                                    v-bind:disabled="isDisabledGameScore">Save</button>
+                                        <button v-on:click="DeletePlayedGame" type="button" class="btn btn-danger" data-dismiss="modal" 
+                                                    v-bind:disabled="!isDisabledGameScore">Delete</button>
+                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div v-if="seeProfile" class="col-lg-6 col-md-8 col-sm-12">
+                    <div v-if="currentPlayer">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input class="form-control" v-model="currentPlayer.id" disabled="disabled" />
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input class="form-control" v-model="currentPlayer.name" v-bind:disabled="isDisabledPlayer" />
+                        </div>
+                        <div class="form-group">
+                            <label>Date of birth</label>
+                            <input v-if="isDisabledPlayer" class="form-control" v-model="currentPlayer.dob" v-bind:disabled="isDisabledPlayer" />
+                            <input v-else type="date" class="form-control" v-model="currentPlayer.dob" />
+                        </div>
+                        <div class="form-group">
+                            <label>Email</label>
+                            <input type="email" class="form-control" v-model="currentPlayer.email" v-bind:disabled="isDisabledPlayer" />
+                        </div>
+                        <div class="form-group">
+                            <label v-if="isDisabledPlayer">Total Playtime</label>
+                            <label v-else>Password</label>
+                            <input v-if="isDisabledPlayer" class="form-control" v-model="currentPlayer.playTimeTotal" v-bind:disabled="isDisabledPlayer" />
+                            <input v-else type="password" class="form-control" v-model="currentPlayer.password"/>
+                        </div>
+                        <div class="form-group">
+                            <label v-if="isDisabledPlayer">Most played game</label>
+                            <label v-else>Confirm password</label>
+                            <input v-if="isDisabledPlayer"class="form-control" v-model="currentPlayer.mostPlayedGame" v-bind:disabled="isDisabledPlayer" />
+                            <input v-else type="password" class="form-control" v-model="currentPlayer.confirmPassword"/>
+                        </div>
+                        <div class="form-group float-right" v-if="isAuthorized">
+                            <button v-on:click="EditPlayer(true)" type="button" class="btn btn-primary">Edit</button>
+                            <button v-on:click="SavePlayer" type="button" class="btn btn-success"
+                                    v-bind:disabled="isDisabledPlayer">Save</button>
+                            <button v-on:click="DeletePlayer" type="button" class="btn btn-danger"
+                                    v-bind:disabled="!isDisabledPlayer">Delete</button>
+                            <button v-on:click="isDisabledPlayer = true" type="button" class="btn btn-danger">Cancel</button>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-6 col-md-8 col-sm-12"></div>
+            </div>
+        </div>
+    </div>
+</div>
+@section scripts{
+    <script src="~/js/Player.js"></script>
+}
 @* Players Index.cshtml *@

@@ -7,5 +7,6 @@ namespace Imi.Project.Api.Core.Dtos.Users
     public class LoginPlayerResponseDto
     {
         public string Token { get; set; }
+        public Guid PlayerId { get; set; }
     }
 }

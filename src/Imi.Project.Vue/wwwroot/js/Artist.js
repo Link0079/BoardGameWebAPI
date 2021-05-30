@@ -1,4 +1,4 @@
-﻿var categoryApp = new Vue({
+﻿var artistApp = new Vue({
     el: '#artistApp',
     data: {
         playerRole: sessionStorage.getItem("sessionPlayerRole"),
@@ -7,7 +7,7 @@
         loading: false,
         artists: [],
         currentArtist: null,
-        apiErrorInfo: "",
+        apiMessageInfo: "",
         isDisabled: true,
         hasError: false,
         hasSuccess: false,
@@ -22,7 +22,7 @@
             }
             else {
                 self.hasError = true;
-                self.apiErrorInfo = "You are not Authorized.!!";
+                self.apiMessageInfo = "Please register of login.";
             }
         },
     methods: {
@@ -95,12 +95,12 @@
                         self.isDisabled = true;
                         self.hasSuccess = true;
                         self.artists.push(self.currentArtist);
-                        self.apiErrorInfo = `Artist with id '${self.currentArtist.id}' has been created. Refresh page.!!`
+                        self.apiMessageInfo = `Artist with id '${self.currentArtist.id}' has been created. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
                         self.hasError = true;
-                        self.apiErrorInfo = "Creating new artist Failed, check all values!";
+                        self.apiMessageInfo = "Creating new artist Failed, check all values!";
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -117,12 +117,12 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
-                        self.apiErrorInfo = `Artist with id '${self.currentArtist.id}' has been updated. Refresh page.!!`
+                        self.apiMessageInfo = `Artist with id '${self.currentArtist.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
                         self.hasError = true;
-                        self.apiErrorInfo = `There was a conflict with updating artist with id '${self.currentArtist.id}'!`;
+                        self.apiMessageInfo = `There was a conflict with updating artist with id '${self.currentArtist.id}'!`;
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -137,7 +137,7 @@
                 let deleteArtistsUrl = `${artistsApiURL}/${self.currentArtist.id}`;
                 axios.delete(deleteArtistsUrl, axiosBoardGameConfig)
                     .then(function (response) {
-                        self.apiErrorInfo = response.data;
+                        self.apiMessageInfo = response.data;
                         self.artists.forEach(function (artist, index) {
                             if (artist.id === self.currentArtist.id) {
                                 self.artists.splice(index, 1);
@@ -147,7 +147,7 @@
                     })
                     .catch(function (error) {
                         console.log(error);
-                        self.apiErrorInfo = error;
+                        self.apiMessageInfo = error;
                         self.hasError = true;
                     })
                     .finally(function () {

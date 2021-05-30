@@ -7,7 +7,7 @@
         loading: false,
         categories: [],
         currentCategory: null,
-        apiErrorInfo: "",
+        apiMessageInfo: "",
         isDisabled: true,
         hasError: false,
         hasSuccess: false,
@@ -22,7 +22,7 @@
             }
             else {
                 self.hasError = true;
-                self.apiErrorInfo = "You are not Authorized.!!";
+                self.apiMessageInfo = "Please register of login.";
             }
         },
     methods: {
@@ -94,12 +94,12 @@
                         self.isDisabled = true;
                         self.hasSuccess = true;
                         self.categories.push(self.currentCategory);
-                        self.apiErrorInfo = `Boardgame with id '${self.currentCategory.id}' has been created. Refresh page.!!`
+                        self.apiMessageInfo = `Boardgame with id '${self.currentCategory.id}' has been created. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
                         self.hasError = true;
-                        self.apiErrorInfo = "Creating new boardgame Failed, check all values!";
+                        self.apiMessageInfo = "Creating new boardgame Failed, check all values!";
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -116,12 +116,12 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
-                        self.apiErrorInfo = `Boardgame with id '${self.currentCategory.id}' has been updated. Refresh page.!!`
+                        self.apiMessageInfo = `Boardgame with id '${self.currentCategory.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
                         self.hasError = true;
-                        self.apiErrorInfo = `There was a conflict with updating category with id '${self.currentCategory.id}'!`;
+                        self.apiMessageInfo = `There was a conflict with updating category with id '${self.currentCategory.id}'!`;
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -136,7 +136,7 @@
                 let deleteCategoryUrl = `${categoriesApiURL}/${self.currentCategory.id}`;
                 axios.delete(deleteCategoryUrl, axiosBoardGameConfig)
                     .then(function (response) {
-                        self.apiErrorInfo = response.data;
+                        self.apiMessageInfo = response.data;
                         self.categories.forEach(function (category, index) {
                             if (category.id === self.currentCategory.id) {
                                 self.categories.splice(index, 1);
@@ -146,7 +146,7 @@
                     })
                     .catch(function (error) {
                         console.log(error);
-                        self.apiErrorInfo = error;
+                        self.apiMessageInfo = error;
                         self.hasError = true;
                     })
                     .finally(function () {

@@ -22,7 +22,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories
         }
         public override IQueryable<Category> GetAllAsync()
         {
-            return _dbContext.Categories.AsNoTracking();
+            return _dbContext.Categories.AsNoTracking().OrderBy(cat => cat.Name);
         }
         public async Task<IEnumerable<Category>> SearchByNameAsync(string name)
         {
