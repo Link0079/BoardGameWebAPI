@@ -12,14 +12,15 @@
         currentPlayer: null,
         currentPlayedGame: null,
         currentBoardGame: null,
-        apiErrorInfo: "",
         isDisabledPlayer: true,
         isDisabledGameScore: true,
+        isDisabledPlayerAdmin: true,
         seePlayedGames: false,
         seeProfile: true,
         seeAdminArea: false,
         selectedPlayer: null,
         selectedBoardGameId: "",
+        apiMessageInfo: "",
         hasError: false,
         hasSuccess: false,
         hasPlayedGames: false,
@@ -37,7 +38,7 @@
             }
             else {
                 self.hasError = true;
-                self.apiErrorInfo = "Please register or login.";
+                self.apiMessageInfo = "Please register or login.";
             }
         },
     methods: {
@@ -136,12 +137,12 @@
                     .then(function (response) {
                         self.isDisabledPlayer = true;
                         self.hasSuccess = true;
-                        self.apiErrorInfo = `Player with id '${playerId}' has been updated. Refresh page.!!`
+                        self.apiMessageInfo = `Player with id '${self.currentPlayer.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
                         self.hasError = true;
-                        self.apiErrorInfo = `There was a conflict with updating player with id '${playerId}'!`;
+                        self.apiMessageInfo = `There was a conflict with updating player with id '${self.currentPlayer.id}'!`;
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -156,12 +157,12 @@
                 let deletePlayersUrl = `${playerApiURL}/${self.currentPlayer.id}`;
                 axios.delete(deletePlayersUrl, axiosBoardGameConfig)
                     .then(function (response) {
-                        self.apiErrorInfo = "Player has been deleted";
+                        self.apiMessageInfo = "Player has been deleted";
                         self.hasSuccess = true;
                     })
                     .catch(function (error) {
                         console.log(error.response);
-                        self.apiErrorInfo = error;
+                        self.apiMessageInfo = error;
                         self.hasError = true;
                     })
                     .then(function () {
@@ -202,15 +203,33 @@
                 self.isDisabledGameScore = false;
                 if (!self.editPlayedGame) {
                     self.currentPlayedGame = {
-                        boardGameTitle: "", gameScore: null, playedTime: "" };
+                        boardGameTitle: "", gameScore: [], playedTime: "" };
                 }
             },
         SavePlayedGame:
             function () {
-
+                console.log("Your Playedgame has not been Saved");
             },
         DeletePlayedGame:
             function () {
+                let self = this;
+                let deletePlayedGameUrl = `${playedGamesApiURL}/${self.currentPlayedGame.id}`;
+                axios.delete(deletePlayedGameUrl, axiosBoardGameConfig)
+                    .then(function (response) {
+                        self.apiMessageInfo = response.data;
+                        self.hasSuccess = true;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        self.apiMessageInfo = error;
+                        self.hasError = true;
+                    })
+                    .finally(function () {
+                        setTimeout(function () {
+                            self.hasError = false;
+                            self.hasSuccess = false;
+                        }, 2500);
+                    });
 
             },
         GetPlayedGameDetails:
@@ -218,6 +237,12 @@
                 let self = this;
                 self.isDisabledGameScore = true;
                 self.currentPlayedGame = playedGame;
+            },
+        GetPlayerDetails:
+            function (player) {
+                let self = this;
+                self.isDisabledPlayerAdmin = true;
+                self.currentPlayer = player;
             },
     },
 });

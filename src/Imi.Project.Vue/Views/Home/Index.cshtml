@@ -10,10 +10,10 @@
 <div id="authenticationApp" class="container">
     <div class="col-9 mx-auto">
         <section v-if="hasError" class="alert alert-danger text-center shadow-sm">
-            <p>{{apiErrorInfo}}</p>
+            <p>{{apiMessageInfo}}</p>
         </section>
         <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
-            <p>{{apiErrorInfo}}</p>
+            <p>{{apiMessageInfo}}</p>
         </section>
         <div class="card shadow-lg ">
             <div class="card-header">

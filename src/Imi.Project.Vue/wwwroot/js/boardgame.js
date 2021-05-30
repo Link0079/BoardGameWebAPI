@@ -11,6 +11,7 @@
         currentBoardGame: null,
         selectedCategories: [],
         selectedArtists: [],
+        apiMessageInfo: "",
         isDisabled: true,
         isActive: true,
         hasError: false,
@@ -123,12 +124,12 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
-                        self.apiErrorInfo = `Boardgame with id '${self.currentBoardGame.id}' has been created. Refresh page.!!`
+                        self.apiMessageInfo = `Boardgame with id '${self.currentBoardGame.id}' has been created. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
                         self.hasError = true;
-                        self.apiErrorInfo = "Creating new boardgame Failed, check all values!";
+                        self.apiMessageInfo = "Creating new boardgame Failed, check all values!";
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -145,12 +146,12 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
-                        self.apiErrorInfo = `Boardgame with id '${self.currentBoardGame.id}' has been updated. Refresh page.!!`
+                        self.apiMessageInfo = `Boardgame with id '${self.currentBoardGame.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
                         self.hasError = true;
-                        self.apiErrorInfo = `There was a conflict with updating boardgame with id '${self.currentBoardGame.id}'!`;
+                        self.apiMessageInfo = `There was a conflict with updating boardgame with id '${self.currentBoardGame.id}'!`;
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -189,12 +190,12 @@
                 let deleteBoardGameUrl = `${boardGameApiURL}/${self.currentBoardGame.id}`;
                 axios.delete(deleteBoardGameUrl, axiosBoardGameConfig)
                     .then(function (response) {
-                        self.apiErrorInfo = response.data;
+                        self.apiMessageInfo = response.data;
                         self.hasSuccess = true;
                     })
                     .catch(function (error) {
                         console.log(error);
-                        self.apiErrorInfo = error;
+                        self.apiMessageInfo = error;
                         self.hasError = true;
                     })
                     .finally(function () {

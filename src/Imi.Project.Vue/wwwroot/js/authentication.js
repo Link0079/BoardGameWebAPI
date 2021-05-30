@@ -5,11 +5,11 @@
         playerToRegister: null,
         playerToLogin: null,
         signButton: "Let's Go",
-        apiErrorInfo: null,
+        apiMessageInfo: "",
         hasError: false,
         hasSuccess: false,
         redirect: false,
-        regError: null,
+        regError: "",
     },
     created:
         function () {
@@ -38,13 +38,13 @@
                         .then(function (response) {
                             self.HandleSessionStorage(response.data);
                             console.log("Login Success");
-                            self.apiErrorInfo = "Login Success";
+                            self.apiMessageInfo = "Login Success";
                             self.redirect = true;
                             self.hasSuccess = true;
                         })
                         .catch(function (error) {
                             console.log(error);
-                            self.apiErrorInfo = "You are not Authorized. Check your usernme and/or password.";
+                            self.apiMessageInfo = "You are not Authorized. Check your usernme and/or password.";
                             self.hasError = true;
                         })
                         .finally(function () {
@@ -58,15 +58,15 @@
                 else {
                     axios.post(`${playerApiURL}/register`, self.playerToRegister)
                         .then(function (response) {
-                            self.apiErrorInfo = response.data;
+                            self.apiMessageInfo = response.data;
                             console.log("Registeration Success");
                             self.redirect = true;
                             self.hasSuccess = true;
                         })
                         .catch(function (error) {
-                            console.log(error.response.data.errors);
-                            console.log(error.response);
-                            self.regError = error.response.data.errors;
+                            //console.log(error.response.data.errors);
+                            //console.log(error.response);
+                            //self.regError = error.response.data.errors;
                             //for (let prop in self.regError) {
                             //    console.log(prop + " => No hasOwnProp");
                             //    let errorTest = prop.split('.')[1];
@@ -75,7 +75,7 @@
                                 //    }
                             //};
 
-                            self.apiErrorInfo = "Registration Failed";
+                            self.apiMessageInfo = "Registration Failed";
                             self.hasError = true;
                         })
                         .finally(function () {
