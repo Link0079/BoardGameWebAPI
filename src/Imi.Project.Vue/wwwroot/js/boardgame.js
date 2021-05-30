@@ -24,7 +24,6 @@
         function () {
             let self = this;
             self.FetchBoardGames();
-            console.log(self.boardgames.length);
             self.IsPlayerAuthorizedBoardGames();
         },
     methods: {

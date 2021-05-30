@@ -1,0 +1,149 @@
+﻿@{
+    ViewData["Title"] = "Harry Potter Api Page";
+}
+<div class="container">
+    <div class="jumbotron text-center">
+        <h1 class="display-4">Harry Potter Extrnal Api</h1>
+    </div>
+</div>
+
+<div id="harryPotterApp">
+    <div class="col">
+        <section v-if="loading" class="row">
+            <div class="mx-auto"><div class="spinner-grow" role="status"></div><strong>Loading..</strong></div>
+        </section>
+        <div v-if="!loading">
+            <div class="row mb-4">
+                <div v-on:click="SeeArea('AllChars')" class="col-3">
+                    <button class="btn btn-secondary btn-block">Characters</button>
+                </div>
+                <div v-on:click="SeeArea('AllStudents')" class="col-3">
+                    <button class="btn btn-secondary btn-block">Students</button>
+                </div>
+                <div v-on:click="SeeArea('AllStaff')" class="col-3">
+                    <button class="btn btn-secondary btn-block">Staff</button>
+                </div>
+                <div v-on:click="SeeArea('AllStats')" class="col-3">
+                    <button class="btn btn-secondary btn-block">Stats</button>
+                </div>
+            </div>
+            <div v-if="seeAllChars">
+                <p>Found {{countCharacters}} character(s)</p>
+                <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mb-4" v-for="character in allCharacters">
+                        <div class="card h-100 shadow">
+                            <div class="card-body">
+                                <img v-bind:src="character.image" class="card-img-top" v-bind:alt="character.name" />
+                                <div class="card-img-overlay">
+                                    <h5>
+                                        <span class="badge badge-danger float-right">
+                                            {{character.house}}
+                                        </span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                    <small>{{character.name}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="seeAllStudents">
+                <p>Found {{countStudent}} student(s)</p>
+                <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mb-4" v-for="character in onlyStudents">
+                        <div class="card h-100 shadow">
+                            <div class="card-body">
+                            <img v-bind:src="character.image" class="card-img" v-bind:alt="character.name" />
+                            <div class="card-img-overlay">
+                                <h5>
+                                    <span class="badge badge-danger float-right">
+                                        {{character.house}}
+                                    </span>
+                                </h5>
+                            </div>
+                            </div>
+                            <div class="card-footer">
+                                  <small>{{character.name}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="seeAllStaff">
+                <p>Found {{countStaff}} staff member(s)</p>
+                <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                    <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mb-4" v-for="character in onlyStaf">
+                        <div class="card h-100 shadow">
+                            <div class="card-body">
+                                <img v-bind:src="character.image" class="card-img" v-bind:alt="character.name" />
+                                <div class="card-img-overlay">
+                                    <h5>
+                                        <span class="badge badge-danger float-right">
+                                            {{character.house}}<br />
+                                        </span>
+                                    </h5>
+                                </div>
+                            </div>
+                            <div class="card-footer">
+                                <small>{{character.name}}</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div v-if="seeStats">
+                <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+                    <div class="col-md-4 col-sm-12 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-body">
+                                <h5>All female characters</h5>
+                                <ol><li v-for="char in onlyFemale">{{char.name}}</li></ol>
+                            </div>
+                            <div class="card-footer">There are {{countFemale}} female(s) in Hogwarts</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-body">
+                                <h5>All male characters</h5>
+                                <ol><li v-for="char in onlyMale">{{char.name}}</li></ol>
+                            </div>
+                            <div class="card-footer">There are {{countMale}} male(s) in Hogwarts</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-body">
+                                <h5>All Hogwarts houses</h5>
+                                <ol><li v-for="house in onlyHouses">{{house}}</li></ol>
+                            </div>
+                            <div class="card-footer">There are {{countHouses}} house(s) in Hogwarts</div>
+                        </div>
+                    </div>
+                    <div class="col-md-4 col-sm-12 mb-4">
+                        <div class="card h-100 shadow">
+                            <div class="card-body">
+                                <h5>All Hogwarts wands</h5>
+                                <ol>
+                                    <li v-for="char in onlyWands">
+                                        <strong>{{char.name}}</strong> has a wand<br />
+                                        made of {{char.wand.wood}}
+                                    </li>
+                                </ol>
+                            </div>
+                            <div class="card-footer">There are {{countWands}} wand(s) in Hogwarts</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+@section scripts{
+    <script src="~/js/ExternalApi.js"></script>
+}
+@* BoardGame Index.cshtml *@
