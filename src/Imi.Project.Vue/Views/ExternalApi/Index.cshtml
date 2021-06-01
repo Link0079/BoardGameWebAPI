@@ -36,14 +36,13 @@
                                 <img v-bind:src="character.image" class="card-img-top" v-bind:alt="character.name" />
                                 <div class="card-img-overlay">
                                     <h5>
-                                        <span class="badge badge-danger float-right">
-                                            {{character.house}}
-                                        </span>
+                                        <span class="badge badge-danger float-right">{{character.house}}</span>
                                     </h5>
                                 </div>
                             </div>
                             <div class="card-footer">
-                                    <small>{{character.name}}</small>
+                                <small>Name: <strong>{{character.name}}</strong></small><br />
+                                <small>Actor: <strong>{{character.actor}}</strong></small>
                             </div>
                         </div>
                     </div>
@@ -65,7 +64,8 @@
                             </div>
                             </div>
                             <div class="card-footer">
-                                  <small>{{character.name}}</small>
+                                <small>Name: <strong>{{character.name}}</strong></small><br />
+                                <small>Actor: <strong>{{character.actor}}</strong></small>
                             </div>
                         </div>
                     </div>
@@ -87,7 +87,8 @@
                                 </div>
                             </div>
                             <div class="card-footer">
-                                <small>{{character.name}}</small>
+                                <small>Name: <strong>{{character.name}}</strong></small><br />
+                                <small>Actor: <strong>{{character.actor}}</strong></small>
                             </div>
                         </div>
                     </div>
@@ -99,7 +100,7 @@
                         <div class="card h-100 shadow">
                             <div class="card-body">
                                 <h5>All Hogwarts houses</h5>
-                                <ol><li v-for="house in onlyHouses" v-on:click="SeeStudentsInHouse(house)"><strong>{{house}}</strong></li></ol>
+                                <ol><li v-for="house in onlyHouses" v-on:click="SeeStudentsInHouse(house)" class="" >{{house}}</li></ol>
                             </div>
                             <div class="card-footer">There are {{countHouses}} house(s) in Hogwarts</div>
                         </div>
@@ -111,7 +112,7 @@
                                 <ol><li v-for="char in onlyStudentsInHouse">{{char.name}}</li></ol>
                             </div>
                             <div class="card-footer">
-                                There are {{countStudentsInHouse}} members in {{currentHouse}}.
+                                There are {{countStudentsInHouse}} members in {{currentHouse}}
                                 <button type="button" class="close float-right" v-on:click="seeStudentsInHouse = false" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -142,8 +143,7 @@
                                 <h5>All Hogwarts wands</h5>
                                 <ol>
                                     <li v-for="char in onlyWands">
-                                        <strong>{{char.name}}</strong> has a wand<br />
-                                        made of {{char.wand.wood}}
+                                        <strong>{{char.name}}</strong> has a wand made of <strong>{{char.wand.wood}}</strong> with a <strong>{{char.wand.core}}</strong> core.
                                     </li>
                                 </ol>
                             </div>

@@ -104,6 +104,11 @@
                         }
                     }
                 });
+                self.onlyHouses = self.onlyHouses.sort(function (a, b) {
+                    if (a < b) { return -1; }
+                    if (a > b) { return 1; }
+                    return 0;
+                });
                 self.countHouses = self.onlyHouses.length;
             },
         FetchHPByGender:
