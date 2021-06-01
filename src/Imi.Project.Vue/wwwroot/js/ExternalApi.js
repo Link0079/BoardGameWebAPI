@@ -9,6 +9,9 @@
         onlyFemale: [],
         onlyMale: [],
         onlyWands: [],
+        onlyStudentsInHouse: [],
+        currentHouse: "",
+        countStudentsInHouse: 0,
         countWands: 0,
         countStaff: 0,
         countStudent: 0,
@@ -16,6 +19,7 @@
         countCharacters: 0,
         countFemale: 0,
         countMale: 0,
+        seeStudentsInHouse: false,
         seeAllChars: true,
         seeAllStudents: false,
         seeAllStaff: false,
@@ -140,6 +144,26 @@
                     }
                     self.countWands = self.onlyWands.length;
                 })
+            },
+        SeeStudentsInHouse:
+            function (house) {
+                let self = this;
+                self.currentHouse = house;
+                let harryPotterStudentsInHouseApiUrl = `${harryPotterCharactersApiURL}/house/${house}`;
+                axios.get(harryPotterStudentsInHouseApiUrl)
+                    .then(function (response) {
+                        self.onlyStudentsInHouse = response.data
+                            .sort(function (a, b) {
+                                if (a.name < b.name) { return -1; }
+                                if (a.name > b.name) { return 1; }
+                                return 0;
+                            });
+                        self.countStudentsInHouse = self.onlyStudentsInHouse.length;
+                        self.seeStudentsInHouse = true;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                    })
             },
         SeeArea:
             function (area) {
