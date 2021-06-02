@@ -50,7 +50,7 @@ namespace Imi.Project.Api.Controllers
                 return CreatedAtAction(nameof(Get), new { id = playedGameResponseDto.Id }, playedGameResponseDto);
             }
             catch (Exception)
-            { return Conflict(CustomExceptionMessages.ConflictUpdatePlayedGame); }
+            { return Conflict(string.Format(CustomExceptionMessages.ConflictUpdatePlayedGame, playedGameRequestDto.Id)); }
         }
         [HttpPut]
         public async Task<IActionResult> Put(PlayedGameRequestDto playedGameRequestDto)

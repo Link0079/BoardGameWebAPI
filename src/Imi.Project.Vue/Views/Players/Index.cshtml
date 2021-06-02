@@ -33,26 +33,27 @@
                         <button class="btn btn-secondary btn-block">Admin</button>
                     </div>
                 </div>
-                <div v-if="seePlayedGames" class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
-                    <div class="col-12 mb-4">
-                        <button v-on:click="EditPlayedGame(false)" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalCenter">Host a game</button>
-                    </div>
-                    <div v-if="hasPlayedGames" class="col-lg-4 col-md-6 col-sm-6 col-12 mb-4" v-for="playedGame in playedGames">
-                        <div class="card h-100 shadow-sm" data-toggle="modal" data-target="#exampleModalCenter">
-                            <div class="card-header" v-on:click="GetPlayedGameDetails(playedGame)">
-                                <h6 class="mb-0">{{playedGame.boardGameTitle}}</h6>
-                            </div>
-                            <div class="card-body">
-                                <p>Gamescores:</p>
-                                <ul>
-                                    <li v-for="gameScore in playedGame.gameScores">
-                                        {{gameScore.playerName}}: {{gameScore.score}}
-                                    </li>
-                                </ul>
-                            </div>
-                            <div class="card-footer">
-                                <h6>PlayTime:</h6>
-                                <p>{{playedGame.playTime}}</p>
+                <div v-if="seePlayedGames">
+                    <div class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
+                        <div class="col-12 mb-4" data-toggle="modal" data-target="#exampleModalCenter">
+                            <button v-on:click="EditPlayedGame(false)" class="btn btn-primary btn-block">Host a game</button>
+                        </div>
+                        <div v-if="hasPlayedGames" class="col-lg-4 col-md-6 col-sm-6 col-12 mb-4" v-for="playedGame in playedGames" v-on:click="GetPlayedGameDetails(playedGame)">
+                            <div class="card h-100 shadow">
+                                <div data-toggle="modal" data-target="#exampleModalCenter">
+                                    <div class="card-header">
+                                        <h6>{{playedGame.boardGameTitle}}</h6>
+                                    </div>
+                                    <div class="card-body">
+                                        Gamescores:
+                                        <ul>
+                                            <li v-for="gameScore in playedGame.gameScores">
+                                                {{gameScore.playerName}}: {{gameScore.score}}
+                                            </li>
+                                        </ul>
+                                        <strong>PlayTime:</strong> {{playedGame.playTime}}
+                                    </div>
+                                </div>
                             </div>
                         </div>
                         <div v-if="currentPlayedGame" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -69,12 +70,12 @@
                                             <h6 v-on:change="">{{currentPlayedGame.boardGameTitle}}</h6>
                                             <p>Gamescores:</p>
                                             <ul>
-                                                <li v-for="gameScore in playedGame.gameScores">
+                                                <li v-for="gameScore in currentPlayedGame.gameScores">
                                                     {{gameScore.playerName}}: {{gameScore.score}}
                                                 </li>
                                             </ul>
                                         </div>
-                                        <div v-else>
+                                        <div v-if="!isDisabledGameScore">
                                             <div class="row  form-group">
                                                 <div class="col-md-4">
                                                     <label>Select a game:</label>
@@ -126,9 +127,8 @@
                                         </div>
                                     </div>
                                     <div class="modal-footer">
-                                        <button v-on:click="EditPlayedGame(true)" type="button" class="btn btn-primary">Edit</button>
-                                        <button v-on:click="SavePlayedGame" type="button" class="btn btn-success" v-bind:disabled="isDisabledGameScore">Save</button>
-                                        <button v-on:click="DeletePlayedGame" type="button" class="btn btn-danger" data-dismiss="modal" v-bind:disabled="!isDisabledGameScore">Delete</button>
+                                        <button v-if="!isByPlayedGameDetails" v-on:click="SavePlayedGame" type="button" class="btn btn-success" data-dismiss="modal">Save</button>
+                                        <button v-if="isByPlayedGameDetails" v-on:click="DeletePlayedGame" type="button" class="btn btn-danger" data-dismiss="modal" >Delete</button>
                                         <button v-on:click="ClearSelectedBoardGame" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>

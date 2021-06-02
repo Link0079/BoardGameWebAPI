@@ -68,12 +68,7 @@
                 let self = this;
                 self.editArtist = editArtist;
                 self.isDisabled = false;
-                if (!self.editArtist) {
-                    self.currentArtist = {
-                        id: createGuid(),
-                        name: "",
-                        dob: 01/01/2000
-                    }
+                if (!self.editArtist) { self.currentArtist = { id: createGuid(), name: "", dob: "" }
                 }
             },
         SaveArtist:

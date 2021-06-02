@@ -13,22 +13,21 @@
         selectedGameScore: [],
         selectedPlayTime: 0,
         numberOfPlayers: 0,
+        selectedBoardGame: null,
         currentPlayer: null,
         currentPlayedGame: null,
-        currentBoardGame: null,
         isDisabledPlayer: true,
         isDisabledGameScore: true,
         isDisabledPlayerAdmin: true,
+        isByPlayedGameDetails: true,
         seePlayedGames: false,
         seeProfile: true,
         seeAdminArea: false,
-        selectedBoardGame: null,
         apiMessageInfo: "",
         hasError: false,
         hasSuccess: false,
         hasPlayedGames: false,
         editPlayer: false,
-        toEditPlayedGame: "Create",
     },
     created:
         function () {
@@ -201,22 +200,51 @@
                 }
             },
         EditPlayedGame:
-            function (editPlayedGame) {
+            function () {
                 let self = this;
-                self.editPlayedGame = editPlayedGame;
+                self.isByPlayedGameDetails = false;
+                self.currentPlayedGame = {boardGameTitle: "", gameScores: [], id: "", playerCount: 0, playTime: 0};
                 self.isDisabledGameScore = false;
-                self.toEditPlayedGame = "Edit";
-                if (!self.editPlayedGame) {
-                    self.currentPlayedGame = {
-                        boardGameTitle: "", gameScore: [], playedTime: ""
-                    };
-                    self.toEditPlayedGame = "Create";
-                }
-
             },
         SavePlayedGame:
             function () {
-                console.log("Your Playedgame has not been Saved");
+                let self = this;
+                self.PostPlayedGame();
+            },
+        PostPlayedGame:
+            function () {
+                let self = this;
+                let playedGameRequestDto = { id: createGuid() ,playTime: 0 , boardGameId: self.selectedBoardGame.id, gameScores: [] };
+                playedGameRequestDto.playTime = self.selectedPlayTime;
+                self.selectedPlayer.forEach(function (playerId, index) {
+                    let playerScore = { playerId: "", score: 0};
+                    playerScore.playerId = playerId;
+                    playerScore.score = Number(self.selectedGameScore[index]);
+                    playedGameRequestDto.gameScores.push(playerScore);
+                });
+                let postPlayedGameApiUrl = `${playedGamesApiURL}`;
+                axios.post(postPlayedGameApiUrl, playedGameRequestDto, axiosBoardGameConfig)
+                    .then(function (response) {
+                        self.playedGames.push(response.data);
+                        self.apiMessageInfo = "Played game has been created. Please refresh page.!!";
+                        self.hasSuccess = true;
+                    })
+                    .catch(function (error) {
+                        console.log(error);
+                        self.apiMessageInfo = error;
+                        self.hasError = true;
+                    })
+                    .then(function () {
+                        setTimeout(function () {
+                            self.hasSuccess = false;
+                            self.hasError = false;
+                            self.ClearSelectedBoardGame();
+                        }, 2500);
+                    });
+            },
+        PutPlayedGame:
+            function () {
+
             },
         DeletePlayedGame:
             function () {
@@ -225,6 +253,11 @@
                 axios.delete(deletePlayedGameUrl, axiosBoardGameConfig)
                     .then(function (response) {
                         self.apiMessageInfo = response.data;
+                        self.playedGames.forEach(function (playedGame, index) {
+                            if (playedGame.id === self.currentPlayedGame.id) {
+                                self.playedGames.splice(index, 1);
+                            }
+                        });
                         self.hasSuccess = true;
                     })
                     .catch(function (error) {
@@ -238,13 +271,13 @@
                             self.hasSuccess = false;
                         }, 2500);
                     });
-
             },
         GetPlayedGameDetails:
             function (playedGame) {
                 let self = this;
                 self.isDisabledGameScore = true;
                 self.currentPlayedGame = playedGame;
+                self.isByPlayedGameDetails = true;
             },
         GetPlayerDetails:
             function (player) {
@@ -255,6 +288,7 @@
         ClearSelectedBoardGame:
             function () {
                 let self = this;
+                self.currentPlayedGame = null;
                 self.selectedBoardGame = null;
                 self.selectedGameScore = [];
                 self.selectedPlayer = [];
