@@ -9,6 +9,10 @@
         players: [],
         boardGames: [],
         playedGames: [],
+        selectedPlayer: [],
+        selectedGameScore: [],
+        selectedPlayTime: 0,
+        numberOfPlayers: 0,
         currentPlayer: null,
         currentPlayedGame: null,
         currentBoardGame: null,
@@ -18,13 +22,13 @@
         seePlayedGames: false,
         seeProfile: true,
         seeAdminArea: false,
-        selectedPlayer: null,
-        selectedBoardGameId: "",
+        selectedBoardGame: null,
         apiMessageInfo: "",
         hasError: false,
         hasSuccess: false,
         hasPlayedGames: false,
         editPlayer: false,
+        toEditPlayedGame: "Create",
     },
     created:
         function () {
@@ -201,10 +205,14 @@
                 let self = this;
                 self.editPlayedGame = editPlayedGame;
                 self.isDisabledGameScore = false;
+                self.toEditPlayedGame = "Edit";
                 if (!self.editPlayedGame) {
                     self.currentPlayedGame = {
-                        boardGameTitle: "", gameScore: [], playedTime: "" };
+                        boardGameTitle: "", gameScore: [], playedTime: ""
+                    };
+                    self.toEditPlayedGame = "Create";
                 }
+
             },
         SavePlayedGame:
             function () {
@@ -243,6 +251,15 @@
                 let self = this;
                 self.isDisabledPlayerAdmin = true;
                 self.currentPlayer = player;
+            },
+        ClearSelectedBoardGame:
+            function () {
+                let self = this;
+                self.selectedBoardGame = null;
+                self.selectedGameScore = [];
+                self.selectedPlayer = [];
+                self.selectedPlayTime = 0;
+                self.numberOfPlayers = 0;
             },
     },
 });

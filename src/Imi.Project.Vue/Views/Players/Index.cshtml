@@ -23,20 +23,19 @@
         <div v-if="!loading">
             <div v-if="isAuthorized">
                 <div class="row mb-4">
-                    <div v-on:click="SeeArea('PlayedGames')" class="col-4">
-                        <button class="btn btn-secondary btn-block">Playedgames</button>
-                    </div>
                     <div v-on:click="SeeArea('Profile')" class="col-4">
                         <button class="btn btn-secondary btn-block">Profile</button>
+                    </div>
+                    <div v-on:click="SeeArea('PlayedGames')" class="col-4">
+                        <button class="btn btn-secondary btn-block">Playedgames</button>
                     </div>
                     <div v-if="isAdmin" v-on:click="SeeArea('AdminArea')" class="col-4">
                         <button class="btn btn-secondary btn-block">Admin</button>
                     </div>
                 </div>
-                <div  v-if="seePlayedGames" class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
+                <div v-if="seePlayedGames" class="row row-cols-lg-3 row-cols-md-2 row-cols-sm-2 row-cols-1">
                     <div class="col-12 mb-4">
-                        <button v-on:click="EditPlayedGame(false)" class="btn btn-primary btn-block" 
-                                data-toggle="modal" data-target="#exampleModalCenter">Host a game</button>
+                        <button v-on:click="EditPlayedGame(false)" class="btn btn-primary btn-block" data-toggle="modal" data-target="#exampleModalCenter">Host a game</button>
                     </div>
                     <div v-if="hasPlayedGames" class="col-lg-4 col-md-6 col-sm-6 col-12 mb-4" v-for="playedGame in playedGames">
                         <div class="card h-100 shadow-sm" data-toggle="modal" data-target="#exampleModalCenter">
@@ -56,42 +55,81 @@
                                 <p>{{playedGame.playTime}}</p>
                             </div>
                         </div>
-                        <div v-if="currentPlayedGame" class="modal fade" id="exampleModalCenter" tabindex="-1" 
-                                role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                        <div v-if="currentPlayedGame" class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                             <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
                                 <div class="modal-content">
                                     <div class="modal-header">
-                                        <h5 v-if="isDisabledGameScore" class="modal-title" id="exampleModalCenterTitle">
-                                            {{currentPlayedGame.boardGameTitle}}</h5>
-                                        <select v-if="!isDisabledGameScore" v-model="currentPlayedGame.boardGameTitle">
-                                            <option v-for="boardgame in boardGames" v-bind:value="boardgame.id">{{boardgame.title}}</option>
-                                        </select>
-                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                        <h5>Played game</h5>
+                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close" v-on:click="ClearSelectedBoardGame">
                                             <span aria-hidden="true">&times;</span>
                                         </button>
                                     </div>
                                     <div class="modal-body">
-                                        <p>Gamescores:</p>
-                                        <div v-if="isDisabledGameScore" v-for="gameScore in currentPlayedGame.gameScores" >
-                                            <input type="text" v-bind:value="gameScore.playerName" v-bind:disabled="isDisabledGameScore"/>
-                                            <input type="number" v-bind:value="gameScore.score" v-bind:disabled="isDisabledGameScore" />
+                                        <div v-if="isDisabledGameScore">
+                                            <h6 v-on:change="">{{currentPlayedGame.boardGameTitle}}</h6>
+                                            <p>Gamescores:</p>
+                                            <ul>
+                                                <li v-for="gameScore in playedGame.gameScores">
+                                                    {{gameScore.playerName}}: {{gameScore.score}}
+                                                </li>
+                                            </ul>
                                         </div>
-                                        <div v-if="!isDisabledGameScore">
-                                            <select v-model="selectedPlayer">
-                                                <option v-for="player in players" v-bind:value="player.id">{{player.name}}</option>
-                                            </select>
-                                            <select v-model="selectedPlayer">
-                                                <option v-for="player in players" v-bind:value="player.id">{{player.name}}</option>
-                                            </select>
+                                        <div v-else>
+                                            <div class="row  form-group">
+                                                <div class="col-md-4">
+                                                    <label>Select a game:</label>
+                                                </div>
+                                                <div class="col-md-8 ">
+                                                    <select v-model="selectedBoardGame" class="form-control">
+                                                        <option v-for="boardgame in boardGames" v-bind:value="boardgame">{{boardgame.title}}</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                            <div v-if="selectedBoardGame">
+                                                <div class="row  form-group">
+                                                    <div class="col-md-4">
+                                                        <label>Playtime: </label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <input type="number" v-model.number="selectedPlayTime" placeholder="Playtime in minutes" class="form-control" />
+                                                    </div>
+                                                </div>
+                                                <div class="row form-group">
+                                                    <div class="col-md-4">
+                                                        <label>Select number of players: </label>
+                                                    </div>
+                                                    <div class="col-md-8">
+                                                        <select v-model.number="numberOfPlayers" class="form-control">
+                                                            <option v-for="number in selectedBoardGame.maxPlayers">{{number}}</option>
+                                                        </select>
+                                                    </div>
+                                                </div>
+                                                <div v-for="(participant, index) in numberOfPlayers">
+                                                    <div class="row form-group">
+                                                        <div class="col-md-2">
+                                                            <label>Player: </label>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <select v-model="selectedPlayer[index]" class="form-control">
+                                                                <option v-for="player in players" v-bind:value="player.id">{{player.name}}</option>
+                                                            </select>
+                                                        </div>
+                                                        <div class="col-md-2">
+                                                            <label>Score: </label>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <input type="number" v-model="selectedGameScore[index]" class="form-control" />
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="modal-footer">
                                         <button v-on:click="EditPlayedGame(true)" type="button" class="btn btn-primary">Edit</button>
-                                        <button v-on:click="SavePlayedGame" type="button" class="btn btn-success" 
-                                                    v-bind:disabled="isDisabledGameScore">Save</button>
-                                        <button v-on:click="DeletePlayedGame" type="button" class="btn btn-danger" data-dismiss="modal" 
-                                                    v-bind:disabled="!isDisabledGameScore">Delete</button>
-                                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                        <button v-on:click="SavePlayedGame" type="button" class="btn btn-success" v-bind:disabled="isDisabledGameScore">Save</button>
+                                        <button v-on:click="DeletePlayedGame" type="button" class="btn btn-danger" data-dismiss="modal" v-bind:disabled="!isDisabledGameScore">Delete</button>
+                                        <button v-on:click="ClearSelectedBoardGame" type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                     </div>
                                 </div>
                             </div>
@@ -121,25 +159,29 @@
                             <label v-if="isDisabledPlayer">Total Playtime</label>
                             <label v-else>Password</label>
                             <input v-if="isDisabledPlayer" class="form-control" v-model="currentPlayer.playTimeTotal" v-bind:disabled="isDisabledPlayer" />
-                            <input v-else type="password" class="form-control" v-model="currentPlayer.password"/>
+                            <input v-else type="password" class="form-control" v-model="currentPlayer.password" />
                         </div>
                         <div class="form-group">
                             <label v-if="isDisabledPlayer">Most played game</label>
                             <label v-else>Confirm password</label>
-                            <input v-if="isDisabledPlayer"class="form-control" v-model="currentPlayer.mostPlayedGame" v-bind:disabled="isDisabledPlayer" />
-                            <input v-else type="password" class="form-control" v-model="currentPlayer.confirmPassword"/>
+                            <input v-if="isDisabledPlayer" class="form-control" v-model="currentPlayer.mostPlayedGame" v-bind:disabled="isDisabledPlayer" />
+                            <input v-else type="password" class="form-control" v-model="currentPlayer.confirmPassword" />
                         </div>
                         <div class="form-group float-right" v-if="isAuthorized">
                             <button v-on:click="EditPlayer(true)" type="button" class="btn btn-primary">Edit</button>
                             <button v-on:click="SavePlayer" type="button" class="btn btn-success"
-                                    v-bind:disabled="isDisabledPlayer">Save</button>
+                                    v-bind:disabled="isDisabledPlayer">
+                                Save
+                            </button>
                             <button v-on:click="DeletePlayer" type="button" class="btn btn-danger"
-                                    v-bind:disabled="!isDisabledPlayer">Delete</button>
+                                    v-bind:disabled="!isDisabledPlayer">
+                                Delete
+                            </button>
                             <button v-on:click="isDisabledPlayer = true" type="button" class="btn btn-danger">Cancel</button>
                         </div>
                     </div>
                 </div>
-                <div class="col-lg-6 col-md-8 col-sm-12"></div>
+                <div class="col-lg-6 col-md-8 col-sm-12"> @*Admin Area*@</div>
             </div>
         </div>
     </div>
