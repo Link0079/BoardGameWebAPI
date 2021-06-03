@@ -217,9 +217,10 @@
                 let playedGameRequestDto = { id: createGuid() ,playTime: 0 , boardGameId: self.selectedBoardGame.id, gameScores: [] };
                 playedGameRequestDto.playTime = self.selectedPlayTime;
                 self.selectedPlayer.forEach(function (playerId, index) {
-                    let playerScore = { playerId: "", score: 0};
+                    let score = self.selectedGameScore[index] == null ? 0 : Number(self.selectedGameScore[index]);
+                    let playerScore = { playerId: "", score: 0 };
                     playerScore.playerId = playerId;
-                    playerScore.score = Number(self.selectedGameScore[index]);
+                    playerScore.score = score;
                     playedGameRequestDto.gameScores.push(playerScore);
                 });
                 let postPlayedGameApiUrl = `${playedGamesApiURL}`;
@@ -230,7 +231,7 @@
                         self.hasSuccess = true;
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error.response);
                         self.apiMessageInfo = error;
                         self.hasError = true;
                     })
