@@ -17,7 +17,7 @@
             <p>Found {{boardgamesCount}} boardgame(s)</p>
             <div  class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mb-4" v-for="boardGame in boardgames" v-on:click="GetBoardGameDetails(boardGame)">
-                    <div class="card h-100 shadow-sm">
+                    <div class="card h-100 shadow">
                         <div data-toggle="modal" data-target="#exampleModalCenter">
                             <img v-bind:src="boardGame.photoUrl" class="card-img-top" v-bind:alt="boardGame.title" />
                             <div class="card-img-overlay">
@@ -137,16 +137,6 @@
                                     <div class="form-group">
                                         <label>age</label>
                                         <input type="number" min="0" class="form-control" v-model.number="currentBoardGame.age" v-bind:disabled="isDisabled" placeholder="Age.."/>
-                                    </div>
-                                </div>
-                                <div class="col-6" v-if="isAdmin">
-                                    <div class="form-group">
-                                        <label>Is Deleted</label><br />
-                                        <input v-if="isDisabled" type="text" class="form-control" v-model.bool="currentBoardGame.isDeleted" v-bind:disabled="isDisabled" placeholder="Deleted.."/>
-                                        <select v-else v-model="currentBoardGame.isDeleted" class="form-control">
-                                            <option value="true">Is Deleted</option>
-                                            <option value="false">Is not Deleted</option>
-                                        </select>
                                     </div>
                                 </div>
                             </div>

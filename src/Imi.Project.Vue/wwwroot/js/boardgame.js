@@ -87,9 +87,7 @@
             function () {
                 let self = this;
                 let stock = self.currentBoardGame.stock;
-                let isDeleted = self.currentBoardGame.isDeleted;
                 self.currentBoardGame.stock = (stock === "true") ? true : false;
-                self.currentBoardGame.isDeleted = (isDeleted === "true") ? true : false;
                 if (!self.editBoardGame) {
                     self.PostBoardGame();
                 }
@@ -111,6 +109,7 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
+                        self.currentBoardGame = response.data;
                         self.apiMessageInfo = `Boardgame with id '${response.data.id}' has been created. Refresh page.!!`
                     })
                     .catch(function (error) {
