@@ -48,7 +48,7 @@
                         <button v-on:click="EditArtist(true)" type="button" class="btn btn-primary">Edit</button>
                         <button v-on:click="SaveArtist" type="button" class="btn btn-success" v-bind:disabled="isDisabled">Save</button>
                         <button v-on:click="DeleteArtist" type="button" class="btn btn-danger" v-bind:disabled="!isDisabled">Delete</button>
-                        <button v-on:click="isDisabled = true" type="button" class="btn btn-danger">Cancel</button>
+                        <button v-on:click="CancelArtist" type="button" class="btn btn-danger">Cancel</button>
                     </div>
                 </div>
             </div>

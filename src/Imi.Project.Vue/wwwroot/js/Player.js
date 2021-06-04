@@ -140,7 +140,7 @@
                     .then(function (response) {
                         self.isDisabledPlayer = true;
                         self.hasSuccess = true;
-                        self.apiMessageInfo = `Player with id '${self.currentPlayer.id}' has been updated. Refresh page.!!`
+                        self.apiMessageInfo = `Player with id '${response.data.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -203,7 +203,7 @@
             function () {
                 let self = this;
                 self.isByPlayedGameDetails = false;
-                self.currentPlayedGame = {boardGameTitle: "", gameScores: [], id: "", playerCount: 0, playTime: 0};
+                self.currentPlayedGame = {boardGameTitle: "", gameScores: [], playerCount: 0, playTime: 0};
                 self.isDisabledGameScore = false;
             },
         SavePlayedGame:
@@ -214,7 +214,7 @@
         PostPlayedGame:
             function () {
                 let self = this;
-                let playedGameRequestDto = { id: createGuid() ,playTime: 0 , boardGameId: self.selectedBoardGame.id, gameScores: [] };
+                let playedGameRequestDto = { playTime: 0 , boardGameId: self.selectedBoardGame.id, gameScores: [] };
                 playedGameRequestDto.playTime = self.selectedPlayTime;
                 self.selectedPlayer.forEach(function (playerId, index) {
                     let score = self.selectedGameScore[index] == null ? 0 : Number(self.selectedGameScore[index]);
@@ -227,12 +227,12 @@
                 axios.post(postPlayedGameApiUrl, playedGameRequestDto, axiosBoardGameConfig)
                     .then(function (response) {
                         self.playedGames.push(response.data);
-                        self.apiMessageInfo = "Played game has been created. Please refresh page.!!";
+                        self.apiMessageInfo = `Played game '${response.data.id}' has been created. Please refresh page.!!`;
                         self.hasSuccess = true;
                     })
                     .catch(function (error) {
                         console.log(error.response);
-                        self.apiMessageInfo = error;
+                        self.apiMessageInfo = error.response.data.title;
                         self.hasError = true;
                     })
                     .then(function () {

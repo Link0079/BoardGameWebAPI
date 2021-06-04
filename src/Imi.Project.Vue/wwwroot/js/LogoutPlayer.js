@@ -3,9 +3,6 @@
     data: {
         isLogedIn: sessionStorage.getItem("sessionPlayerLogedIn"),
     },
-    watch: {
-
-    },
     methods: {
         LogoutPlayer:
             function () {
@@ -16,5 +13,5 @@
                     window.location.href = "/";
                 }
             }
-    }
+    },
 });

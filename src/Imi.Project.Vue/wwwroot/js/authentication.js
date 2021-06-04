@@ -9,7 +9,6 @@
         hasError: false,
         hasSuccess: false,
         redirect: false,
-        regError: "",
     },
     created:
         function () {
@@ -37,13 +36,11 @@
                     axios.post(`${playerApiURL}/login`, self.playerToLogin)
                         .then(function (response) {
                             self.HandleSessionStorage(response.data);
-                            console.log("Login Success");
                             self.apiMessageInfo = "Login Success";
                             self.redirect = true;
                             self.hasSuccess = true;
                         })
                         .catch(function (error) {
-                            console.log(error);
                             self.apiMessageInfo = "You are not Authorized. Check your usernme and/or password.";
                             self.hasError = true;
                         })
@@ -64,18 +61,7 @@
                             self.hasSuccess = true;
                         })
                         .catch(function (error) {
-                            //console.log(error.response.data.errors);
-                            //console.log(error.response);
-                            //self.regError = error.response.data.errors;
-                            //for (let prop in self.regError) {
-                            //    console.log(prop + " => No hasOwnProp");
-                            //    let errorTest = prop.split('.')[1];
-                                //if (error.hasOwnProperty(prop)) {
-                                //    console.log(prop + " => Short hasOwnProp");
-                                //    }
-                            //};
-
-                            self.apiMessageInfo = "Registration Failed";
+                            self.apiMessageInfo = `${error.response.data.title} Please check registration form.`;
                             self.hasError = true;
                         })
                         .finally(function () {

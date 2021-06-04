@@ -22,7 +22,7 @@
             }
             else {
                 self.hasError = true;
-                self.apiMessageInfo = "Please register of login.";
+                self.apiMessageInfo = "Please register or login.";
             }
         },
     methods: {
@@ -35,7 +35,7 @@
                         self.loading = true;
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error.response.data.title);
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -70,8 +70,7 @@
                 self.isDisabled = false;
                 if (!self.editCategory) {
                     self.currentCategory = {
-                        id: createGuid(),
-                        name: "",
+                        name: ""
                     }
                 }
             },
@@ -93,13 +92,14 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
+                        self.currentCategory = response.data;
                         self.categories.push(self.currentCategory);
-                        self.apiMessageInfo = `Boardgame with id '${self.currentCategory.id}' has been created. Refresh page.!!`
+                        self.apiMessageInfo = `Boardgame with id '${response.data.id}' has been created. Refresh page.!!`
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error.response.data.title);
                         self.hasError = true;
-                        self.apiMessageInfo = "Creating new boardgame Failed, check all values!";
+                        self.apiMessageInfo = `${error.response.data.title} Please check values`;
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -116,12 +116,12 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
-                        self.apiMessageInfo = `Boardgame with id '${self.currentCategory.id}' has been updated. Refresh page.!!`
+                        self.apiMessageInfo = `Boardgame with id '${response.data.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error.response.data.title);
                         self.hasError = true;
-                        self.apiMessageInfo = `There was a conflict with updating category with id '${self.currentCategory.id}'!`;
+                        self.apiMessageInfo = `${error.response.data.title} Please check values.`;
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -142,11 +142,12 @@
                                 self.categories.splice(index, 1);
                             }
                         });
+                        self.currentCategory = null;
                         self.hasSuccess = true;
                     })
                     .catch(function (error) {
-                        console.log(error);
-                        self.apiMessageInfo = error;
+                        console.log(error.response.data.title);
+                        self.apiMessageInfo = error.response.data.title;
                         self.hasError = true;
                     })
                     .finally(function () {
@@ -155,6 +156,12 @@
                             self.hasError = false;
                         }, 2500);
                     });
+            },
+        CancelCategory:
+            function () {
+                let self = this;
+                self.currentCategory = null;
+                self.isDisabled = true;
             },
         GetCategoryDetails:
             function (category) {

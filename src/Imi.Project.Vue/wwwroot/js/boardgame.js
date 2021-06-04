@@ -13,7 +13,6 @@
         selectedArtists: [],
         apiMessageInfo: "",
         isDisabled: true,
-        isActive: true,
         hasError: false,
         hasSuccess: false,
         editBoardGame: false,
@@ -38,12 +37,11 @@
                         self.boardgamesCount = response.data.length;
                     })
                     .catch(function (error) {
-                        console.error(error);
+                        console.log(error.response.data.title);
                     })
                     .finally(function () {
                         setTimeout(function () {
                             self.loading = false;
-
                         }, 1000);
                     });
             },
@@ -55,7 +53,7 @@
                         self.allCategories = response.data;
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error.response.data.title);
                     });
             },
         FetchArtists:
@@ -66,7 +64,7 @@
                         self.allArtists = response.data;
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error.response.data.title);
                     });
             },
         EditBoardGame:
@@ -76,15 +74,13 @@
                 self.isDisabled = false;
                 if (!self.editBoardGame) {
                     self.currentBoardGame = {
-                        id: createGuid(),
                         title: "",
                         stock: false,
                         playTime: "",
                         photoUrl: "",
                         description: "",
                         isDeleted: false,
-                }
-                    console.log("Create new Boardgame");
+                    };
                 }
             },
         SaveBoardGame:
@@ -95,25 +91,17 @@
                 self.currentBoardGame.stock = (stock === "true") ? true : false;
                 self.currentBoardGame.isDeleted = (isDeleted === "true") ? true : false;
                 if (!self.editBoardGame) {
-                    console.log("Create");
                     self.PostBoardGame();
-                    self.selectedCategories.forEach(function (id) {
-                        setTimeout(function () { self.PostBoarGameCategories(id); }, 2000);
-                    });
-                    self.selectedArtists.forEach(function (id) {
-                        setTimeout(function () { self.PostBoardGameArtists(id); }, 2000);
-                    });
                 }
                 else {
-                    console.log("Edit");
                     self.PutBoardGame();
+                }
                     self.selectedCategories.forEach(function (id) {
                         setTimeout(function () { self.PostBoarGameCategories(id); }, 2000);
                     });
                     self.selectedArtists.forEach(function (id) {
                         setTimeout(function () { self.PostBoardGameArtists(id); }, 2000);
                     });
-                }
             },
         PostBoardGame:
             function() {
@@ -123,12 +111,12 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
-                        self.apiMessageInfo = `Boardgame with id '${self.currentBoardGame.id}' has been created. Refresh page.!!`
+                        self.apiMessageInfo = `Boardgame with id '${response.data.id}' has been created. Refresh page.!!`
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error.response.data.title);
                         self.hasError = true;
-                        self.apiMessageInfo = "Creating new boardgame Failed, check all values!";
+                        self.apiMessageInfo = `${error.response.data.title} Please check values.`;
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -145,12 +133,12 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
-                        self.apiMessageInfo = `Boardgame with id '${self.currentBoardGame.id}' has been updated. Refresh page.!!`
+                        self.apiMessageInfo = `Boardgame with id '${response.data.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error);
                         self.hasError = true;
-                        self.apiMessageInfo = `There was a conflict with updating boardgame with id '${self.currentBoardGame.id}'!`;
+                        self.apiMessageInfo = `${error.response.data.title} Please check values.`;
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -168,7 +156,7 @@
                         console.log("Category was added to BoardGame");
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error.response.data.title);
                     });
             },
         PostBoardGameArtists:
@@ -180,7 +168,7 @@
                         console.log("Artist was added to Boardgame.");
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error.response.data.title);
                     });
             },
         DeleteBoardGame:
@@ -189,8 +177,13 @@
                 let deleteBoardGameUrl = `${boardGameApiURL}/${self.currentBoardGame.id}`;
                 axios.delete(deleteBoardGameUrl, axiosBoardGameConfig)
                     .then(function (response) {
-                        self.apiMessageInfo = response.data;
-                        self.hasSuccess = true;
+                        self.boardgames.forEach(function (boardGame, index) {
+                            if (boardGame.id === self.currentBoardGame.id) {
+                                self.boardgames.splice(index, 1);
+                            }
+                        });
+                        self.boardgamesCount = self.boardgames.length;
+                        self.currentBoardGame = null;
                     })
                     .catch(function (error) {
                         console.log(error);

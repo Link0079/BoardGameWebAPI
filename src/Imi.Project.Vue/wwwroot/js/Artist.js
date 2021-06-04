@@ -22,7 +22,7 @@
             }
             else {
                 self.hasError = true;
-                self.apiMessageInfo = "Please register of login.";
+                self.apiMessageInfo = "Please register or login.";
             }
         },
     methods: {
@@ -68,7 +68,7 @@
                 let self = this;
                 self.editArtist = editArtist;
                 self.isDisabled = false;
-                if (!self.editArtist) { self.currentArtist = { id: createGuid(), name: "", dob: "" }
+                if (!self.editArtist) { self.currentArtist = { name: "", dob: "" }
                 }
             },
         SaveArtist:
@@ -89,11 +89,12 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
+                        self.currentArtist = response.data;
                         self.artists.push(self.currentArtist);
-                        self.apiMessageInfo = `Artist with id '${self.currentArtist.id}' has been created. Refresh page.!!`
+                        self.apiMessageInfo = `Artist with id '${response.data.id}' has been created. Refresh page.!!`
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error.response.data.title);
                         self.hasError = true;
                         self.apiMessageInfo = "Creating new artist Failed, check all values!";
                     })
@@ -115,9 +116,9 @@
                         self.apiMessageInfo = `Artist with id '${self.currentArtist.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {
-                        console.log(error);
+                        console.log(error.response.data.title);
                         self.hasError = true;
-                        self.apiMessageInfo = `There was a conflict with updating artist with id '${self.currentArtist.id}'!`;
+                        self.apiMessageInfo = `${error.response.data.title} Please check values.`;
                     })
                     .finally(function () {
                         setTimeout(function () {
@@ -138,11 +139,12 @@
                                 self.artists.splice(index, 1);
                             }
                         });
+                        self.currentArtist = null;
                         self.hasSuccess = true;
                     })
                     .catch(function (error) {
                         console.log(error);
-                        self.apiMessageInfo = error;
+                        self.apiMessageInfo = error.response.data.title;
                         self.hasError = true;
                     })
                     .finally(function () {
@@ -151,6 +153,12 @@
                             self.hasError = false;
                         }, 2500);
                     });
+            },
+        CancelArtist:
+            function () {
+                let self = this;
+                self.isDisabled = true;
+                self.currentArtist = null;
             },
         GetArtistDetails:
             function (artist) {
