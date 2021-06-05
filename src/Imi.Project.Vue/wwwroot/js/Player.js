@@ -18,7 +18,6 @@
         currentPlayedGame: null,
         isDisabledPlayer: true,
         isDisabledGameScore: true,
-        isDisabledPlayerAdmin: true,
         isByPlayedGameDetails: true,
         seePlayedGames: false,
         seeProfile: true,
@@ -83,7 +82,12 @@
                 let self = this;
                 axios.get(`${playerApiURL}`, axiosBoardGameConfig)
                     .then(function (response) {
-                        self.players = response.data;
+                        self.players = response.data
+                            .sort(function (a, b) {
+                                if (a.name < b.name) { return -1; }
+                                if (a.name > b.name) { return 1; }
+                                return 0;
+                            });
                     })
                     .catch(function (error) {
                         console.log(error);
@@ -140,6 +144,7 @@
                     .then(function (response) {
                         self.isDisabledPlayer = true;
                         self.hasSuccess = true;
+                        self.currentPlayer = response.data;
                         self.apiMessageInfo = `Player with id '${response.data.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {
@@ -283,7 +288,6 @@
         GetPlayerDetails:
             function (player) {
                 let self = this;
-                self.isDisabledPlayerAdmin = true;
                 self.currentPlayer = player;
             },
         ClearSelectedBoardGame:

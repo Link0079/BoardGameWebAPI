@@ -112,7 +112,7 @@
                                 <ol><li v-for="char in onlyStudentsInHouse">{{char.name}}</li></ol>
                             </div>
                             <div class="card-footer">
-                                There are {{countStudentsInHouse}} members in {{currentHouse}}
+                                There are {{countStudentsInHouse}} member(s) in {{currentHouse}}
                                 <button type="button" class="close float-right" v-on:click="seeStudentsInHouse = false" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
@@ -155,7 +155,6 @@
         </div>
     </div>
 </div>
-
 
 @section scripts{
     <script src="~/js/ExternalApi.js"></script>
