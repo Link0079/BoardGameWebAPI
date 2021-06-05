@@ -40,6 +40,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
         {
             entity.IsDeleted = true;
             entity.LockoutEnabled = true;
+            entity.LockoutEnd = DateTime.Now.AddYears(50);
             await UpdateAsync(entity);
             return entity;
         }
