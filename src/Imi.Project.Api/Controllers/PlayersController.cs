@@ -150,7 +150,7 @@ namespace Imi.Project.Api.Controllers
         public async Task<IActionResult> Login([FromBody]LoginPlayerRequestDto login)
         {
             var result = await _signInManager.PasswordSignInAsync(login.Username, login.Password, isPersistent: false, lockoutOnFailure: false);
-            if (!result.Succeeded)
+            if (result.IsLockedOut)
                 return Unauthorized();
             var player = await _signInManager.UserManager.FindByNameAsync(login.Username);
             string token = await GenerateJwtSecurityTokenAsync(player);

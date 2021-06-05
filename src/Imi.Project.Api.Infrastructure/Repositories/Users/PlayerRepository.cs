@@ -39,6 +39,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
         public override async Task<Player> DeleteAsync(Player entity)
         {
             entity.IsDeleted = true;
+            entity.LockoutEnabled = true;
             await UpdateAsync(entity);
             return entity;
         }
@@ -89,6 +90,27 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
         public async Task<IEnumerable<Player>> GetPlayersByRole(ApplicationRole role)
         {
             return await _userManager.GetUsersInRoleAsync(role.Name);
+        }
+        public override async Task<Player> UpdateAsync(Player entity)
+        {
+            var claims = await _userManager.GetClaimsAsync(entity);
+            foreach (var claim in claims)
+            {
+                switch (claim.Type)
+                {
+                    case "dob":
+                        await _userManager.ReplaceClaimAsync(entity, claim, new Claim("dob", entity.Dob.ToString("yyyy-MM-dd")));
+                        break;
+                    case "firstnamechar":
+                        await _userManager.ReplaceClaimAsync(entity, claim, new Claim("firstnamechar", entity.Name[0].ToString().ToUpper()));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            await _userManager.UpdateAsync(entity);
+            return entity;
+
         }
     }
 }
