@@ -12,6 +12,7 @@
         selectedCategories: [],
         selectedArtists: [],
         apiMessageInfo: "",
+        searchBoardGameTitle: "",
         isDisabled: true,
         hasError: false,
         hasSuccess: false,
@@ -43,6 +44,22 @@
                         setTimeout(function () {
                             self.loading = false;
                         }, 1000);
+                    });
+            },
+        FetchBoardGameByTitle:
+            function () {
+                let self = this;
+                let getBoardGameByNameApiUrl = `${boardGameApiURL}?title=${self.searchBoardGameTitle}`;
+                axios.get(`${getBoardGameByNameApiUrl}`)
+                    .then(function (response) {
+                        self.boardgames = response.data;
+                        self.hasSuccess = true;
+                        self.boardgamesCount = self.boardgames.length;
+                    })
+                    .catch(function (error) {
+                        console.log(error.response);
+                        self.searchBoardGameTitle = "";
+                        self.FetchBoardGameByTitle();
                     });
             },
         FetchCategories:

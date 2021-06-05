@@ -11,9 +11,9 @@
         playedGames: [],
         selectedPlayer: [],
         selectedGameScore: [],
-        selectedPlayTime: 0,
+        selectedPlayTime: "",
         numberOfPlayers: 0,
-        selectedBoardGame: null,
+        selectedBoardGame: "",
         currentPlayer: null,
         currentPlayedGame: null,
         isDisabledPlayer: true,
@@ -208,7 +208,7 @@
             function () {
                 let self = this;
                 self.isByPlayedGameDetails = false;
-                self.currentPlayedGame = {boardGameTitle: "", gameScores: [], playerCount: 0, playTime: 0};
+                self.currentPlayedGame = {boardGameTitle: "", gameScores: [], playerCount: 0, playTime: 0 };
                 self.isDisabledGameScore = false;
             },
         SavePlayedGame:
@@ -222,7 +222,7 @@
                 let playedGameRequestDto = { playTime: 0 , boardGameId: self.selectedBoardGame.id, gameScores: [] };
                 playedGameRequestDto.playTime = self.selectedPlayTime;
                 self.selectedPlayer.forEach(function (playerId, index) {
-                    let score = self.selectedGameScore[index] == null ? 0 : Number(self.selectedGameScore[index]);
+                    let score = self.selectedGameScore[index] == null ? 0 : self.selectedGameScore[index];
                     let playerScore = { playerId: "", score: 0 };
                     playerScore.playerId = playerId;
                     playerScore.score = score;
@@ -231,6 +231,7 @@
                 let postPlayedGameApiUrl = `${playedGamesApiURL}`;
                 axios.post(postPlayedGameApiUrl, playedGameRequestDto, axiosBoardGameConfig)
                     .then(function (response) {
+                        self.hasPlayedGames = true;
                         self.playedGames.push(response.data);
                         self.apiMessageInfo = `Played game '${response.data.id}' has been created. Please refresh page.!!`;
                         self.hasSuccess = true;

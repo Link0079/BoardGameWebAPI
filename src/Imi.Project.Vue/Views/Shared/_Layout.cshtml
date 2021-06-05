@@ -13,7 +13,7 @@
 <body>
     <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top">
         <div class="container">
-            <a class="navbar-brand" href="#">Board Game WebApi</a>
+            <div class="navbar-brand">BoardGame WebApi</div>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -23,7 +23,8 @@
                 </ul>
             </div>
             <div id="logoutApp">
-                <button class="btn btn-danger" v-if="isLogedIn" v-on:click="LogoutPlayer()">Logout</button>
+                <button class="btn btn-danger" v-if="isLogedIn" v-on:click="LogoutPlayer">Logout</button>
+                <button class="btn btn-success" v-if="!isLogedIn" v-on:click="LogoutPlayer">Login</button>
             </div>
         </div>
     </nav>
@@ -33,7 +34,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2021 - Imi.Project.Vue - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; Bjorn Vossen | BoardGame WebAPI Imi.Project.Vue - 2021
         </div>
     </footer>
     <script src="~/lib/jquery/dist/jquery.min.js"></script>

@@ -14,8 +14,19 @@
             <div class="mx-auto"><div class="spinner-grow" role="status"></div><strong>Loading..</strong></div>
         </section>
         <div v-if="!loading">
+            <div class="row justify-content-center">
+            <div class="col-md-6">
+                <div class="input-group mb-4">
+                    <input type="text" class="form-control" placeholder="Title of boardgame" v-model="searchBoardGameTitle" v-on:change="FetchBoardGameByTitle" aria-label="titleOfBoardGame" aria-describedby="boardGameTitle">
+                    <div class="input-group-append">
+                        <button v-on:click="FetchBoardGameByTitle" class="input-group-text btn-secondary" id="boardGameTitle">Search</button>
+                    </div>
+                </div>
+            </div>
+            </div>
+
             <p>Found {{boardgamesCount}} boardgame(s)</p>
-            <div  class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
+            <div class="row row-cols-lg-4 row-cols-md-3 row-cols-sm-2 row-cols-1">
                 <div class="col-xl-3 col-lg-4 col-md-4 col-sm-6 col-12 mb-4" v-for="boardGame in boardgames" v-on:click="GetBoardGameDetails(boardGame)">
                     <div class="card h-100 shadow">
                         <div data-toggle="modal" data-target="#exampleModalCenter">
@@ -23,7 +34,7 @@
                             <div class="card-img-overlay">
                                 <h5>
                                     <span class="badge badge-danger float-right">
-                                    {{boardGame.price}} €<br />
+                                        {{boardGame.price}} €<br />
                                     </span>
                                 </h5>
                             </div>

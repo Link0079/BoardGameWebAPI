@@ -7,9 +7,11 @@
         LogoutPlayer:
             function () {
                 let self = this;
-                console.log(self.isLogedIn);
                 if (self.isLogedIn) {
                     sessionStorage.clear();
+                    window.location.href = "/";
+                }
+                else {
                     window.location.href = "/";
                 }
             }

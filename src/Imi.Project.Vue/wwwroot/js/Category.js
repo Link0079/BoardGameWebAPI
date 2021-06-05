@@ -8,6 +8,7 @@
         categories: [],
         currentCategory: null,
         apiMessageInfo: "",
+        searchCategoryName: "",
         isDisabled: true,
         hasError: false,
         hasSuccess: false,
@@ -22,7 +23,13 @@
             }
             else {
                 self.hasError = true;
-                self.apiMessageInfo = "Please register or login.";
+                let logedIn = sessionStorage.getItem("sessionPlayerLogedIn");
+                if (logedIn) {
+                    self.apiMessageInfo = "You are Unauthorized to view this page.";
+                }
+                else {
+                    self.apiMessageInfo = "Please register or login.";
+                }
             }
         },
     methods: {
@@ -41,6 +48,31 @@
                         setTimeout(function () {
                             self.loading = false;
                         }, 1000)
+                    });
+            },
+        FetchCategoriesByName:
+            function () {
+                let self = this;
+                let getCategoryByNameApiUrl = `${categoriesApiURL}?name=${self.searchCategoryName}`;
+                axios.get(`${getCategoryByNameApiUrl}`, axiosBoardGameConfig)
+                    .then(function (response) {
+                        self.categories = response.data;
+                        self.hasSuccess = true;
+                        self.apiMessageInfo = `There were ${self.categories.length} categories found.`;
+                    })
+                    .catch(function (error) {
+                        self.apiMessageInfo = `${error.response.data} But I can give you all categories.`;
+                        self.hasError = true;
+                    })
+                    .finally(function () {
+                        setTimeout(function () {
+                            if (self.hasError) {
+                                self.searchCategoryName = "";
+                                self.FetchCategoriesByName();
+                            }
+                            self.hasError = false;
+                            self.hasSuccess = false;
+                        }, 2500)
                     });
             },
         IsPlayerAuthorizedCategories:
@@ -116,6 +148,7 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
+                        self.currentCategory = response.data;
                         self.apiMessageInfo = `Boardgame with id '${response.data.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {

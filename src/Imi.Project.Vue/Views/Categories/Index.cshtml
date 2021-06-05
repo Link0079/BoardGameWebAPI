@@ -13,37 +13,49 @@
             <section v-if="loading" class="text-center">
                 <div class="spinner-grow" role="status"></div><strong>Loading..</strong>
             </section>
-            <section v-if="hasError" class="alert alert-danger text-center shadow-sm ">
+            <section v-if="hasError" class="alert alert-danger text-center shadow">
                 <p>{{apiMessageInfo}}</p>
             </section>
-            <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
+            <section v-if="hasSuccess" class="alert alert-success text-center shadow">
                 <p>{{apiMessageInfo}}</p>
             </section>
         </div>
-        <div class="row">
-            <div v-if="!loading" class="col-md-6">
-                <ul class="list-group">
-                    <li class="list-group-item" v-for="category in categories" v-on:click="GetCategoryDetails(category)">
-                        <a>{{category.name}}</a>
-                    </li>
-                </ul>
+        <div v-if="!loading && isAuthorized">
+            <div class="row justify-content-center">
+                <div class="col-md-6">
+                    <div class="input-group mb-3">
+                        <input type="text" class="form-control" placeholder="Name of category" v-model="searchCategoryName" v-on:change="FetchCategoriesByName" aria-label="NameOfCategory" aria-describedby="categoryName">
+                        <div class="input-group-append">
+                            <button v-on:click="FetchCategoriesByName" class="input-group-text btn-secondary" id="categoryName">Search</button>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="col-md-6 mb-4">
-                <div v-if="currentCategory">
-                    <div class="form-group">
-                        <label>ID</label>
-                        <input class="form-control" v-model="currentCategory.id" disabled="disabled" />
-                    </div>
-                    <div class="form-group">
-                        <label>Name</label>
-                        <input class="form-control" v-model="currentCategory.name" v-bind:disabled="isDisabled" placeholder="Name.."/>
-                    </div>
-                    <div class="form-group float-right" v-if="isAuthorized">
+            <div class="row">
+                <div class="col-md-6">
+                    <ul class="list-group">
+                        <li class="list-group-item" v-for="category in categories" v-on:click="GetCategoryDetails(category)">
+                            <a>{{category.name}}</a>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-md-6 mb-4">
+                    <div v-if="currentCategory">
+                        <div class="form-group">
+                            <label>ID</label>
+                            <input class="form-control" v-model="currentCategory.id" disabled="disabled" />
+                        </div>
+                        <div class="form-group">
+                            <label>Name</label>
+                            <input class="form-control" v-model="currentCategory.name" v-bind:disabled="isDisabled" placeholder="Name.." />
+                        </div>
+                        <div class="form-group float-right" v-if="isAuthorized">
                             <button v-on:click="EditCategory(false)" type="button" class="btn btn-group btn-primary">Create</button>
                             <button v-on:click="EditCategory(true)" type="button" class="btn btn-group btn-primary">Edit</button>
                             <button v-on:click="SaveCategory" type="button" class="btn btn-success btn-group" v-bind:disabled="isDisabled">Save</button>
                             <button v-on:click="DeleteCategory" type="button" class="btn btn-danger btn-group" v-bind:disabled="!isDisabled">Delete</button>
                             <button v-on:click="CancelCategory" type="button" class="btn btn-danger btn-group">Cancel</button>
+                        </div>
                     </div>
                 </div>
             </div>

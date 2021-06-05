@@ -8,6 +8,7 @@
         artists: [],
         currentArtist: null,
         apiMessageInfo: "",
+        searchArtistName: "",
         isDisabled: true,
         hasError: false,
         hasSuccess: false,
@@ -22,7 +23,13 @@
             }
             else {
                 self.hasError = true;
-                self.apiMessageInfo = "Please register or login.";
+                let logedIn = sessionStorage.getItem("sessionPlayerLogedIn");
+                if (logedIn) {
+                    self.apiMessageInfo = "You are Unauthorized to view this page.";
+                }
+                else {
+                    self.apiMessageInfo = "Please register or login.";
+                }
             }
         },
     methods: {
@@ -41,6 +48,31 @@
                         setTimeout(function () {
                             self.loading = false;
                         }, 1000)
+                    });
+            },
+        FetchArtistByName:
+            function () {
+                let self = this;
+                let getArtistByNameApiUrl = `${artistsApiURL}?name=${self.searchArtistName}`;
+                axios.get(`${getArtistByNameApiUrl}`, axiosBoardGameConfig)
+                    .then(function (response) {
+                        self.artists = response.data;
+                        self.hasSuccess = true;
+                        self.apiMessageInfo = `There were ${self.artists.length} artist(s) found.`;
+                    })
+                    .catch(function (error) {
+                        self.apiMessageInfo = `${error.response.data} But I can give you all artists.`;
+                        self.hasError = true;
+                    })
+                    .finally(function () {
+                        setTimeout(function () {
+                            if (self.hasError) {
+                                self.searchArtistName = "";
+                                self.FetchArtistByName();
+                            }
+                            self.hasError = false;
+                            self.hasSuccess = false;
+                        }, 2500)
                     });
             },
         IsPlayerAuthorizedArtists:
@@ -113,7 +145,8 @@
                     .then(function (response) {
                         self.isDisabled = true;
                         self.hasSuccess = true;
-                        self.apiMessageInfo = `Artist with id '${self.currentArtist.id}' has been updated. Refresh page.!!`
+                        self.currentArtist = response.data;
+                        self.apiMessageInfo = `Artist with id '${response.data.id}' has been updated. Refresh page.!!`
                     })
                     .catch(function (error) {
                         console.log(error.response.data.title);

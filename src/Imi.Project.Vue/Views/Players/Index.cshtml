@@ -13,10 +13,10 @@
             <section v-if="loading" class="text-center">
                 <div class="spinner-grow" role="status"></div><strong>Loading..</strong>
             </section>
-            <section v-if="hasError" class="alert alert-danger text-center shadow-sm ">
+            <section v-if="hasError" class="alert alert-danger text-center shadow">
                 <p>{{apiMessageInfo}}</p>
             </section>
-            <section v-if="hasSuccess" class="alert alert-success text-center shadow-sm">
+            <section v-if="hasSuccess" class="alert alert-success text-center shadow">
                 <p>{{apiMessageInfo}}</p>
             </section>
         </div>
@@ -82,6 +82,7 @@
                                                 </div>
                                                 <div class="col-md-8 ">
                                                     <select v-model="selectedBoardGame" class="form-control">
+                                                        <option value="" disabled="disabled">Select the game you played</option>
                                                         <option v-for="boardgame in boardGames" v-bind:value="boardgame">{{boardgame.title}}</option>
                                                     </select>
                                                 </div>
@@ -92,7 +93,7 @@
                                                         <label>Playtime: </label>
                                                     </div>
                                                     <div class="col-md-8">
-                                                        <input type="number" v-model.number="selectedPlayTime" placeholder="Playtime in minutes" class="form-control" />
+                                                        <input type="number" min="0" v-model.number="selectedPlayTime" placeholder="Playtime in minutes" class="form-control" />
                                                     </div>
                                                 </div>
                                                 <div class="row form-group">
@@ -101,6 +102,7 @@
                                                     </div>
                                                     <div class="col-md-8">
                                                         <select v-model.number="numberOfPlayers" class="form-control">
+                                                            <option value="0" disabled="disabled">Select player count</option>
                                                             <option v-for="number in selectedBoardGame.maxPlayers">{{number}}</option>
                                                         </select>
                                                     </div>
@@ -112,6 +114,7 @@
                                                         </div>
                                                         <div class="col-md-4">
                                                             <select v-model="selectedPlayer[index]" class="form-control">
+                                                                <option value="0" disabled="disabled">Select player name</option>
                                                                 <option v-for="player in players" v-bind:value="player.id">{{player.name}}</option>
                                                             </select>
                                                         </div>
@@ -119,7 +122,7 @@
                                                             <label>Score: </label>
                                                         </div>
                                                         <div class="col-md-4">
-                                                            <input type="number" v-model="selectedGameScore[index]" class="form-control" />
+                                                            <input type="number" min="0" v-model.number="selectedGameScore[index]" class="form-control" placeholder="player score"/>
                                                         </div>
                                                     </div>
                                                 </div>
