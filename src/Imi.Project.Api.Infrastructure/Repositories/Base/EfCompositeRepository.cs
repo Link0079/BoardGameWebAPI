@@ -17,18 +17,18 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Base
         {
             _dbContext = dbContext;
         }
-        public async Task<IEnumerable<T>> AddAsync(IEnumerable<T> entityList)
+        public async Task<bool> AddAsync(IEnumerable<T> entityList)
         {
             foreach (var item in entityList)
                 await _dbContext.Set<T>().AddAsync(item);
-            //await _dbContext.SaveChangesAsync();
-            return null;
+            await _dbContext.SaveChangesAsync();
+            return true;
         }
-        public async Task<IEnumerable<T>> DeleteAsync(IEnumerable<T> entityList)
+        public async Task<bool> DeleteAsync(IEnumerable<T> entityList)
         {
              _dbContext.Set<T>().RemoveRange(entityList);
             await _dbContext.SaveChangesAsync();
-            return null;
+            return true;
         }
         public virtual Task<IEnumerable<T>> GetByIdAsync(Guid id)
         {
@@ -58,7 +58,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Base
         {
             return await GetFiltered(predicate).ToListAsync();
         }
-        public Task<IEnumerable<T>> UpdateAsync(IEnumerable<T> entityList)
+        public Task<bool> UpdateAsync(IEnumerable<T> entityList)
         {
             throw new NotImplementedException();
         }

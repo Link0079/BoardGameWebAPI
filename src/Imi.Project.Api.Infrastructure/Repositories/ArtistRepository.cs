@@ -19,7 +19,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories
         public override IQueryable<Artist> GetAllAsync()
         {
             return _dbContext.Artists.AsNoTracking().Include(a => a.Artwork)
-                .ThenInclude(art => art.BoardGame);
+                .ThenInclude(art => art.BoardGame).OrderBy(a => a.Name);
         }
         public override async Task<Artist> GetByIdAsync(Guid id)
         {

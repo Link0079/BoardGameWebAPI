@@ -15,9 +15,9 @@ namespace Imi.Project.Api.Core.Interfaces.Repositories.Base
         Task<IEnumerable<T>> ListAllAsync();
         IQueryable<T> GetFiltered(Expression<Func<T, bool>> predicate);
         Task<IEnumerable<T>> ListFiltered(Expression<Func<T, bool>> predicate);
-        Task<IEnumerable<T>> AddAsync(IEnumerable<T> entityList);
-        Task<IEnumerable<T>> UpdateAsync(IEnumerable<T> entityList);
-        Task<IEnumerable<T>> DeleteAsync(IEnumerable<T> entityList);
+        Task<bool> AddAsync(IEnumerable<T> entityList);
+        Task<bool> UpdateAsync(IEnumerable<T> entityList);
+        Task<bool> DeleteAsync(IEnumerable<T> entityList);
         Task<T> DeleteAsync(Guid id);
     }
 }

@@ -21,7 +21,7 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Games
             return _dbContext.BoardGames.AsNoTracking()                     // Get all boardgames with no tracking
                 .Include(b => b.Artists).ThenInclude(ba => ba.Artist)       // Include BA table and then the artist
                 .Include(b => b.Categories).ThenInclude(bc => bc.Category)  // Include BC table and then the category
-                .Where(b => b.IsDeleted == false);
+                .Where(b => b.IsDeleted == false).OrderBy(b=>b.Title);
         }
         public IQueryable<BoardGame> GetESOAsync()
         {
@@ -32,6 +32,10 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Games
         public override async Task<BoardGame> GetByIdAsync(Guid id)
         {
             return await GetAllAsync().SingleOrDefaultAsync(b => b.Id.Equals(id));
+        }
+        public async Task<BoardGame> GetByIdESOAsync(Guid id)
+        {
+            return await GetESOAsync().SingleAsync(b => b.Id.Equals(id));
         }
         public async Task<IEnumerable<BoardGame>> GetByCategoryIdAsync(Guid id)
         {

@@ -11,36 +11,37 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
         public static void Seed(ModelBuilder modelBuilder)
         {
             modelBuilder.Entity<BoardGame>().HasData(
+            //var boardGameList = new List<BoardGame> {
             #region CardGames "00000000-0000-0000-0002-000000000000"
-                // The 7th Continent
+            // The 7th Continent
                 new BoardGame
-                {
-                    Id = Guid.Parse("00000001-0000-0000-0000-000000000000"),
-                    Price = 99M,
-                    MinPlayers = 1,
-                    MaxPlayers = 4,
-                    PlayTime = 180,
-                    Age = 14,
-                    Rating = 8,
-                    Stock = false,
-                    Year = 2017,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
-                    Description = "It's the early 20th century. You have decided to sail back to the newly discovered seventh continent " +
-                                "to attempt to lift the terrible curse that has struck you since your return from the previous expedition. " +
-                                "In The 7th Continent, a solo or cooperative \"choose-your-own-adventure\" exploration board game, " +
-                                "you choose a character and begin your adventure on your own or with a team of other explorers. " +
-                                "Inspired by the Fighting Fantasy book series, you will discover the extent of this wild new land through a variety of terrain and event cards. " +
-                                "In a land fraught with danger and wonders, you have to use every ounce of wit and cunning to survive, " +
-                                "crafting tools, weapons, and shelter to ensure your survival. " +
-                                "Unlike most board games, it will take you many, MANY hours of exploring and searching the seventh continent " +
-                                "until you eventually discover how to remove the curse(s)...or die trying. " +
-                                "The 7th Continent features an easy saving system so that you can stop playing at any time and resume your adventure later on, " +
-                                "just like in a video game!",
-                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000007"),
-                    //PublisherId = Guid.Parse("00000000-0000-0024-0000-000000000000"),
-                    Title = "The 7th Continent",
-                    IsDeleted = false
-                },
+            {
+                Id = Guid.Parse("00000001-0000-0000-0000-000000000000"),
+                Price = 99M,
+                MinPlayers = 1,
+                MaxPlayers = 4,
+                PlayTime = 180,
+                Age = 14,
+                Rating = 8,
+                Stock = false,
+                Year = 2017,
+                PhotoUrl = "https://cf.geekdo-images.com/xas0x0fMly5bxEVOSDmdNQ__imagepage/img/FDpAA_ow4dQqM3u6aXrSleZv14I=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2648302.jpg",
+                Description = "It's the early 20th century. You have decided to sail back to the newly discovered seventh continent " +
+                            "to attempt to lift the terrible curse that has struck you since your return from the previous expedition. " +
+                            "In The 7th Continent, a solo or cooperative \"choose-your-own-adventure\" exploration board game, " +
+                            "you choose a character and begin your adventure on your own or with a team of other explorers. " +
+                            "Inspired by the Fighting Fantasy book series, you will discover the extent of this wild new land through a variety of terrain and event cards. " +
+                            "In a land fraught with danger and wonders, you have to use every ounce of wit and cunning to survive, " +
+                            "crafting tools, weapons, and shelter to ensure your survival. " +
+                            "Unlike most board games, it will take you many, MANY hours of exploring and searching the seventh continent " +
+                            "until you eventually discover how to remove the curse(s)...or die trying. " +
+                            "The 7th Continent features an easy saving system so that you can stop playing at any time and resume your adventure later on, " +
+                            "just like in a video game!",
+                //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000007"),
+                //PublisherId = Guid.Parse("00000000-0000-0024-0000-000000000000"),
+                Title = "The 7th Continent",
+                IsDeleted = false
+            },
                 // Arkham Horror
                 new BoardGame
                 {
@@ -56,7 +57,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Stock = true,
                     Price = 30M,
                     Title = "Arkham Horror: The Card Game",
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/B5F5ulz0UivNgrI9Ky0euA__imagepagezoom/img/DRtkNm13lxOk207XPSzA-WDS25g=/fit-in/1200x900/filters:no_upscale():strip_icc()/pic3122349.jpg",
                     Description = "Something evil stirs in Arkham, and only you can stop it. " +
                                 "Blurring the traditional lines between role-playing and card game experiences, " +
                                 "Arkham Horror: The Card Game is a Living Card Game of Lovecraftian mystery, monsters, and madness! In the game, you and your friend " +
@@ -86,7 +87,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Age = 10,
                     Price = 30M,
                     Title = "7 Wonders",
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/RvFVTEpnbb4NM7k0IF8V7A__imagepage/img/zruHYxY2_jx-796WgsDj7hitidQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic860217.jpg",
                     Description = "You are the leader of one of the 7 great cities of the Ancient World. " +
                                 "Gather resources, develop commercial routes, and affirm your military supremacy. " +
                                 "Build your city and erect an architectural wonder which will transcend future times. " +
@@ -113,7 +114,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 90,
                     Age = 18,
                     Rating = 6,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/U1C1mLc1wLXixz2e77AJpQ__imagepage/img/1us3YOPMkCZPFlFhg26fRQ1PDWQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5885666.jpg",
                     Stock = true,
                     Year = 2016,
                     Description = "Draw 7 cards. The deck plays the first card, select a Judge to play the second, " +
@@ -134,7 +135,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 70,
                     Age = 10,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/yLZJCVLlIx4c7eJEWUNJ7w__imagepage/img/uIjeoKgHMcRtzRSR4MoUYl3nXxs=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4458123.jpg",
                     Stock = true,
                     Year = 2019,
                     Description = "Wingspan is a competitive, medium-weight, card-driven, engine-building board game from Stonemaier Games. " +
@@ -157,7 +158,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 180,
                     Age = 14,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/JtjGOgkaIxnLUeoV56cWFQ__imagepage/img/mdwAZkhgv48okMZg7kDtIJtdtNA=/fit-in/900x600/filters:no_upscale():strip_icc()/pic814011.jpg",
                     Stock = true,
                     Year = 2016,
                     Description = "Mansions of Madness: Second Edition is a fully co-operative, app-driven board game of horror and mystery for one to five players that takes place in the same universe as Eldritch Horror and Elder Sign. " +
@@ -181,7 +182,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 45,
                     Age = 13,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/rAQ3hIXoH6xDcj41v9iqCg__imagepage/img/QTDaAfkaWhobmpHVlfVtBz30OH0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5164305.jpg",
                     Stock = true,
                     Year = 2016,
                     Description = "Secret Hitler is a dramatic game of political intrigue and betrayal set in 1930s Germany. " +
@@ -211,7 +212,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 15,
                     Age = 13,
                     Rating = 6,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/Ehx72XRdSeQHISVXcZVnHg__imagepage/img/7wwISG7kfg1a-dIi07n6n9fAK2Y=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2453926.jpg",
                     Stock = true,
                     Year = 2014,
                     Description = "Spyfall is a party game unlike any other, one in which you get to be a spy and try to understand what's going on around you. " +
@@ -239,7 +240,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 45,
                     Age = 12,
                     Rating = 5,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/tw_4LppTBY7uvp96klEV_g__imagepage/img/Al_xBBmzRYcrRZeTiKyV46lONlk=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5937448.jpg",
                     Stock = false,
                     Year = 2016,
                     Description = "Everything good comes at a cost. What are you willing to live with? " +
@@ -263,7 +264,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 90,
                     Age = 12,
                     Rating = 5,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/YfUxodD7JSqYitxvjXB69Q__imagepage/img/DX6-XYd-2-RNTaWIEhcIjoJsNXQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5147022.png",
                     Stock = true,
                     Year = 1985,
                     Description = "Playing Pictionary may remind you of Charades, but with drawing on paper instead of acting out the answers. " +
@@ -289,7 +290,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 30,
                     Age = 21,
                     Rating = 6,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/mmZDNnsH1ZiHSnSRv82yzQ__imagepage/img/5GMXi6rYuJCDAqk-6UGVAEORbJQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic252235.jpg",
                     Stock = false,
                     Year = 2020,
                     Description = "Hours of outrageous fun! The classic ?I Never Have? game with 552 What the F*ck? styled statements. " +
@@ -311,7 +312,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 60,
                     Age = 14,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/eVy9IyAVtzzKv2VvPHFPbA__imagepage/img/ejOIi-lOsES1MJ2VLTLeftm3kQc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3013621.png",
                     Stock = true,
                     Year = 2016,
                     Description = "At the bottom of the ocean, no one will hear you scream! In Captain Sonar, you and your teammates control a state - of - the - art submarine " +
@@ -339,7 +340,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 45,
                     Age = 13,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/nhoyoLpYPC2b3UiJ5kJ0yg__imagepage/img/BzS2PYOAIB4Ei-FHDyPm7Q0PoyU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1473629.jpg",
                     Stock = true,
                     Year = 2014,
                     Description = "Roll for the Galaxy is a dice game of building space empires for 2–5 players. Your dice represent your populace, " +
@@ -360,7 +361,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 90,
                     Age = 10,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/V6m5SH45BlP6t7-HuGWA-w__imagepage/img/tGsJPobtgrpUDxVEJvtnXDtrJ9k=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3562670.jpg",
                     Stock = true,
                     Year = 2014,
                     Description = "In Dice Hospital, a worker placement game, players must treat as many patients as possible to appease the local authorities! " +
@@ -383,7 +384,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 60,
                     Age = 14,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/Rq78Zg67kx0Ay24kgNnx0Q__imagepage/img/lBLqeOrFdt1bcotqmKBN07IG9yw=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4145901.jpg",
                     Stock = false,
                     Year = 2018,
                     Description = "With a piece of land to call your own, a handful of resources, a few families and a head full of dreams " +
@@ -409,7 +410,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 15,
                     Age = 8,
                     Rating = 6,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/eJqxaN9zO6PeZSzzsfR61A__imagepage/img/CXHLk31KSobbQPsMofLvWeN4CLE=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4189314.jpg",
                     Stock = true,
                     Year = 2018,
                     Description = "Impact: Battle of Elements, a reimplementation of Strike, challenges players to knock one another from the game " +
@@ -435,7 +436,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 120,
                     Age = 12,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/-EB8c-OIEZfHi1p-8qwiUw__imagepage/img/WVOIPQI-l7Cki7MfQOmdgTCTUEA=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3684814.jpg",
                     Stock = false,
                     Year = 2017,
                     Description = "Too Many Bones comes loaded for bear by breaking into a new genre: the dice-builder RPG. " +
@@ -466,7 +467,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 25,
                     Age = 10,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/g4XmxyKhNVdhC3QPd1purQ__imagepage/img/KvLHuOPPN-sARwc-vBXWoLRJ0B0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3761012.jpg",
                     Stock = true,
                     Year = 2018,
                     Description = "As an architect in Welcome To..., you want to build the best new town in the United States of the 1950s " +
@@ -495,7 +496,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 90,
                     Age = 14,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/XpunFAlu_OzFHuhf2fBJxA__imagepage/img/KWvqCx6zMVzhKOTX_lVeykdvfj0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4764176.jpg",
                     Stock = false,
                     Year = 2020,
                     Description = "Rome & Roll is a heavy roll-and-write board game by Dávid Turczi and Nick Shaw in which 1-4 players compete to craft an empire. " +
@@ -516,7 +517,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 30,
                     Age = 8,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/eNgD_0WGHeO9fPCpgTOBrQ__imagepage/img/zz5IGiCDcPft5e342NdFBdWovuU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4118864.png",
                     Stock = true,
                     Year = 2018,
                     Description = "In the multiplayer puzzle game Railroad Ink, your goal is to connect as many exits on your board as possible. " +
@@ -546,7 +547,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 45,
                     Age = 10,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/GifbnAmsA4lfEcDkeaC9VA__imagepage/img/TvxriorE7sP7kHcUQAgLGoJP7ZQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4397932.png",
                     Stock = false,
                     Year = 2019,
                     Description = "Queen Gimnax has ordered the reclamation of the northern lands. " +
@@ -573,7 +574,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 30,
                     Age = 10,
                     Rating = 6,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/xpu231bU50Ho1oIWNg4-LQ__imagepage/img/ghK-ff0BlXyXFyXugsWLpTHPaZU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4543702.jpg",
                     Stock = false,
                     Year = 2019,
                     Description = "Imperial Settlers: Roll And Write is a standalone game set in the universe of Imperial Settlers and " +
@@ -601,7 +602,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 480,
                     Age = 14,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/_Ppn5lssO5OaildSE-FgFA__imagepage/img/0AK9hQgpcOOOLJh8IEZS3Nw57vE=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3727516.jpg",
                     Stock = true,
                     Year = 2017,
                     Description = "Twilight Imperium (Fourth Edition) is a game of galactic conquest in which three to six players take on the role " +
@@ -629,7 +630,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 180,
                     Age = 13,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/RmKYojYHmV8X-ebtNgaz-g__imagepage/img/DhsNqblAoesFszW_9lJjV8ACzx4=/fit-in/900x600/filters:no_upscale():strip_icc()/pic738119.jpg",
                     Stock = true,
                     Year = 2012,
                     Description = "Merchants & Marauders lets you live the life of an influential merchant or a dreaded pirate in the Caribbean during " +
@@ -658,7 +659,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 180,
                     Age = 13,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/ImPgGag98W6gpV1KV812aA__imagepage/img/ZHAFxwwPAmpSqOjPb98GZV_x3rA=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1215633.jpg",
                     Stock = true,
                     Year = 2012,
                     Description = "In War of the Ring, one player takes control of the Free Peoples (FP), the other player controls Shadow Armies (SA). " +
@@ -691,7 +692,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 480,
                     Age = 14,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/MAIDRapFcDC08pmZIBM7EQ__imagepage/img/DznDkaq6jDgwzHR6nvKbQc9JbwU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3315057.png",
                     Stock = true,
                     Year = 2017,
                     Description = "Heroes of Land, Air & Sea is a 4X-style board game with miniatures that tells the epic tale of orcs vs. humans, dwarves vs. elves, " +
@@ -720,7 +721,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 180,
                     Age = 12,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/6uEBiPxMH8gfGJ6f3HLNGg__imagepage/img/NMxxGcFNEH9FQsJwaZex92T2q00=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1807124.png",
                     Stock = true,
                     Year = 2014,
                     Description = "Xia: Legends of a Drift System is a 3-5 player sandbox style competitive space adventure. " +
@@ -743,7 +744,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 120,
                     Age = 12,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/wg9oOLcsKvDesSUdZQ4rxw__imagepage/img/FS1RE8Ue6nk1pNbPI3l-OSapQGc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3536616.jpg",
                     Stock = true,
                     Year = 2016,
                     Description = "In the 2400s, mankind begins to terraform the planet Mars. Giant corporations, sponsored by the World Government on Earth, initiate huge projects to raise the temperature, " +
@@ -773,7 +774,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 60,
                     Age = 8,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/EhXCpSR6ambdYuKbrej3UQ__imagepage/img/WYdcor5Fi0cZYgk4XinAKJ7AWi4=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4134810.jpg",
                     Stock = false,
                     Year = 2017,
                     Description = "My Little Scythe is a competitive, family-friendly game in which each player controls 2 animal miniatures " +
@@ -798,7 +799,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 90,
                     Age = 10,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/JUAUWaVUzeBgzirhZNmHHw__imagepage/img/ZF-dta5ffawuKAkAt2LB-QTIv5M=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4254509.jpg",
                     Stock = true,
                     Year = 2018,
                     Description = "Root is a game of adventure and war in which 2 to 4 (1 to 6 with the 'Riverfolk' expansion) players battle for control of a vast wilderness. " +
@@ -825,7 +826,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 150,
                     Age = 12,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/dDDo2Hexl80ucK1IlqTk-g__imagepage/img/TLgJgsf7CyGgl8RM2duUYOrE41E=/fit-in/900x600/filters:no_upscale():strip_icc()/pic831744.jpg",
                     Stock = true,
                     Year = 2007,
                     Description = "In Agricola, you're a farmer in a wooden shack with your spouse and little else. On a turn, you get to take only two actions, one for you and one for the spouse, " +
@@ -850,7 +851,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 80,
                     Age = 13,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/fjE7V5LNq31yVEW_yuqI-Q__imagepage/img/ijYTk6KGtxLRdIvLsGar13ZHs4c=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3918905.png",
                     Stock = true,
                     Year = 2015,
                     Description = "Within the charming valley of Everdell, beneath the boughs of towering trees, among meandering streams and mossy hollows, a civilization of forest critters is thriving and expanding. " +
@@ -872,7 +873,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 120,
                     Age = 8,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/hLJv1A1TwrMrLLIJhVpKVA__imagepage/img/fMzQSQeqMkeqHHK_hmj3FBjAx2I=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3429338.png",
                     Stock = true,
                     Year = 2017,
                     Description = "In Dinosaur Island, players will have to collect DNA, research the DNA sequences of extinct dinosaur species, " +
@@ -899,7 +900,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 120,
                     Age = 14,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/sZYp_3BTDGjh2unaZfZmuA__imagepage/img/pBaOL7vV402nn1I5dHsdSKsFHqA=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2437871.jpg",
                     Stock = false,
                     Year = 2017,
                     Description = "Gloomhaven is a game of Euro-inspired tactical combat in a persistent world of shifting motives. " +
@@ -928,7 +929,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 90,
                     Age = 14,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/HkZSJfQnZ3EpS214xtuplg__imagepage/img/nLp0poXg-Y6szkicHe7U2thnwhk=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2439223.jpg",
                     Stock = true,
                     Year = 2015,
                     Description = "\"Life is Battle; Battle is Glory; Glory is ALL\" In Blood Rage, each player controls their own Viking clan’s warriors, leader, and ship. " +
@@ -955,7 +956,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 180,
                     Age = 12,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/tAqLpWxQ0Oo3GaPP3MER1g__imagepage/img/XyHxeMepMS292xwGjwdK6SvPL4I=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5073276.jpg",
                     Stock = true,
                     Year = 2018,
                     Description = "Playing Nemesis will take you into the heart of sci-fi survival horror in all its terror. A soldier fires blindly down a corridor, trying to stop the alien advance. " +
@@ -982,7 +983,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 240,
                     Age = 14,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/7SrPNGBKg9IIsP4UQpOi8g__imagepage/img/89ViRUkHkCJhvZA5fay7A9-46mY=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4325841.jpg",
                     Stock = true,
                     Year = 2016,
                     Description = "Star Wars: Rebellion is a board game of epic conflict between the Galactic Empire and Rebel Alliance for two to four players. Experience the Galactic Civil War like never before. " +
@@ -1009,7 +1010,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 240,
                     Age = 14,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/M_7UvwZvuxBVjxdadsa5AA__imagepage/img/AuKDe6Q4lyGdm6rTS2JUEXvhTbQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1077906.jpg",
                     Stock = true,
                     Year = 2011,
                     Description = "King Robert Baratheon is dead, and the lands of Westeros brace for battle. " +
@@ -1035,7 +1036,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 120,
                     Age = 14,
                     Rating = 7,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/iwevA6XmiNLHn1QnGUucqw__imagepage/img/W6vxWVStCBL7qs6yW_G0VbC9Jxw=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3880340.jpg",
                     Stock = true,
                     Year = 2018,
                     Description = "Rising Sun is a board game for 3 to 5 players set in legendary feudal Japan. As the Kami descend from the heavens to reshape the land in their image, " +
@@ -1060,7 +1061,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 120,
                     Age = 14,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__imagepage/img/-17KkOmxbTu2slJTabGrkO8ZW8s=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3490053.jpg",
                     Stock = true,
                     Year = 2018,
                     Description = "Brass: Birmingham is an economic strategy game sequel to Martin Wallace' 2007 masterpiece, Brass. " +
@@ -1081,7 +1082,7 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     PlayTime = 120,
                     Age = 14,
                     Rating = 8,
-                    PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                    PhotoUrl = "https://cf.geekdo-images.com/wW5xjgBJcFyLaEWZwrYuKA__imagepage/img/DUNPUEzMu1Elu0SNuqnTNDrUTLY=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4583626.jpg",
                     Stock = true,
                     Year = 2018,
                     Description = "Travel back in time to the greatest city in Mesoamerica. Witness the glory and the twilight of the powerful pre-Columbian civilization. " +
@@ -1099,7 +1100,17 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     IsDeleted = false
                 }
                 #endregion
+                //};
                 );
+
+            //foreach (var boardGame in boardGameList)
+            //    AddPhotoUrl(modelBuilder, boardGame);
+        }
+        private static void AddPhotoUrl(ModelBuilder modelBuilder, BoardGame boardGame)
+        {
+            var boardGameTitle = boardGame.Title.Replace(" ", "+");
+            boardGame.PhotoUrl = $"https://dummyimage.com/600x600/000/fff.jpg&text={boardGameTitle}";
+            modelBuilder.Entity<BoardGame>().HasData(boardGame);
         }
     }
 }

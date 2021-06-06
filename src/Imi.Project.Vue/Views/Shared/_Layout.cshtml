@@ -1,0 +1,45 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Imi.Project.Vue</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" />
+    <script src="~/lib/axios/axios.js"></script>
+    <script src="~/lib/vue/vue.js"></script>
+    <script src="~/js/ApiCalls.js"></script>
+</head>
+<body>
+    <nav class="navbar navbar-expand-md navbar-light bg-white fixed-top">
+        <div class="container">
+            <div class="navbar-brand">BoardGame WebApi</div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+                <ul class="nav nav-tabs mr-auto">
+                    @await Component.InvokeAsync("MainNavigation")
+                </ul>
+            </div>
+            <div id="logoutApp">
+                <button class="btn btn-danger" v-if="isLogedIn" v-on:click="LogoutPlayer">Logout</button>
+                <button class="btn btn-success" v-if="!isLogedIn" v-on:click="LogoutPlayer">Login</button>
+            </div>
+        </div>
+    </nav>
+    <div class="container body-content">
+        @RenderBody()
+    </div>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; Bjorn Vossen | BoardGame WebAPI Imi.Project.Vue - 2021
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/LogoutPlayer.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+</html>

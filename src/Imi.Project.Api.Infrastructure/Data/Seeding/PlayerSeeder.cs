@@ -1,4 +1,6 @@
 ﻿using Imi.Project.Api.Core.Entities.Users;
+using Imi.Project.Api.Core.Extentions;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -10,8 +12,9 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
     {
         public static void Seed(ModelBuilder modelBuilder)
         {
-            modelBuilder.Entity<Player>().HasData(
+            //modelBuilder.Entity<Player>().HasData(
             #region Players
+            var playerList = new List<Player> {
                 new Player
                 {
                     Id = Guid.Parse("00000000-0000-0000-0000-100000000000"),
@@ -211,9 +214,73 @@ namespace Imi.Project.Api.Infrastructure.Data.Seeding
                     Dob = new DateTime(1986, 05, 16),
                     //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
                     IsDeleted = false
+                },                
+                new Player
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-280000000000"),
+                    Name = "Stefaan Vercaemer",
+                    Dob = new DateTime(1975, 05, 16),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    IsDeleted = false
+                },
+                new Player
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-290000000000"),
+                    Name = "Maxim Lesy",
+                    Dob = new DateTime(1980, 05, 16),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    IsDeleted = false
+                },
+                new Player
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-310000000000"),
+                    Name = "Joachim Francois",
+                    Dob = new DateTime(1980, 05, 16),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    IsDeleted = false
+                },
+                new Player
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-320000000000"),
+                    Name = "Siegried Derdeyn",
+                    Dob = new DateTime(1980, 05, 16),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    IsDeleted = false
+                },
+                new Player
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-330000000000"),
+                    Name = "William Schokkele",
+                    Dob = new DateTime(1975, 05, 16),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    IsDeleted = false
+                },
+                new Player
+                {
+                    Id = Guid.Parse("00000000-0000-0000-0000-340000000000"),
+                    Name = "Mileto Di Marco",
+                    Dob = new DateTime(1980, 05, 16),
+                    //CountryId = Guid.Parse("00000000-0000-0000-0000-000000000004"),
+                    IsDeleted = false
                 }
-                #endregion
-                );
+            };
+            #endregion
+            //);
+            foreach (var player in playerList)
+                AddUser(modelBuilder, player);
+        }
+        private static void AddUser(ModelBuilder modelBuilder, Player player)
+        {
+            string seedpassword = "Test123?";
+            var passWordHasher = new PasswordHasher<Player>();
+            player.PasswordHash = passWordHasher.HashPassword(player, seedpassword);
+            player.Email = player.MakeEmailFromPlayerName();
+            player.NormalizedEmail = player.Email.ToUpper();
+            player.UserName = player.MakeUserNameFromPlayerName();
+            player.NormalizedUserName = player.UserName.ToUpper();
+            player.EmailConfirmed = false;
+            player.SecurityStamp = Guid.NewGuid().ToString("N");
+            modelBuilder.Entity<Player>().HasData(player);
         }
     }
 }

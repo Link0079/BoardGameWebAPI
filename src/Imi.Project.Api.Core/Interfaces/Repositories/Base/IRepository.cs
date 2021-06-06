@@ -20,5 +20,6 @@ namespace Imi.Project.Api.Core.Interfaces.Repositories.Base
         Task<T> UpdateAsync(T entity);
         Task<T> DeleteAsync(T entity);
         Task<T> DeleteAsync(Guid id);
+        Task<bool> EntityExists(Guid id);
     }
 }

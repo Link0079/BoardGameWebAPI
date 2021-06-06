@@ -1,7 +1,9 @@
 ﻿using Imi.Project.Api.Core.Entities;
+using Imi.Project.Api.Core.Entities.Base;
 using Imi.Project.Api.Core.Entities.Games;
 using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Infrastructure.Data.Seeding;
+using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -9,7 +11,7 @@ using System.Text;
 
 namespace Imi.Project.Api.Infrastructure.Data
 {
-    public class ApplicationDbContext : DbContext
+    public class ApplicationDbContext : IdentityDbContext<Player, ApplicationRole, Guid>
     {
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options) : base(options)
         { }
@@ -128,6 +130,9 @@ namespace Imi.Project.Api.Infrastructure.Data
             GameScoreSeeder.Seed(modelBuilder);
             BoardGameArtistSeeder.Seed(modelBuilder);
             BoardGameCategorySeeder.Seed(modelBuilder);
+            ApplicationRoleSeeder.Seed(modelBuilder);
+            ApplicationUserRoleSeeder.Seed(modelBuilder);
+            ApplicationUserClaimsSeeder.Seeding(modelBuilder);
 
             base.OnModelCreating(modelBuilder);
         }

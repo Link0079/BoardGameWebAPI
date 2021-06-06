@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Imi.Project.Api.Core.Dtos;
 using Imi.Project.Api.Core.Dtos.Games;
+using Imi.Project.Api.Core.Dtos.IdentityManagment;
 using Imi.Project.Api.Core.Dtos.Users;
 using Imi.Project.Api.Core.Entities;
 using Imi.Project.Api.Core.Entities.Games;
@@ -35,11 +36,19 @@ namespace Imi.Project.Api.Core.Mapping
                     .OrderByDescending(grp => grp.Count())
                     .Select(grp => grp.Key).First()));
             CreateMap<PlayerRequestDto, Player>();
+            CreateMap<RegisterPlayerRequestDto, Player>()
+                .ForMember(dest => dest.NormalizedEmail, opt => 
+                    opt.MapFrom(src => src.Email.ToUpper()))
+                .ForMember(dest => dest.NormalizedUserName, opt => 
+                    opt.MapFrom(src => src.Username.ToUpper()));
+            CreateMap<Player, RolePlayerResponseDto>();
             #endregion
+
             #region Category
             CreateMap<Category, CategoryResponseDto>();
             CreateMap<CategoryRequestDto, Category>();
             #endregion
+
             #region Artist
             CreateMap<Artist, ArtistResponseDto>()
                 .ForMember(dest => dest.NumberOfArtwork,
@@ -50,6 +59,7 @@ namespace Imi.Project.Api.Core.Mapping
                     .ConvertToStringDateNotation()));
             CreateMap<ArtistRequestDto, Artist>();
             #endregion
+
             #region BoardGame
             CreateMap<BoardGame, BoardGameResponseDto>()
                 .ForMember(dest => dest.Categories,
@@ -70,14 +80,17 @@ namespace Imi.Project.Api.Core.Mapping
                     .ConvertToStringDuration()));
             CreateMap<BoardGameRequestDto, BoardGame>();
             #endregion
+
             #region BoardGameCategory
             CreateMap<BoardGameCategoryRequestDto, BoardGameCategory>()
                 .ForMember(dest => dest.CategoryId, opt => opt.MapFrom(src => src.CategoryId));
             #endregion
+
             #region BoardGameArtist
             CreateMap<BoardGameArtistRequestDto, BoardGameArtist>()
                 .ForMember(dest => dest.ArtistId, opt => opt.MapFrom(src => src.ArtistId));
             #endregion
+
             #region PlayedGame
             CreateMap<PlayedGame, PlayedGameResponseDto>()
                 .ForMember(dest => dest.PlayTime,
@@ -96,6 +109,7 @@ namespace Imi.Project.Api.Core.Mapping
                       }).OrderByDescending(gs=>gs.Score)));
             CreateMap<PlayedGameRequestDto, PlayedGame>();
             #endregion
+
             #region GameScore
             CreateMap<GameScore, GameScoreResponseDto>()
                 .ForMember(dest => dest.PlayerName,
@@ -106,10 +120,17 @@ namespace Imi.Project.Api.Core.Mapping
                 .ForMember(dest => dest.PlayerId, opt => opt.MapFrom(src => src.PlayerId))
                 .ForMember(dest => dest.Score, opt => opt.MapFrom(src => src.Score));
             #endregion
+
+            #region ApplicationRoles
+            CreateMap<ApplicationRole, RoleResponseDto>();
+            CreateMap<RoleRequestDto, ApplicationRole>();
+            #endregion
+
             // expansion for Country and Publisher
             #region Country
 
             #endregion
+
             #region Publisher
 
             #endregion

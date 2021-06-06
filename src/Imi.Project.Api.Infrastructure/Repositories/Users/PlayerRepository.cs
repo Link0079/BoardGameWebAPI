@@ -1,39 +1,46 @@
 ﻿using Imi.Project.Api.Core.Entities.Users;
 using Imi.Project.Api.Core.Interfaces.Repositories.Users;
-using Imi.Project.Api.Infrastructure.Data;
 using Imi.Project.Api.Infrastructure.Repositories.Base;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Imi.Project.Api.Infrastructure.Repositories.Users
 {
-    public class PlayerRepository : EfRepository<Player>, IPlayerRepository
+    public class PlayerRepository : EfUserRepository<Player>, IPlayerRepository
     {
-        public PlayerRepository(ApplicationDbContext dbContext) : base(dbContext)
+        public PlayerRepository(UserManager<Player> userManager) : base(userManager)
         {
         }
         public override IQueryable<Player> GetAllAsync()
         {
-            return _dbContext.Players.AsNoTracking().Include(p => p.GameScores)
+            return _userManager.Users.Include(p => p.GameScores)
                 .ThenInclude(gs => gs.PlayedGame).ThenInclude(pg=>pg.BoardGame)
                 .Where(p=>p.IsDeleted == false);
         }
         public IQueryable<Player> GetESOAsync() // Get Every Single One 
         {
-            return _dbContext.Players.AsNoTracking().Include(p => p.GameScores)
+            return _userManager.Users.Include(p => p.GameScores)
                 .ThenInclude(gs => gs.PlayedGame).ThenInclude(pg => pg.BoardGame);
         }
         public override async Task<Player> GetByIdAsync(Guid id)
         {
             return await GetAllAsync().SingleOrDefaultAsync(p => p.Id.Equals(id));
         }
+        public async Task<Player> GetByIdESOAsync(Guid id)
+        {
+            return await GetESOAsync().SingleOrDefaultAsync(p => p.Id.Equals(id));
+        }
         public override async Task<Player> DeleteAsync(Player entity)
         {
             entity.IsDeleted = true;
+            entity.LockoutEnabled = true;
+            entity.LockoutEnd = DateTime.Now.AddYears(50);
             await UpdateAsync(entity);
             return entity;
         }
@@ -55,6 +62,56 @@ namespace Imi.Project.Api.Infrastructure.Repositories.Users
         public async Task<IEnumerable<Player>> TopFirstPlayersAsync (int totalItems)
         {
             return await GetAllAsync().OrderByDescending(p => p.GameScores.Where(gs=>gs.PlayerId == p.Id).Max(gs=>gs.Score)).Take(totalItems).ToListAsync();
+        }
+        public async Task<IdentityResult> AddRegisteredPlayerAsync(Player entity, string password)
+        {
+            var result = await _userManager.CreateAsync(entity, password);
+            if (result.Succeeded)
+            {
+                var newPlayer = await _userManager.FindByEmailAsync(entity.Email);
+                await _userManager.AddToRoleAsync(newPlayer, "Player");
+                await _userManager.AddClaimAsync(newPlayer, new Claim("registration-date", DateTime.UtcNow.ToString("yyyy-MM-dd")));
+                await _userManager.AddClaimAsync(newPlayer, new Claim("dob", entity.Dob.ToString("yyyy-MM-dd")));
+                await _userManager.AddClaimAsync(newPlayer, new Claim("firstnamechar", entity.Name[0].ToString().ToUpper()));
+            }
+            return result;
+        }
+        public async Task<IEnumerable<string>> GetRolesByPlayer(Player entity)
+        {
+            return await _userManager.GetRolesAsync(entity);
+        }
+        public async Task<IdentityResult> DeletePlayerFromRoles(Player entity, IEnumerable<string> roles)
+        {
+            return await _userManager.RemoveFromRolesAsync(entity, roles);
+        }
+        public async Task<IdentityResult> AddPlayerToRole(Player entity, ApplicationRole role)
+        {
+            return await _userManager.AddToRoleAsync(entity, role.Name);
+        }
+        public async Task<IEnumerable<Player>> GetPlayersByRole(ApplicationRole role)
+        {
+            return await _userManager.GetUsersInRoleAsync(role.Name);
+        }
+        public override async Task<Player> UpdateAsync(Player entity)
+        {
+            var claims = await _userManager.GetClaimsAsync(entity);
+            foreach (var claim in claims)
+            {
+                switch (claim.Type)
+                {
+                    case "dob":
+                        await _userManager.ReplaceClaimAsync(entity, claim, new Claim("dob", entity.Dob.ToString("yyyy-MM-dd")));
+                        break;
+                    case "firstnamechar":
+                        await _userManager.ReplaceClaimAsync(entity, claim, new Claim("firstnamechar", entity.Name[0].ToString().ToUpper()));
+                        break;
+                    default:
+                        break;
+                }
+            }
+            await _userManager.UpdateAsync(entity);
+            return entity;
+
         }
     }
 }

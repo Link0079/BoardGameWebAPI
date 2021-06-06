@@ -531,7 +531,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/xas0x0fMly5bxEVOSDmdNQ__imagepage/img/FDpAA_ow4dQqM3u6aXrSleZv14I=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2648302.jpg",
                             PlayTime = 180,
                             Price = 99m,
                             Rating = 8,
@@ -547,7 +547,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 2,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/B5F5ulz0UivNgrI9Ky0euA__imagepagezoom/img/DRtkNm13lxOk207XPSzA-WDS25g=/fit-in/1200x900/filters:no_upscale():strip_icc()/pic3122349.jpg",
                             PlayTime = 120,
                             Price = 30m,
                             Rating = 8,
@@ -563,7 +563,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 7,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/RvFVTEpnbb4NM7k0IF8V7A__imagepage/img/zruHYxY2_jx-796WgsDj7hitidQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic860217.jpg",
                             PlayTime = 30,
                             Price = 30m,
                             Rating = 7,
@@ -579,7 +579,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 10,
                             MinPlayers = 3,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/U1C1mLc1wLXixz2e77AJpQ__imagepage/img/1us3YOPMkCZPFlFhg26fRQ1PDWQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5885666.jpg",
                             PlayTime = 90,
                             Price = 30m,
                             Rating = 6,
@@ -595,7 +595,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 5,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/yLZJCVLlIx4c7eJEWUNJ7w__imagepage/img/uIjeoKgHMcRtzRSR4MoUYl3nXxs=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4458123.jpg",
                             PlayTime = 70,
                             Price = 60m,
                             Rating = 8,
@@ -611,7 +611,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 5,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/JtjGOgkaIxnLUeoV56cWFQ__imagepage/img/mdwAZkhgv48okMZg7kDtIJtdtNA=/fit-in/900x600/filters:no_upscale():strip_icc()/pic814011.jpg",
                             PlayTime = 180,
                             Price = 30m,
                             Rating = 7,
@@ -627,7 +627,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 10,
                             MinPlayers = 5,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/rAQ3hIXoH6xDcj41v9iqCg__imagepage/img/QTDaAfkaWhobmpHVlfVtBz30OH0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5164305.jpg",
                             PlayTime = 45,
                             Price = 30m,
                             Rating = 7,
@@ -643,7 +643,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 10,
                             MinPlayers = 3,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/Ehx72XRdSeQHISVXcZVnHg__imagepage/img/7wwISG7kfg1a-dIi07n6n9fAK2Y=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2453926.jpg",
                             PlayTime = 15,
                             Price = 30m,
                             Rating = 6,
@@ -659,7 +659,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 8,
                             MinPlayers = 3,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/tw_4LppTBY7uvp96klEV_g__imagepage/img/Al_xBBmzRYcrRZeTiKyV46lONlk=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5937448.jpg",
                             PlayTime = 45,
                             Price = 30m,
                             Rating = 5,
@@ -675,7 +675,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 16,
                             MinPlayers = 3,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/YfUxodD7JSqYitxvjXB69Q__imagepage/img/DX6-XYd-2-RNTaWIEhcIjoJsNXQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5147022.png",
                             PlayTime = 90,
                             Price = 60m,
                             Rating = 5,
@@ -691,7 +691,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 8,
                             MinPlayers = 3,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/mmZDNnsH1ZiHSnSRv82yzQ__imagepage/img/5GMXi6rYuJCDAqk-6UGVAEORbJQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic252235.jpg",
                             PlayTime = 30,
                             Price = 30m,
                             Rating = 6,
@@ -707,7 +707,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 8,
                             MinPlayers = 2,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/eVy9IyAVtzzKv2VvPHFPbA__imagepage/img/ejOIi-lOsES1MJ2VLTLeftm3kQc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3013621.png",
                             PlayTime = 60,
                             Price = 45m,
                             Rating = 7,
@@ -723,7 +723,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 5,
                             MinPlayers = 2,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/nhoyoLpYPC2b3UiJ5kJ0yg__imagepage/img/BzS2PYOAIB4Ei-FHDyPm7Q0PoyU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1473629.jpg",
                             PlayTime = 45,
                             Price = 30m,
                             Rating = 7,
@@ -739,7 +739,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/V6m5SH45BlP6t7-HuGWA-w__imagepage/img/tGsJPobtgrpUDxVEJvtnXDtrJ9k=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3562670.jpg",
                             PlayTime = 90,
                             Price = 39m,
                             Rating = 7,
@@ -755,7 +755,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/Rq78Zg67kx0Ay24kgNnx0Q__imagepage/img/lBLqeOrFdt1bcotqmKBN07IG9yw=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4145901.jpg",
                             PlayTime = 60,
                             Price = 39m,
                             Rating = 7,
@@ -771,7 +771,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 5,
                             MinPlayers = 2,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/eJqxaN9zO6PeZSzzsfR61A__imagepage/img/CXHLk31KSobbQPsMofLvWeN4CLE=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4189314.jpg",
                             PlayTime = 15,
                             Price = 39m,
                             Rating = 6,
@@ -787,7 +787,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/-EB8c-OIEZfHi1p-8qwiUw__imagepage/img/WVOIPQI-l7Cki7MfQOmdgTCTUEA=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3684814.jpg",
                             PlayTime = 120,
                             Price = 39m,
                             Rating = 8,
@@ -803,7 +803,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 99,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/g4XmxyKhNVdhC3QPd1purQ__imagepage/img/KvLHuOPPN-sARwc-vBXWoLRJ0B0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3761012.jpg",
                             PlayTime = 25,
                             Price = 30m,
                             Rating = 7,
@@ -819,7 +819,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/XpunFAlu_OzFHuhf2fBJxA__imagepage/img/KWvqCx6zMVzhKOTX_lVeykdvfj0=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4764176.jpg",
                             PlayTime = 90,
                             Price = 12m,
                             Rating = 7,
@@ -835,7 +835,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 6,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/eNgD_0WGHeO9fPCpgTOBrQ__imagepage/img/zz5IGiCDcPft5e342NdFBdWovuU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4118864.png",
                             PlayTime = 30,
                             Price = 20m,
                             Rating = 7,
@@ -851,7 +851,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 99,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/GifbnAmsA4lfEcDkeaC9VA__imagepage/img/TvxriorE7sP7kHcUQAgLGoJP7ZQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4397932.png",
                             PlayTime = 45,
                             Price = 18m,
                             Rating = 7,
@@ -867,7 +867,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/xpu231bU50Ho1oIWNg4-LQ__imagepage/img/ghK-ff0BlXyXFyXugsWLpTHPaZU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4543702.jpg",
                             PlayTime = 30,
                             Price = 20m,
                             Rating = 6,
@@ -883,7 +883,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 6,
                             MinPlayers = 3,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/_Ppn5lssO5OaildSE-FgFA__imagepage/img/0AK9hQgpcOOOLJh8IEZS3Nw57vE=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3727516.jpg",
                             PlayTime = 480,
                             Price = 120m,
                             Rating = 8,
@@ -899,7 +899,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 2,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/RmKYojYHmV8X-ebtNgaz-g__imagepage/img/DhsNqblAoesFszW_9lJjV8ACzx4=/fit-in/900x600/filters:no_upscale():strip_icc()/pic738119.jpg",
                             PlayTime = 180,
                             Price = 56m,
                             Rating = 7,
@@ -915,7 +915,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 2,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/ImPgGag98W6gpV1KV812aA__imagepage/img/ZHAFxwwPAmpSqOjPb98GZV_x3rA=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1215633.jpg",
                             PlayTime = 180,
                             Price = 70m,
                             Rating = 8,
@@ -931,7 +931,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 6,
                             MinPlayers = 3,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/MAIDRapFcDC08pmZIBM7EQ__imagepage/img/DznDkaq6jDgwzHR6nvKbQc9JbwU=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3315057.png",
                             PlayTime = 480,
                             Price = 120m,
                             Rating = 8,
@@ -947,7 +947,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 5,
                             MinPlayers = 3,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/6uEBiPxMH8gfGJ6f3HLNGg__imagepage/img/NMxxGcFNEH9FQsJwaZex92T2q00=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1807124.png",
                             PlayTime = 180,
                             Price = 99m,
                             Rating = 7,
@@ -963,7 +963,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 5,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/wg9oOLcsKvDesSUdZQ4rxw__imagepage/img/FS1RE8Ue6nk1pNbPI3l-OSapQGc=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3536616.jpg",
                             PlayTime = 120,
                             Price = 60m,
                             Rating = 8,
@@ -979,7 +979,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 6,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/EhXCpSR6ambdYuKbrej3UQ__imagepage/img/WYdcor5Fi0cZYgk4XinAKJ7AWi4=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4134810.jpg",
                             PlayTime = 60,
                             Price = 50m,
                             Rating = 7,
@@ -995,7 +995,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 2,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/JUAUWaVUzeBgzirhZNmHHw__imagepage/img/ZF-dta5ffawuKAkAt2LB-QTIv5M=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4254509.jpg",
                             PlayTime = 90,
                             Price = 55m,
                             Rating = 8,
@@ -1011,7 +1011,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 5,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/dDDo2Hexl80ucK1IlqTk-g__imagepage/img/TLgJgsf7CyGgl8RM2duUYOrE41E=/fit-in/900x600/filters:no_upscale():strip_icc()/pic831744.jpg",
                             PlayTime = 150,
                             Price = 55m,
                             Rating = 7,
@@ -1027,7 +1027,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/fjE7V5LNq31yVEW_yuqI-Q__imagepage/img/ijYTk6KGtxLRdIvLsGar13ZHs4c=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3918905.png",
                             PlayTime = 80,
                             Price = 35m,
                             Rating = 7,
@@ -1043,7 +1043,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/hLJv1A1TwrMrLLIJhVpKVA__imagepage/img/fMzQSQeqMkeqHHK_hmj3FBjAx2I=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3429338.png",
                             PlayTime = 120,
                             Price = 45m,
                             Rating = 7,
@@ -1059,7 +1059,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/sZYp_3BTDGjh2unaZfZmuA__imagepage/img/pBaOL7vV402nn1I5dHsdSKsFHqA=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2437871.jpg",
                             PlayTime = 120,
                             Price = 120m,
                             Rating = 8,
@@ -1075,7 +1075,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 2,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/HkZSJfQnZ3EpS214xtuplg__imagepage/img/nLp0poXg-Y6szkicHe7U2thnwhk=/fit-in/900x600/filters:no_upscale():strip_icc()/pic2439223.jpg",
                             PlayTime = 90,
                             Price = 75m,
                             Rating = 8,
@@ -1091,7 +1091,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 5,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/tAqLpWxQ0Oo3GaPP3MER1g__imagepage/img/XyHxeMepMS292xwGjwdK6SvPL4I=/fit-in/900x600/filters:no_upscale():strip_icc()/pic5073276.jpg",
                             PlayTime = 180,
                             Price = 120m,
                             Rating = 8,
@@ -1107,7 +1107,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 2,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/7SrPNGBKg9IIsP4UQpOi8g__imagepage/img/89ViRUkHkCJhvZA5fay7A9-46mY=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4325841.jpg",
                             PlayTime = 240,
                             Price = 115m,
                             Rating = 8,
@@ -1123,7 +1123,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 6,
                             MinPlayers = 3,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/M_7UvwZvuxBVjxdadsa5AA__imagepage/img/AuKDe6Q4lyGdm6rTS2JUEXvhTbQ=/fit-in/900x600/filters:no_upscale():strip_icc()/pic1077906.jpg",
                             PlayTime = 240,
                             Price = 95m,
                             Rating = 7,
@@ -1139,7 +1139,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 5,
                             MinPlayers = 3,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/iwevA6XmiNLHn1QnGUucqw__imagepage/img/W6vxWVStCBL7qs6yW_G0VbC9Jxw=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3880340.jpg",
                             PlayTime = 120,
                             Price = 55m,
                             Rating = 7,
@@ -1155,7 +1155,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 2,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/x3zxjr-Vw5iU4yDPg70Jgw__imagepage/img/-17KkOmxbTu2slJTabGrkO8ZW8s=/fit-in/900x600/filters:no_upscale():strip_icc()/pic3490053.jpg",
                             PlayTime = 120,
                             Price = 69m,
                             Rating = 8,
@@ -1171,7 +1171,7 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                             IsDeleted = false,
                             MaxPlayers = 4,
                             MinPlayers = 1,
-                            PhotoUrl = "https://i.scdn.co/image/ab67616d0000b2731cc6d15e607e0a514b7f4b95",
+                            PhotoUrl = "https://cf.geekdo-images.com/wW5xjgBJcFyLaEWZwrYuKA__imagepage/img/DUNPUEzMu1Elu0SNuqnTNDrUTLY=/fit-in/900x600/filters:no_upscale():strip_icc()/pic4583626.jpg",
                             PlayTime = 120,
                             Price = 55m,
                             Rating = 8,
@@ -2912,203 +2912,1641 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                         });
                 });
 
+            modelBuilder.Entity("Imi.Project.Api.Core.Entities.Users.ApplicationRole", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("NormalizedName")
+                        .IsUnique()
+                        .HasName("RoleNameIndex")
+                        .HasFilter("[NormalizedName] IS NOT NULL");
+
+                    b.ToTable("AspNetRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("00000001-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "b491009f-6ed5-4f67-8718-2bbad4ce3d2c",
+                            Name = "Admin",
+                            NormalizedName = "ADMIN"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000002-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "71af43e1-0ca4-4acc-b151-e62965fae7d7",
+                            Name = "Player",
+                            NormalizedName = "PLAYER"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000003-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "941b3ae9-00c2-416a-bc44-356a73e30292",
+                            Name = "BoardGameEditor",
+                            NormalizedName = "BOARDGAMEEDITOR"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000004-0000-0000-0000-000000000000"),
+                            ConcurrencyStamp = "935041b8-7af7-4a75-992d-b44daa836f98",
+                            Name = "ArtistEditor",
+                            NormalizedName = "ARTISTEDITOR"
+                        });
+                });
+
             modelBuilder.Entity("Imi.Project.Api.Core.Entities.Users.Player", b =>
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("AccessFailedCount")
+                        .HasColumnType("int");
+
+                    b.Property<string>("ConcurrencyStamp")
+                        .IsConcurrencyToken()
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<DateTime>("Dob")
                         .HasColumnType("datetime2");
 
+                    b.Property<string>("Email")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<bool>("EmailConfirmed")
+                        .HasColumnType("bit");
+
                     b.Property<bool>("IsDeleted")
                         .HasColumnType("bit");
+
+                    b.Property<bool>("LockoutEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<DateTimeOffset?>("LockoutEnd")
+                        .HasColumnType("datetimeoffset");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasColumnType("nvarchar(100)")
                         .HasMaxLength(100);
 
+                    b.Property<string>("NormalizedEmail")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("NormalizedUserName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
+                    b.Property<string>("PasswordHash")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("PhoneNumberConfirmed")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("SecurityStamp")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<bool>("TwoFactorEnabled")
+                        .HasColumnType("bit");
+
+                    b.Property<string>("UserName")
+                        .HasColumnType("nvarchar(256)")
+                        .HasMaxLength(256);
+
                     b.HasKey("Id");
 
-                    b.ToTable("Players");
+                    b.HasIndex("NormalizedEmail")
+                        .HasName("EmailIndex");
+
+                    b.HasIndex("NormalizedUserName")
+                        .IsUnique()
+                        .HasName("UserNameIndex")
+                        .HasFilter("[NormalizedUserName] IS NOT NULL");
+
+                    b.ToTable("AspNetUsers");
 
                     b.HasData(
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-100000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ebbb3aac-9673-43d3-b021-796115ca6967",
                             Dob = new DateTime(1988, 2, 9, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Bjorn.Vossen@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Bjorn Vossen"
+                            LockoutEnabled = false,
+                            Name = "Bjorn Vossen",
+                            NormalizedEmail = "BJORN.VOSSEN@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "BJORN.VOSSEN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIOvsk54ZPpKesxVZkHPt0c7p8kJJGKLPwXaY45ZlzQzwGrkNnZ+tJI5Z6HIilTFSw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "ec28f7f8e47d4df9a37cb65dafaa5158",
+                            TwoFactorEnabled = false,
+                            UserName = "Bjorn.Vossen"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-200000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f34a02e0-fd6a-4377-b324-bf0582a66bf4",
                             Dob = new DateTime(1990, 5, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Sofie.Brauwers@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Sofie Brauwers"
+                            LockoutEnabled = false,
+                            Name = "Sofie Brauwers",
+                            NormalizedEmail = "SOFIE.BRAUWERS@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "SOFIE.BRAUWERS",
+                            PasswordHash = "AQAAAAEAACcQAAAAEN3dtzICfReAWH4gHIEwWgIItXPkW306nTcd2kMRZiZF9/WEiNTqsv4pStliLmTQSQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "99f2872a89bb42f1b43d2bddb1db323b",
+                            TwoFactorEnabled = false,
+                            UserName = "Sofie.Brauwers"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-300000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b6a5087f-0d57-436e-899d-e2cb12d45b54",
                             Dob = new DateTime(1997, 1, 15, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Athena.Faris@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Athena Faris"
+                            LockoutEnabled = false,
+                            Name = "Athena Faris",
+                            NormalizedEmail = "ATHENA.FARIS@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "ATHENA.FARIS",
+                            PasswordHash = "AQAAAAEAACcQAAAAEIWB5Cfc1If3hqVbm8CupZqaMIO2O1gmcHeAdJPiqpAqWhDFLec9CkKn9s3jglLPHQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3e869961a1f14ccead82c0e486b27240",
+                            TwoFactorEnabled = false,
+                            UserName = "Athena.Faris"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-400000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "02b11dcd-5943-4742-a969-702288e7df6c",
                             Dob = new DateTime(1981, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Abigail.Spencer@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Abigail Spencer"
+                            LockoutEnabled = false,
+                            Name = "Abigail Spencer",
+                            NormalizedEmail = "ABIGAIL.SPENCER@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "ABIGAIL.SPENCER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEKys7wGs8OmSnT2ZCXDl1THwRaViRSnobl/2VLNB3EFG/jQtOXNBVhT/Y2DqpiEkPg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "5c682971e6db42a7befdfa81a9923d9c",
+                            TwoFactorEnabled = false,
+                            UserName = "Abigail.Spencer"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-500000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "806d68c2-2c86-407e-bdcc-ee2ba6561a9b",
                             Dob = new DateTime(1985, 11, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Kaley.Cuoco@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Kaley Cuoco"
+                            LockoutEnabled = false,
+                            Name = "Kaley Cuoco",
+                            NormalizedEmail = "KALEY.CUOCO@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "KALEY.CUOCO",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJCPTJ3bkZPZ9ttYtvLoKPucujNOmSdG3IHbwFAU+XiJxMN0Tw0Cb0iploiNJgpVjw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "15c19e0400934e48876b3049ddd0c87f",
+                            TwoFactorEnabled = false,
+                            UserName = "Kaley.Cuoco"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-600000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "04bcb7ab-8722-45f5-b4f2-5e42f30ff927",
                             Dob = new DateTime(1973, 3, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Jim.Parsons@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Jim Parsons"
+                            LockoutEnabled = false,
+                            Name = "Jim Parsons",
+                            NormalizedEmail = "JIM.PARSONS@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "JIM.PARSONS",
+                            PasswordHash = "AQAAAAEAACcQAAAAELqGI2WitGPn4a4JEtLPYkOz3gY9uXgf5Etn+cv34E7kciEoNVmNteeNeZGBmpAgCg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "943a0e93e83e419996dc77fdfb24d2db",
+                            TwoFactorEnabled = false,
+                            UserName = "Jim.Parsons"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-700000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "b4a6e567-14ba-49f2-aab2-4e226f0cad00",
                             Dob = new DateTime(1975, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Johnny.Galecki@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Johnny Galecki"
+                            LockoutEnabled = false,
+                            Name = "Johnny Galecki",
+                            NormalizedEmail = "JOHNNY.GALECKI@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "JOHNNY.GALECKI",
+                            PasswordHash = "AQAAAAEAACcQAAAAEHRx4EJPEqgJK7izBeCN2AP4I0c8ZATLoqECi1itFifV4gXPVa6hgJBzMicUIzVxeQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "054681c4a2f14da5a0412c6b3260edec",
+                            TwoFactorEnabled = false,
+                            UserName = "Johnny.Galecki"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-800000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "a726b6a1-16e3-4c8f-8a50-bc7957637369",
                             Dob = new DateTime(1981, 4, 30, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Kunal.Nayyar@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Kunal Nayyar"
+                            LockoutEnabled = false,
+                            Name = "Kunal Nayyar",
+                            NormalizedEmail = "KUNAL.NAYYAR@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "KUNAL.NAYYAR",
+                            PasswordHash = "AQAAAAEAACcQAAAAELUXExIuk/FKnZ67ufOucRUzeqpomDy6JFx9aJDcHv8CQFec4iGVAO5PXrdI01wEVw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "2e1a649fe936469780fb804dce2b916b",
+                            TwoFactorEnabled = false,
+                            UserName = "Kunal.Nayyar"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-900000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "91ee62e0-3e88-4fee-b0c6-14ba2c342f06",
                             Dob = new DateTime(1980, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Simon.Helberg@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Simon Helberg"
+                            LockoutEnabled = false,
+                            Name = "Simon Helberg",
+                            NormalizedEmail = "SIMON.HELBERG@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "SIMON.HELBERG",
+                            PasswordHash = "AQAAAAEAACcQAAAAEDxZ+hxDQ/8iefrR7inh4GqWGlZQtrusmNQJ4BGxmOhNPHsmWr7b+E1VQ0fx7AaDWA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "bc132ce799f646219aebaefeb9ae82b3",
+                            TwoFactorEnabled = false,
+                            UserName = "Simon.Helberg"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-110000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "530f2c02-1d05-4ec6-b93e-a9896533616e",
                             Dob = new DateTime(1980, 6, 23, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Melissa.Rauch@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Melissa Rauch"
+                            LockoutEnabled = false,
+                            Name = "Melissa Rauch",
+                            NormalizedEmail = "MELISSA.RAUCH@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "MELISSA.RAUCH",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBO0y2s0IPKStdhblZ+8V2D2MChx7FG0UK2q3UTNua640pXQ3ZWPglIfeNaw+AxSIQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "2c56122f7b964903970f2826d70175a6",
+                            TwoFactorEnabled = false,
+                            UserName = "Melissa.Rauch"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-120000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "75b2dd26-2735-457c-bba7-d22e04f94983",
                             Dob = new DateTime(1973, 12, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Mayim.Bialik@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Mayim Bialik"
+                            LockoutEnabled = false,
+                            Name = "Mayim Bialik",
+                            NormalizedEmail = "MAYIM.BIALIK@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "MAYIM.BIALIK",
+                            PasswordHash = "AQAAAAEAACcQAAAAELcchuUJmBuFbZdi2/xbrESQ91wMBOaxTBwClO3wvoV7km8K3zbyLeMMU0b1Ge8Vqw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1042295b06af4e44be83d6d69f54fdc7",
+                            TwoFactorEnabled = false,
+                            UserName = "Mayim.Bialik"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-130000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "0a4a8eea-3a5e-421e-9d16-26c9bfc1c27f",
                             Dob = new DateTime(1972, 1, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Gabriel.Macht@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Gabriel Macht"
+                            LockoutEnabled = false,
+                            Name = "Gabriel Macht",
+                            NormalizedEmail = "GABRIEL.MACHT@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "GABRIEL.MACHT",
+                            PasswordHash = "AQAAAAEAACcQAAAAEARaDzSt7PeP3wmYtj7JZqfOXazxoOpHongAsRuDPYErfJRbelLaoO2EUYK8TCovUQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "9c9b50e17c6e4c58851a0e0ffca08181",
+                            TwoFactorEnabled = false,
+                            UserName = "Gabriel.Macht"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-140000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8c1ec7cc-3d47-4c6b-9b58-af66a6d7c1ba",
                             Dob = new DateTime(1981, 8, 4, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Megan.Markle@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Megan Markle"
+                            LockoutEnabled = false,
+                            Name = "Megan Markle",
+                            NormalizedEmail = "MEGAN.MARKLE@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "MEGAN.MARKLE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEtYayOK2hzJo06h/q7BcGHHgzXQ9nmy0GsJpwbaBp2B1cwodM+PpsHAHuknzOL27g==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "f488a435112c4d40a09abf2479ee040b",
+                            TwoFactorEnabled = false,
+                            UserName = "Megan.Markle"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-150000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "63a566d0-876d-469b-94ef-c4f18b10cab2",
                             Dob = new DateTime(1981, 8, 27, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Patrick.J..Adams@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Patrick J. Adams"
+                            LockoutEnabled = false,
+                            Name = "Patrick J. Adams",
+                            NormalizedEmail = "PATRICK.J..ADAMS@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "PATRICK.J..ADAMS",
+                            PasswordHash = "AQAAAAEAACcQAAAAELNwI5q1hMhPue5Oh2n4zpdcOwsvkgU2HfjGLDrTmRwhLQ/xn8DczRY5kG3rrmjE6w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "04ba36f8272c4c7ba016587cb0ee8c97",
+                            TwoFactorEnabled = false,
+                            UserName = "Patrick.J..Adams"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-160000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "41ad12c5-bcc3-45c9-99b6-b5d82485e680",
                             Dob = new DateTime(1972, 12, 6, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Sarah.Rafferty@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Sarah Rafferty"
+                            LockoutEnabled = false,
+                            Name = "Sarah Rafferty",
+                            NormalizedEmail = "SARAH.RAFFERTY@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "SARAH.RAFFERTY",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMg3VHj9j+8PCYALHy/QJg9F+AGlIJ0ZRLJlGdvImcZemwnnDQRhans4yiFvLk5lJw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "1c774edab09b4e08bb2ce88d8e51fc13",
+                            TwoFactorEnabled = false,
+                            UserName = "Sarah.Rafferty"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-170000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "f8e421a6-7b06-4c01-aa45-fb2dcb823263",
                             Dob = new DateTime(1970, 6, 12, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Rick.Hoffman@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Rick Hoffman"
+                            LockoutEnabled = false,
+                            Name = "Rick Hoffman",
+                            NormalizedEmail = "RICK.HOFFMAN@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "RICK.HOFFMAN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEBpnFqunQ+drp4HN5C0IqVgBZWNwMunGQYndRpaZk7mrvqFlWWdtfDCCfXI5V1CvbA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "0c0e5900d2de447c86ab91b96b4f7f0c",
+                            TwoFactorEnabled = false,
+                            UserName = "Rick.Hoffman"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-180000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "47075f0f-632c-48cf-8202-a48ef9b187f3",
                             Dob = new DateTime(1956, 4, 18, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Eric.Roberts@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Eric Roberts"
+                            LockoutEnabled = false,
+                            Name = "Eric Roberts",
+                            NormalizedEmail = "ERIC.ROBERTS@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "ERIC.ROBERTS",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMRXtjM2GW+MBXmFOgH394QPDvngmskp3iYqLgXycRdQ1dZf5mI5YX7QIu5TVxY/Pw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "9321aabd38f34bf987e09646b45c4950",
+                            TwoFactorEnabled = false,
+                            UserName = "Eric.Roberts"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-190000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "41fd11f2-7b00-48f7-bed6-5b4e2aa4ed4d",
                             Dob = new DateTime(1990, 7, 2, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Margot.Robbie@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Margot Robbie"
+                            LockoutEnabled = false,
+                            Name = "Margot Robbie",
+                            NormalizedEmail = "MARGOT.ROBBIE@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "MARGOT.ROBBIE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEI5ANxf5PEmsU3nnZtyC9sAm7qWQ7YPvp8/uEUaDsWdt396MX1K9Ko315o8lOCdI8g==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "eb5a349b2a21408d9a5ca3ca200f285d",
+                            TwoFactorEnabled = false,
+                            UserName = "Margot.Robbie"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-210000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "476e5b28-d2b4-4fc0-9338-3e2f473be699",
                             Dob = new DateTime(1986, 5, 17, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Erin.Richards@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Erin Richards"
+                            LockoutEnabled = false,
+                            Name = "Erin Richards",
+                            NormalizedEmail = "ERIN.RICHARDS@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "ERIN.RICHARDS",
+                            PasswordHash = "AQAAAAEAACcQAAAAEC1KN1j/PkbgYP3AHhGIdMW5q5gQ22Kv1DPK2jqQ7S8Vpazmzet6LW1rP6XxPuAgJQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "5df72485321a45deb91308584bca4e1a",
+                            TwoFactorEnabled = false,
+                            UserName = "Erin.Richards"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-220000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "61f050fb-da08-4750-bed2-2be785e11955",
                             Dob = new DateTime(1979, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Morena.Baccarin@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Morena Baccarin"
+                            LockoutEnabled = false,
+                            Name = "Morena Baccarin",
+                            NormalizedEmail = "MORENA.BACCARIN@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "MORENA.BACCARIN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEP2Vn/4S+cB6Vn6pFFl4m+R2embKCp2yVl+i+mkCJe14FoqPblgWSGue1Nxj/kGd6w==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d185152771ef4cf5bdab59db652008eb",
+                            TwoFactorEnabled = false,
+                            UserName = "Morena.Baccarin"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-230000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "ea497935-89c9-4a43-9cde-e1c777ef5ccb",
                             Dob = new DateTime(1985, 9, 24, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Jessica.Lucas@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Jessica Lucas"
+                            LockoutEnabled = false,
+                            Name = "Jessica Lucas",
+                            NormalizedEmail = "JESSICA.LUCAS@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "JESSICA.LUCAS",
+                            PasswordHash = "AQAAAAEAACcQAAAAEEcAcc+dmUycctdcg3xa+aqM3UQVAOQXAQGOlZlYaWFx1Hx9bTZ8DADfcgMtdnudaw==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d4fd0318f1274cf08e2335e7087db334",
+                            TwoFactorEnabled = false,
+                            UserName = "Jessica.Lucas"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-240000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "09977519-055a-4fd6-807f-e9778962745f",
                             Dob = new DateTime(1983, 4, 10, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Jamie.Chung@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Jamie Chung"
+                            LockoutEnabled = false,
+                            Name = "Jamie Chung",
+                            NormalizedEmail = "JAMIE.CHUNG@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "JAMIE.CHUNG",
+                            PasswordHash = "AQAAAAEAACcQAAAAECg7/Hk6IvuMjU/GuCWlSuGxOGxOscZMQkq7o/zwBZo/mTb1kMrEuASPiwhC5VxYfg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "60059f5a128d4a61a5995d75c17f69d8",
+                            TwoFactorEnabled = false,
+                            UserName = "Jamie.Chung"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-250000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "32397d7c-27c8-45d3-8aef-7eb051a4bc0b",
                             Dob = new DateTime(1999, 6, 21, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Natalie.Alyn.Lind@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Natalie Alyn Lind"
+                            LockoutEnabled = false,
+                            Name = "Natalie Alyn Lind",
+                            NormalizedEmail = "NATALIE.ALYN.LIND@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "NATALIE.ALYN.LIND",
+                            PasswordHash = "AQAAAAEAACcQAAAAEJd9yD99SZcvFQkWvSr2KTaZSyxupGOFCuGoLXiigJO0POmFGclSrF22q41on70stA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "b3c72957079247408b9aaecbcdb3d7bf",
+                            TwoFactorEnabled = false,
+                            UserName = "Natalie.Alyn.Lind"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-260000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "70d8ace6-7501-47dc-8611-4a78e6a8258b",
                             Dob = new DateTime(1986, 4, 22, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Amber.Heard@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Amber Heard"
+                            LockoutEnabled = false,
+                            Name = "Amber Heard",
+                            NormalizedEmail = "AMBER.HEARD@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "AMBER.HEARD",
+                            PasswordHash = "AQAAAAEAACcQAAAAENeoEIyWLZ6I4IWy/UUQqz/Do8108NwTyiKfxELoQNPYBxIUnA/GraC5A9YwZL+jXA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "7c65397fa2154e60b032e3ebe2420b5e",
+                            TwoFactorEnabled = false,
+                            UserName = "Amber.Heard"
                         },
                         new
                         {
                             Id = new Guid("00000000-0000-0000-0000-270000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "8f6f44ee-48a9-4286-ad61-0f65f1e134d2",
                             Dob = new DateTime(1986, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Megan.Fox@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
                             IsDeleted = false,
-                            Name = "Megan Fox"
+                            LockoutEnabled = false,
+                            Name = "Megan Fox",
+                            NormalizedEmail = "MEGAN.FOX@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "MEGAN.FOX",
+                            PasswordHash = "AQAAAAEAACcQAAAAEGyEB74U3QJvhgftS3yWGr4NixWcCfGXw8z0H2YjoOd8YnSwYe/nCT34+qfddZmFMA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "d4c33396417d403287af4b2c1d6250a4",
+                            TwoFactorEnabled = false,
+                            UserName = "Megan.Fox"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-280000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "26487413-6550-4aea-a992-5ea5a4037aff",
+                            Dob = new DateTime(1975, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Stefaan.Vercaemer@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            Name = "Stefaan Vercaemer",
+                            NormalizedEmail = "STEFAAN.VERCAEMER@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "STEFAAN.VERCAEMER",
+                            PasswordHash = "AQAAAAEAACcQAAAAEF21q2ky/DEtMBfl5YbSMpA/WCsLJvujR8tVcjr3deh3lgtIhp/CI+XU+piE/jGEDQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "9b8560bc02604226a4ef78a0cf33ebe4",
+                            TwoFactorEnabled = false,
+                            UserName = "Stefaan.Vercaemer"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-290000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "73f9ee19-f056-4383-9a4d-9e002900995c",
+                            Dob = new DateTime(1980, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Maxim.Lesy@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            Name = "Maxim Lesy",
+                            NormalizedEmail = "MAXIM.LESY@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "MAXIM.LESY",
+                            PasswordHash = "AQAAAAEAACcQAAAAENq8xCSyVwE5CPAF37CcBJEMyRb9EjwZ3gz+1U4objf0kCydlCI3r5ucnWmGl5qRAQ==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "12d15487fec34e758d0b9735bbe1e544",
+                            TwoFactorEnabled = false,
+                            UserName = "Maxim.Lesy"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-310000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "65ff3a61-c059-4d19-bcdc-84fd63952096",
+                            Dob = new DateTime(1980, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Joachim.Francois@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            Name = "Joachim Francois",
+                            NormalizedEmail = "JOACHIM.FRANCOIS@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "JOACHIM.FRANCOIS",
+                            PasswordHash = "AQAAAAEAACcQAAAAEATxSVIL/n3/yGKtZ56YKeU+VaeheN5CXW1BLFuwq2qOadujk8TMOBAw8YgMHxgmnA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "190ddde70ff44e8789e5e12a0ed6ea97",
+                            TwoFactorEnabled = false,
+                            UserName = "Joachim.Francois"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-320000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "1ec78557-b1ab-4d4d-949a-715eec2a295c",
+                            Dob = new DateTime(1980, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Siegried.Derdeyn@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            Name = "Siegried Derdeyn",
+                            NormalizedEmail = "SIEGRIED.DERDEYN@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "SIEGRIED.DERDEYN",
+                            PasswordHash = "AQAAAAEAACcQAAAAEMqCQvGJF2jyprlB/xH5KiQrKuYAsS7FyrhtCGk/SEiHbwDPHJrJ4LObxsy3xNkgsA==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "4940e4bbed7744cbb8cd9842eb322598",
+                            TwoFactorEnabled = false,
+                            UserName = "Siegried.Derdeyn"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-330000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "afa08a26-1deb-4c6a-bc07-b942178b246f",
+                            Dob = new DateTime(1975, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "William.Schokkele@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            Name = "William Schokkele",
+                            NormalizedEmail = "WILLIAM.SCHOKKELE@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "WILLIAM.SCHOKKELE",
+                            PasswordHash = "AQAAAAEAACcQAAAAEL1vxoq3S9Ax5DtFAnQrqQrm5vu/g8oa0yHTE16YeLIOnpBTEozWZfRWoJIKNostBg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "158d5fdeb0dc4130ac53ab27757ad53a",
+                            TwoFactorEnabled = false,
+                            UserName = "William.Schokkele"
+                        },
+                        new
+                        {
+                            Id = new Guid("00000000-0000-0000-0000-340000000000"),
+                            AccessFailedCount = 0,
+                            ConcurrencyStamp = "d81f09e0-11c1-4679-8a09-453a9c6b89eb",
+                            Dob = new DateTime(1980, 5, 16, 0, 0, 0, 0, DateTimeKind.Unspecified),
+                            Email = "Mileto.Di.Marco@BoardGameWebAPI.com",
+                            EmailConfirmed = false,
+                            IsDeleted = false,
+                            LockoutEnabled = false,
+                            Name = "Mileto Di Marco",
+                            NormalizedEmail = "MILETO.DI.MARCO@BOARDGAMEWEBAPI.COM",
+                            NormalizedUserName = "MILETO.DI.MARCO",
+                            PasswordHash = "AQAAAAEAACcQAAAAENlqT6Tq68ReeDei26PAPEAsKr0ewihxRQM4b7MWYoWCihZ6Mrh93e+85x4kqNOxEg==",
+                            PhoneNumberConfirmed = false,
+                            SecurityStamp = "3ae7be0c715249dd84887b6cb34d3009",
+                            TwoFactorEnabled = false,
+                            UserName = "Mileto.Di.Marco"
                         });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetRoleClaims");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<string>("ClaimType")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("ClaimValue")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserClaims");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2015-01-01",
+                            UserId = new Guid("00000000-0000-0000-0000-100000000000")
+                        },
+                        new
+                        {
+                            Id = 2,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2015-02-01",
+                            UserId = new Guid("00000000-0000-0000-0000-200000000000")
+                        },
+                        new
+                        {
+                            Id = 3,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2020-03-01",
+                            UserId = new Guid("00000000-0000-0000-0000-300000000000")
+                        },
+                        new
+                        {
+                            Id = 4,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2019-04-01",
+                            UserId = new Guid("00000000-0000-0000-0000-400000000000")
+                        },
+                        new
+                        {
+                            Id = 5,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2018-05-02",
+                            UserId = new Guid("00000000-0000-0000-0000-500000000000")
+                        },
+                        new
+                        {
+                            Id = 6,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2019-06-03",
+                            UserId = new Guid("00000000-0000-0000-0000-600000000000")
+                        },
+                        new
+                        {
+                            Id = 7,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2020-07-04",
+                            UserId = new Guid("00000000-0000-0000-0000-700000000000")
+                        },
+                        new
+                        {
+                            Id = 8,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2021-08-05",
+                            UserId = new Guid("00000000-0000-0000-0000-800000000000")
+                        },
+                        new
+                        {
+                            Id = 9,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2020-09-06",
+                            UserId = new Guid("00000000-0000-0000-0000-900000000000")
+                        },
+                        new
+                        {
+                            Id = 10,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2019-10-07",
+                            UserId = new Guid("00000000-0000-0000-0000-110000000000")
+                        },
+                        new
+                        {
+                            Id = 11,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2018-11-08",
+                            UserId = new Guid("00000000-0000-0000-0000-120000000000")
+                        },
+                        new
+                        {
+                            Id = 12,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2019-12-09",
+                            UserId = new Guid("00000000-0000-0000-0000-130000000000")
+                        },
+                        new
+                        {
+                            Id = 13,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2020-01-10",
+                            UserId = new Guid("00000000-0000-0000-0000-140000000000")
+                        },
+                        new
+                        {
+                            Id = 14,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2021-02-11",
+                            UserId = new Guid("00000000-0000-0000-0000-150000000000")
+                        },
+                        new
+                        {
+                            Id = 15,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2020-03-12",
+                            UserId = new Guid("00000000-0000-0000-0000-160000000000")
+                        },
+                        new
+                        {
+                            Id = 16,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2019-04-13",
+                            UserId = new Guid("00000000-0000-0000-0000-170000000000")
+                        },
+                        new
+                        {
+                            Id = 17,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2018-05-14",
+                            UserId = new Guid("00000000-0000-0000-0000-180000000000")
+                        },
+                        new
+                        {
+                            Id = 18,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2019-06-15",
+                            UserId = new Guid("00000000-0000-0000-0000-190000000000")
+                        },
+                        new
+                        {
+                            Id = 19,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2020-07-16",
+                            UserId = new Guid("00000000-0000-0000-0000-210000000000")
+                        },
+                        new
+                        {
+                            Id = 20,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2021-08-17",
+                            UserId = new Guid("00000000-0000-0000-0000-220000000000")
+                        },
+                        new
+                        {
+                            Id = 21,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2020-09-18",
+                            UserId = new Guid("00000000-0000-0000-0000-230000000000")
+                        },
+                        new
+                        {
+                            Id = 22,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2019-10-19",
+                            UserId = new Guid("00000000-0000-0000-0000-240000000000")
+                        },
+                        new
+                        {
+                            Id = 23,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2018-11-20",
+                            UserId = new Guid("00000000-0000-0000-0000-250000000000")
+                        },
+                        new
+                        {
+                            Id = 24,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2019-12-21",
+                            UserId = new Guid("00000000-0000-0000-0000-260000000000")
+                        },
+                        new
+                        {
+                            Id = 25,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2020-01-22",
+                            UserId = new Guid("00000000-0000-0000-0000-270000000000")
+                        },
+                        new
+                        {
+                            Id = 26,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2021-02-23",
+                            UserId = new Guid("00000000-0000-0000-0000-280000000000")
+                        },
+                        new
+                        {
+                            Id = 27,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2020-03-24",
+                            UserId = new Guid("00000000-0000-0000-0000-290000000000")
+                        },
+                        new
+                        {
+                            Id = 28,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2019-04-25",
+                            UserId = new Guid("00000000-0000-0000-0000-310000000000")
+                        },
+                        new
+                        {
+                            Id = 29,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2018-05-26",
+                            UserId = new Guid("00000000-0000-0000-0000-320000000000")
+                        },
+                        new
+                        {
+                            Id = 30,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2019-06-27",
+                            UserId = new Guid("00000000-0000-0000-0000-330000000000")
+                        },
+                        new
+                        {
+                            Id = 31,
+                            ClaimType = "registration-date",
+                            ClaimValue = "2020-07-28",
+                            UserId = new Guid("00000000-0000-0000-0000-340000000000")
+                        },
+                        new
+                        {
+                            Id = 32,
+                            ClaimType = "dob",
+                            ClaimValue = "1988-02-09",
+                            UserId = new Guid("00000000-0000-0000-0000-100000000000")
+                        },
+                        new
+                        {
+                            Id = 33,
+                            ClaimType = "dob",
+                            ClaimValue = "1990-05-15",
+                            UserId = new Guid("00000000-0000-0000-0000-200000000000")
+                        },
+                        new
+                        {
+                            Id = 34,
+                            ClaimType = "dob",
+                            ClaimValue = "1997-01-15",
+                            UserId = new Guid("00000000-0000-0000-0000-300000000000")
+                        },
+                        new
+                        {
+                            Id = 35,
+                            ClaimType = "dob",
+                            ClaimValue = "1981-08-04",
+                            UserId = new Guid("00000000-0000-0000-0000-400000000000")
+                        },
+                        new
+                        {
+                            Id = 36,
+                            ClaimType = "dob",
+                            ClaimValue = "1985-11-30",
+                            UserId = new Guid("00000000-0000-0000-0000-500000000000")
+                        },
+                        new
+                        {
+                            Id = 37,
+                            ClaimType = "dob",
+                            ClaimValue = "1973-03-24",
+                            UserId = new Guid("00000000-0000-0000-0000-600000000000")
+                        },
+                        new
+                        {
+                            Id = 38,
+                            ClaimType = "dob",
+                            ClaimValue = "1975-04-30",
+                            UserId = new Guid("00000000-0000-0000-0000-700000000000")
+                        },
+                        new
+                        {
+                            Id = 39,
+                            ClaimType = "dob",
+                            ClaimValue = "1981-04-30",
+                            UserId = new Guid("00000000-0000-0000-0000-800000000000")
+                        },
+                        new
+                        {
+                            Id = 40,
+                            ClaimType = "dob",
+                            ClaimValue = "1980-06-23",
+                            UserId = new Guid("00000000-0000-0000-0000-900000000000")
+                        },
+                        new
+                        {
+                            Id = 41,
+                            ClaimType = "dob",
+                            ClaimValue = "1980-06-23",
+                            UserId = new Guid("00000000-0000-0000-0000-110000000000")
+                        },
+                        new
+                        {
+                            Id = 42,
+                            ClaimType = "dob",
+                            ClaimValue = "1973-12-12",
+                            UserId = new Guid("00000000-0000-0000-0000-120000000000")
+                        },
+                        new
+                        {
+                            Id = 43,
+                            ClaimType = "dob",
+                            ClaimValue = "1972-01-22",
+                            UserId = new Guid("00000000-0000-0000-0000-130000000000")
+                        },
+                        new
+                        {
+                            Id = 44,
+                            ClaimType = "dob",
+                            ClaimValue = "1981-08-04",
+                            UserId = new Guid("00000000-0000-0000-0000-140000000000")
+                        },
+                        new
+                        {
+                            Id = 45,
+                            ClaimType = "dob",
+                            ClaimValue = "1981-08-27",
+                            UserId = new Guid("00000000-0000-0000-0000-150000000000")
+                        },
+                        new
+                        {
+                            Id = 46,
+                            ClaimType = "dob",
+                            ClaimValue = "1972-12-06",
+                            UserId = new Guid("00000000-0000-0000-0000-160000000000")
+                        },
+                        new
+                        {
+                            Id = 47,
+                            ClaimType = "dob",
+                            ClaimValue = "1970-06-12",
+                            UserId = new Guid("00000000-0000-0000-0000-170000000000")
+                        },
+                        new
+                        {
+                            Id = 48,
+                            ClaimType = "dob",
+                            ClaimValue = "1956-04-18",
+                            UserId = new Guid("00000000-0000-0000-0000-180000000000")
+                        },
+                        new
+                        {
+                            Id = 49,
+                            ClaimType = "dob",
+                            ClaimValue = "1990-07-02",
+                            UserId = new Guid("00000000-0000-0000-0000-190000000000")
+                        },
+                        new
+                        {
+                            Id = 50,
+                            ClaimType = "dob",
+                            ClaimValue = "1986-05-17",
+                            UserId = new Guid("00000000-0000-0000-0000-210000000000")
+                        },
+                        new
+                        {
+                            Id = 51,
+                            ClaimType = "dob",
+                            ClaimValue = "1979-04-22",
+                            UserId = new Guid("00000000-0000-0000-0000-220000000000")
+                        },
+                        new
+                        {
+                            Id = 52,
+                            ClaimType = "dob",
+                            ClaimValue = "1985-09-24",
+                            UserId = new Guid("00000000-0000-0000-0000-230000000000")
+                        },
+                        new
+                        {
+                            Id = 53,
+                            ClaimType = "dob",
+                            ClaimValue = "1983-04-10",
+                            UserId = new Guid("00000000-0000-0000-0000-240000000000")
+                        },
+                        new
+                        {
+                            Id = 54,
+                            ClaimType = "dob",
+                            ClaimValue = "1999-06-21",
+                            UserId = new Guid("00000000-0000-0000-0000-250000000000")
+                        },
+                        new
+                        {
+                            Id = 55,
+                            ClaimType = "dob",
+                            ClaimValue = "1986-04-22",
+                            UserId = new Guid("00000000-0000-0000-0000-260000000000")
+                        },
+                        new
+                        {
+                            Id = 56,
+                            ClaimType = "dob",
+                            ClaimValue = "1986-05-16",
+                            UserId = new Guid("00000000-0000-0000-0000-270000000000")
+                        },
+                        new
+                        {
+                            Id = 57,
+                            ClaimType = "dob",
+                            ClaimValue = "1975-05-16",
+                            UserId = new Guid("00000000-0000-0000-0000-280000000000")
+                        },
+                        new
+                        {
+                            Id = 58,
+                            ClaimType = "dob",
+                            ClaimValue = "1980-05-16",
+                            UserId = new Guid("00000000-0000-0000-0000-290000000000")
+                        },
+                        new
+                        {
+                            Id = 59,
+                            ClaimType = "dob",
+                            ClaimValue = "1980-05-16",
+                            UserId = new Guid("00000000-0000-0000-0000-310000000000")
+                        },
+                        new
+                        {
+                            Id = 60,
+                            ClaimType = "dob",
+                            ClaimValue = "1980-05-16",
+                            UserId = new Guid("00000000-0000-0000-0000-320000000000")
+                        },
+                        new
+                        {
+                            Id = 61,
+                            ClaimType = "dob",
+                            ClaimValue = "1975-05-16",
+                            UserId = new Guid("00000000-0000-0000-0000-330000000000")
+                        },
+                        new
+                        {
+                            Id = 62,
+                            ClaimType = "dob",
+                            ClaimValue = "1980-05-16",
+                            UserId = new Guid("00000000-0000-0000-0000-340000000000")
+                        },
+                        new
+                        {
+                            Id = 63,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "B",
+                            UserId = new Guid("00000000-0000-0000-0000-100000000000")
+                        },
+                        new
+                        {
+                            Id = 64,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "S",
+                            UserId = new Guid("00000000-0000-0000-0000-200000000000")
+                        },
+                        new
+                        {
+                            Id = 65,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "A",
+                            UserId = new Guid("00000000-0000-0000-0000-300000000000")
+                        },
+                        new
+                        {
+                            Id = 66,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "A",
+                            UserId = new Guid("00000000-0000-0000-0000-400000000000")
+                        },
+                        new
+                        {
+                            Id = 67,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "K",
+                            UserId = new Guid("00000000-0000-0000-0000-500000000000")
+                        },
+                        new
+                        {
+                            Id = 68,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "J",
+                            UserId = new Guid("00000000-0000-0000-0000-600000000000")
+                        },
+                        new
+                        {
+                            Id = 69,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "J",
+                            UserId = new Guid("00000000-0000-0000-0000-700000000000")
+                        },
+                        new
+                        {
+                            Id = 70,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "K",
+                            UserId = new Guid("00000000-0000-0000-0000-800000000000")
+                        },
+                        new
+                        {
+                            Id = 71,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "S",
+                            UserId = new Guid("00000000-0000-0000-0000-900000000000")
+                        },
+                        new
+                        {
+                            Id = 72,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "M",
+                            UserId = new Guid("00000000-0000-0000-0000-110000000000")
+                        },
+                        new
+                        {
+                            Id = 73,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "M",
+                            UserId = new Guid("00000000-0000-0000-0000-120000000000")
+                        },
+                        new
+                        {
+                            Id = 74,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "G",
+                            UserId = new Guid("00000000-0000-0000-0000-130000000000")
+                        },
+                        new
+                        {
+                            Id = 75,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "M",
+                            UserId = new Guid("00000000-0000-0000-0000-140000000000")
+                        },
+                        new
+                        {
+                            Id = 76,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "P",
+                            UserId = new Guid("00000000-0000-0000-0000-150000000000")
+                        },
+                        new
+                        {
+                            Id = 77,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "S",
+                            UserId = new Guid("00000000-0000-0000-0000-160000000000")
+                        },
+                        new
+                        {
+                            Id = 78,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "R",
+                            UserId = new Guid("00000000-0000-0000-0000-170000000000")
+                        },
+                        new
+                        {
+                            Id = 79,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "E",
+                            UserId = new Guid("00000000-0000-0000-0000-180000000000")
+                        },
+                        new
+                        {
+                            Id = 80,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "M",
+                            UserId = new Guid("00000000-0000-0000-0000-190000000000")
+                        },
+                        new
+                        {
+                            Id = 81,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "E",
+                            UserId = new Guid("00000000-0000-0000-0000-210000000000")
+                        },
+                        new
+                        {
+                            Id = 82,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "M",
+                            UserId = new Guid("00000000-0000-0000-0000-220000000000")
+                        },
+                        new
+                        {
+                            Id = 83,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "J",
+                            UserId = new Guid("00000000-0000-0000-0000-230000000000")
+                        },
+                        new
+                        {
+                            Id = 84,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "J",
+                            UserId = new Guid("00000000-0000-0000-0000-240000000000")
+                        },
+                        new
+                        {
+                            Id = 85,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "N",
+                            UserId = new Guid("00000000-0000-0000-0000-250000000000")
+                        },
+                        new
+                        {
+                            Id = 86,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "A",
+                            UserId = new Guid("00000000-0000-0000-0000-260000000000")
+                        },
+                        new
+                        {
+                            Id = 87,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "M",
+                            UserId = new Guid("00000000-0000-0000-0000-270000000000")
+                        },
+                        new
+                        {
+                            Id = 88,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "S",
+                            UserId = new Guid("00000000-0000-0000-0000-280000000000")
+                        },
+                        new
+                        {
+                            Id = 89,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "M",
+                            UserId = new Guid("00000000-0000-0000-0000-290000000000")
+                        },
+                        new
+                        {
+                            Id = 90,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "J",
+                            UserId = new Guid("00000000-0000-0000-0000-310000000000")
+                        },
+                        new
+                        {
+                            Id = 91,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "S",
+                            UserId = new Guid("00000000-0000-0000-0000-320000000000")
+                        },
+                        new
+                        {
+                            Id = 92,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "W",
+                            UserId = new Guid("00000000-0000-0000-0000-330000000000")
+                        },
+                        new
+                        {
+                            Id = 93,
+                            ClaimType = "firstnamechar",
+                            ClaimValue = "M",
+                            UserId = new Guid("00000000-0000-0000-0000-340000000000")
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderKey")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("ProviderDisplayName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("LoginProvider", "ProviderKey");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("AspNetUserLogins");
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("RoleId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "RoleId");
+
+                    b.HasIndex("RoleId");
+
+                    b.ToTable("AspNetUserRoles");
+
+                    b.HasData(
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-100000000000"),
+                            RoleId = new Guid("00000001-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-200000000000"),
+                            RoleId = new Guid("00000001-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-300000000000"),
+                            RoleId = new Guid("00000003-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-400000000000"),
+                            RoleId = new Guid("00000003-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-500000000000"),
+                            RoleId = new Guid("00000003-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-600000000000"),
+                            RoleId = new Guid("00000003-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-700000000000"),
+                            RoleId = new Guid("00000003-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-280000000000"),
+                            RoleId = new Guid("00000004-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-290000000000"),
+                            RoleId = new Guid("00000004-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-310000000000"),
+                            RoleId = new Guid("00000004-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-320000000000"),
+                            RoleId = new Guid("00000004-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-330000000000"),
+                            RoleId = new Guid("00000004-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-340000000000"),
+                            RoleId = new Guid("00000004-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-800000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-900000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-110000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-120000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-130000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-140000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-150000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-160000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-170000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-180000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-190000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-210000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-220000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-230000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-240000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-250000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-260000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        },
+                        new
+                        {
+                            UserId = new Guid("00000000-0000-0000-0000-270000000000"),
+                            RoleId = new Guid("00000002-0000-0000-0000-000000000000")
+                        });
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("LoginProvider")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Value")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("UserId", "LoginProvider", "Name");
+
+                    b.ToTable("AspNetUserTokens");
                 });
 
             modelBuilder.Entity("Imi.Project.Api.Core.Entities.Games.BoardGameArtist", b =>
@@ -3161,6 +4599,57 @@ namespace Imi.Project.Api.Infrastructure.Migrations
                     b.HasOne("Imi.Project.Api.Core.Entities.Games.BoardGame", "BoardGame")
                         .WithMany("PlayedGames")
                         .HasForeignKey("BoardGameId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
+                {
+                    b.HasOne("Imi.Project.Api.Core.Entities.Users.ApplicationRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", b =>
+                {
+                    b.HasOne("Imi.Project.Api.Core.Entities.Users.Player", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", b =>
+                {
+                    b.HasOne("Imi.Project.Api.Core.Entities.Users.Player", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", b =>
+                {
+                    b.HasOne("Imi.Project.Api.Core.Entities.Users.ApplicationRole", null)
+                        .WithMany()
+                        .HasForeignKey("RoleId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Imi.Project.Api.Core.Entities.Users.Player", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", b =>
+                {
+                    b.HasOne("Imi.Project.Api.Core.Entities.Users.Player", null)
+                        .WithMany()
+                        .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

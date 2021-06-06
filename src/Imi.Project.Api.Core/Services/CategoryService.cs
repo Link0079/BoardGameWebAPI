@@ -47,7 +47,7 @@ namespace Imi.Project.Api.Core.Services
         {
             await _categoryRepository.DeleteAsync(id);
         }
-        public async Task<IEnumerable<CategoryResponseDto>> SearchByNameAsycn(string name)
+        public async Task<IEnumerable<CategoryResponseDto>> SearchByNameAsync(string name)
         {
             var result = await _categoryRepository.SearchByNameAsync(name);
             var dto = _mapper.Map<IEnumerable<CategoryResponseDto>>(result);

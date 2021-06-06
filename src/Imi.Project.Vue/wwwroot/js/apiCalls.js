@@ -1,0 +1,9 @@
+﻿const playerApiURL = 'https://localhost:5001/api/players';
+const boardGameApiURL = 'https://localhost:5001/api/boardgames';
+const categoriesApiURL = 'https://localhost:5001/api/categories';
+const artistsApiURL = 'https://localhost:5001/api/artists';
+const playedGamesApiURL = 'https://localhost:5001/api/playedgames';
+const rolesApiURL = 'https://localhost:5001/api/Roles';
+const harryPotterCharactersApiURL = 'https://hp-api.herokuapp.com/api/characters';
+const PlayerTokenApiCall = sessionStorage.getItem("sessionPlayerToken");
+const axiosBoardGameConfig = { headers: { Authorization: `Bearer ${PlayerTokenApiCall}` } };

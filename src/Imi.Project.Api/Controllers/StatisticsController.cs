@@ -1,5 +1,6 @@
 ﻿using Imi.Project.Api.Core.Interfaces.Services.Statistics;
 using Imi.Project.Common;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -11,6 +12,7 @@ namespace Imi.Project.Api.Controllers
 {
     [Route("api/[controller]")]
     [ApiController]
+    [Authorize]
     public class StatisticsController : ControllerBase
     {
         private readonly IStatisticsService _statisticsService;
@@ -19,6 +21,7 @@ namespace Imi.Project.Api.Controllers
             _statisticsService = statisticsService;
         }
         [HttpGet]
+        [Authorize(Policy = "AccesFor8And5Users")]
         public async Task<IActionResult> Get([FromQuery] int totalItems)
         {
             if (totalItems < 1)
