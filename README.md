@@ -83,8 +83,20 @@ In het API.Core project zitten reeds "Publisher" en "Country".
 > In het API.Infrastructure.Data werd ook seeding voorzien voor deze entiteiten. 
 
 ## Solution Setup
+Alvorens de applicatie te starten dien je best een Database update te doen. 
+ - dotnet ef database update -s .\Imi.Project.Api\ -p .\Imi.Project.Api.Infrastructure\
+
 Solution dient gestart te worden als **Multiple Startup Project**
  - Enerzijds het project "Imi.Project.Api" als **Kestrel**.!!!
  - Anderzijds het project "Imi.Project.Vue" als IIS Expres of Kestrel. 
 
 Alle baseApiUrl's zitten in "Imi.Project.Vue.wwwroot.js.apiCalls.js".
+
+## Sources..
+ - https://boardgamegeek.com/
+ - https://hp-api.herokuapp.com/
+ - https://jwt.io/
+ - https://getbootstrap.com/docs/4.6/getting-started/introduction/
+ - https://vuejs.org/v2/guide/
+ - https://stackoverflow.com/
+ - Cursus materiaal van WBA, PRI
