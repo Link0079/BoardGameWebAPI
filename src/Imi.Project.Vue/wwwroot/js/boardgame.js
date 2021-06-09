@@ -53,7 +53,6 @@
                 axios.get(`${getBoardGameByNameApiUrl}`)
                     .then(function (response) {
                         self.boardgames = response.data;
-                        self.hasSuccess = true;
                         self.boardgamesCount = self.boardgames.length;
                     })
                     .catch(function (error) {
@@ -172,7 +171,7 @@
                         console.log("Category was added to BoardGame");
                     })
                     .catch(function (error) {
-                        console.log(error.response.data.title);
+                        console.log(error.response);
                     });
             },
         PostBoardGameArtists:
